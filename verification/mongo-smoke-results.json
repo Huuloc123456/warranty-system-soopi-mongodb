@@ -1,0 +1,521 @@
+{
+  "database": "soopi_mongodb",
+  "base": "http://localhost:8081",
+  "checkedAt": "2026-10-09T07:17:42.241Z",
+  "createdTickets": [
+    "TN-2026-1009-00009",
+    "TN-2026-1009-00010"
+  ],
+  "results": [
+    {
+      "method": "GET",
+      "path": "/actuator/health",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/device-categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/brands",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/products",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/warranty-policies",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/service-prices",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/suppliers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/stations",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/catalog/parts",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/customers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/customers?q=demo",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/devices/lookup?serial=SOOPI-DEMO-001",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/technicians/workload",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/search?q=DEMO",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/my/devices",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/assignment-candidates",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/assignment",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/inspection",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/customer-notes",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/internal-notes",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/repair/start",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/repair/results",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/billing",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/payments/free-warranty",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/handover",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/handover-slip",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00009/history",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/tickets/TN-2026-1009-00009",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/assignment-candidates",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/assignment",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/inspection",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/customer-notes",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/internal-notes",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/quotations",
+      "status": 201
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/quotations/BG-2026-1009-00005/lines",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/quotations/BG-2026-1009-00005/approve",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/portal/tickets/TN-2026-1009-00010/quotation-decision",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/LK-PIN",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-issues",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/LK-PIN",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-issues/PX-2026-00005/approve",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/LK-PIN",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/repair/results",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/billing",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/payments",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/handover",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/handover-slip",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00010/history",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/tickets/TN-2026-1009-00010",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/revenue-monthly",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/technician-performance",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/turnaround",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/warranty-ratio",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/repeat-repairs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/quotation-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/tickets-by-status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/sla-distribution",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/audit-logs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/notifications",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/notifications/read-all",
+      "status": 204
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-receipts",
+      "status": 201
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/stock-receipts/PN-2026-00003/lines",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-receipts/PN-2026-00003/approve",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-transfers",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-transfers/DC-2026-00003/approve",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/stock-receipts",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/stock-transfers",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/portal/warranty-requests",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/warranty-requests/YC-2026-1009-00003",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/portal/lookup",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/warranty-requests/YC-2026-1009-00003",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/my/warranty-requests",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/files/{id}",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/warranty-requests/YC-2026-1009-00003/cancel",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/notifications/devices/demo-MV0MUZRC",
+      "status": 204
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/notifications/devices/demo-MV0MUZRC",
+      "status": 204
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/refresh",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/refresh",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/logout",
+      "status": 204
+    }
+  ]
+}

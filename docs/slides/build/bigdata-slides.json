@@ -1,0 +1,690 @@
+{
+ "strings": {
+  "course": "NH\u1eacP M\u00d4N BIG DATA",
+  "product": "XU H\u01af\u1edaNG TIN T\u1ee8C",
+  "tagline": "Ph\u00e2n t\u00edch xu h\u01b0\u1edbng ch\u1ee7 \u0111\u1ec1 t\u1eeb ti\u00eau \u0111\u1ec1 video YouTube c\u1ee7a c\u00e1c k\u00eanh b\u00e1o, \u0111\u00e0i Vi\u1ec7t Nam",
+  "advisor": "GVHD: ThS. Ng\u00f4 D\u01b0\u01a1ng H\u00e0",
+  "members": "B\u00f9i H\u1eefu L\u1ed9c (2001230467) \u00b7 \u0110\u1ed7 L\u00ea Thanh M\u1eabn (2001230510)",
+  "thanks": "C\u1ea2M \u01a0N TH\u1ea6Y C\u00d4 V\u00c0 C\u00c1C B\u1ea0N \u0110\u00c3 L\u1eaeNG NGHE!",
+  "team": "\u0110\u1ec1 t\u00e0i 5 \u2014 Ph\u00e2n t\u00edch xu h\u01b0\u1edbng ch\u1ee7 \u0111\u1ec1 tr\u00ean m\u1ea1ng x\u00e3 h\u1ed9i"
+ },
+ "slides": [
+  {
+   "kind": "slide",
+   "layout": "cover",
+   "title": "",
+   "notes": "Gi\u1edbi thi\u1ec7u nh\u00f3m, gi\u1ea3ng vi\u00ean h\u01b0\u1edbng d\u1eabn v\u00e0 t\u00ean \u0111\u1ec1 t\u00e0i."
+  },
+  {
+   "kind": "slide",
+   "layout": "agenda",
+   "title": "",
+   "notes": "B\u00e0i tr\u00ecnh b\u00e0y g\u1ed3m b\u1ed1n ph\u1ea7n theo \u0111\u00fang c\u1ea5u tr\u00fac b\u00e1o c\u00e1o.",
+   "items": [
+    "Gi\u1edbi thi\u1ec7u \u0111\u1ec1 t\u00e0i",
+    "C\u01a1 s\u1edf l\u00fd thuy\u1ebft",
+    "X\u00e2y d\u1ef1ng \u1ee9ng d\u1ee5ng, tr\u1ef1c quan h\u00f3a d\u1eef li\u1ec7u",
+    "K\u1ebft lu\u1eadn v\u00e0 \u0111\u1ecbnh h\u01b0\u1edbng ph\u00e1t tri\u1ec3n"
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 1,
+   "title": "Gi\u1edbi thi\u1ec7u \u0111\u1ec1 t\u00e0i"
+  },
+  {
+   "kind": "slide",
+   "layout": "img-top",
+   "title": "B\u00e0i to\u00e1n: h\u00f4m nay b\u00e1o ch\u00ed \u0111ang \u0111\u01b0a tin v\u1ec1 g\u00ec?",
+   "notes": "N\u00eau l\u00fd do ch\u1ecdn \u0111\u1ec1 t\u00e0i v\u00e0 l\u00fd do ch\u1ecdn ngu\u1ed3n d\u1eef li\u1ec7u YouTube c\u1ee7a b\u00e1o, \u0111\u00e0i Vi\u1ec7t Nam. H\u00ecnh l\u00e0 b\u1ea3ng ch\u1ee7 \u0111\u1ec1 n\u1ed5i b\u1eadt ng\u00e0y 14/10/2026 tr\u00ean dashboard.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\bang-diem.png",
+     "alt": "B\u1ea3ng ch\u1ee7 \u0111\u1ec1 n\u1ed5i b\u1eadt ng\u00e0y 14/10/2026 tr\u00ean dashboard"
+    }
+   ],
+   "cards": [
+    [
+     "V\u1ea5n \u0111\u1ec1",
+     [
+      "B\u00e1o, \u0111\u00e0i Vi\u1ec7t Nam \u0111\u0103ng **h\u00e0ng tr\u0103m video m\u1ed7i ng\u00e0y** tr\u00ean YouTube.",
+      "C\u1ea7n bi\u1ebft theo ng\u00e0y/th\u00e1ng: ch\u1ee7 \u0111\u1ec1 n\u00e0o **nhi\u1ec1u video nh\u1ea5t**, ch\u1ee7 \u0111\u1ec1 n\u00e0o **t\u0103ng nhanh**, bao nhi\u00eau k\u00eanh c\u00f9ng \u0111\u01b0a tin."
+     ]
+    ],
+    [
+     "H\u01b0\u1edbng gi\u1ea3i quy\u1ebft",
+     [
+      "\u0110\u1ec1 t\u00e0i 5: thu th\u1eadp, l\u01b0u HDFS/NoSQL, x\u1eed l\u00fd Spark, m\u00f4 h\u00ecnh ch\u1ee7 \u0111\u1ec1, dashboard theo th\u1eddi gian.",
+      "D\u1eef li\u1ec7u: **ti\u00eau \u0111\u1ec1 video YouTube** c\u1ee7a c\u00e1c k\u00eanh b\u00e1o, \u0111\u00e0i, c\u00f3 th\u1eddi gian \u0111\u0103ng v\u00e0 li\u00ean k\u1ebft g\u1ed1c."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "stats",
+   "title": "M\u1ee5c ti\u00eau v\u00e0 ph\u1ea1m vi",
+   "notes": "Nh\u1ea5n m\u1ea1nh quy m\u00f4 d\u1eef li\u1ec7u v\u00e0 gi\u1edbi h\u1ea1n di\u1ec5n gi\u1ea3i: m\u1eabu theo k\u00eanh, kh\u00f4ng \u0111\u1ea1i di\u1ec7n to\u00e0n b\u1ed9 m\u1ea1ng x\u00e3 h\u1ed9i.",
+   "stats": [
+    [
+     "104.790",
+     "video h\u1ee3p l\u1ec7"
+    ],
+    [
+     "30",
+     "k\u00eanh b\u00e1o, \u0111\u00e0i c\u00f3 d\u1eef li\u1ec7u"
+    ],
+    [
+     "136",
+     "ng\u00e0y \u0111\u0103ng (01/06 \u2013 14/10/2026)"
+    ],
+    [
+     "93.456",
+     "ti\u00eau \u0111\u1ec1 d\u00f9ng hu\u1ea5n luy\u1ec7n"
+    ]
+   ],
+   "cards": [
+    [
+     "M\u1ee5c ti\u00eau",
+     [
+      "Pipeline ch\u1ea1y l\u1ea1i \u0111\u01b0\u1ee3c: API \u2192 CSV \u2192 HDFS \u2192 Spark \u2192 MongoDB \u2192 dashboard.",
+      "So s\u00e1nh Word2Vec + KMeans v\u1edbi LDA, ch\u1ecdn m\u00f4 h\u00ecnh ch\u00ednh.",
+      "Th\u1ed1ng k\u00ea ch\u1ee7 \u0111\u1ec1 theo ng\u00e0y/th\u00e1ng, ph\u00e1t hi\u1ec7n kho\u1ea3ng t\u0103ng \u0111\u1ed9t bi\u1ebfn."
+     ]
+    ],
+    [
+     "Ph\u1ea1m vi",
+     [
+      "Ch\u1ec9 d\u00f9ng ti\u00eau \u0111\u1ec1; kh\u00f4ng d\u00f9ng b\u00ecnh lu\u1eadn, m\u00f4 t\u1ea3 hay n\u1ed9i dung video.",
+      "X\u1eed l\u00fd theo l\u00f4 tr\u00ean c\u1ee5m Docker ch\u1ea1y tr\u00ean m\u1ed9t m\u00e1y c\u00e1 nh\u00e2n.",
+      "Ph\u00e2n t\u00edch kh\u00e1m ph\u00e1, kh\u00f4ng d\u1ef1 b\u00e1o; k\u1ebft qu\u1ea3 l\u00e0 \u201cch\u1ee7 \u0111\u1ec1 \u0111\u01b0\u1ee3c \u0111\u01b0a tin trong m\u1eabu\u201d."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 2,
+   "title": "C\u01a1 s\u1edf l\u00fd thuy\u1ebft"
+  },
+  {
+   "kind": "slide",
+   "layout": "table-top",
+   "title": "D\u1eef li\u1ec7u l\u1edbn v\u00e0 \u0111\u1eb7c tr\u01b0ng 5V trong \u0111\u1ec1 t\u00e0i",
+   "notes": "\u0110\u1ed1i chi\u1ebfu 5V v\u1edbi d\u1eef li\u1ec7u th\u1eadt c\u1ee7a nh\u00f3m, n\u00f3i r\u00f5 quy m\u00f4 hi\u1ec7n t\u1ea1i v\u1eabn nh\u1ecf.",
+   "table": [
+    [
+     "\u0110\u1eb7c tr\u01b0ng",
+     "Th\u1ec3 hi\u1ec7n trong \u0111\u1ec1 t\u00e0i"
+    ],
+    [
+     "Volume",
+     "104.790 ti\u00eau \u0111\u1ec1, m\u1edf r\u1ed9ng khi th\u00eam k\u00eanh ho\u1eb7c th\u00eam th\u1eddi gian"
+    ],
+    [
+     "Velocity",
+     "Trung b\u00ecnh kho\u1ea3ng 773 video m\u1edbi m\u1ed7i ng\u00e0y"
+    ],
+    [
+     "Variety",
+     "V\u0103n b\u1ea3n, th\u1eddi gian, m\u00e3 k\u00eanh, li\u00ean k\u1ebft, l\u01b0\u1ee3t xem, l\u01b0\u1ee3t th\u00edch"
+    ],
+    [
+     "Veracity",
+     "12,31% thi\u1ebfu l\u01b0\u1ee3t th\u00edch; nh\u1eadn di\u1ec7n ng\u00f4n ng\u1eef c\u00f3 th\u1ec3 sai; ti\u00eau \u0111\u1ec1 tr\u00f9ng"
+    ],
+    [
+     "Value",
+     "Chuy\u1ec3n ti\u00eau \u0111\u1ec1 r\u1eddi r\u1ea1c th\u00e0nh ch\u1ee7 \u0111\u1ec1 v\u00e0 xu h\u01b0\u1edbng theo th\u1eddi gian"
+    ]
+   ],
+   "items": [
+    "Big Data c\u1ea7n **l\u01b0u tr\u1eef ph\u00e2n t\u00e1n** v\u00e0 **t\u00ednh to\u00e1n song song** khi d\u1eef li\u1ec7u v\u01b0\u1ee3t kh\u1ea3 n\u0103ng c\u1ee7a m\u1ed9t m\u00e1y.",
+    "T\u1ec7p CSV hi\u1ec7n kho\u1ea3ng 30 MB; HDFS v\u00e0 Spark \u0111\u01b0\u1ee3c d\u00f9ng \u0111\u1ec3 tri\u1ec3n khai quy tr\u00ecnh ph\u00e2n t\u00e1n c\u1ee7a m\u00f4n h\u1ecdc v\u00e0 s\u1eb5n s\u00e0ng khi d\u1eef li\u1ec7u t\u0103ng."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "quad",
+   "title": "C\u00f4ng ngh\u1ec7 l\u01b0u tr\u1eef v\u00e0 x\u1eed l\u00fd ph\u00e2n t\u00e1n",
+   "notes": "Gi\u1ea3i th\u00edch vai tr\u00f2 t\u1eebng c\u00f4ng ngh\u1ec7 trong ki\u1ebfn tr\u00fac, kh\u00f4ng \u0111i s\u00e2u v\u00e0o c\u00e0i \u0111\u1eb7t.",
+   "cards": [
+    [
+     "HDFS",
+     [
+      "NameNode qu\u1ea3n l\u00fd metadata, DataNode l\u01b0u block 128 MB.",
+      "C\u1ee5m \u0111\u1ed3 \u00e1n: 1 NameNode, 2 DataNode, h\u1ec7 s\u1ed1 sao ch\u00e9p 2."
+     ]
+    ],
+    [
+     "Apache Spark",
+     [
+      "Driver \u0111i\u1ec1u ph\u1ed1i, executor ch\u1ea1y song song; DataFrame + Catalyst, th\u1ef1c thi l\u01b0\u1eddi.",
+      "MLlib Pipeline d\u00f9ng chung ti\u1ec1n x\u1eed l\u00fd l\u00fac hu\u1ea5n luy\u1ec7n v\u00e0 suy lu\u1eadn."
+     ]
+    ],
+    [
+     "MongoDB",
+     [
+      "CSDL NoSQL h\u01b0\u1edbng t\u00e0i li\u1ec7u (BSON), kh\u00f4ng c\u1ea7n schema c\u1ed1 \u0111\u1ecbnh.",
+      "L\u01b0u b\u1ea3ng k\u1ebft qu\u1ea3 nh\u1ecf \u0111\u1ec3 dashboard \u0111\u1ecdc nhanh."
+     ]
+    ],
+    [
+     "Docker \u00b7 Streamlit \u00b7 Plotly",
+     [
+      "Docker Compose d\u1ef1ng to\u00e0n c\u1ee5m b\u1eb1ng m\u1ed9t l\u1ec7nh.",
+      "Streamlit + Plotly cho dashboard t\u01b0\u01a1ng t\u00e1c."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "Bi\u1ec3u di\u1ec5n v\u0103n b\u1ea3n v\u00e0 m\u00f4 h\u00ecnh ch\u1ee7 \u0111\u1ec1",
+   "notes": "So s\u00e1nh g\u00e1n c\u1ee9ng (KMeans) v\u1edbi ph\u00e2n b\u1ed1 m\u1ec1m (LDA) v\u00e0 l\u00fd do c\u1ea7n c\u1ea3 hai.",
+   "cards": [
+    [
+     "Word2Vec + KMeans (m\u00f4 h\u00ecnh ch\u00ednh)",
+     [
+      "Ti\u1ec1n x\u1eed l\u00fd: ch\u1eef th\u01b0\u1eddng, b\u1ecf URL, ch\u1eef s\u1ed1, k\u00fd hi\u1ec7u; t\u00e1ch token; b\u1ecf t\u1eeb d\u1eebng; l\u1ecdc ti\u1ebfng Vi\u1ec7t b\u1eb1ng fastText.",
+      "Word2Vec 100 chi\u1ec1u \u2192 vector trung b\u00ecnh c\u1ee7a ti\u00eau \u0111\u1ec1 \u2192 chu\u1ea9n h\u00f3a L2.",
+      "KMeans k = 10: m\u1ed7i ti\u00eau \u0111\u1ec1 thu\u1ed9c **\u0111\u00fang m\u1ed9t c\u1ee5m** \u2192 \u0111\u1ebfm video theo ng\u00e0y.",
+      "Nh\u00e3n c\u1ee5m b\u1eb1ng **c-TF-IDF**: 3 t\u1eeb \u0111\u1eb7c tr\u01b0ng nh\u1ea5t c\u1ee7a c\u1ee5m."
+     ]
+    ],
+    [
+     "LDA (m\u00f4 h\u00ecnh b\u1ed5 sung)",
+     [
+      "CountVectorizer t\u1ea1o vector t\u1ea7n su\u1ea5t t\u1eeb.",
+      "M\u1ed7i t\u00e0i li\u1ec7u l\u00e0 **h\u1ed7n h\u1ee3p nhi\u1ec1u ch\u1ee7 \u0111\u1ec1**, m\u1ed7i ch\u1ee7 \u0111\u1ec1 l\u00e0 ph\u00e2n ph\u1ed1i tr\u00ean t\u1eeb v\u1ef1ng.",
+      "10 ch\u1ee7 \u0111\u1ec1, 30 v\u00f2ng l\u1eb7p, b\u1ed9 t\u1ed1i \u01b0u online.",
+      "D\u00f9ng trong trang Ph\u00e2n t\u00edch v\u0103n b\u1ea3n \u0111\u1ec3 xem ph\u00e2n b\u1ed1 m\u1ec1m."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "Ch\u1ec9 s\u1ed1 \u0111\u00e1nh gi\u00e1 v\u00e0 ph\u00e1t hi\u1ec7n t\u0103ng \u0111\u1ed9t bi\u1ebfn",
+   "notes": "Nh\u1ea5n m\u1ea1nh: kh\u00f4ng c\u00f3 nh\u00e3n chu\u1ea9n n\u00ean kh\u00f4ng c\u00f3 \u0111\u1ed9 ch\u00ednh x\u00e1c; quy t\u1eafc t\u0103ng \u0111\u1ed9t bi\u1ebfn ch\u1ec9 mang t\u00ednh m\u00f4 t\u1ea3.",
+   "cards": [
+    [
+     "\u0110\u00e1nh gi\u00e1 m\u00f4 h\u00ecnh",
+     [
+      "**NPMI**: \u0111\u1ed9 \u0111\u1ed3ng xu\u1ea5t hi\u1ec7n chu\u1ea9n h\u00f3a c\u1ee7a t\u1eeb kh\u00f3a, trong kho\u1ea3ng [-1, 1]; so s\u00e1nh \u0111\u01b0\u1ee3c c\u1ea3 hai m\u00f4 h\u00ecnh.",
+      "**Silhouette** (cosine): m\u1ee9c t\u00e1ch bi\u1ec7t gi\u1eefa c\u00e1c c\u1ee5m KMeans.",
+      "**Log-perplexity**: kh\u1ea3 n\u0103ng d\u1ef1 \u0111o\u00e1n d\u1eef li\u1ec7u gi\u1eef l\u1ea1i c\u1ee7a LDA (c\u00e0ng th\u1ea5p c\u00e0ng t\u1ed1t)."
+     ]
+    ],
+    [
+     "Xu h\u01b0\u1edbng theo th\u1eddi gian",
+     [
+      "T\u1ef7 tr\u1ecdng p(k, d) = s\u1ed1 video c\u1ee5m k / t\u1ed5ng video ng\u00e0y d.",
+      "z = (p \u2212 \u03bc) / max(\u03c3, \u03b5), so v\u1edbi trung b\u00ecnh 7 ng\u00e0y tr\u01b0\u1edbc.",
+      "T\u0103ng \u0111\u1ed9t bi\u1ebfn khi **z > 2,5**, c\u00f3 \u00edt nh\u1ea5t **20 video** v\u00e0 t\u1ef7 tr\u1ecdng \u2265 **1,2 l\u1ea7n** m\u1ee9c n\u1ec1n."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 3,
+   "title": "X\u00e2y d\u1ef1ng \u1ee9ng d\u1ee5ng, tr\u1ef1c quan h\u00f3a d\u1eef li\u1ec7u"
+  },
+  {
+   "kind": "slide",
+   "layout": "img-top",
+   "title": "Ki\u1ebfn tr\u00fac t\u1ed5ng th\u1ec3 h\u1ec7 th\u1ed1ng",
+   "notes": "\u0110i theo m\u0169i t\u00ean tr\u00ean s\u01a1 \u0111\u1ed3, m\u1ed7i t\u1ea7ng c\u00f3 \u0111\u1ea7u v\u00e0o v\u00e0 \u0111\u1ea7u ra ki\u1ec3m tra \u0111\u01b0\u1ee3c.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\architecture.png",
+     "alt": "S\u01a1 \u0111\u1ed3 ki\u1ebfn tr\u00fac: API, thu th\u1eadp, CSV, HDFS, Spark, MongoDB, dashboard"
+    }
+   ],
+   "cards": [
+    [
+     "Lu\u1ed3ng d\u1eef li\u1ec7u",
+     [
+      "YouTube API \u2192 CSV \u2192 HDFS \u2192 Spark ETL/EDA \u2192 MLlib \u2192 t\u1ed5ng h\u1ee3p xu h\u01b0\u1edbng \u2192 MongoDB \u2192 dashboard."
+     ]
+    ],
+    [
+     "M\u00f4i tr\u01b0\u1eddng",
+     [
+      "Hadoop 3.4.1 \u00b7 Spark 3.5.3 (2 worker, 4 nh\u00e2n, 4 GB m\u1ed7i worker) \u00b7 MongoDB 7.0 \u00b7 Streamlit 1.39."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-top-img",
+   "title": "Thu th\u1eadp d\u1eef li\u1ec7u b\u1eb1ng YouTube Data API v3",
+   "notes": "Gi\u1eef ti\u00eau \u0111\u1ec1 tr\u00f9ng \u1edf c\u00e1c k\u00eanh kh\u00e1c nhau \u0111\u1ec3 ph\u1ea3n \u00e1nh nhi\u1ec1u ngu\u1ed3n c\u00f9ng \u0111\u01b0a tin.",
+   "table": [
+    [
+     "B\u01b0\u1edbc",
+     "C\u00e1ch l\u00e0m"
+    ],
+    [
+     "Danh m\u1ee5c ngu\u1ed3n",
+     "32 k\u00eanh b\u00e1o, \u0111\u00e0i; 30 k\u00eanh c\u00f3 d\u1eef li\u1ec7u"
+    ],
+    [
+     "L\u1ea5y m\u00e3 video",
+     "playlistItems.list theo danh s\u00e1ch t\u1ea3i l\u00ean, 50 m\u1ee5c/trang, checkpoint theo k\u00eanh"
+    ],
+    [
+     "L\u1ea5y metadata",
+     "videos.list theo nh\u00f3m 50 m\u00e3: ti\u00eau \u0111\u1ec1, l\u01b0\u1ee3t xem, l\u01b0\u1ee3t th\u00edch"
+    ],
+    [
+     "Lo\u1ea1i tr\u00f9ng",
+     "106.449 m\u00e3 g\u1ed1c \u2192 b\u1ecf 1.659 ti\u00eau \u0111\u1ec1 tr\u00f9ng c\u00f9ng k\u00eanh \u2192 104.790 video"
+    ],
+    [
+     "D\u1eef li\u1ec7u thi\u1ebfu",
+     "Kh\u00f4ng thi\u1ebfu l\u01b0\u1ee3t xem; 12.896 d\u00f2ng thi\u1ebfu l\u01b0\u1ee3t th\u00edch (\u0111\u1ec3 tr\u1ed1ng)"
+    ]
+   ],
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\hdfs-browse.png",
+     "alt": "T\u1ec7p CSV g\u1ed1c tr\u00ean HDFS"
+    }
+   ],
+   "items": []
+  },
+  {
+   "kind": "slide",
+   "layout": "img-top",
+   "title": "L\u01b0u tr\u1eef HDFS v\u00e0 c\u1ee5m Spark",
+   "notes": "C\u00f3 th\u1ec3 m\u1edf tr\u1ef1c ti\u1ebfp Spark UI c\u1ed5ng 8080 v\u00e0 HDFS c\u1ed5ng 9870 khi demo.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\spark-master.png",
+     "alt": "Spark Master v\u1edbi hai worker v\u00e0 c\u00e1c \u1ee9ng d\u1ee5ng \u0111\u00e3 ch\u1ea1y"
+    }
+   ],
+   "cards": [
+    [
+     "HDFS",
+     [
+      "CSV g\u1ed1c: **/social/raw/youtube_news** (28,68 MB, sao ch\u00e9p 2, block 128 MB).",
+      "D\u1eef li\u1ec7u \u0111\u00e3 x\u1eed l\u00fd: **Parquet n\u00e9n Snappy** t\u1ea1i /social/youtube_news (clean, models, sample_20)."
+     ]
+    ],
+    [
+     "Spark Master",
+     [
+      "**2 worker ALIVE**, m\u1ed7i worker 4 nh\u00e2n, 4 GB.",
+      "\u1ee8ng d\u1ee5ng l\u00e0m s\u1ea1ch, th\u1ed1ng k\u00ea, hu\u1ea5n luy\u1ec7n hai m\u00f4 h\u00ecnh, t\u1ed5ng h\u1ee3p \u0111\u1ec1u **FINISHED**."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-text",
+   "title": "L\u00e0m s\u1ea1ch v\u00e0 t\u00e1ch t\u1eadp d\u1eef li\u1ec7u b\u1eb1ng Spark",
+   "notes": "Gi\u1ea3i th\u00edch v\u00ec sao kh\u00f4ng l\u1ecdc ng\u00f4n ng\u1eef tr\u00ean t\u1eadp th\u1ed1ng k\u00ea.",
+   "table": [
+    [
+     "B\u01b0\u1edbc x\u1eed l\u00fd",
+     "Lo\u1ea1i b\u1ecf",
+     "C\u00f2n l\u1ea1i"
+    ],
+    [
+     "Ki\u1ec3m tra schema, gi\u00e1 tr\u1ecb thi\u1ebfu",
+     "0",
+     "104.790"
+    ],
+    [
+     "Tr\u00f9ng video_id, ngo\u00e0i c\u1eeda s\u1ed5 th\u1eddi gian",
+     "0",
+     "104.790"
+    ],
+    [
+     "T\u1eadp th\u1ed1ng k\u00ea (volume)",
+     "\u2013",
+     "104.790"
+    ],
+    [
+     "Kh\u00f4ng ph\u1ea3i ti\u1ebfng Vi\u1ec7t / \u0111\u1ed9 tin c\u1eady < 0,5",
+     "11.323",
+     "93.467"
+    ],
+    [
+     "D\u01b0\u1edbi 3 token sau khi b\u1ecf t\u1eeb d\u1eebng",
+     "11",
+     "93.456"
+    ],
+    [
+     "T\u1eadp hu\u1ea5n luy\u1ec7n (model)",
+     "\u2013",
+     "93.456"
+    ]
+   ],
+   "items": [
+    "Ng\u00e0y \u0111\u01b0\u1ee3c t\u00ednh theo **gi\u1edd Vi\u1ec7t Nam** (UTC+7), kh\u00f4ng ch\u1ec9 \u0111\u1ed5i nh\u00e3n hi\u1ec3n th\u1ecb.",
+    "**T\u00e1ch hai t\u1eadp**: th\u1ed1ng k\u00ea gi\u1eef m\u1ecdi video h\u1ee3p l\u1ec7; hu\u1ea5n luy\u1ec7n ch\u1ec9 gi\u1eef ti\u00eau \u0111\u1ec1 ti\u1ebfng Vi\u1ec7t \u0111\u1ee7 tin c\u1eady.",
+    "fastText nh\u1eadn di\u1ec7n 90,5% ti\u00eau \u0111\u1ec1 l\u00e0 ti\u1ebfng Vi\u1ec7t; th\u1eddi gian ch\u1ea1y ETL 50,3 gi\u00e2y."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "stats",
+   "title": "Ph\u00e2n t\u00edch kh\u00e1m ph\u00e1 d\u1eef li\u1ec7u",
+   "notes": "C\u00e1c s\u1ed1 n\u00e0y d\u00f9ng \u0111\u1ec3 ch\u1ecdn tham s\u1ed1 ti\u1ec1n x\u1eed l\u00fd v\u00e0 gi\u1ea3i th\u00edch gi\u1edbi h\u1ea1n c\u1ee7a hashtag.",
+   "stats": [
+    [
+     "773",
+     "video trung b\u00ecnh m\u1ed7i ng\u00e0y"
+    ],
+    [
+     "583 \u2013 920",
+     "video ng\u00e0y \u00edt nh\u1ea5t \u2013 nhi\u1ec1u nh\u1ea5t"
+    ],
+    [
+     "84,1%",
+     "ti\u00eau \u0111\u1ec1 d\u00e0i 11\u201320 token"
+    ],
+    [
+     "4,59%",
+     "video c\u00f3 hashtag"
+    ]
+   ],
+   "cards": [
+    [
+     "Theo th\u00e1ng",
+     [
+      "Th\u00e1ng 6\u20139: kho\u1ea3ng 23,3\u201323,8 ngh\u00ecn video m\u1ed7i th\u00e1ng.",
+      "Th\u00e1ng 10 c\u00f3 10.664 video v\u00ec m\u1edbi quan s\u00e1t 14 ng\u00e0y, kh\u00f4ng ph\u1ea3i do gi\u1ea3m \u0111\u01b0a tin."
+     ]
+    ],
+    [
+     "T\u1eeb v\u00e0 hashtag",
+     [
+      "T\u1eeb ph\u1ed5 bi\u1ebfn \u201cng\u01b0\u1eddi\u201d, \u201ctin\u201d, \u201cb\u00e1o\u201d, \u201cng\u00e0y\u201d \u00edt gi\u00e1 tr\u1ecb ph\u00e2n bi\u1ec7t \u2192 c\u1ea7n t\u1eeb d\u1eebng theo mi\u1ec1n.",
+      "Hashtag nhi\u1ec1u nh\u1ea5t l\u00e0 #shorts (2.447 video) \u2014 \u0111\u1ecbnh d\u1ea1ng video, kh\u00f4ng ph\u1ea3i ch\u1ee7 \u0111\u1ec1."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-text",
+   "title": "Hu\u1ea5n luy\u1ec7n v\u00e0 l\u1ef1a ch\u1ecdn m\u00f4 h\u00ecnh",
+   "notes": "Hai l\u01b0\u1ee3t ch\u1ea1y tr\u00ean to\u00e0n t\u1eadp, c\u00f9ng ti\u1ec1n x\u1eed l\u00fd, seed 42, 2 worker.",
+   "table": [
+    [
+     "Ch\u1ec9 ti\u00eau",
+     "E01: Word2Vec + KMeans",
+     "E02: LDA"
+    ],
+    [
+     "S\u1ed1 t\u00e0i li\u1ec7u",
+     "93.456",
+     "93.456"
+    ],
+    [
+     "S\u1ed1 c\u1ee5m / ch\u1ee7 \u0111\u1ec1",
+     "10",
+     "10"
+    ],
+    [
+     "NPMI",
+     "**0,2245**",
+     "0,1492"
+    ],
+    [
+     "Silhouette",
+     "0,1611",
+     "\u2013"
+    ],
+    [
+     "Log-perplexity",
+     "\u2013",
+     "7,3048"
+    ],
+    [
+     "Th\u1eddi gian ch\u1ea1y",
+     "59,4 gi\u00e2y",
+     "49,8 gi\u00e2y"
+    ]
+   ],
+   "items": [
+    "E01 c\u00f3 **NPMI cao h\u01a1n 0,0753** \u2192 ch\u1ecdn l\u00e0m m\u00f4 h\u00ecnh ch\u00ednh cho xu h\u01b0\u1edbng.",
+    "Silhouette 0,1611 c\u00f2n th\u1ea5p: ti\u00eau \u0111\u1ec1 ng\u1eafn, t\u00e1ch theo \u00e2m ti\u1ebft, t\u00ean k\u00eanh l\u1eabn v\u00e0o ti\u00eau \u0111\u1ec1.",
+    "LDA gi\u1eef vai tr\u00f2 b\u1ed5 sung trong ph\u00e2n t\u00edch v\u0103n b\u1ea3n m\u1edbi."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-img",
+   "title": "K\u1ebft qu\u1ea3: 10 c\u1ee5m ch\u1ee7 \u0111\u1ec1",
+   "notes": "C\u1ee5m r\u00f5 ngh\u0129a: th\u1eddi ti\u1ebft, World Cup, m\u01b0a l\u0169, gi\u00e1 v\u00e0ng, v\u1ee5 \u00e1n, qu\u1ed1c t\u1ebf. C\u1ee5m l\u1edbn nh\u1ea5t c\u00f2n r\u1ed9ng, nh\u00e3n b\u1ecb \u1ea3nh h\u01b0\u1edfng b\u1edfi t\u00ean k\u00eanh (THDT, SK\u0110S).",
+   "table": [
+    [
+     "C\u1ee5m",
+     "Video",
+     "T\u1ef7 tr\u1ecdng",
+     "NPMI"
+    ],
+    [
+     "thdt \u00b7 c\u00f4ng \u00b7 h\u1ecdc",
+     "22.753",
+     "21,71%",
+     "0,0771"
+    ],
+    [
+     "h\u1ed9i \u00b7 s\u0129 \u00b7 li\u1ec7t",
+     "14.854",
+     "14,18%",
+     "0,1639"
+    ],
+    [
+     "iran \u00b7 m\u1ef9 \u00b7 nga",
+     "14.347",
+     "13,69%",
+     "0,2920"
+    ],
+    [
+     "sk\u0111s \u00b7 xe \u00b7 tu\u1ed5i",
+     "14.292",
+     "13,64%",
+     "0,1604"
+    ],
+    [
+     "m\u01b0a \u00b7 l\u0169 \u00b7 b\u00e3o",
+     "9.603",
+     "9,16%",
+     "0,2350"
+    ],
+    [
+     "t\u1ed1 \u00b7 b\u1eaft \u00b7 kh\u1edfi",
+     "8.804",
+     "8,40%",
+     "0,1976"
+    ],
+    [
+     "gi\u00e1 \u00b7 v\u00e0ng \u00b7 news",
+     "6.576",
+     "6,28%",
+     "0,1900"
+    ],
+    [
+     "tin \u00b7 ng\u00e0y \u00b7 b\u1ea3n",
+     "5.970",
+     "5,70%",
+     "0,1908"
+    ],
+    [
+     "ti\u1ebft \u00b7 th\u1eddi \u00b7 nay",
+     "4.617",
+     "4,41%",
+     "0,4945"
+    ],
+    [
+     "cup \u00b7 world \u00b7 vtv",
+     "2.972",
+     "2,84%",
+     "0,2436"
+    ]
+   ],
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\cau-chuyen.png",
+     "alt": "Trang C\u00e1c c\u00e2u chuy\u1ec7n tr\u00ean dashboard"
+    }
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "img-top",
+   "title": "Xu h\u01b0\u1edbng theo th\u1eddi gian v\u00e0 t\u0103ng \u0111\u1ed9t bi\u1ebfn",
+   "notes": "T\u1ef7 tr\u1ecdng gi\u00fap t\u00e1ch thay \u0111\u1ed5i c\u01a1 c\u1ea5u kh\u1ecfi thay \u0111\u1ed5i t\u1ed5ng s\u1ed1 video; mu\u1ed1n gi\u1ea3i th\u00edch nguy\u00ean nh\u00e2n ph\u1ea3i \u0111\u1ecdc video g\u1ed1c.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\dien-bien.png",
+     "alt": "C\u01a1 c\u1ea5u t\u1ef7 tr\u1ecdng ch\u1ee7 \u0111\u1ec1 theo ng\u00e0y"
+    }
+   ],
+   "cards": [
+    [
+     "53 kho\u1ea3ng t\u0103ng \u0111\u1ed9t bi\u1ebfn",
+     [
+      "Nhi\u1ec1u nh\u1ea5t: \u201ch\u1ed9i \u00b7 s\u0129 \u00b7 li\u1ec7t\u201d (8), \u201ctin \u00b7 ng\u00e0y \u00b7 b\u1ea3n\u201d v\u00e0 \u201ccup \u00b7 world \u00b7 vtv\u201d (7 m\u1ed7i c\u1ee5m)."
+     ]
+    ],
+    [
+     "V\u00ed d\u1ee5",
+     [
+      "02/09: \u201ch\u1ed9i \u00b7 s\u0129 \u00b7 li\u1ec7t\u201d 26,6% so v\u1edbi n\u1ec1n 16,0% \u00b7 12\u201313/09: \u201cm\u01b0a \u00b7 l\u0169 \u00b7 b\u00e3o\u201d 13,6% so v\u1edbi n\u1ec1n 7,5%."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "\u0110\u1ed1i chi\u1ebfu m\u1ed9t ng\u00e0y: 14/10/2026",
+   "notes": "V\u00ed d\u1ee5 cho th\u1ea5y c\u1ea3 \u0111i\u1ec3m m\u1ea1nh v\u00e0 gi\u1edbi h\u1ea1n c\u1ee7a ch\u1ee7 \u0111\u1ec1 t\u1ef1 \u0111\u1ed9ng.",
+   "cards": [
+    [
+     "C\u1ee5m \u201ch\u1ed9i \u00b7 s\u0129 \u00b7 li\u1ec7t\u201d",
+     [
+      "**105 video t\u1eeb 28 k\u00eanh**, ng\u00e0y tr\u01b0\u1edbc 100 video.",
+      "T\u1eeb kh\u00f3a trong ng\u00e0y: t\u00e1ng, vi\u1ebfng, ti\u1ec5n, \u0111i\u1ec7u.",
+      "Ba video xem nhi\u1ec1u nh\u1ea5t \u0111\u1ec1u v\u1ec1 l\u1ec5 truy \u0111i\u1ec7u, an t\u00e1ng h\u00e0i c\u1ed1t li\u1ec7t s\u0129 t\u1ea1i TP.HCM (199.170 \u00b7 178.097 \u00b7 107.929 l\u01b0\u1ee3t xem)."
+     ]
+    ],
+    [
+     "Gi\u1edbi h\u1ea1n c\u1ea7n l\u01b0u \u00fd",
+     [
+      "105 video l\u00e0 c\u1ee7a **c\u1ea3 c\u1ee5m**, kh\u00f4ng ph\u1ea3i 105 video c\u00f9ng m\u1ed9t s\u1ef1 ki\u1ec7n.",
+      "C\u1ee5m \u201cm\u01b0a \u00b7 l\u0169 \u00b7 b\u00e3o\u201d c\u00f9ng ng\u00e0y l\u1eabn tin h\u1ed1 s\u1ee5t \u1edf Trung Qu\u1ed1c v\u00e0 tin t\u1eb7c t\u1ea5n c\u00f4ng si\u00eau th\u1ecb \u1edf Ph\u00e1p.",
+      "V\u00ec v\u1eady dashboard lu\u00f4n hi\u1ec3n th\u1ecb **video g\u1ed1c** \u0111\u1ec3 ng\u01b0\u1eddi d\u00f9ng t\u1ef1 ki\u1ec3m ch\u1ee9ng."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "img-text",
+   "title": "Dashboard tr\u1ef1c quan h\u00f3a: 6 trang",
+   "notes": "Chuy\u1ec3n sang demo tr\u1ef1c ti\u1ebfp t\u1ea1i http://127.0.0.1:8501 n\u1ebfu c\u00f3 th\u1eddi gian.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-bigdata\\phan-tich.png",
+     "alt": "Trang Ph\u00e2n t\u00edch v\u0103n b\u1ea3n v\u1edbi m\u1ed9t c\u00e2u th\u1eed nghi\u1ec7m"
+    }
+   ],
+   "items": [
+    "**B\u1ea3ng \u0111i\u1ec3m**: ch\u1ee7 \u0111\u1ec1 nhi\u1ec1u video nh\u1ea5t v\u00e0 t\u0103ng nhanh nh\u1ea5t theo ng\u00e0y/th\u00e1ng, k\u00e8m video minh h\u1ecda.",
+    "**C\u00e1c c\u00e2u chuy\u1ec7n**: quy m\u00f4, t\u1eeb kh\u00f3a v\u00e0 h\u1ed3 s\u01a1 t\u1eebng c\u1ee5m.",
+    "**Di\u1ec5n bi\u1ebfn**: t\u1ef7 tr\u1ecdng theo ng\u00e0y, nh\u1eadt k\u00fd t\u0103ng \u0111\u1ed9t bi\u1ebfn.",
+    "**T\u1eeb kh\u00f3a & Hashtag**: TF-IDF theo ng\u00e0y, hashtag theo th\u1eddi gian.",
+    "**Ph\u00e2n t\u00edch v\u0103n b\u1ea3n**: c\u00e2u \u201cB\u00e3o s\u1ed1 5 g\u00e2y m\u01b0a l\u1edbn\u2026\u201d \u2192 c\u1ee5m m\u01b0a \u00b7 l\u0169 \u00b7 b\u00e3o (cosine 0,80).",
+    "**D\u1eef li\u1ec7u & Ph\u01b0\u01a1ng ph\u00e1p**: ph\u1ec5u ch\u1ea5t l\u01b0\u1ee3ng d\u1eef li\u1ec7u, ngu\u1ed3n v\u00e0 ch\u1ec9 s\u1ed1."
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 4,
+   "title": "K\u1ebft lu\u1eadn v\u00e0 \u0111\u1ecbnh h\u01b0\u1edbng ph\u00e1t tri\u1ec3n"
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "K\u1ebft qu\u1ea3 \u0111\u1ea1t \u0111\u01b0\u1ee3c v\u00e0 h\u1ea1n ch\u1ebf",
+   "notes": "Tr\u00ecnh b\u00e0y trung th\u1ef1c c\u00e1c gi\u1edbi h\u1ea1n \u0111\u00e3 ghi trong b\u00e1o c\u00e1o.",
+   "cards": [
+    [
+     "K\u1ebft qu\u1ea3 \u0111\u1ea1t \u0111\u01b0\u1ee3c",
+     [
+      "Pipeline ho\u00e0n ch\u1ec9nh: 104.790 video, 30 k\u00eanh, 136 ng\u00e0y.",
+      "C\u1ee5m HDFS + Spark + MongoDB ch\u1ea1y b\u1eb1ng Docker Compose.",
+      "So s\u00e1nh hai m\u00f4 h\u00ecnh, ch\u1ecdn Word2Vec + KMeans theo NPMI.",
+      "10 c\u1ee5m, 53 kho\u1ea3ng t\u0103ng \u0111\u1ed9t bi\u1ebfn, dashboard 6 trang."
+     ]
+    ],
+    [
+     "H\u1ea1n ch\u1ebf",
+     [
+      "C\u1ee5m ch\u1ee7 \u0111\u1ec1 r\u1ed9ng h\u01a1n s\u1ef1 ki\u1ec7n c\u1ee5 th\u1ec3; silhouette c\u00f2n th\u1ea5p.",
+      "M\u1edbi th\u1eed k = 10; ch\u01b0a c\u00f3 bigram, t\u00e1ch t\u1eeb ti\u1ebfng Vi\u1ec7t hay \u0111\u00e1nh gi\u00e1 th\u1ee7 c\u00f4ng.",
+      "Ch\u01b0a \u0111o kh\u1ea3 n\u0103ng m\u1edf r\u1ed9ng; c\u00e1c node ch\u1ea1y tr\u00ean m\u1ed9t m\u00e1y.",
+      "Ch\u1ec9 c\u00f3 ti\u00eau \u0111\u1ec1; l\u01b0\u1ee3t xem l\u00e0 s\u1ed1 t\u00edch l\u0169y t\u1ea1i m\u1ed9t th\u1eddi \u0111i\u1ec3m."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "quad",
+   "title": "\u0110\u1ecbnh h\u01b0\u1edbng ph\u00e1t tri\u1ec3n",
+   "notes": "\u01afu ti\u00ean c\u1ea3i thi\u1ec7n ch\u1ea5t l\u01b0\u1ee3ng nh\u1eadn di\u1ec7n ch\u1ee7 \u0111\u1ec1 tr\u01b0\u1edbc khi m\u1edf r\u1ed9ng quy m\u00f4.",
+   "cards": [
+    [
+     "Ch\u1ea5t l\u01b0\u1ee3ng ch\u1ee7 \u0111\u1ec1",
+     [
+      "T\u00e1ch t\u1eeb ti\u1ebfng Vi\u1ec7t, bigram, lo\u1ea1i t\u00ean k\u00eanh, th\u1eed nhi\u1ec1u gi\u00e1 tr\u1ecb k, \u0111\u00e1nh gi\u00e1 th\u1ee7 c\u00f4ng."
+     ]
+    ],
+    [
+     "Gom s\u1ef1 ki\u1ec7n",
+     [
+      "Gom video theo n\u1ed9i dung, th\u1eddi gian, th\u1ef1c th\u1ec3 \u0111\u1ec3 \u0111\u1ebfm \u0111\u00fang m\u1ed9t s\u1ef1 ki\u1ec7n."
+     ]
+    ],
+    [
+     "Thu th\u1eadp \u0111\u1ecbnh k\u1ef3",
+     [
+      "T\u1ef1 \u0111\u1ed9ng qu\u00e9t l\u1ea1i k\u00eanh, l\u01b0u t\u01b0\u01a1ng t\u00e1c nhi\u1ec1u th\u1eddi \u0111i\u1ec3m, qu\u1ea3n l\u00fd phi\u00ean b\u1ea3n."
+     ]
+    ],
+    [
+     "M\u1edf r\u1ed9ng h\u1ec7 th\u1ed1ng",
+     [
+      "Ch\u1ea1y tr\u00ean nhi\u1ec1u m\u00e1y, \u0111o kh\u1ea3 n\u0103ng m\u1edf r\u1ed9ng, th\u1eed Spark Structured Streaming."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "end",
+   "title": "",
+   "notes": "C\u1ea3m \u01a1n v\u00e0 m\u1eddi \u0111\u1eb7t c\u00e2u h\u1ecfi.",
+   "items": [
+    "S\u1eb5n s\u00e0ng demo dashboard, Spark UI v\u00e0 HDFS.",
+    "M\u1eddi th\u1ea7y c\u00f4 v\u00e0 c\u00e1c b\u1ea1n \u0111\u1eb7t c\u00e2u h\u1ecfi."
+   ]
+  }
+ ]
+}

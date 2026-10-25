@@ -1,0 +1,633 @@
+{
+ "strings": {
+  "course": "C\u01a0 S\u1ede D\u1eee LI\u1ec6U NOSQL",
+  "product": "SOOPI",
+  "tagline": "H\u1ec7 th\u1ed1ng qu\u1ea3n l\u00fd trung t\u00e2m b\u1ea3o h\u00e0nh \u0111i\u1ec7n t\u1eed tr\u00ean n\u1ec1n MongoDB",
+  "advisor": "GVHD: H\u1ed3 Trung \u0110o\u00e0n",
+  "members": "Nh\u00f3m 2 \u2014 \u0110\u1ed7 L\u00ea Thanh M\u1eabn \u00b7 B\u00f9i H\u1eefu L\u1ed9c \u00b7 Phan Minh Thi\u1ec7n",
+  "thanks": "C\u1ea2M \u01a0N TH\u1ea6Y C\u00d4 V\u00c0 C\u00c1C B\u1ea0N \u0110\u00c3 L\u1eaeNG NGHE!",
+  "team": "Nh\u00f3m 2 \u2014 H\u1ec7 th\u1ed1ng qu\u1ea3n l\u00fd trung t\u00e2m b\u1ea3o h\u00e0nh \u0111i\u1ec7n t\u1eed"
+ },
+ "slides": [
+  {
+   "kind": "slide",
+   "layout": "cover",
+   "title": "",
+   "notes": "Gi\u1edbi thi\u1ec7u nh\u00f3m, gi\u1ea3ng vi\u00ean h\u01b0\u1edbng d\u1eabn v\u00e0 t\u00ean \u0111\u1ec1 t\u00e0i."
+  },
+  {
+   "kind": "slide",
+   "layout": "agenda",
+   "title": "",
+   "notes": "B\u00e0i tr\u00ecnh b\u00e0y g\u1ed3m n\u0103m ph\u1ea7n theo \u0111\u00fang c\u1ea5u tr\u00fac b\u00e1o c\u00e1o.",
+   "items": [
+    "Kh\u1ea3o s\u00e1t h\u1ec7 th\u1ed1ng",
+    "Ph\u00e2n t\u00edch h\u1ec7 th\u1ed1ng",
+    "Thi\u1ebft k\u1ebf h\u1ec7 th\u1ed1ng",
+    "C\u00e0i \u0111\u1eb7t h\u1ec7 th\u1ed1ng",
+    "Th\u1eed nghi\u1ec7m v\u00e0 tri\u1ec3n khai"
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 1,
+   "title": "Kh\u1ea3o s\u00e1t h\u1ec7 th\u1ed1ng"
+  },
+  {
+   "kind": "slide",
+   "layout": "img-text",
+   "title": "B\u00e0i to\u00e1n v\u00e0 hi\u1ec7n tr\u1ea1ng",
+   "notes": "N\u00eau l\u00fd do ch\u1ecdn \u0111\u1ec1 t\u00e0i v\u00e0 \u0111i\u1ec3m \u0111au c\u1ee7a trung t\u00e2m b\u1ea3o h\u00e0nh khi v\u1eadn h\u00e0nh th\u1ee7 c\u00f4ng.",
+   "images": [
+    {
+     "path": "docs\\screenshots\\shared-login-receptionist.png",
+     "alt": "Giao di\u1ec7n l\u1ec5 t\u00e2n ti\u1ebfp nh\u1eadn thi\u1ebft b\u1ecb"
+    }
+   ],
+   "items": [
+    "Trung t\u00e2m b\u1ea3o h\u00e0nh ti\u1ebfp nh\u1eadn thi\u1ebft b\u1ecb, ch\u1ea9n \u0111o\u00e1n, b\u00e1o gi\u00e1, s\u1eeda ch\u1eefa v\u00e0 b\u00e0n giao.",
+    "H\u1ed3 s\u01a1 kh\u00e1ch h\u00e0ng, thi\u1ebft b\u1ecb v\u00e0 phi\u1ebfu n\u1eb1m r\u1eddi r\u1ea1c; thao t\u00e1c th\u1ee7 c\u00f4ng d\u1ec5 sai s\u00f3t.",
+    "Kh\u00e1ch c\u1ea7n **theo d\u00f5i ti\u1ebfn \u0111\u1ed9** b\u1ea3o h\u00e0nh/s\u1eeda ch\u1eefa m\u1ecdi l\u00fac, kh\u00f4ng ph\u1ea3i g\u1ecdi \u0111i\u1ec7n.",
+    "Trung t\u00e2m c\u1ea7n qu\u1ea3n l\u00fd **linh ki\u1ec7n, t\u1ed3n kho, b\u00e1o gi\u00e1 v\u00e0 thanh to\u00e1n** trong m\u1ed9t h\u1ec7 th\u1ed1ng.",
+    "Quy tr\u00ecnh c\u00f3 nhi\u1ec1u b\u01b0\u1edbc v\u00e0 vai tr\u00f2, c\u1ea7n ph\u00e2n quy\u1ec1n v\u00e0 truy v\u1ebft r\u00f5 r\u00e0ng."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "quad",
+   "title": "Y\u00eau c\u1ea7u ch\u1ee9c n\u0103ng theo vai tr\u00f2",
+   "notes": "\u0110i t\u1eeb nhu c\u1ea7u c\u1ee7a t\u1eebng vai tr\u00f2, sau \u0111\u00f3 chi ti\u1ebft h\u00f3a \u1edf ch\u01b0\u01a1ng ph\u00e2n t\u00edch v\u00e0 thi\u1ebft k\u1ebf.",
+   "cards": [
+    [
+     "Kh\u00e1ch h\u00e0ng",
+     [
+      "\u0110\u0103ng k\u00fd thi\u1ebft b\u1ecb, g\u1eedi y\u00eau c\u1ea7u b\u1ea3o h\u00e0nh tr\u1ef1c tuy\u1ebfn.",
+      "Tra c\u1ee9u ti\u1ebfn \u0111\u1ed9 phi\u1ebfu v\u00e0 l\u1ecbch s\u1eed b\u1ea3o h\u00e0nh.",
+      "Xem v\u00e0 duy\u1ec7t/t\u1eeb ch\u1ed1i b\u00e1o gi\u00e1 s\u1eeda ch\u1eefa."
+     ]
+    ],
+    [
+     "L\u1ec5 t\u00e2n \u00b7 \u0110i\u1ec1u ph\u1ed1i",
+     [
+      "Ti\u1ebfp nh\u1eadn thi\u1ebft b\u1ecb, l\u1eadp phi\u1ebfu T1.",
+      "Ph\u00e2n c\u00f4ng k\u1ef9 thu\u1eadt vi\u00ean, theo d\u00f5i h\u00e0ng \u0111\u1ee3i.",
+      "Tra c\u1ee9u kh\u00e1ch, thi\u1ebft b\u1ecb v\u00e0 t\u00ecnh tr\u1ea1ng b\u1ea3o h\u00e0nh."
+     ]
+    ],
+    [
+     "K\u1ef9 thu\u1eadt \u00b7 Th\u1ee7 kho",
+     [
+      "Ch\u1ea9n \u0111o\u00e1n l\u1ed7i, l\u1eadp b\u00e1o gi\u00e1, c\u1eadp nh\u1eadt ti\u1ebfn \u0111\u1ed9.",
+      "Ghi nh\u1eadn k\u1ebft qu\u1ea3 KCS (PASS/FAIL).",
+      "Nh\u1eadp/xu\u1ea5t linh ki\u1ec7n, tr\u1eeb t\u1ed3n theo k\u1ec7."
+     ]
+    ],
+    [
+     "Thu ng\u00e2n \u00b7 Qu\u1ea3n tr\u1ecb",
+     [
+      "Thu ti\u1ec1n, b\u00e0n giao thi\u1ebft b\u1ecb v\u00e0 ch\u1eef k\u00fd.",
+      "Qu\u1ea3n l\u00fd t\u00e0i kho\u1ea3n, danh m\u1ee5c, b\u1ea3ng gi\u00e1.",
+      "B\u00e1o c\u00e1o doanh thu, lead time v\u00e0 t\u1ed3n kho."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-text",
+   "title": "Bi\u1ec3u m\u1eabu v\u00e0 ph\u1ea1m vi kh\u1ea3o s\u00e1t",
+   "notes": "Bi\u1ec3u m\u1eabu gi\u1ea5y l\u00e0 c\u0103n c\u1ee9 \u0111\u1ec3 thi\u1ebft k\u1ebf c\u00e1c collection v\u00e0 lu\u1ed3ng d\u1eef li\u1ec7u \u1edf ch\u01b0\u01a1ng sau.",
+   "table": [
+    [
+     "Bi\u1ec3u m\u1eabu thu th\u1eadp",
+     "Th\u00f4ng tin ch\u00ednh"
+    ],
+    [
+     "Phi\u1ebfu ti\u1ebfp nh\u1eadn (T1)",
+     "Kh\u00e1ch, thi\u1ebft b\u1ecb, serial, t\u00ecnh tr\u1ea1ng, ng\u01b0\u1eddi nh\u1eadn"
+    ],
+    [
+     "Phi\u1ebfu b\u00e1o gi\u00e1",
+     "Linh ki\u1ec7n, \u0111\u01a1n gi\u00e1, ph\u00ed d\u1ecbch v\u1ee5, tr\u1ea1ng th\u00e1i duy\u1ec7t"
+    ],
+    [
+     "Phi\u1ebfu b\u00e0n giao",
+     "K\u1ebft qu\u1ea3 s\u1eeda ch\u1eefa, QC, ch\u1eef k\u00fd kh\u00e1ch v\u00e0 trung t\u00e2m"
+    ],
+    [
+     "Phi\u1ebfu nh\u1eadp/xu\u1ea5t kho",
+     "Linh ki\u1ec7n, s\u1ed1 l\u01b0\u1ee3ng, k\u1ec7, kho v\u00e0 ng\u01b0\u1eddi x\u00e1c nh\u1eadn"
+    ]
+   ],
+   "items": [
+    "Ph\u1ea1m vi: quy tr\u00ecnh **ti\u1ebfp nh\u1eadn \u2192 b\u1ea3o h\u00e0nh/s\u1eeda ch\u1eefa \u2192 b\u00e0n giao** v\u00e0 c\u00e1c ch\u1ee9ng t\u1eeb kho, thu ti\u1ec1n \u0111i k\u00e8m.",
+    "Kh\u00f4ng kh\u1ea3o s\u00e1t: k\u1ebf to\u00e1n t\u1ed5ng h\u1ee3p, nh\u00e2n s\u1ef1, v\u00e0 k\u00eanh b\u00e1n h\u00e0ng ngo\u00e0i trung t\u00e2m b\u1ea3o h\u00e0nh."
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 2,
+   "title": "Ph\u00e2n t\u00edch h\u1ec7 th\u1ed1ng"
+  },
+  {
+   "kind": "slide",
+   "layout": "img-text",
+   "title": "S\u01a1 \u0111\u1ed3 usecase nghi\u1ec7p v\u1ee5",
+   "notes": "\u0110\u00e2y l\u00e0 H\u00ecnh 2.1 trong b\u00e1o c\u00e1o; m\u00f4 t\u1ea3 ai l\u00e0m g\u00ec, d\u1eabn t\u1edbi m\u00f4 h\u00ecnh h\u00f3a quy tr\u00ecnh v\u00e0 \u0111\u1eb7c t\u1ea3 usecase.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-warranty\\usecase-nghiep-vu.jpg",
+     "alt": "S\u01a1 \u0111\u1ed3 use case nghi\u1ec7p v\u1ee5 c\u1ee7a trung t\u00e2m b\u1ea3o h\u00e0nh"
+    }
+   ],
+   "items": [
+    "**T\u00e1c nh\u00e2n:** Kh\u00e1ch h\u00e0ng, L\u1ec5 t\u00e2n, \u0110i\u1ec1u ph\u1ed1i, K\u1ef9 thu\u1eadt vi\u00ean, Th\u1ee7 kho, Thu ng\u00e2n, Qu\u1ea3n tr\u1ecb.",
+    "Kh\u00e1ch g\u1eedi y\u00eau c\u1ea7u, theo d\u00f5i ti\u1ebfn \u0111\u1ed9 v\u00e0 duy\u1ec7t b\u00e1o gi\u00e1 qua c\u1ed5ng web.",
+    "L\u1ec5 t\u00e2n ti\u1ebfp nh\u1eadn thi\u1ebft b\u1ecb; \u0111i\u1ec1u ph\u1ed1i ph\u00e2n c\u00f4ng c\u00f4ng vi\u1ec7c.",
+    "K\u1ef9 thu\u1eadt ch\u1ea9n \u0111o\u00e1n v\u00e0 s\u1eeda ch\u1eefa; th\u1ee7 kho xu\u1ea5t linh ki\u1ec7n; thu ng\u00e2n thu ti\u1ec1n v\u00e0 b\u00e0n giao.",
+    "Qu\u1ea3n tr\u1ecb c\u1ea5u h\u00ecnh danh m\u1ee5c, t\u00e0i kho\u1ea3n v\u00e0 ph\u00e2n quy\u1ec1n."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-top",
+   "title": "B\u1ea3y quy tr\u00ecnh nghi\u1ec7p v\u1ee5",
+   "notes": "B\u1ea3y quy tr\u00ecnh kh\u1edbp v\u1edbi m\u00f4 h\u00ecnh h\u00f3a nghi\u1ec7p v\u1ee5 trong b\u00e1o c\u00e1o; nh\u1ea5n m\u1ea1nh lu\u1ed3ng c\u00f3 ph\u00ed v\u00e0 lu\u1ed3ng b\u1ea3o h\u00e0nh mi\u1ec5n ph\u00ed.",
+   "table": [
+    [
+     "Quy tr\u00ecnh",
+     "Ho\u1ea1t \u0111\u1ed9ng ch\u00ednh"
+    ],
+    [
+     "Y\u00eau c\u1ea7u & Ti\u1ebfp nh\u1eadn",
+     "\u0110\u0103ng k\u00fd thi\u1ebft b\u1ecb, l\u1eadp phi\u1ebfu, t\u1eeb ch\u1ed1i tr\u00f9ng phi\u1ebfu m\u1edf"
+    ],
+    [
+     "Th\u1ef1c hi\u1ec7n b\u1ea3o h\u00e0nh",
+     "Ph\u00e2n c\u00f4ng, ch\u1ea9n \u0111o\u00e1n, ph\u00e2n lo\u1ea1i mi\u1ec5n ph\u00ed / t\u00ednh ph\u00ed"
+    ],
+    [
+     "B\u00e1o gi\u00e1 & X\u00e1c nh\u1eadn",
+     "L\u1eadp b\u00e1o gi\u00e1, duy\u1ec7t n\u1ed9i b\u1ed9, kh\u00e1ch \u0111\u1ed3ng \u00fd / t\u1eeb ch\u1ed1i"
+    ],
+    [
+     "Th\u1ef1c hi\u1ec7n s\u1eeda ch\u1eefa",
+     "C\u1eadp nh\u1eadt ti\u1ebfn \u0111\u1ed9, gi\u1eef linh ki\u1ec7n, xu\u1ea5t kho, KCS"
+    ],
+    [
+     "B\u00e0n giao thi\u1ebft b\u1ecb",
+     "QC, thu ti\u1ec1n, ch\u1eef k\u00fd, b\u00e0n giao cho kh\u00e1ch"
+    ],
+    [
+     "Tra c\u1ee9u ti\u1ebfn \u0111\u1ed9",
+     "Kh\u00e1ch theo d\u00f5i phi\u1ebfu v\u00e0 l\u1ecbch s\u1eed qua c\u1ed5ng"
+    ],
+    [
+     "Nh\u1eadp linh ki\u1ec7n",
+     "L\u1eadp v\u00e0 duy\u1ec7t phi\u1ebfu nh\u1eadp, c\u1eadp nh\u1eadt t\u1ed3n theo k\u1ec7"
+    ]
+   ],
+   "items": [
+    "M\u1ed7i quy tr\u00ecnh \u00e1nh x\u1ea1 t\u1edbi m\u1ed9t nh\u00f3m ch\u1ee9c n\u0103ng v\u00e0 m\u1ed9t t\u1eadp collection trong MongoDB.",
+    "Lu\u1ed3ng c\u00f3 ph\u00ed \u0111i qua b\u00e1o gi\u00e1 v\u00e0 gi\u1eef linh ki\u1ec7n; lu\u1ed3ng b\u1ea3o h\u00e0nh mi\u1ec5n ph\u00ed b\u1ecf qua b\u01b0\u1edbc thu ti\u1ec1n.",
+    "Kh\u00e1ch theo d\u00f5i ti\u1ebfn \u0111\u1ed9 qua c\u1ed5ng \u1edf m\u1ecdi tr\u1ea1ng th\u00e1i c\u1ee7a phi\u1ebfu."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "text-img",
+   "title": "S\u01a1 \u0111\u1ed3 usecase h\u1ec7 th\u1ed1ng & \u0111\u1eb7c t\u1ea3",
+   "notes": "H\u00ecnh 2.9 trong b\u00e1o c\u00e1o; ch\u1ecdn hai usecase \u0111\u1ea1i di\u1ec7n \u0111\u1ec3 minh h\u1ecda \u0111\u1eb7c t\u1ea3, kh\u00f4ng \u0111\u1ecdc to\u00e0n b\u1ed9.",
+   "images": [
+    {
+     "path": "docs\\slides\\assets-warranty\\usecase-he-thong.jpg",
+     "alt": "S\u01a1 \u0111\u1ed3 use case h\u1ec7 th\u1ed1ng qu\u1ea3n l\u00fd trung t\u00e2m b\u1ea3o h\u00e0nh"
+    }
+   ],
+   "items": [
+    "S\u01a1 \u0111\u1ed3 usecase h\u1ec7 th\u1ed1ng m\u1edf r\u1ed9ng t\u1eeb usecase nghi\u1ec7p v\u1ee5, g\u1eafn t\u1eebng nh\u00f3m ch\u1ee9c n\u0103ng v\u1edbi t\u00e1c nh\u00e2n.",
+    "\u0110\u1eb7c t\u1ea3 t\u1eebng usecase: t\u00e1c nh\u00e2n, ti\u1ec1n \u0111i\u1ec1u ki\u1ec7n, lu\u1ed3ng ch\u00ednh v\u00e0 lu\u1ed3ng ngo\u1ea1i l\u1ec7.",
+    "V\u00ed d\u1ee5 \u201cTi\u1ebfp nh\u1eadn thi\u1ebft b\u1ecb\u201d: ki\u1ec3m tra serial, h\u1ea1n b\u1ea3o h\u00e0nh v\u00e0 phi\u1ebfu m\u1edf tr\u00f9ng.",
+    "V\u00ed d\u1ee5 \u201cX\u00e1c nh\u1eadn b\u00e1o gi\u00e1\u201d: kh\u00e1ch duy\u1ec7t th\u00ec gi\u1eef linh ki\u1ec7n, xu\u1ea5t kho v\u00e0 tr\u1eeb t\u1ed3n."
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 3,
+   "title": "Thi\u1ebft k\u1ebf h\u1ec7 th\u1ed1ng"
+  },
+  {
+   "kind": "slide",
+   "layout": "table-text",
+   "title": "Ki\u1ebfn tr\u00fac 3 t\u1ea7ng",
+   "notes": "M\u00f4 t\u1ea3 ki\u1ebfn tr\u00fac 3 t\u1ea7ng: giao di\u1ec7n React, API .NET v\u00e0 MongoDB v\u1edbi t\u1ec7p \u0111\u00ednh k\u00e8m tr\u00ean \u0111\u0129a.",
+   "table": [
+    [
+     "T\u1ea7ng",
+     "C\u00f4ng ngh\u1ec7",
+     "Vai tr\u00f2"
+    ],
+    [
+     "T\u1ea7ng giao di\u1ec7n",
+     "React \u00b7 Vite \u00b7 TypeScript",
+     "Trang theo vai tr\u00f2, g\u1ecdi REST"
+    ],
+    [
+     "T\u1ea7ng m\u00e1y ch\u1ee7",
+     "ASP.NET Core (.NET 10)",
+     "API, ph\u00e2n quy\u1ec1n, nghi\u1ec7p v\u1ee5"
+    ],
+    [
+     "T\u1ea7ng l\u01b0u tr\u1eef",
+     "MongoDB (rs0) \u00b7 t\u1ec7p tr\u00ean \u0111\u0129a",
+     "Document, transaction, t\u1ec7p \u0111\u00ednh k\u00e8m"
+    ]
+   ],
+   "items": [
+    "Frontend g\u1ecdi REST t\u1edbi API c\u1ed5ng **8081**; Vite ch\u1ea1y c\u1ed5ng **5174** v\u00e0 proxy v\u1ec1 API.",
+    "M\u1ed7i request d\u00f9ng **AppDbContext ri\u00eang** tr\u00ean m\u1ed9t MongoClient d\u00f9ng chung.",
+    "LINQ \u0111\u01b0\u1ee3c d\u1ecbch v\u00e0 ch\u1ea1y t\u1ea1i MongoDB, kh\u00f4ng n\u1ea1p to\u00e0n b\u1ed9 database v\u00e0o b\u1ed9 nh\u1edb."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-top",
+   "title": "Thi\u1ebft k\u1ebf CSDL MongoDB",
+   "notes": "Ch\u1ec9 \u0111i\u1ec3m c\u00e1c nh\u00f3m collection ch\u00ednh; chi ti\u1ebft ERD \u1edf slide k\u1ebf ti\u1ebfp.",
+   "table": [
+    [
+     "Nh\u00f3m collection",
+     "Collection"
+    ],
+    [
+     "T\u00e0i kho\u1ea3n & phi\u00ean",
+     "accounts, employees, refresh_tokens, otp_codes, push_devices"
+    ],
+    [
+     "Nghi\u1ec7p v\u1ee5 b\u1ea3o h\u00e0nh",
+     "tickets, quotations, devices, warranty_requests, attachments"
+    ],
+    [
+     "Kho & thu ti\u1ec1n",
+     "parts, stock_receipts, stock_issues, stock_transfers, payments"
+    ],
+    [
+     "Danh m\u1ee5c",
+     "service_stations, device_categories, brands, products, warranty_policies, service_prices, suppliers"
+    ],
+    [
+     "H\u1ec7 th\u1ed1ng",
+     "audit_logs, notifications, counters"
+    ]
+   ],
+   "items": [
+    "M\u00e3 nghi\u1ec7p v\u1ee5 **TN/KH/NV/BG/PX** gi\u1eef nguy\u00ean; ng\u00e0y l\u1ecbch l\u01b0u **yyyy-MM-dd**, ti\u1ec1n l\u01b0u **Decimal128**.",
+    "D\u1eef li\u1ec7u l\u1ed3ng: ph\u00e2n c\u00f4ng, l\u1ecbch s\u1eed tr\u1ea1ng th\u00e1i, k\u1ebft qu\u1ea3 QC v\u00e0 b\u00e0n giao nh\u00fang trong **tickets**.",
+    "B\u1ed9 \u0111\u1ebfm **counters** c\u1ea5p m\u00e3 nghi\u1ec7p v\u1ee5 b\u1eb1ng **$inc** nguy\u00ean t\u1eed."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "img-top",
+   "title": "M\u00f4 h\u00ecnh quan h\u1ec7 (ERD)",
+   "notes": "Gi\u1ea3i th\u00edch l\u1ef1a ch\u1ecdn nh\u00fang vs tham chi\u1ebfu theo ki\u1ec3u truy c\u1eadp c\u1ee7a t\u1eebng lu\u1ed3ng nghi\u1ec7p v\u1ee5.",
+   "images": [
+    {
+     "path": "docs\\erd\\soopi_erd.png",
+     "alt": "S\u01a1 \u0111\u1ed3 quan h\u1ec7 Soopi MongoDB"
+    }
+   ],
+   "cards": [
+    [
+     "Quan h\u1ec7 (tham chi\u1ebfu)",
+     [
+      "Phi\u1ebfu tham chi\u1ebfu kh\u00e1ch, thi\u1ebft b\u1ecb, nh\u00e2n vi\u00ean, b\u00e1o gi\u00e1; ch\u1ee9ng t\u1eeb kho tham chi\u1ebfu linh ki\u1ec7n v\u00e0 ghi l\u1ecbch s\u1eed t\u1ed3n theo k\u1ec7."
+     ]
+    ],
+    [
+     "Nh\u00fang (embed)",
+     [
+      "B\u00e0n giao, ch\u1ea9n \u0111o\u00e1n, k\u1ebft qu\u1ea3 QC nh\u00fang trong phi\u1ebfu; vai tr\u00f2 nh\u00fang trong t\u00e0i kho\u1ea3n/nh\u00e2n vi\u00ean."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "img-text",
+   "title": "Thi\u1ebft k\u1ebf giao di\u1ec7n",
+   "notes": "\u0110i\u1ec3m qua 14 m\u00e0n h\u00ecnh trong m\u1ee5c 3.3; nh\u1ea5n m\u1ea1nh \u0111\u0103ng nh\u1eadp chung v\u00e0 responsive.",
+   "images": [
+    {
+     "path": "docs\\screenshots\\admin-desktop.png",
+     "alt": "Trang qu\u1ea3n tr\u1ecb tr\u00ean desktop"
+    }
+   ],
+   "items": [
+    "\u0110\u0103ng nh\u1eadp chung **/login**, sau \u0111\u00f3 chuy\u1ec3n theo vai tr\u00f2.",
+    "Kh\u00e1ch: **/account** (t\u1ed5ng quan, l\u1ecbch s\u1eed, phi\u1ebfu, y\u00eau c\u1ea7u m\u1edbi, h\u1ed3 s\u01a1).",
+    "Nh\u00e2n vi\u00ean: **/receptionist**, **/dispatch**, **/technician**, **/warehouse**, **/cashier**.",
+    "Qu\u1ea3n tr\u1ecb **/admin**; tra c\u1ee9u c\u00f4ng khai cho kh\u00e1ch v\u00e3ng lai **/portal**.",
+    "B\u1ea3ng chuy\u1ec3n th\u00e0nh **th\u1ebb tr\u00ean \u0111i\u1ec7n tho\u1ea1i** (responsive)."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "text-img",
+   "title": "N\u0103m nh\u00f3m ch\u1ee9c n\u0103ng h\u1ec7 th\u1ed1ng",
+   "notes": "N\u0103m nh\u00f3m kh\u1edbp v\u1edbi m\u1ee5c 3.4 b\u00e1o c\u00e1o; m\u1ed7i nh\u00f3m \u0111\u1ec1u c\u00f3 ch\u1ee9c n\u0103ng con v\u00e0 ph\u00e2n quy\u1ec1n ri\u00eang.",
+   "images": [
+    {
+     "path": "docs\\phase3\\screenshots\\03-thanh-toan-ban-giao.png",
+     "alt": "M\u00e0n h\u00ecnh thanh to\u00e1n v\u00e0 b\u00e0n giao"
+    }
+   ],
+   "items": [
+    "**Ti\u1ebfp nh\u1eadn & D\u1ecbch v\u1ee5 kh\u00e1ch h\u00e0ng:** \u0111\u0103ng k\u00fd y\u00eau c\u1ea7u, ti\u1ebfp nh\u1eadn, b\u00e0n giao, thanh to\u00e1n.",
+    "**B\u00e1o gi\u00e1 & Ph\u00ea duy\u1ec7t:** l\u1eadp b\u00e1o gi\u00e1, duy\u1ec7t n\u1ed9i b\u1ed9, kh\u00e1ch x\u00e1c nh\u1eadn / t\u1eeb ch\u1ed1i.",
+    "**K\u1ef9 thu\u1eadt & Ph\u00e2n c\u00f4ng:** ph\u00e2n c\u00f4ng, ch\u1ea9n \u0111o\u00e1n, ph\u00e2n lo\u1ea1i b\u1ea3o h\u00e0nh, ti\u1ebfn \u0111\u1ed9, KCS.",
+    "**Kho linh ki\u1ec7n & T\u1ed3n kho:** nh\u1eadp kho, y\u00eau c\u1ea7u xu\u1ea5t, x\u00e1c nh\u1eadn xu\u1ea5t v\u00e0 tr\u1eeb t\u1ed3n.",
+    "**Qu\u1ea3n tr\u1ecb & B\u00e1o c\u00e1o:** t\u00e0i kho\u1ea3n, danh m\u1ee5c, b\u00e1o c\u00e1o doanh thu/lead time/t\u1ed3n kho."
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 4,
+   "title": "C\u00e0i \u0111\u1eb7t h\u1ec7 th\u1ed1ng"
+  },
+  {
+   "kind": "slide",
+   "layout": "table-text",
+   "title": "M\u00f4i tr\u01b0\u1eddng v\u00e0 th\u00e0nh ph\u1ea7n",
+   "notes": "M\u00f4 t\u1ea3 c\u00e1ch d\u1ef1ng m\u00f4i tr\u01b0\u1eddng local b\u1eb1ng m\u1ed9t l\u1ec7nh run.bat.",
+   "table": [
+    [
+     "Th\u00e0nh ph\u1ea7n",
+     "C\u1ee5 th\u1ec3"
+    ],
+    [
+     "Backend",
+     "ASP.NET Core .NET 10 \u00b7 MongoDB.Driver 3.12.0"
+    ],
+    [
+     "Frontend",
+     "React 19 \u00b7 Vite \u00b7 TypeScript"
+    ],
+    [
+     "Database",
+     "MongoDB local, replica set **rs0**"
+    ],
+    [
+     "C\u1ed5ng",
+     "API 8081 \u00b7 Vite 5174"
+    ],
+    [
+     "Ch\u1ea1y",
+     "**run.bat** (build frontend + ch\u1ea1y API)"
+    ]
+   ],
+   "items": [
+    "M\u1ecdi t\u00e0i kho\u1ea3n \u0111\u0103ng nh\u1eadp t\u1ea1i **http://localhost:8081/login**.",
+    "M\u1eadt kh\u1ea9u demo chung **1234**; sau khi \u0111\u0103ng nh\u1eadp chuy\u1ec3n theo vai tr\u00f2.",
+    "**Mongo:ConnectionString** / **Mongo:Database** trong **appsettings.json**."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "T\u1ed5 ch\u1ee9c m\u00e3 ngu\u1ed3n v\u00e0 c\u1ea5u h\u00ecnh",
+   "notes": "Nh\u1ea5n m\u1ea1nh t\u1ed5 ch\u1ee9c hai project backend/frontend v\u00e0 c\u1ea5u h\u00ecnh database \u0111\u1ed9c l\u1eadp.",
+   "cards": [
+    [
+     "backend-dotnet",
+     [
+      "T\u1ea7ng API ASP.NET Core v\u1edbi controllers, DTO v\u00e0 lu\u1eadt nghi\u1ec7p v\u1ee5.",
+      "L\u1edbp l\u01b0u tr\u1eef d\u00f9ng MongoDB C# Driver.",
+      "D\u1eef li\u1ec7u demo seed qua **Mongo:SeedDemo** (ch\u1ec9 Development)."
+     ]
+    ],
+    [
+     "frontend-react + verification",
+     [
+      "Giao di\u1ec7n React theo thi\u1ebft k\u1ebf v\u00e0 t\u00e0i s\u1ea3n th\u01b0\u01a1ng hi\u1ec7u.",
+      "**verification/** ch\u1ee9a \u0111\u1ed1i chi\u1ebfu contract v\u00e0 smoke HTTP.",
+      "User Secrets v\u00e0 Project \u0111\u1ed9c l\u1eadp; kh\u00f4ng \u0111\u1eb7t URI c\u00f3 m\u1eadt kh\u1ea9u v\u00e0o Git."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "C\u00e0i \u0111\u1eb7t MongoDB v\u00e0 b\u1ea3o to\u00e0n d\u1eef li\u1ec7u",
+   "notes": "\u0110\u00e2y l\u00e0 c\u00e1c quy\u1ebft \u0111\u1ecbnh k\u1ef9 thu\u1eadt b\u1ea3o \u0111\u1ea3m nh\u1ea5t qu\u00e1n; gi\u1ea3i th\u00edch v\u00ec sao b\u1ed9 \u0111\u1ebfm n\u1eb1m ngo\u00e0i transaction.",
+   "cards": [
+    [
+     "Transaction & nh\u1ea5t qu\u00e1n",
+     [
+      "Transaction kho/thu ti\u1ec1n d\u00f9ng m\u1ed9t session, snapshot read + majority write.",
+      "Xung \u0111\u1ed9t th\u1eed l\u1ea1i t\u1ed1i \u0111a 3 l\u1ea7n; commit ch\u01b0a r\u00f5 k\u1ebft qu\u1ea3 th\u1eed l\u1ea1i, gi\u1edbi h\u1ea1n 30 gi\u00e2y.",
+      "B\u1ed9 \u0111\u1ebfm m\u00e3 nghi\u1ec7p v\u1ee5 b\u1eb1ng **$inc** nguy\u00ean t\u1eed ngo\u00e0i transaction (s\u1ed1 c\u00f3 th\u1ec3 nh\u1ea3y khi rollback)."
+     ]
+    ],
+    [
+     "Index & b\u1ea3o m\u1eadt",
+     [
+      "Unique/partial index b\u1ea3o v\u1ec7 username, serial, s\u1ed1 \u0111i\u1ec7n tho\u1ea1i, phi\u1ebfu m\u1edf, b\u00e1o gi\u00e1...",
+      "Refresh token l\u01b0u hash v\u00e0 xoay v\u00f2ng theo h\u1ecd token.",
+      "N\u1ed9i dung t\u1ec7p l\u01b0u tr\u00ean \u0111\u0129a, metadata v\u00e0 quy\u1ec1n s\u1edf h\u1eefu trong MongoDB."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "section",
+   "number": 5,
+   "title": "Th\u1eed nghi\u1ec7m v\u00e0 tri\u1ec3n khai"
+  },
+  {
+   "kind": "slide",
+   "layout": "stats",
+   "title": "K\u1ebft qu\u1ea3 ki\u1ec3m th\u1eed",
+   "notes": "Backend 73/73 l\u00e0 k\u1ebft qu\u1ea3 ng\u00e0y 21/10/2026; frontend 25/25, 102 smoke v\u00e0 10 integration l\u00e0 s\u1ed1 li\u1ec7u l\u1ecbch s\u1eed ng\u00e0y 09/10, ch\u01b0a ch\u1ea1y l\u1ea1i c\u00f9ng l\u01b0\u1ee3t. B\u1ed9 test m\u1edbi bao g\u1ed3m nh\u00e1nh commit b\u1ecb h\u1ee7y: gi\u1eef t\u1ec7p, kh\u00f4ng b\u00f9 tr\u1eeb; token h\u1ee7y tr\u01b0\u1edbc khi l\u1ec7nh t\u1edbi server, ch\u01b0a th\u1eed tr\u01b0\u1eddng h\u1ee3p server \u0111\u00e3 commit nh\u01b0ng client h\u1ebft gi\u1edd ch\u1edd.",
+   "stats": [
+    [
+     "73/73",
+     "backend .NET (21/10/2026)"
+    ],
+    [
+     "25/25",
+     "frontend React (09/10/2026)"
+    ],
+    [
+     "102",
+     "smoke HTTP (09/10/2026)"
+    ],
+    [
+     "10",
+     "integration MongoDB (09/10/2026)"
+    ]
+   ],
+   "cards": [
+    [
+     "Ngu\u1ed3n s\u1ed1 li\u1ec7u",
+     [
+      "**73/73 backend** l\u00e0 k\u1ebft qu\u1ea3 sau v\u00f2ng s\u1eeda ng\u00e0y 21/10/2026, ch\u1ea1y tr\u00ean DB test ri\u00eang.",
+      "**25/25 frontend, 102 smoke, 10 integration** ghi trong t\u00e0i li\u1ec7u ki\u1ec3m ch\u1ee9ng 09/10/2026 \u2014 ch\u01b0a ch\u1ea1y l\u1ea1i c\u00f9ng l\u01b0\u1ee3t."
+     ]
+    ],
+    [
+     "Tr\u00ecnh duy\u1ec7t th\u1eadt",
+     [
+      "\u0110\u0103ng nh\u1eadp t\u1eebng vai tr\u00f2; trang qu\u1ea3n tr\u1ecb hi\u1ec3n th\u1ecb 7 nh\u00e2n vi\u00ean.",
+      "Responsive 1440\u00d7900 v\u00e0 390\u00d7844; b\u1ea3ng chuy\u1ec3n th\u00e0nh th\u1ebb."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "table-top",
+   "title": "K\u1ecbch b\u1ea3n API \u0111\u00e3 th\u1ef1c thi",
+   "notes": "C\u00e1c lu\u1ed3ng ki\u1ec3m th\u1eed kh\u1edbp v\u1edbi m\u1ee5c 5.3 b\u00e1o c\u00e1o; c\u00f3 th\u1ec3 m\u1edf API demo n\u1ebfu c\u00f3 th\u1eddi gian.",
+   "table": [
+    [
+     "Nh\u00f3m k\u1ecbch b\u1ea3n",
+     "Lu\u1ed3ng ki\u1ec3m tra"
+    ],
+    [
+     "B\u1ea3o h\u00e0nh mi\u1ec5n ph\u00ed",
+     "\u0110\u0103ng k\u00fd \u2192 ti\u1ebfp nh\u1eadn \u2192 ph\u00e2n c\u00f4ng \u2192 ch\u1ea9n \u0111o\u00e1n \u2192 QC \u2192 b\u00e0n giao"
+    ],
+    [
+     "S\u1eeda ch\u1eefa c\u00f3 ph\u00ed",
+     "B\u00e1o gi\u00e1 \u2192 duy\u1ec7t \u2192 kh\u00e1ch \u0111\u1ed3ng \u00fd \u2192 gi\u1eef linh ki\u1ec7n \u2192 xu\u1ea5t kho \u2192 thu ti\u1ec1n"
+    ],
+    [
+     "Kho",
+     "T\u1ea1o/s\u1eeda/duy\u1ec7t phi\u1ebfu nh\u1eadp, \u0111i\u1ec1u chuy\u1ec3n v\u00e0 li\u1ec7t k\u00ea ch\u1ee9ng t\u1eeb"
+    ],
+    [
+     "C\u1ed5ng kh\u00e1ch",
+     "Y\u00eau c\u1ea7u online v\u1edbi PNG, tra c\u1ee9u token, t\u1ea3i \u0111\u00fang bytes t\u1ec7p"
+    ],
+    [
+     "B\u00e1o c\u00e1o",
+     "Doanh thu, hi\u1ec7u su\u1ea5t, lead time, t\u1ef7 l\u1ec7 b\u1ea3o h\u00e0nh, SLA"
+    ]
+   ],
+   "items": [
+    "T\u1eeb ch\u1ed1i **phi\u1ebfu m\u1edf tr\u00f9ng**, \u0111\u1ed1i chi\u1ebfu b\u00e1o gi\u00e1 v\u00e0 ghi nh\u1eadt k\u00fd/th\u00f4ng b\u00e1o trong t\u1eebng lu\u1ed3ng.",
+    "\u0110\u1ed1i chi\u1ebfu d\u1eef li\u1ec7u MongoDB b\u1eb1ng mongosh sau \u0111\u1ee3t ch\u1ea1y.",
+    "\u0110\u0103ng k\u00fd/g\u1ee1 thi\u1ebft b\u1ecb push demo; \u0111\u00e1nh d\u1ea5u th\u00f4ng b\u00e1o \u0111\u00e3 \u0111\u1ecdc."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "img-text",
+   "title": "Ki\u1ec3m tra giao di\u1ec7n tr\u00ean tr\u00ecnh duy\u1ec7t",
+   "notes": "B\u1eb1ng ch\u1ee9ng giao di\u1ec7n c\u00f3 trong docs/screenshots; nh\u1ea5n m\u1ea1nh \u0111\u0103ng nh\u1eadp chung v\u00e0 responsive.",
+   "images": [
+    {
+     "path": "docs\\screenshots\\admin-mobile-top.png",
+     "alt": "Giao di\u1ec7n qu\u1ea3n tr\u1ecb tr\u00ean \u0111i\u1ec7n tho\u1ea1i"
+    }
+   ],
+   "items": [
+    "\u0110\u0103ng nh\u1eadp **admin** v\u00e0 **receptionist** t\u1eeb trang chung; chuy\u1ec3n h\u01b0\u1edbng \u0111\u00fang theo vai tr\u00f2.",
+    "Kh\u00e1ch **0900000001** v\u00e0o **/account#lich-su** xem phi\u1ebfu c\u1ee7a m\u00ecnh.",
+    "Responsive 1440\u00d7900 v\u00e0 390\u00d7844; b\u1ea3ng d\u1eef li\u1ec7u chuy\u1ec3n th\u00e0nh th\u1ebb tr\u00ean m\u00e0n h\u00ecnh nh\u1ecf.",
+    "B\u1eb1ng ch\u1ee9ng giao di\u1ec7n l\u01b0u trong docs/screenshots."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "compare",
+   "title": "L\u1ed7i ph\u00e1t hi\u1ec7n v\u00e0 c\u00e1ch kh\u1eafc ph\u1ee5c",
+   "notes": "Ng\u00e0y 21/10/2026, migration index account_username_collated (unique, en/strength 2) \u0111\u00e3 ch\u1ea1y tr\u00ean soopi_mongodb sau sao l\u01b0u v\u00e0 ki\u1ec3m tra username tr\u00f9ng. Ca 8 nh\u00e2n vi\u00ean \u00d7 3 v\u00f2ng PATCH ch\u1ec9 ch\u1ea1y tr\u00ean b\u1ea3n sao soopi_mongodb_verify_20261021: 24/24 HTTP 200. F-01 ch\u1ec9 ki\u1ec3m l\u1ea1i l\u01b0\u1edbi T\u1ed3n kho tr\u00ean DB ri\u00eang soopi_ui_f01_20261021: LK-PIN hi\u1ec7n Laptop, l\u1ecdc tr\u1ea3 1 SKU, \u0111\u1ee7 6 nh\u00f3m; gi\u1eef nguy\u00ean FAIL l\u1ecbch s\u1eed 09/10. Test TransactionRunner: commit b\u1ecb h\u1ee7y do h\u1ebft th\u1eddi gian ch\u1edd th\u00ec gi\u1eef t\u1ec7p, kh\u00f4ng b\u00f9 tr\u1eeb; token h\u1ee7y tr\u01b0\u1edbc khi l\u1ec7nh t\u1edbi server, ch\u01b0a ph\u1ee7 server \u0111\u00e3 commit nh\u01b0ng client h\u1ebft gi\u1edd ch\u1edd. D\u1ecdn t\u1ec7p khi transaction rollback v\u1eabn gi\u1eef nguy\u00ean. C\u1ea3 b\u1ed9 backend \u0111\u1ea1t 73/73, kh\u00f4ng b\u1ecf qua test.",
+   "cards": [
+    [
+     "\u0110\u00e3 kh\u1eafc ph\u1ee5c",
+     [
+      "Username: index collation \u0111\u00e3 ch\u1ea1y tr\u00ean **soopi_mongodb \u2014 21/10/2026**.",
+      "8 nh\u00e2n vi\u00ean \u00d7 3 v\u00f2ng PATCH: 24/24 HTTP 200 tr\u00ean b\u1ea3n sao soopi_mongodb_verify_20261021; kh\u00f4ng suy r\u1ed9ng th\u00e0nh ki\u1ec3m th\u1eed t\u1ea3i.",
+      "T\u1ea1o nh\u00e2n vi\u00ean thu\u1ed9c tr\u1ea1m c\u1ee7a admin (kh\u00f4ng g\u00e1n c\u1ee9ng).",
+      "F-01: l\u01b0\u1edbi T\u1ed3n kho ki\u1ec3m l\u1ea1i ng\u00e0y 21/10 tr\u00ean DB ri\u00eang; **PASS, gi\u1eef FAIL 09/10**.",
+      "Ch\u1ec9 tin proxy \u0111\u00e3 khai b\u00e1o \u1edf **X-Forwarded-For**; x\u00f3a code ch\u1ebft."
+     ]
+    ],
+    [
+     "Gi\u1edbi h\u1ea1n / \u0111\u00e1nh \u0111\u1ed5i",
+     [
+      "B\u00e1o c\u00e1o t\u1ed5ng h\u1ee3p trong b\u1ed9 nh\u1edb sau khi l\u1ecdc ng\u00e0y/tr\u1ea1m.",
+      "Access token trong sessionStorage (\u0111\u00e1nh \u0111\u1ed5i; refresh token trong cookie HttpOnly).",
+      "M\u1eadt kh\u1ea9u demo **1234** ch\u1ec9 d\u00f9ng \u1edf m\u00f4i tr\u01b0\u1eddng local.",
+      "SMS/push v\u1eabn \u1edf ch\u1ebf \u0111\u1ed9 log, ch\u01b0a t\u00edch h\u1ee3p nh\u00e0 cung c\u1ea5p th\u1eadt.",
+      "Commit b\u1ecb h\u1ee7y do h\u1ebft th\u1eddi gian ch\u1edd: gi\u1eef t\u1ec7p, kh\u00f4ng b\u00f9 tr\u1eeb; ch\u01b0a th\u1eed server \u0111\u00e3 commit."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "text-img",
+   "title": "K\u1ebft qu\u1ea3 \u0111\u1ea1t \u0111\u01b0\u1ee3c",
+   "notes": "T\u1ed5ng k\u1ebft ng\u00e0y 21/10/2026: 73/73 backend, migration \u0111\u00e3 ch\u1ea1y tr\u00ean soopi_mongodb; 8\u00d73 PATCH tr\u00ean b\u1ea3n sao soopi_mongodb_verify_20261021. F-01 PASS ch\u1ec9 t\u1ea1i l\u01b0\u1edbi T\u1ed3n kho tr\u00ean soopi_ui_f01_20261021, kh\u00f4ng thay FAIL ng\u00e0y 09/10 ho\u1eb7c suy r\u1ed9ng ra to\u00e0n UI. Test commit b\u1ecb h\u1ee7y kh\u00f4ng ph\u1ee7 server \u0111\u00e3 commit nh\u01b0ng client h\u1ebft gi\u1edd ch\u1edd.",
+   "images": [
+    {
+     "path": "docs\\screenshots\\admin-desktop.png",
+     "alt": "H\u1ec7 th\u1ed1ng b\u1ea3o h\u00e0nh tr\u00ean desktop"
+    }
+   ],
+   "items": [
+    "Tri\u1ec3n khai \u0111\u01b0\u1ee3c lu\u1ed3ng b\u1ea3o h\u00e0nh ch\u00ednh: ti\u1ebfp nh\u1eadn, b\u00e1o gi\u00e1, s\u1eeda ch\u1eefa, kho, thu ti\u1ec1n, b\u00e0n giao.",
+    "H\u1ec7 th\u1ed1ng ch\u1ea1y tr\u00ean n\u1ec1n **MongoDB** v\u1edbi API ASP.NET Core v\u00e0 giao di\u1ec7n React.",
+    "C\u1ed5ng kh\u00e1ch h\u00e0ng v\u00e0 tra c\u1ee9u c\u00f4ng khai; \u0111\u0103ng nh\u1eadp chung cho m\u1ecdi vai tr\u00f2.",
+    "Backend 73/73 test ng\u00e0y 21/10; frontend 25/25 theo t\u00e0i li\u1ec7u 09/10.",
+    "Ng\u00e0y 21/10: migration tr\u00ean DB th\u1eadt; F-01 PASS t\u1ea1i l\u01b0\u1edbi T\u1ed3n kho tr\u00ean DB ri\u00eang, gi\u1eef FAIL 09/10."
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "quad",
+   "title": "H\u01b0\u1edbng ph\u00e1t tri\u1ec3n",
+   "notes": "\u01afu ti\u00ean \u0111\u00f3ng c\u00e1c gi\u1edbi h\u1ea1n \u0111\u00e3 ghi nh\u1eadn tr\u01b0\u1edbc khi m\u1edf r\u1ed9ng quy m\u00f4.",
+   "cards": [
+    [
+     "B\u00e1o c\u00e1o",
+     [
+      "Chuy\u1ec3n t\u1ed5ng h\u1ee3p trong b\u1ed9 nh\u1edb sang aggregation pipeline khi d\u1eef li\u1ec7u l\u1edbn."
+     ]
+    ],
+    [
+     "B\u1ea3o m\u1eadt",
+     [
+      "Th\u00eam CSP, \u0111\u01b0a access token v\u00e0o cookie HttpOnly ho\u1eb7c BFF."
+     ]
+    ],
+    [
+     "T\u00edch h\u1ee3p",
+     [
+      "K\u1ebft n\u1ed1i SMS/push th\u1eadt, k\u00eanh b\u00e1n h\u00e0ng v\u00e0 \u0111\u1ed3ng b\u1ed9 h\u00e3ng s\u1ea3n xu\u1ea5t."
+     ]
+    ],
+    [
+     "M\u1edf r\u1ed9ng",
+     [
+      "Th\u1eed t\u1ea3i l\u1edbn, replica-set failover v\u00e0 tri\u1ec3n khai \u0111a tr\u1ea1m."
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "slide",
+   "layout": "end",
+   "title": "",
+   "notes": "C\u1ea3m \u01a1n v\u00e0 m\u1eddi \u0111\u1eb7t c\u00e2u h\u1ecfi; gi\u1eef API ch\u1ea1y s\u1eb5n \u0111\u1ec3 demo n\u1ebfu c\u1ea7n.",
+   "items": [
+    "S\u1eb5n s\u00e0ng demo lu\u1ed3ng ti\u1ebfp nh\u1eadn, b\u00e1o gi\u00e1, s\u1eeda ch\u1eefa v\u00e0 b\u00e0n giao.",
+    "M\u1eddi th\u1ea7y c\u00f4 v\u00e0 c\u00e1c b\u1ea1n \u0111\u1eb7t c\u00e2u h\u1ecfi."
+   ]
+  }
+ ]
+}

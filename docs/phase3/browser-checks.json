@@ -1,0 +1,60 @@
+{
+  "campaign": "P3-MV0ODFHB",
+  "recordedAt": "2026-10-09T08:20:15.000064+00:00",
+  "cases": [
+    {
+      "id": "UI-01",
+      "title": "Danh sách khách hàng",
+      "steps": "Đăng nhập admin, mở Quản trị → Tài khoản khách hàng.",
+      "expected": "Có 3 hồ sơ mới, đúng họ tên/số điện thoại; chưa có tài khoản.",
+      "actual": "KH-000002–000004 hiển thị đúng; tổng 4 hồ sơ gồm khách demo cũ.",
+      "status": "PASS",
+      "image": "01-khach-hang.png"
+    },
+    {
+      "id": "UI-02",
+      "title": "Danh sách và trạng thái phiếu",
+      "steps": "Đăng nhập dispatcher, lọc số điện thoại 090902843; xem từng phiếu.",
+      "expected": "Có 3 phiếu; laptop và iPhone đã bàn giao, Galaxy chưa phân công.",
+      "actual": "Bộ lọc trả 3 phiếu; trạng thái và chi tiết khớp kết quả API.",
+      "status": "PASS",
+      "image": "02-ba-phieu.png"
+    },
+    {
+      "id": "UI-03",
+      "title": "Tra cứu công khai và chi phí",
+      "steps": "Mở /portal; nhập TN-2026-1009-00012 và 0909028432; tra cứu, xem chi phí.",
+      "expected": "Đã bàn giao; tổng 1.595.000đ gồm linh kiện, công và VAT.",
+      "actual": "Đã bàn giao; 1.300.000 + 150.000 + 145.000 = 1.595.000đ.",
+      "status": "PASS",
+      "image": "03-thanh-toan-ban-giao.png"
+    },
+    {
+      "id": "UI-04",
+      "title": "Tồn kho sau xuất",
+      "steps": "Đăng nhập warehouse; lọc SKU P3-MV0ODFHB.",
+      "expected": "Pin 5, màn hình 4, đã giữ 0; đúng kệ P3-A1/P3-A2.",
+      "actual": "Hai SKU hiển thị tồn 5 và 4; giữ 0; đúng kệ.",
+      "status": "PASS",
+      "image": "06-ton-kho.png"
+    },
+    {
+      "id": "UI-05",
+      "title": "Báo cáo SLA hàng đợi",
+      "steps": "Đăng nhập dispatcher; mở Báo cáo → Phân bố SLA.",
+      "expected": "Một phiếu đang xử lý, đúng hạn; không có phiếu trễ.",
+      "actual": "Đúng hạn 1 (100%); sắp tới hạn 0; trễ hạn 0.",
+      "status": "PASS",
+      "image": "05-bao-cao-sla.png"
+    },
+    {
+      "id": "UI-06",
+      "title": "Tên nhóm Laptop",
+      "steps": "Quan sát nhóm thiết bị của laptop và nhóm linh kiện pin Dell trong kho.",
+      "expected": "Hiển thị “Laptop” tương ứng categoryCode=LAPTOP.",
+      "actual": "Hiển thị “—”; dữ liệu API/MongoDB vẫn là LAPTOP. Ghi nhận F-01.",
+      "status": "FAIL",
+      "image": "06-ton-kho.png"
+    }
+  ]
+}

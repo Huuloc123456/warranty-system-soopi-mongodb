@@ -1,0 +1,1812 @@
+{
+  "campaign": "P3-MV0ODFHB",
+  "database": "soopi_mongodb",
+  "base": "http://localhost:8081",
+  "startedAt": "2026-10-09T07:59:59.903Z",
+  "cases": [
+    {
+      "id": "TC-01",
+      "title": "Đăng nhập sai mật khẩu",
+      "steps": "Nhập admin với mật khẩu sai tại API đăng nhập.",
+      "expected": "HTTP 401; không cấp phiên.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T07:59:59.905Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 401,
+          "code": "AUTH_INVALID_CREDENTIALS",
+          "at": "2026-10-09T08:00:00.248Z"
+        }
+      ],
+      "actual": "HTTP 401 AUTH_INVALID_CREDENTIALS",
+      "finishedAt": "2026-10-09T08:00:00.248Z"
+    },
+    {
+      "id": "TC-02",
+      "title": "Đăng nhập đủ 8 tài khoản hiện có",
+      "steps": "Lần lượt đăng nhập admin, receptionist, dispatcher, technician, technician2, warehouse, cashier, 0900000001 bằng 1234; gọi /auth/me.",
+      "expected": "8 phiên hợp lệ, đúng tên tài khoản và vai trò.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:00.249Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:00.543Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:00.549Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:00.865Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:00.870Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:01.220Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:01.240Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:01.534Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:01.546Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:01.859Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:01.862Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:02.165Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:02.186Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:02.515Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:02.536Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "status": 200,
+          "at": "2026-10-09T08:00:02.832Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/auth/me",
+          "status": 200,
+          "at": "2026-10-09T08:00:02.842Z"
+        }
+      ],
+      "actual": "8/8 đăng nhập HTTP 200 và /auth/me HTTP 200",
+      "finishedAt": "2026-10-09T08:00:02.842Z"
+    },
+    {
+      "id": "TC-03",
+      "title": "Tạo hồ sơ khách hàng có dữ liệu sát thực tế",
+      "steps": "Lễ tân tạo 3 hồ sơ với tên, số điện thoại mẫu, email .invalid và địa chỉ tại TP.HCM.",
+      "expected": "3 mã KH mới, trạng thái ACTIVE.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:02.843Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/customers",
+          "status": 201,
+          "code": "KH-000002",
+          "at": "2026-10-09T08:00:02.888Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/customers",
+          "status": 201,
+          "code": "KH-000003",
+          "at": "2026-10-09T08:00:02.905Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/customers",
+          "status": 201,
+          "code": "KH-000004",
+          "at": "2026-10-09T08:00:02.920Z"
+        }
+      ],
+      "actual": "KH-000002: Nguyễn Minh Anh, 0909028431; KH-000003: Trần Hoàng Nam, 0909028432; KH-000004: Lê Ngọc Linh, 0909028433",
+      "finishedAt": "2026-10-09T08:00:02.920Z"
+    },
+    {
+      "id": "TC-04",
+      "title": "Chặn số điện thoại khách hàng trùng",
+      "steps": "Tạo hồ sơ mới với số điện thoại của Nguyễn Minh Anh vừa tạo.",
+      "expected": "HTTP 409; không tạo hồ sơ thứ hai.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:02.920Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/customers",
+          "status": 409,
+          "code": "CUSTOMER_PHONE_DUPLICATE",
+          "at": "2026-10-09T08:00:02.949Z"
+        }
+      ],
+      "actual": "HTTP 409 CUSTOMER_PHONE_DUPLICATE",
+      "finishedAt": "2026-10-09T08:00:02.949Z"
+    },
+    {
+      "id": "TC-05",
+      "title": "Tạo danh mục sản phẩm và linh kiện thực tế",
+      "steps": "Admin tạo Dell Latitude 5420, Apple iPhone 13 và Samsung Galaxy S23; thêm pin Dell và màn hình iPhone với giá vốn, giá bán.",
+      "expected": "3 sản phẩm và 2 linh kiện mới; liên kết hãng và loại thiết bị hợp lệ.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:02.950Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/products",
+          "status": 201,
+          "at": "2026-10-09T08:00:02.998Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/products",
+          "status": 201,
+          "at": "2026-10-09T08:00:03.005Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/products",
+          "status": 201,
+          "at": "2026-10-09T08:00:03.027Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/parts",
+          "status": 201,
+          "at": "2026-10-09T08:00:03.046Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/parts",
+          "status": 201,
+          "at": "2026-10-09T08:00:03.058Z"
+        }
+      ],
+      "actual": "Đã lưu 3 sản phẩm và 2 linh kiện vào MongoDB",
+      "finishedAt": "2026-10-09T08:00:03.058Z"
+    },
+    {
+      "id": "TC-06",
+      "title": "Từ chối danh mục tham chiếu không tồn tại",
+      "steps": "Admin tạo sản phẩm trỏ tới hãng KHONG-TON-TAI.",
+      "expected": "HTTP 400; không tạo sản phẩm với tham chiếu sai.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.058Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/products",
+          "status": 400,
+          "code": "VALIDATION_FAILED",
+          "at": "2026-10-09T08:00:03.070Z"
+        }
+      ],
+      "actual": "HTTP 400 VALIDATION_FAILED",
+      "finishedAt": "2026-10-09T08:00:03.070Z"
+    },
+    {
+      "id": "TC-07",
+      "title": "Nhập kho và đối chiếu tồn",
+      "steps": "Thủ kho lập phiếu nhập 5 pin và 5 màn hình; duyệt phiếu; đọc lại tồn mỗi mã.",
+      "expected": "Mỗi mã onHand=5, reserved=0, phiếu APPROVED.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.071Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/stock-receipts",
+          "status": 201,
+          "code": "PN-2026-00004",
+          "at": "2026-10-09T08:00:03.133Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/stock-receipts/PN-2026-00004/approve",
+          "status": 200,
+          "code": "PN-2026-00004",
+          "at": "2026-10-09T08:00:03.159Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/parts/P3-MV0ODFHB-1",
+          "status": 200,
+          "at": "2026-10-09T08:00:03.191Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/parts/P3-MV0ODFHB-2",
+          "status": 200,
+          "at": "2026-10-09T08:00:03.207Z"
+        }
+      ],
+      "actual": "PN-2026-00004: 5 pin + 5 màn hình; tồn khớp",
+      "finishedAt": "2026-10-09T08:00:03.207Z"
+    },
+    {
+      "id": "TC-08",
+      "title": "Phân quyền từ chối thu ngân tạo danh mục",
+      "steps": "Thu ngân gọi API tạo sản phẩm.",
+      "expected": "HTTP 403; không cấp quyền quản trị.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.208Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/catalog/products",
+          "status": 403,
+          "code": "ACCESS_DENIED",
+          "at": "2026-10-09T08:00:03.222Z"
+        }
+      ],
+      "actual": "HTTP 403 ACCESS_DENIED",
+      "finishedAt": "2026-10-09T08:00:03.222Z"
+    },
+    {
+      "id": "TC-09",
+      "title": "Tiếp nhận laptop còn bảo hành",
+      "steps": "Đăng ký thiết bị của khách; ngày kích hoạt/hết hạn; xác nhận ngoại quan; lập phiếu tiếp nhận.",
+      "expected": "Thiết bị được lưu, phiếu RECEIVED.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.222Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/devices",
+          "status": 201,
+          "code": "TB-000013",
+          "at": "2026-10-09T08:00:03.264Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets",
+          "status": 201,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.360Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011; DL5420-P3-MV0ODFHB; RECEIVED",
+      "finishedAt": "2026-10-09T08:00:03.360Z"
+    },
+    {
+      "id": "TC-10",
+      "title": "Chặn phiếu mở trùng thiết bị",
+      "steps": "Lập thêm phiếu cho chính thiết bị đang có phiếu RECEIVED.",
+      "expected": "HTTP 409 DEVICE_HAS_OPEN_TICKET.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.361Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets",
+          "status": 409,
+          "code": "DEVICE_HAS_OPEN_TICKET",
+          "at": "2026-10-09T08:00:03.378Z"
+        }
+      ],
+      "actual": "HTTP 409 DEVICE_HAS_OPEN_TICKET; TN-2026-1009-00011 giữ nguyên",
+      "finishedAt": "2026-10-09T08:00:03.378Z"
+    },
+    {
+      "id": "TC-11",
+      "title": "Phân công và chặn kỹ thuật viên không phụ trách",
+      "steps": "Điều phối giao NV-004; technician2 thử ghi chẩn đoán.",
+      "expected": "Phiếu INSPECTING; technician2 nhận HTTP 403.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.379Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/assignment",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.429Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/inspection",
+          "status": 403,
+          "code": "NOT_ASSIGNED_TECHNICIAN",
+          "at": "2026-10-09T08:00:03.457Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: INSPECTING; không phụ trách HTTP 403 NOT_ASSIGNED_TECHNICIAN",
+      "finishedAt": "2026-10-09T08:00:03.457Z"
+    },
+    {
+      "id": "TC-12",
+      "title": "Chẩn đoán và phân loại miễn phí",
+      "steps": "Kỹ thuật viên phụ trách ghi kết quả, checklist, lý do và phương án sửa.",
+      "expected": "DIAGNOSED; phân loại đúng theo hạn bảo hành.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.458Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/inspection",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.481Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: DIAGNOSED; FREE_WARRANTY",
+      "finishedAt": "2026-10-09T08:00:03.481Z"
+    },
+    {
+      "id": "TC-13",
+      "title": "Bắt đầu sửa miễn phí",
+      "steps": "KTV chọn bắt đầu sửa sau chẩn đoán bảo hành.",
+      "expected": "Phiếu REPAIRING; không lập báo giá tính phí.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.482Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/repair/start",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.511Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: REPAIRING",
+      "finishedAt": "2026-10-09T08:00:03.511Z"
+    },
+    {
+      "id": "TC-14",
+      "title": "KCS chưa đạt phải tiếp tục khắc phục",
+      "steps": "Ghi QC FAIL ở chức năng chính, đọc lại trạng thái.",
+      "expected": "Giữ REPAIRING, lưu lần kiểm định FAIL.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.512Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/repair/results",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.551Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: REPAIRING; QC FAIL được lưu",
+      "finishedAt": "2026-10-09T08:00:03.551Z"
+    },
+    {
+      "id": "TC-15",
+      "title": "KCS đạt và hoàn tất kỹ thuật",
+      "steps": "Ghi 6 bước QC PASS, lưu nội dung đã sửa.",
+      "expected": "Phiếu COMPLETED; lịch sử các lần KCS được giữ.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.551Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/repair/results",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.569Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: COMPLETED, 6/6 QC PASS",
+      "finishedAt": "2026-10-09T08:00:03.569Z"
+    },
+    {
+      "id": "TC-16",
+      "title": "Thanh toán bảo hành miễn phí",
+      "steps": "Thu ngân đọc khoản phải thu và xác nhận thanh toán.",
+      "expected": "Ghi xác nhận miễn phí; tổng phải thu bằng 0.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.570Z",
+      "calls": [
+        {
+          "method": "GET",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/billing",
+          "status": 200,
+          "at": "2026-10-09T08:00:03.595Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/payments/free-warranty",
+          "status": 201,
+          "code": "PT-2026-00011",
+          "at": "2026-10-09T08:00:03.635Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: xác nhận miễn phí 0 đồng",
+      "finishedAt": "2026-10-09T08:00:03.635Z"
+    },
+    {
+      "id": "TC-17",
+      "title": "Bàn giao có xác nhận và chữ ký mẫu",
+      "steps": "Thu ngân nhập người nhận, 5 tiêu chí nghiệm thu đạt và tải ảnh chữ ký kiểm thử.",
+      "expected": "Phiếu DELIVERED; lưu phiếu bàn giao và ảnh chữ ký.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.637Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/handover",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.702Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/tickets/TN-2026-1009-00011/handover-slip",
+          "status": 200,
+          "at": "2026-10-09T08:00:03.723Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: DELIVERED; phiếu bàn giao HTTP 200",
+      "finishedAt": "2026-10-09T08:00:03.723Z"
+    },
+    {
+      "id": "TC-18",
+      "title": "Tra cứu thật bằng mã phiếu và số điện thoại",
+      "steps": "Tra cứu portal với đúng mã phiếu/số điện thoại; dùng token được cấp để xem tiến độ.",
+      "expected": "Chỉ xem đúng phiếu; trạng thái hoàn thành được trả về.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:00:03.724Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/portal/lookup",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.754Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/portal/tickets/TN-2026-1009-00011",
+          "status": 200,
+          "code": "TN-2026-1009-00011",
+          "at": "2026-10-09T08:00:03.808Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00011: lookup và chi tiết HTTP 200; tài khoản khách không cần tạo thêm",
+      "finishedAt": "2026-10-09T08:00:03.808Z"
+    },
+    {
+      "id": "TC-19",
+      "title": "Tiếp nhận iPhone hết bảo hành",
+      "steps": "Đăng ký thiết bị của khách; ngày kích hoạt/hết hạn; xác nhận ngoại quan; lập phiếu tiếp nhận.",
+      "expected": "Thiết bị được lưu, phiếu RECEIVED.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:01:23.123Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/devices",
+          "status": 201,
+          "code": "TB-000014",
+          "at": "2026-10-09T08:01:23.142Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets",
+          "status": 201,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:01:23.162Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012; 359915328831249; RECEIVED",
+      "finishedAt": "2026-10-09T08:01:23.162Z"
+    },
+    {
+      "id": "TC-20",
+      "title": "Chặn phiếu mở trùng thiết bị",
+      "steps": "Lập thêm phiếu cho chính thiết bị đang có phiếu RECEIVED.",
+      "expected": "HTTP 409 DEVICE_HAS_OPEN_TICKET.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:01:23.163Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets",
+          "status": 409,
+          "code": "DEVICE_HAS_OPEN_TICKET",
+          "at": "2026-10-09T08:01:23.171Z"
+        }
+      ],
+      "actual": "HTTP 409 DEVICE_HAS_OPEN_TICKET; TN-2026-1009-00012 giữ nguyên",
+      "finishedAt": "2026-10-09T08:01:23.171Z"
+    },
+    {
+      "id": "TC-21",
+      "title": "Phân công và chặn kỹ thuật viên không phụ trách",
+      "steps": "Điều phối giao NV-004; technician2 thử ghi chẩn đoán.",
+      "expected": "Phiếu INSPECTING; technician2 nhận HTTP 403.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:01:23.172Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/assignment",
+          "status": 200,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:01:23.196Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/inspection",
+          "status": 403,
+          "code": "NOT_ASSIGNED_TECHNICIAN",
+          "at": "2026-10-09T08:01:23.221Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012: INSPECTING; không phụ trách HTTP 403 NOT_ASSIGNED_TECHNICIAN",
+      "finishedAt": "2026-10-09T08:01:23.221Z"
+    },
+    {
+      "id": "TC-22",
+      "title": "Chẩn đoán và phân loại tính phí",
+      "steps": "Kỹ thuật viên phụ trách ghi kết quả, checklist, lý do và phương án sửa.",
+      "expected": "DIAGNOSED; phân loại đúng theo hạn bảo hành.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:01:23.221Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/inspection",
+          "status": 200,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:01:23.241Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012: DIAGNOSED; OUT_OF_WARRANTY",
+      "finishedAt": "2026-10-09T08:01:23.241Z"
+    },
+    {
+      "id": "TC-23",
+      "title": "Lập và duyệt báo giá sửa iPhone",
+      "steps": "KTV báo giá màn hình 1.300.000 + công 150.000, VAT 10%; điều phối duyệt; lễ tân xác nhận thay khách tại quầy.",
+      "expected": "Tổng 1.595.000 đồng; khách đồng ý; chuyển chờ linh kiện.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.581Z",
+      "calls": [
+        {
+          "method": "GET",
+          "path": "/api/v1/quotations/BG-2026-1009-00006",
+          "status": 200,
+          "code": "BG-2026-1009-00006",
+          "at": "2026-10-09T08:03:06.604Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/quotations/BG-2026-1009-00006/customer-decision",
+          "status": 200,
+          "code": "BG-2026-1009-00006",
+          "at": "2026-10-09T08:03:06.643Z"
+        }
+      ],
+      "actual": "BG-2026-1009-00006: 1.595.000 đồng; APPROVED và ACCEPT",
+      "finishedAt": "2026-10-09T08:03:06.644Z"
+    },
+    {
+      "id": "TC-24",
+      "title": "Giữ hàng và xuất đúng kệ",
+      "steps": "KTV yêu cầu 1 màn hình; kiểm tra reserved; thủ kho chọn P3-A2 và duyệt.",
+      "expected": "onHand 5 → 4; reserved 0 → 1 → 0; phiếu sang REPAIRING.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.644Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/stock-issues",
+          "status": 201,
+          "code": "PX-2026-00006",
+          "at": "2026-10-09T08:03:06.697Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/parts/P3-MV0ODFHB-2",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.707Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/stock-issues/PX-2026-00006/approve",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.744Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/parts/P3-MV0ODFHB-2",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.746Z"
+        }
+      ],
+      "actual": "PX-2026-00006: tồn 4, giữ 0, xuất 1 màn hình",
+      "finishedAt": "2026-10-09T08:03:06.746Z"
+    },
+    {
+      "id": "TC-25",
+      "title": "KCS đạt và hoàn tất kỹ thuật",
+      "steps": "Ghi 6 bước QC PASS, lưu nội dung đã sửa.",
+      "expected": "Phiếu COMPLETED; lịch sử các lần KCS được giữ.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.747Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/repair/results",
+          "status": 200,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:03:06.762Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012: COMPLETED, 6/6 QC PASS",
+      "finishedAt": "2026-10-09T08:03:06.762Z"
+    },
+    {
+      "id": "TC-26",
+      "title": "Thanh toán dịch vụ",
+      "steps": "Thu ngân đọc khoản phải thu và xác nhận thanh toán.",
+      "expected": "Ghi thanh toán CASH 1.595.000 đồng.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.763Z",
+      "calls": [
+        {
+          "method": "GET",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/billing",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.773Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/payments",
+          "status": 201,
+          "code": "PT-2026-00012",
+          "at": "2026-10-09T08:03:06.803Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012: xác nhận 1.595.000 đồng CASH",
+      "finishedAt": "2026-10-09T08:03:06.803Z"
+    },
+    {
+      "id": "TC-27",
+      "title": "Bàn giao có xác nhận và chữ ký mẫu",
+      "steps": "Thu ngân nhập người nhận, 5 tiêu chí nghiệm thu đạt và tải ảnh chữ ký kiểm thử.",
+      "expected": "Phiếu DELIVERED; lưu phiếu bàn giao và ảnh chữ ký.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.804Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/handover",
+          "status": 200,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:03:06.830Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/handover-slip",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.850Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012: DELIVERED; phiếu bàn giao HTTP 200",
+      "finishedAt": "2026-10-09T08:03:06.850Z"
+    },
+    {
+      "id": "TC-28",
+      "title": "Tra cứu thật bằng mã phiếu và số điện thoại",
+      "steps": "Tra cứu portal với đúng mã phiếu/số điện thoại; dùng token được cấp để xem tiến độ.",
+      "expected": "Chỉ xem đúng phiếu; trạng thái hoàn thành được trả về.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.851Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/portal/lookup",
+          "status": 200,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:03:06.861Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/portal/tickets/TN-2026-1009-00012",
+          "status": 200,
+          "code": "TN-2026-1009-00012",
+          "at": "2026-10-09T08:03:06.880Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00012: lookup và chi tiết HTTP 200; tài khoản khách không cần tạo thêm",
+      "finishedAt": "2026-10-09T08:03:06.880Z"
+    },
+    {
+      "id": "TC-29",
+      "title": "Tạo phiếu đang chờ xử lý để kiểm tra hàng đợi",
+      "steps": "Tiếp nhận Galaxy S23 của Lê Ngọc Linh, lỗi sạc chập chờn; chưa phân công.",
+      "expected": "Phiếu RECEIVED, xuất hiện trong danh sách điều phối.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.881Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/devices",
+          "status": 201,
+          "code": "TB-000015",
+          "at": "2026-10-09T08:03:06.896Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets",
+          "status": 201,
+          "code": "TN-2026-1009-00013",
+          "at": "2026-10-09T08:03:06.913Z"
+        }
+      ],
+      "actual": "TN-2026-1009-00013: RECEIVED; Lê Ngọc Linh",
+      "finishedAt": "2026-10-09T08:03:06.913Z"
+    },
+    {
+      "id": "TC-30",
+      "title": "Báo cáo doanh thu và trạng thái",
+      "steps": "Admin xem báo cáo doanh thu tháng, trạng thái phiếu và KCS sửa lại.",
+      "expected": "Các API HTTP 200; số liệu có chứng từ từ lượt kiểm thử.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.914Z",
+      "calls": [
+        {
+          "method": "GET",
+          "path": "/api/v1/reports/revenue-monthly",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.921Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/reports/tickets-by-status",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.936Z"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/reports/repeat-repairs",
+          "status": 200,
+          "at": "2026-10-09T08:03:06.960Z"
+        }
+      ],
+      "actual": "3 báo cáo HTTP 200; phiếu laptop có QC FAIL xuất hiện trong báo cáo sửa lại",
+      "finishedAt": "2026-10-09T08:03:06.960Z"
+    },
+    {
+      "id": "TC-31",
+      "title": "Từ chối IMEI không hợp lệ",
+      "steps": "Lễ tân tạo điện thoại với IMEI 12345.",
+      "expected": "HTTP 400 IMEI_INVALID; không tạo thiết bị.",
+      "status": "PASS",
+      "startedAt": "2026-10-09T08:03:06.961Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/devices",
+          "status": 400,
+          "code": "IMEI_INVALID",
+          "at": "2026-10-09T08:03:06.968Z"
+        }
+      ],
+      "actual": "HTTP 400 IMEI_INVALID",
+      "finishedAt": "2026-10-09T08:03:06.968Z"
+    }
+  ],
+  "calls": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 401,
+      "code": "AUTH_INVALID_CREDENTIALS",
+      "at": "2026-10-09T08:00:00.248Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:00.543Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:00.549Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:00.865Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:00.870Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:01.220Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:01.240Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:01.534Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:01.546Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:01.859Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:01.862Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:02.165Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:02.186Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:02.515Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:02.536Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:00:02.832Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "status": 200,
+      "at": "2026-10-09T08:00:02.842Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/customers",
+      "status": 201,
+      "code": "KH-000002",
+      "at": "2026-10-09T08:00:02.888Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/customers",
+      "status": 201,
+      "code": "KH-000003",
+      "at": "2026-10-09T08:00:02.905Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/customers",
+      "status": 201,
+      "code": "KH-000004",
+      "at": "2026-10-09T08:00:02.920Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/customers",
+      "status": 409,
+      "code": "CUSTOMER_PHONE_DUPLICATE",
+      "at": "2026-10-09T08:00:02.949Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/products",
+      "status": 201,
+      "at": "2026-10-09T08:00:02.998Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/products",
+      "status": 201,
+      "at": "2026-10-09T08:00:03.005Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/products",
+      "status": 201,
+      "at": "2026-10-09T08:00:03.027Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/parts",
+      "status": 201,
+      "at": "2026-10-09T08:00:03.046Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/parts",
+      "status": 201,
+      "at": "2026-10-09T08:00:03.058Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/products",
+      "status": 400,
+      "code": "VALIDATION_FAILED",
+      "at": "2026-10-09T08:00:03.070Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-receipts",
+      "status": 201,
+      "code": "PN-2026-00004",
+      "at": "2026-10-09T08:00:03.133Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-receipts/PN-2026-00004/approve",
+      "status": 200,
+      "code": "PN-2026-00004",
+      "at": "2026-10-09T08:00:03.159Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/P3-MV0ODFHB-1",
+      "status": 200,
+      "at": "2026-10-09T08:00:03.191Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/P3-MV0ODFHB-2",
+      "status": 200,
+      "at": "2026-10-09T08:00:03.207Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/catalog/products",
+      "status": 403,
+      "code": "ACCESS_DENIED",
+      "at": "2026-10-09T08:00:03.222Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 201,
+      "code": "TB-000013",
+      "at": "2026-10-09T08:00:03.264Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 201,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.360Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 409,
+      "code": "DEVICE_HAS_OPEN_TICKET",
+      "at": "2026-10-09T08:00:03.378Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/assignment",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.429Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/inspection",
+      "status": 403,
+      "code": "NOT_ASSIGNED_TECHNICIAN",
+      "at": "2026-10-09T08:00:03.457Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/inspection",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.481Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/repair/start",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.511Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/repair/results",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.551Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/repair/results",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.569Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/billing",
+      "status": 200,
+      "at": "2026-10-09T08:00:03.595Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/payments/free-warranty",
+      "status": 201,
+      "code": "PT-2026-00011",
+      "at": "2026-10-09T08:00:03.635Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/handover",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.702Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00011/handover-slip",
+      "status": 200,
+      "at": "2026-10-09T08:00:03.723Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/portal/lookup",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.754Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/tickets/TN-2026-1009-00011",
+      "status": 200,
+      "code": "TN-2026-1009-00011",
+      "at": "2026-10-09T08:00:03.808Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 400,
+      "code": "IMEI_INVALID",
+      "at": "2026-10-09T08:00:03.824Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:20.821Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:21.148Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:21.472Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:21.796Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:22.164Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:22.481Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:22.820Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:01:23.121Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 201,
+      "code": "TB-000014",
+      "at": "2026-10-09T08:01:23.142Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 201,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:01:23.162Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 409,
+      "code": "DEVICE_HAS_OPEN_TICKET",
+      "at": "2026-10-09T08:01:23.171Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/assignment",
+      "status": 200,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:01:23.196Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/inspection",
+      "status": 403,
+      "code": "NOT_ASSIGNED_TECHNICIAN",
+      "at": "2026-10-09T08:01:23.221Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/inspection",
+      "status": 200,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:01:23.241Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/quotations",
+      "status": 201,
+      "code": "BG-2026-1009-00006",
+      "at": "2026-10-09T08:01:23.305Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/quotations/BG-2026-1009-00006/approve",
+      "status": 200,
+      "code": "BG-2026-1009-00006",
+      "at": "2026-10-09T08:01:23.342Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/quotation-decision",
+      "status": 404,
+      "code": "NOT_FOUND",
+      "at": "2026-10-09T08:01:23.352Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:04.171Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:04.495Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:04.862Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:05.223Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:05.589Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:05.926Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.233Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.579Z",
+      "purpose": "Khôi phục phiên để tiếp tục lượt kiểm thử"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/quotations/BG-2026-1009-00006",
+      "status": 200,
+      "code": "BG-2026-1009-00006",
+      "at": "2026-10-09T08:03:06.604Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/quotations/BG-2026-1009-00006/customer-decision",
+      "status": 200,
+      "code": "BG-2026-1009-00006",
+      "at": "2026-10-09T08:03:06.643Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-issues",
+      "status": 201,
+      "code": "PX-2026-00006",
+      "at": "2026-10-09T08:03:06.697Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/P3-MV0ODFHB-2",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.707Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/stock-issues/PX-2026-00006/approve",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.744Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/parts/P3-MV0ODFHB-2",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.746Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/repair/results",
+      "status": 200,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:03:06.762Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/billing",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.773Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/payments",
+      "status": 201,
+      "code": "PT-2026-00012",
+      "at": "2026-10-09T08:03:06.803Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/handover",
+      "status": 200,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:03:06.830Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/TN-2026-1009-00012/handover-slip",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.850Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/portal/lookup",
+      "status": 200,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:03:06.861Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/portal/tickets/TN-2026-1009-00012",
+      "status": 200,
+      "code": "TN-2026-1009-00012",
+      "at": "2026-10-09T08:03:06.880Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 201,
+      "code": "TB-000015",
+      "at": "2026-10-09T08:03:06.896Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "status": 201,
+      "code": "TN-2026-1009-00013",
+      "at": "2026-10-09T08:03:06.913Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/revenue-monthly",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.921Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/tickets-by-status",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.936Z"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reports/repeat-repairs",
+      "status": 200,
+      "at": "2026-10-09T08:03:06.960Z"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 400,
+      "code": "IMEI_INVALID",
+      "at": "2026-10-09T08:03:06.968Z"
+    }
+  ],
+  "data": {
+    "customers": [
+      {
+        "code": "KH-000002",
+        "fullName": "Nguyễn Minh Anh",
+        "phone": "0909028431",
+        "email": "phase3.mv0odfhb.1@example.invalid",
+        "address": "12 đường Nguyễn Văn Cừ, Quận 5, TP.HCM (kiểm thử)",
+        "status": "ACTIVE",
+        "mergedInto": null,
+        "version": null,
+        "hasAccount": false
+      },
+      {
+        "code": "KH-000003",
+        "fullName": "Trần Hoàng Nam",
+        "phone": "0909028432",
+        "email": "phase3.mv0odfhb.2@example.invalid",
+        "address": "45 đường Lê Văn Sỹ, Quận 3, TP.HCM (kiểm thử)",
+        "status": "ACTIVE",
+        "mergedInto": null,
+        "version": null,
+        "hasAccount": false
+      },
+      {
+        "code": "KH-000004",
+        "fullName": "Lê Ngọc Linh",
+        "phone": "0909028433",
+        "email": "phase3.mv0odfhb.3@example.invalid",
+        "address": "28 đường Võ Văn Ngân, TP. Thủ Đức, TP.HCM (kiểm thử)",
+        "status": "ACTIVE",
+        "mergedInto": null,
+        "version": null,
+        "hasAccount": false
+      }
+    ],
+    "products": [
+      {
+        "_id": "SP-0004",
+        "active": true,
+        "brandId": "DELL",
+        "defaultWarrantyMonths": 12,
+        "deviceTypeCode": "LAPTOP_SERIAL",
+        "name": "Dell Latitude 5420",
+        "productLine": "Phase 3 kiểm thử",
+        "categoryCode": "LAPTOP"
+      },
+      {
+        "_id": "SP-0005",
+        "active": true,
+        "brandId": "APPLE",
+        "defaultWarrantyMonths": 12,
+        "deviceTypeCode": "PHONE_IMEI",
+        "name": "Apple iPhone 13 128GB",
+        "productLine": "Phase 3 kiểm thử",
+        "categoryCode": "PHONE"
+      },
+      {
+        "_id": "SP-0006",
+        "active": true,
+        "brandId": "SAMSUNG",
+        "defaultWarrantyMonths": 12,
+        "deviceTypeCode": "PHONE_IMEI",
+        "name": "Samsung Galaxy S23 256GB",
+        "productLine": "Phase 3 kiểm thử",
+        "categoryCode": "PHONE"
+      }
+    ],
+    "parts": [
+      {
+        "_id": "P3-MV0ODFHB-1",
+        "active": true,
+        "bins": [
+          {
+            "binCode": "P3-A1",
+            "qty": 0
+          }
+        ],
+        "brandName": "Dell",
+        "categoryCode": "LAPTOP",
+        "costPrice": 650000,
+        "minLevel": 2,
+        "name": "Pin Dell Latitude 5420 63Wh",
+        "onHand": 0,
+        "primaryBin": "P3-A1",
+        "reserved": 0,
+        "servicePrice": 900000,
+        "supplierId": "NCC-001",
+        "unit": "Cái",
+        "warrantyMonths": 6
+      },
+      {
+        "_id": "P3-MV0ODFHB-2",
+        "active": true,
+        "bins": [
+          {
+            "binCode": "P3-A2",
+            "qty": 0
+          }
+        ],
+        "brandName": "Apple",
+        "categoryCode": "PHONE",
+        "costPrice": 850000,
+        "minLevel": 2,
+        "name": "Màn hình Apple iPhone 13 OLED",
+        "onHand": 0,
+        "primaryBin": "P3-A2",
+        "reserved": 0,
+        "servicePrice": 1300000,
+        "supplierId": "NCC-001",
+        "unit": "Cái",
+        "warrantyMonths": 6
+      }
+    ],
+    "tickets": [
+      {
+        "code": "TN-2026-1009-00011",
+        "customer": {
+          "code": "KH-000002",
+          "fullName": "Nguyễn Minh Anh",
+          "phone": "0909028431",
+          "email": "phase3.mv0odfhb.1@example.invalid",
+          "address": "12 đường Nguyễn Văn Cừ, Quận 5, TP.HCM (kiểm thử)",
+          "status": "ACTIVE",
+          "mergedInto": null,
+          "version": null,
+          "hasAccount": false
+        },
+        "device": {
+          "code": "TB-000013",
+          "productId": "SP-0004",
+          "product": {
+            "name": "Dell Latitude 5420",
+            "brandId": "DELL",
+            "brandName": "Dell",
+            "categoryCode": "LAPTOP",
+            "deviceTypeCode": "LAPTOP_SERIAL",
+            "deviceTypeName": "Laptop",
+            "identifierType": "SERIAL"
+          },
+          "identifierType": "SERIAL",
+          "serialOrImei": "DL5420-P3-MV0ODFHB",
+          "customerCode": "KH-000002",
+          "warrantyActivatedOn": "2026-05-20",
+          "warrantyExpiresOn": "2027-05-20",
+          "distributor": "Soopi kiểm thử",
+          "warranty": {
+            "status": "IN_WARRANTY",
+            "policyId": "CS-0001",
+            "conditions": "Dữ liệu mẫu; dùng kiểm thử bảo hành.",
+            "rejectionCases": "Vào nước, hư hỏng do tác động bên ngoài.",
+            "distributor": "Soopi kiểm thử"
+          },
+          "tickets": [],
+          "version": null
+        },
+        "charged": false,
+        "status": "DELIVERED",
+        "payment": {
+          "code": "PT-2026-00011",
+          "ticketCode": "TN-2026-1009-00011",
+          "quotationCode": null,
+          "type": "FREE_WARRANTY",
+          "paidAt": "2026-10-09T08:00:03.627970100Z",
+          "payerName": "Nguyễn Minh Anh",
+          "amount": 0,
+          "method": "NONE",
+          "cashierId": "NV-006",
+          "note": null
+        }
+      },
+      {
+        "code": "TN-2026-1009-00012",
+        "customer": {
+          "code": "KH-000003",
+          "fullName": "Trần Hoàng Nam",
+          "phone": "0909028432",
+          "email": "phase3.mv0odfhb.2@example.invalid",
+          "address": "45 đường Lê Văn Sỹ, Quận 3, TP.HCM (kiểm thử)",
+          "status": "ACTIVE",
+          "mergedInto": null,
+          "version": null,
+          "hasAccount": false
+        },
+        "device": {
+          "code": "TB-000014",
+          "productId": "SP-0005",
+          "product": {
+            "name": "Apple iPhone 13 128GB",
+            "brandId": "APPLE",
+            "brandName": "Apple",
+            "categoryCode": "PHONE",
+            "deviceTypeCode": "PHONE_IMEI",
+            "deviceTypeName": "Điện thoại",
+            "identifierType": "IMEI"
+          },
+          "identifierType": "IMEI",
+          "serialOrImei": "359915328831249",
+          "customerCode": "KH-000003",
+          "warrantyActivatedOn": "2024-06-15",
+          "warrantyExpiresOn": "2025-06-15",
+          "distributor": "Soopi kiểm thử",
+          "warranty": {
+            "status": "OUT_OF_WARRANTY",
+            "policyId": null,
+            "conditions": null,
+            "rejectionCases": null,
+            "distributor": "Soopi kiểm thử"
+          },
+          "tickets": [],
+          "version": null
+        },
+        "charged": true,
+        "status": "DELIVERED",
+        "payment": {
+          "code": "PT-2026-00012",
+          "ticketCode": "TN-2026-1009-00012",
+          "quotationCode": "BG-2026-1009-00006",
+          "type": "CHARGED",
+          "paidAt": "2026-10-09T08:03:06.801231100Z",
+          "payerName": "Trần Hoàng Nam",
+          "amount": 1595000,
+          "method": "CASH",
+          "cashierId": "NV-006",
+          "note": null
+        }
+      },
+      {
+        "code": "TN-2026-1009-00013",
+        "customer": {
+          "code": "KH-000004",
+          "fullName": "Lê Ngọc Linh",
+          "phone": "0909028433",
+          "email": "phase3.mv0odfhb.3@example.invalid",
+          "address": "28 đường Võ Văn Ngân, TP. Thủ Đức, TP.HCM (kiểm thử)",
+          "status": "ACTIVE",
+          "mergedInto": null,
+          "version": null,
+          "hasAccount": false
+        },
+        "device": {
+          "code": "TB-000015",
+          "productId": "SP-0006",
+          "product": {
+            "name": "Samsung Galaxy S23 256GB",
+            "brandId": "SAMSUNG",
+            "brandName": "Samsung",
+            "categoryCode": "PHONE",
+            "deviceTypeCode": "PHONE_IMEI",
+            "deviceTypeName": "Điện thoại",
+            "identifierType": "IMEI"
+          },
+          "identifierType": "IMEI",
+          "serialOrImei": "358915329868829",
+          "customerCode": "KH-000004",
+          "warrantyActivatedOn": "2026-03-10",
+          "warrantyExpiresOn": "2027-03-10",
+          "distributor": null,
+          "warranty": {
+            "status": "IN_WARRANTY",
+            "policyId": null,
+            "conditions": null,
+            "rejectionCases": null,
+            "distributor": null
+          },
+          "tickets": [],
+          "version": null
+        },
+        "charged": false,
+        "status": "RECEIVED"
+      }
+    ],
+    "receipt": "PN-2026-00004",
+    "quote": "BG-2026-1009-00006",
+    "issue": "PX-2026-00006",
+    "revenue": [
+      {
+        "month": "2026-10",
+        "payments": 6,
+        "total": 4895000
+      }
+    ],
+    "statuses": [
+      {
+        "status": "RECEIVED",
+        "count": 1
+      },
+      {
+        "status": "DELIVERED",
+        "count": 12
+      }
+    ]
+  },
+  "attempts": [
+    {
+      "id": "TC-19",
+      "title": "Tiếp nhận iPhone hết bảo hành",
+      "steps": "Đăng ký thiết bị của khách; ngày kích hoạt/hết hạn; xác nhận ngoại quan; lập phiếu tiếp nhận.",
+      "expected": "Thiết bị được lưu, phiếu RECEIVED.",
+      "status": "FAIL",
+      "startedAt": "2026-10-09T08:00:03.809Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/devices",
+          "status": 400,
+          "code": "IMEI_INVALID",
+          "at": "2026-10-09T08:00:03.824Z"
+        }
+      ],
+      "actual": "POST /api/v1/devices: expected 201, got 400; IMEI_INVALID IMEI không hợp lệ.\n\n400 !== 201\n",
+      "finishedAt": "2026-10-09T08:00:03.825Z"
+    },
+    {
+      "id": "TC-23",
+      "title": "Lập và duyệt báo giá sửa iPhone",
+      "steps": "KTV báo giá màn hình 1.300.000 + công 150.000, VAT 10%; điều phối duyệt; lễ tân xác nhận thay khách tại quầy.",
+      "expected": "Tổng 1.595.000 đồng; khách đồng ý; chuyển chờ linh kiện.",
+      "status": "FAIL",
+      "startedAt": "2026-10-09T08:01:23.241Z",
+      "calls": [
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/quotations",
+          "status": 201,
+          "code": "BG-2026-1009-00006",
+          "at": "2026-10-09T08:01:23.305Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/quotations/BG-2026-1009-00006/approve",
+          "status": 200,
+          "code": "BG-2026-1009-00006",
+          "at": "2026-10-09T08:01:23.342Z"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/tickets/TN-2026-1009-00012/quotation-decision",
+          "status": 404,
+          "code": "NOT_FOUND",
+          "at": "2026-10-09T08:01:23.352Z"
+        }
+      ],
+      "actual": "POST /api/v1/tickets/TN-2026-1009-00012/quotation-decision: expected 200, got 404; NOT_FOUND Không tìm thấy dữ liệu yêu cầu.\n\n404 !== 200\n",
+      "finishedAt": "2026-10-09T08:01:23.352Z"
+    }
+  ],
+  "finishedAt": "2026-10-09T08:03:06.969Z"
+}

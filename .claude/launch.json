@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "soopi",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "D:/huit/nosql/Source/warranty-system/warranty-system-soopi-mongodb/run.bat"],
+      "port": 8081
+    }
+  ]
+}

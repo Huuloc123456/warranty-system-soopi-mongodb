@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-10-09T08:07:52.715Z",
+  "database": "soopi_mongodb",
+  "collections": 26,
+  "accounts": 8,
+  "tickets": [
+    {
+      "_id": "TN-2026-1009-00011",
+      "customerId": "KH-000002",
+      "deviceId": "TB-000013",
+      "status": "DELIVERED"
+    },
+    {
+      "_id": "TN-2026-1009-00012",
+      "customerId": "KH-000003",
+      "deviceId": "TB-000014",
+      "status": "DELIVERED"
+    },
+    {
+      "_id": "TN-2026-1009-00013",
+      "customerId": "KH-000004",
+      "deviceId": "TB-000015",
+      "status": "RECEIVED"
+    }
+  ],
+  "parts": [
+    {
+      "_id": "P3-MV0ODFHB-1",
+      "bins": [
+        {
+          "binCode": "P3-A1",
+          "qty": 5
+        }
+      ],
+      "name": "Pin Dell Latitude 5420 63Wh",
+      "onHand": 5,
+      "reserved": 0
+    },
+    {
+      "_id": "P3-MV0ODFHB-2",
+      "bins": [
+        {
+          "binCode": "P3-A2",
+          "qty": 4
+        }
+      ],
+      "name": "Màn hình Apple iPhone 13 OLED",
+      "onHand": 4,
+      "reserved": 0
+    }
+  ],
+  "payments": [
+    {
+      "_id": "PT-2026-00011",
+      "ticketId": "TN-2026-1009-00011",
+      "amount": {
+        "$numberDecimal": "0"
+      },
+      "method": "NONE"
+    },
+    {
+      "_id": "PT-2026-00012",
+      "ticketId": "TN-2026-1009-00012",
+      "amount": {
+        "$numberDecimal": "1595000"
+      },
+      "method": "CASH"
+    }
+  ]
+}
