@@ -15,7 +15,7 @@ Project mới `warranty-system-soopi-mongodb`, database mới `soopi_mongodb`, M
 | Browser thật | Đăng nhập `admin`, trang quản trị hiển thị 7 nhân viên từ MongoDB |
 | Responsive | 1440×900 và 390×844; bảng chuyển thành thẻ trên điện thoại |
 
-`verification/check-contract.mjs` so sánh SHA-256 của các file controller, frontend src và public với project nguồn, ghi riêng hash của hai thay đổi được yêu cầu tại `behaviors/login.js` và `behaviors/auth.js`. Đây là bằng chứng giữ route/model binding và giao diện; không phải chứng minh tương đương mọi nhánh nghiệp vụ với SQL Server.
+`verification/check-contract.mjs` đối chiếu route API (method + đường dẫn, bỏ qua tên tham số) với project nguồn: mọi route của bản gốc phải còn ở đây, route mới được phép và được liệt kê trong `contract-results.json`. Tính năng chat theo phiếu của bản gốc (`ChatController.cs`, `ChatBubble.tsx`) không đưa sang bản MongoDB và bị loại khỏi đối chiếu; kiểm tra báo lỗi nếu các file này xuất hiện ở đây. Không so từng file vì hai project đã phát triển riêng. Đây là bằng chứng giữ route cho client hiện có; không phải chứng minh tương đương mọi nhánh nghiệp vụ với SQL Server.
 
 ## Đăng nhập chung — cập nhật theo yêu cầu
 
