@@ -6,6 +6,7 @@ using Soopi.Api.Domain.Shared;
 using Soopi.Api.DTOs.Shared;
 using Soopi.Api.Infrastructure.Security;
 using Soopi.Api.Infrastructure.Validation;
+using Soopi.Api.Services.Inventory;
 using Soopi.Api.Services.Shared;
 using Soopi.Api.Services.Tickets;
 
@@ -14,11 +15,11 @@ namespace Soopi.Api.Services.Quotations;
 public sealed record QuotationView(
     string Code, string TicketCode, string? InspectionCode, string CreatedBy, DateTimeOffset CreatedAt, DateOnly? ValidUntil, decimal VatRate,
     string? ServiceFeeCode, IReadOnlyList<QuotationLine> Lines, decimal PartsTotal, decimal LaborTotal, decimal GrandTotal, Approval Approval,
-    CustomerDecision CustomerDecision, bool Active, long? Version)
+    CustomerDecision CustomerDecision, bool Active, long? Version, string? RevisionOf)
 {
     public static QuotationView From(Quotation q) =>
         new(q.Id, q.TicketId, q.InspectionCode, q.CreatedBy, q.CreatedAt, q.ValidUntil, q.VatRate, q.ServiceFeeCode, q.Lines, q.PartsTotal,
-            q.LaborTotal, q.GrandTotal, q.Approval, q.CustomerDecision, q.Active, null);
+            q.LaborTotal, q.GrandTotal, q.Approval, q.CustomerDecision, q.Active, null, q.RevisionOf);
 }
 
 public sealed record LineRequest(string? Sku, string? Description, [Positive] int? Quantity, [PositiveOrZero] decimal? UnitPrice, [PositiveOrZero] decimal? LaborFee);
@@ -30,7 +31,8 @@ public sealed record LinesRequest([NotEmpty] List<LineRequest?>? Lines);
 
 public sealed class QuotationService(
     QuotationStore quotations, MongoDocuments docs, TicketStore tickets, TicketQueryService ticketViews, StaffDirectory staff, CodeGenerator codes,
-    CurrentActor actors, TransactionRunner transactions, AuditService audit, NotificationService notifications, TimeProvider clock)
+    TicketPartsRelease parts, CurrentActor actors, TransactionRunner transactions, AuditService audit, NotificationService notifications,
+    TimeProvider clock)
 {
     public Task<QuotationView> CreateAsync(string ticketCode, QuotationRequest command)
     {
@@ -49,6 +51,72 @@ public sealed class QuotationService(
             await tickets.SaveAsync(ticket);
             await AuditAsync(actor, "QUOTATION_CREATED", "Lập báo giá", code, null, ticketCode + " — " + quotation.GrandTotal);
             await notifications.ForRoleAsync("DISPATCHER", "QUOTATION_PENDING", $"Báo giá {code} đang chờ phê duyệt.", "/dispatch#quotes", code);
+            return QuotationView.From(quotation);
+        });
+    }
+
+    /// <summary>
+    /// Phát sinh hạng mục khi đang sửa/chờ linh kiện (ca tính phí): báo giá mới gồm toàn bộ công việc thay thế báo giá khách đã đồng ý
+    /// (SUPERSEDED), đi lại vòng điều phối duyệt → khách xác nhận. Yêu cầu xuất kho đang chờ theo báo giá cũ bị hủy.
+    /// </summary>
+    public Task<QuotationView> CreateRevisionAsync(string ticketCode, QuotationRequest command)
+    {
+        actors.Require(Permission.QUOTE_CREATE);
+        return transactions.InTransactionAsync(async () =>
+        {
+            var actor = await TechnicianAsync();
+            var ticket = await ticketViews.RequireAsync(ticketCode);
+            var previous = ticket.ActiveQuotationId is null ? null : await quotations.FindAsync(ticket.ActiveQuotationId);
+            if (previous is null) throw new DomainException(ErrorCode.QUOTE_ADJUST_NOT_ALLOWED);
+            var now = clock.GetUtcNow();
+            var code = await codes.NextAsync(BusinessCodeType.Quotation);
+            var quotation = new Quotation(code, ticketCode, ticket.Inspection?.Code, actor.EmployeeId!, now, DbTime.Date(now), command.ValidUntil,
+                command.VatRate, command.ServiceFeeCode, await LinesAsync(command.Lines));
+            quotation.MarkRevisionOf(previous.Id);
+            ticket.StartQuotationAdjustment(code, now, actor);
+            previous.Supersede();
+            // Ghi báo giá cũ trước: unique index chỉ cho một báo giá chờ duyệt/đã duyệt mỗi phiếu.
+            await quotations.SaveAsync(previous);
+            var cancelled = await parts.CancelPendingAsync(ticketCode, actor.EmployeeId!, $"Điều chỉnh báo giá {previous.Id} → {code}", now);
+            await quotations.SaveAsync(quotation);
+            await tickets.SaveAsync(ticket);
+            await AuditAsync(actor, "QUOTATION_REVISED", "Lập báo giá điều chỉnh", code, previous.Id + " — " + previous.GrandTotal,
+                ticketCode + " — " + quotation.GrandTotal + (cancelled is null ? "" : $" (hủy yêu cầu xuất {cancelled.Id})"));
+            await notifications.ForRoleAsync("DISPATCHER", "QUOTATION_PENDING", $"Báo giá điều chỉnh {code} (thay {previous.Id}) đang chờ phê duyệt.",
+                "/dispatch#quotes", code);
+            return QuotationView.From(quotation);
+        });
+    }
+
+    /// <summary>Báo giá quá hạn khách chưa trả lời: KTV được giao hoặc điều phối đánh dấu hết hạn để lập lại (hoặc quay lại báo giá cũ).</summary>
+    public Task<QuotationView> ExpireAsync(string code)
+    {
+        actors.Require(Permission.QUOTE_CREATE, Permission.QUOTE_REVIEW);
+        return transactions.InTransactionAsync(async () =>
+        {
+            var actor = actors.Current;
+            var role = actor.Roles.Contains(Role.DISPATCHER) ? Role.DISPATCHER : Role.TECHNICIAN;
+            await staff.RequireActiveWithRoleAsync(actor.EmployeeId, role);
+            var quotation = await RequireAsync(code);
+            var ticket = await ticketViews.RequireAsync(quotation.TicketId);
+            var now = clock.GetUtcNow();
+            quotation.Expire(DbTime.Date(now));
+            ticket.ExpireQuotation(code, now, actor, role);
+            await quotations.SaveAsync(quotation);
+            if (quotation.RevisionOf is { } previousCode)
+            {
+                var previous = await RequireAsync(previousCode);
+                previous.RestoreSuperseded();
+                await quotations.SaveAsync(previous);
+            }
+            await tickets.SaveAsync(ticket);
+            await AuditAsync(actor, "QUOTATION_EXPIRED", "Báo giá hết hiệu lực", code, "APPROVED", "EXPIRED");
+            if (ticket.Assignment is { } assignment && assignment.TechnicianId != actor.EmployeeId)
+                await notifications.ForEmployeeAsync(assignment.TechnicianId, "QUOTATION_EXPIRED",
+                    quotation.RevisionOf is null
+                        ? $"Báo giá {code} hết hiệu lực — lập lại báo giá."
+                        : $"Báo giá {code} hết hiệu lực — tiếp tục theo báo giá {quotation.RevisionOf}.",
+                    "/technician", ticket.Id);
             return QuotationView.From(quotation);
         });
     }
@@ -161,6 +229,12 @@ public sealed class QuotationReviewService(
             quotation.Reject(actor.EmployeeId!, note, now);
             ticket.RejectQuotation(code, now, actor);
             await quotations.SaveAsync(quotation);
+            if (quotation.RevisionOf is { } previousCode)
+            {
+                var previous = await views.RequireAsync(previousCode);
+                previous.RestoreSuperseded();
+                await quotations.SaveAsync(previous);
+            }
             await tickets.SaveAsync(ticket);
             await audit.RecordAsync(actor.AuditId, actor.DisplayName, actor.RoleNames, "QUOTATION_REJECTED", "Yêu cầu sửa lại báo giá", "QUOTATION", code, "PENDING", "REJECTED");
             await notifications.ForEmployeeAsync(quotation.CreatedBy, "QUOTATION_REJECTED", $"Báo giá {code} bị từ chối duyệt.", "/technician", code);
@@ -178,7 +252,8 @@ public sealed class QuotationReviewService(
 
 public sealed class CustomerDecisionService(
     QuotationStore quotations, QuotationService quotationViews, TicketStore tickets, TicketQueryService ticketViews, StaffDirectory staff,
-    CurrentActor actors, TransactionRunner transactions, AuditService audit, NotificationService notifications, TimeProvider clock)
+    IssuedParts issuedParts, TicketPartsRelease parts, CurrentActor actors, TransactionRunner transactions, AuditService audit,
+    NotificationService notifications, TimeProvider clock)
 {
     public Task<QuotationView> DecideAsync(string code, Decision? decision, string? reason)
     {
@@ -215,12 +290,15 @@ public sealed class CustomerDecisionService(
         if (decision == Decision.ACCEPT)
         {
             quotation.Accept(recordedBy, channel, DbTime.Date(now), now);
-            ticket.AcceptQuotation(code, quotation.Lines.Any(line => line.Sku is not null), now, actor, onBehalf);
+            // Báo giá điều chỉnh: linh kiện có mã đã xuất theo báo giá cũ không phải chờ lại.
+            ticket.AcceptQuotation(code, (await issuedParts.MissingForQuotationAsync(ticket.Id, quotation)).Count > 0, now, actor, onBehalf);
         }
         else
         {
             quotation.Decline(recordedBy, channel, reason, now);
             ticket.DeclineQuotation(code, now, actor, onBehalf);
+            // Từ chối báo giá điều chỉnh khi đã sửa dở: linh kiện đã xuất nhập lại kho như trả máy không sửa.
+            await parts.ReleaseForReturnAsync(ticket.Id, recordedBy, now);
         }
         await quotations.SaveAsync(quotation);
         await tickets.SaveAsync(ticket);

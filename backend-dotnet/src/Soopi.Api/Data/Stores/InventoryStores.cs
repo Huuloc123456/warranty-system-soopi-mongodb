@@ -47,6 +47,12 @@ public sealed class InventoryStore(MongoDocuments docs)
         if (await docs.UpdateAsync("parts", Document(("_id", sku), ("active", true)), new BsonDocument("$inc", Document(("onHand", quantity), ("version", 1)))) != 1) throw new DomainException(ErrorCode.STOCK_ISSUE_PART_INVALID);
         await AddToBinAsync(sku, quantity, binCode);
     }
+    /// <summary>Nhập lại linh kiện đã xuất cho phiếu (kể cả mã đã ngừng kinh doanh) vào đúng kệ đã xuất.</summary>
+    public async Task RestockAsync(string sku, int quantity, string binCode)
+    {
+        if (await docs.UpdateAsync("parts", Eq("_id", sku), new BsonDocument("$inc", Document(("onHand", quantity), ("version", 1)))) != 1) throw new DomainException(ErrorCode.STOCK_ISSUE_PART_INVALID);
+        await AddToBinAsync(sku, quantity, binCode);
+    }
     public async Task TransferAsync(string sku, int quantity, string fromBin, string toBin)
     {
         await docs.UpdateAsync("parts", Eq("_id", sku), new BsonDocument("$inc", new BsonDocument("version", 1)));
@@ -88,6 +94,7 @@ public sealed class InventoryDocumentStore(AppDbContext db)
     }
     public Task<StockIssue?> FindIssueAsync(string code) => db.FirstAsync<StockIssue>("stock_issues", r => r.Id == code);
     public Task<List<StockIssue>> FindIssuesAsync(string? status, string? technicianId) => db.Find<StockIssue>("stock_issues", Builders<StockIssue>.Filter.Where(r => (status == null || status == "" || r.Status == status) && (technicianId == null || r.TechnicianId == technicianId))).SortBy(r => r.RequestedAt).ThenBy(r => r.Id).ToListAsync();
+    public Task<StockIssue?> FindPendingIssueAsync(string ticketCode) => db.FirstAsync<StockIssue>("stock_issues", r => r.TicketId == ticketCode && r.Status == "PENDING");
     public async Task<bool> HasPendingIssueAsync(string ticketCode) => await db.Find<StockIssue>("stock_issues", Builders<StockIssue>.Filter.Where(r => r.TicketId == ticketCode && r.Status == "PENDING")).AnyAsync();
     public Task<List<StockIssue>> FindIssuedByTicketAsync(string ticketCode) => db.Find<StockIssue>("stock_issues", Builders<StockIssue>.Filter.Where(r => r.TicketId == ticketCode && r.Status == "ISSUED")).SortBy(r => r.RequestedAt).ThenBy(r => r.Id).ToListAsync();
     public async Task SaveAsync(StockTransfer transfer)

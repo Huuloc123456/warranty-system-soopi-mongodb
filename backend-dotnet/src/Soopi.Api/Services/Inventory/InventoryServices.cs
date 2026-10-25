@@ -3,6 +3,7 @@ using Soopi.Api.Data;
 using Soopi.Api.Data.Stores;
 using Soopi.Api.Domain.Identity;
 using Soopi.Api.Domain.Inventory;
+using Soopi.Api.Domain.Quotations;
 using Soopi.Api.Domain.Shared;
 using Soopi.Api.Domain.Tickets;
 using Soopi.Api.Infrastructure.Security;
@@ -127,7 +128,7 @@ public sealed class LowStockNotifier(InventoryStore inventory, NotificationServi
 public sealed class StockIssueService(
     InventoryDocumentStore documents, InventoryStore inventory, QuotationStore quotations, TicketStore tickets, TicketQueryService ticketViews,
     StaffDirectory staff, CodeGenerator codes, CurrentActor actors, TransactionRunner transactions, AuditService audit,
-    NotificationService notifications, LowStockNotifier lowStock, TimeProvider clock)
+    NotificationService notifications, LowStockNotifier lowStock, IssuedParts issuedParts, TimeProvider clock)
 {
     // ponytail: xếp hàng giữ tồn trong một tiến trình như synchronized của Java; nhiều máy chủ thì dựa vào UPDATE có điều kiện.
     private static readonly SemaphoreSlim ReservationMonitor = new(1, 1);
@@ -239,9 +240,8 @@ public sealed class StockIssueService(
         var quotation = await quotations.FindAsync(quotationCode.Trim());
         if (quotation is null || quotation.TicketId != ticket.Id || quotation.Approval.Status != "APPROVED" || quotation.CustomerDecision.Status != "ACCEPTED")
             throw new DomainException(ErrorCode.STOCK_ISSUE_QUOTE_MISMATCH);
-        var result = new Dictionary<string, int>();
-        foreach (var line in quotation.Lines.Where(line => line.Sku is not null))
-            result[line.Sku!] = result.GetValueOrDefault(line.Sku!) + line.Quantity;
+        // Báo giá điều chỉnh: chỉ xuất phần chênh lệch so với linh kiện đã xuất theo báo giá trước.
+        var result = await issuedParts.MissingForQuotationAsync(ticket.Id, quotation);
         return result.Count == 0 ? throw new DomainException(ErrorCode.STOCK_ISSUE_NO_LINES) : result;
     }
 
@@ -491,6 +491,24 @@ public sealed class IssuedParts(InventoryDocumentStore documents, InventoryStore
         }
     }
 
+    /// <summary>Số lượng từng SKU của báo giá còn chưa xuất kho cho phiếu (rỗng = linh kiện có mã đã đủ).</summary>
+    public async Task<Dictionary<string, int>> MissingForQuotationAsync(string ticketCode, Quotation quotation)
+    {
+        var issued = new Dictionary<string, int>();
+        foreach (var issue in await documents.FindIssuedByTicketAsync(ticketCode))
+            foreach (var line in issue.Lines) issued[line.Sku] = issued.GetValueOrDefault(line.Sku) + line.Quantity;
+        var missing = new Dictionary<string, int>();
+        foreach (var line in quotation.Lines.Where(line => line.Sku is not null))
+            missing[line.Sku!] = missing.GetValueOrDefault(line.Sku!) + line.Quantity;
+        foreach (var (sku, quantity) in missing.ToList())
+        {
+            var remaining = quantity - issued.GetValueOrDefault(sku);
+            if (remaining > 0) missing[sku] = remaining;
+            else missing.Remove(sku);
+        }
+        return missing;
+    }
+
     public async Task<List<IssuedPart>> FindByTicketAsync(string ticketCode)
     {
         var result = new List<IssuedPart>();
@@ -504,5 +522,41 @@ public sealed class IssuedParts(InventoryDocumentStore documents, InventoryStore
             }
         }
         return result;
+    }
+}
+
+/// <summary>
+/// Linh kiện của phiếu khi trả máy không sửa hoặc điều chỉnh báo giá: hủy yêu cầu xuất đang chờ (giải phóng giữ chỗ) và — khi trả máy —
+/// nhập lại kho linh kiện đã xuất, đúng kệ đã xuất. Chạy trong transaction của nơi gọi.
+/// </summary>
+public sealed class TicketPartsRelease(InventoryDocumentStore documents, InventoryStore inventory)
+{
+    public async Task<StockIssue?> CancelPendingAsync(string ticketCode, string actorCode, string reason, DateTimeOffset now)
+    {
+        var issue = await documents.FindPendingIssueAsync(ticketCode);
+        if (issue is null) return null;
+        foreach (var line in issue.Lines.OrderBy(line => line.Sku, StringComparer.Ordinal)) await inventory.ReleaseAsync(line.Sku, line.Quantity);
+        issue.Cancel(actorCode, reason, now);
+        await documents.SaveAsync(issue);
+        return issue;
+    }
+
+    /// <summary>Trả về (mã phiếu xuất bị hủy, các phiếu xuất đã nhập lại kho).</summary>
+    public async Task<(string? Cancelled, List<string> Returned)> ReleaseForReturnAsync(string ticketCode, string actorCode, DateTimeOffset now)
+    {
+        var cancelled = await CancelPendingAsync(ticketCode, actorCode, "Phiếu trả máy không sửa", now);
+        var returned = new List<string>();
+        foreach (var issue in await documents.FindIssuedByTicketAsync(ticketCode))
+        {
+            foreach (var line in issue.Lines.OrderBy(line => line.Sku, StringComparer.Ordinal))
+            {
+                var bin = line.BinCode ?? (await inventory.FindPartAsync(line.Sku))?.PrimaryBin ?? throw new DomainException(ErrorCode.STOCK_ISSUE_PART_INVALID);
+                await inventory.RestockAsync(line.Sku, line.Quantity, bin);
+            }
+            issue.ReturnToStock(actorCode, now);
+            await documents.SaveAsync(issue);
+            returned.Add(issue.Id);
+        }
+        return (cancelled?.Id, returned);
     }
 }

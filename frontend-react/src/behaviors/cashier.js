@@ -91,7 +91,8 @@ export default function initialize() {
   }
 
   function paymentCard(ticket, billing) {
-    const free = Number(billing.total) === 0;
+    // Theo việc có báo giá khách đồng ý, không theo tổng tiền: báo giá 0 đ vẫn ghi phiếu thu.
+    const free = !billing.quotationCode;
     return html`<section class="card"><div class="card__header"><h2 class="card__title">Thanh toán</h2></div><div class="card__body">
       ${free ? "" : html`<div class="form-field" style="max-width:260px"><label for="payment-method">Phương thức thanh toán</label><select id="payment-method" data-payment-method><option value="CASH">Tiền mặt</option><option value="BANK_TRANSFER">Chuyển khoản</option><option value="E_WALLET">Ví điện tử</option><option value="CARD">Thẻ</option></select></div>`}
       <button type="button" class="btn btn--primary" data-confirm-payment>${free ? "Xác nhận miễn phí bảo hành" : "Xác nhận đã thanh toán"}</button>
@@ -124,7 +125,8 @@ export default function initialize() {
     const ticket = state.selected;
     const billing = state.billing;
     try {
-      if (Number(billing.total) === 0) await ui.busy(button, () => api.tickets.confirmFree(ticket.code, null));
+      // Không có báo giá khách đồng ý → xác nhận miễn phí; có báo giá (kể cả 0 đ) → ghi phiếu thu theo báo giá.
+      if (!billing.quotationCode) await ui.busy(button, () => api.tickets.confirmFree(ticket.code, null));
       else {
         const method = detail.querySelector("[data-payment-method]").value;
         await ui.busy(button, () => api.tickets.collect(ticket.code, { payerName: ticket.customer.fullName, method, note: null, expectedAmount: billing.total }));

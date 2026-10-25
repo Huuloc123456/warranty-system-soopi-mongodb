@@ -50,6 +50,13 @@ export default function initialize() {
   // Không có TICKET_READ_ALL (kỹ thuật viên): GET /tickets chỉ trả phiếu được giao cho chính người đó.
   const ownOnly = () => !window.LML_AUTH.hasPermission("TICKET_READ_ALL");
   const CLOSED = ["COMPLETED", "DELIVERED", "AWAITING_RETURN", "RETURNED_UNREPAIRED"];
+  /** Trạng thái điều phối/lễ tân được "Trả máy không sửa" (khách đổi ý); chờ khách xác nhận báo giá dùng luồng từ chối báo giá. */
+  const RETURNABLE = ["RECEIVED", "INSPECTING", "DIAGNOSED", "AWAITING_QUOTE_APPROVAL", "AWAITING_PARTS", "REPAIRING"];
+  const pad = (n) => String(n).padStart(2, "0");
+  const localToday = () => {
+    const d = new Date();
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  };
 
   async function load() {
     ui.skeletonRows(el.tbody, COLUMNS, 6);
@@ -186,8 +193,19 @@ export default function initialize() {
       const c = t.cosmetic || {};
       el.drawerSubtitle.textContent = [customer.fullName, customer.phone].filter(Boolean).join(" · ") || t.code;
       const canWork = window.LML_AUTH.hasPermission("TICKET_REPAIR") && !CLOSED.includes(t.status);
+      const auth = window.LML_AUTH;
+      const canReturn = (auth.hasRole("DISPATCHER") || auth.hasRole("RECEPTIONIST")) && RETURNABLE.includes(t.status);
+      const pendingQuote = auth.hasRole("DISPATCHER") && t.status === "AWAITING_CUSTOMER_CONFIRMATION" && t.activeQuotationCode
+        ? await api.quotations.get(t.activeQuotationCode).catch(() => null)
+        : null;
+      const expiredQuote = pendingQuote && pendingQuote.validUntil && pendingQuote.validUntil < localToday() ? pendingQuote : null;
+      const actions = [
+        canWork ? html`<a class="btn btn--primary btn--sm" href="/technician?ticket=${t.code}">Mở trong màn Kỹ thuật</a>` : "",
+        expiredQuote ? html`<button type="button" class="btn btn--primary btn--sm" data-drawer-expire-quote>Báo giá quá hạn — lập lại</button>` : "",
+        canReturn ? html`<button type="button" class="btn btn--destructive btn--sm" data-drawer-return>Trả máy không sửa</button>` : "",
+      ].filter(Boolean);
       el.drawerBody.innerHTML = html`
-        ${canWork ? html`<div class="action-bar action-bar--start"><a class="btn btn--primary btn--sm" href="/technician?ticket=${t.code}">Mở trong màn Kỹ thuật</a></div>` : ""}
+        ${actions.length ? html`<div class="action-bar action-bar--start">${actions}</div>` : ""}
         <div class="detail-grid">
           ${kv("Mã phiếu", html`<span class="mono">${t.code}</span>`)}
           ${kv("Trạng thái", fmt.badgeOf(L.TICKET_STATUS, t.status))}
@@ -221,8 +239,41 @@ export default function initialize() {
           </div>`)}
         ${billing ? billingSection(billing) : ""}
         ${historySection(history)}`;
+      bindDrawerActions(t, expiredQuote);
     } catch (error) {
       ui.blockState(el.drawerBody, "error", { desc: error.detail }, () => openDetail(code));
+    }
+  }
+
+  async function drawerAction(button, action, message, code) {
+    try {
+      await ui.busy(button, action);
+      window.showToast(message, "success");
+      await load();
+      await openDetail(code);
+    } catch (error) {
+      ui.showError(error);
+    }
+  }
+
+  function bindDrawerActions(t, expiredQuote) {
+    const returnBtn = el.drawerBody.querySelector("[data-drawer-return]");
+    if (returnBtn) {
+      returnBtn.addEventListener("click", async () => {
+        const reason = await ui.promptReason({
+          title: `Trả máy không sửa — ${t.code}`,
+          message: "Phiếu chuyển sang Chờ trả máy để thu ngân trả lại thiết bị. Linh kiện đã xuất được nhập lại kho.",
+          label: "Lý do",
+          confirmLabel: "Trả máy không sửa",
+          placeholder: "VD: Khách đổi ý, muốn nhận lại máy",
+        });
+        if (reason) await drawerAction(returnBtn, () => api.tickets.returnUnrepaired(t.code, reason), `Phiếu ${t.code} chuyển sang Chờ trả máy.`, t.code);
+      });
+    }
+    const expireBtn = el.drawerBody.querySelector("[data-drawer-expire-quote]");
+    if (expireBtn) {
+      expireBtn.addEventListener("click", () =>
+        drawerAction(expireBtn, () => api.quotations.expire(expiredQuote.code), `Đã đánh dấu báo giá ${expiredQuote.code} hết hiệu lực.`, t.code));
     }
   }
 

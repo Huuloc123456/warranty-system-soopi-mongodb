@@ -51,6 +51,11 @@ public sealed class StockIssue
 
     public string? RejectedReason { get; internal set; }
 
+    /// <summary>Linh kiện đã xuất được nhập lại kho khi phiếu trả máy không sửa.</summary>
+    public string? ReturnedBy { get; internal set; }
+
+    public DateTimeOffset? ReturnedAt { get; internal set; }
+
     public IReadOnlyList<IssueLine> Lines { get; internal set; } = [];
 
     public decimal TotalCost { get; internal set; }
@@ -74,6 +79,25 @@ public sealed class StockIssue
         ProcessedBy = employeeId;
         ProcessedAt = now;
         RejectedReason = JavaText.Trim(reason);
+    }
+
+    /// <summary>Yêu cầu chờ duyệt bị hủy theo phiếu (trả máy, điều chỉnh báo giá); nơi gọi giải phóng phần giữ chỗ.</summary>
+    public void Cancel(string actorCode, string reason, DateTimeOffset now)
+    {
+        RequirePending();
+        Status = "CANCELLED";
+        ProcessedBy = actorCode;
+        ProcessedAt = now;
+        RejectedReason = reason;
+    }
+
+    /// <summary>Linh kiện đã xuất nhập lại kho (đúng kệ đã xuất) khi phiếu trả máy không sửa.</summary>
+    public void ReturnToStock(string actorCode, DateTimeOffset now)
+    {
+        if (Status != "ISSUED") throw new DomainException(ErrorCode.STOCK_ISSUE_NOT_PENDING);
+        Status = "RETURNED";
+        ReturnedBy = actorCode;
+        ReturnedAt = now;
     }
 
     /// <summary>BR-35: hạn bảo hành linh kiện = ngày bàn giao + số tháng bảo hành của linh kiện.</summary>

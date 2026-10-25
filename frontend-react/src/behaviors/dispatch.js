@@ -375,7 +375,7 @@ export default function initialize() {
         <div class="request-row">
           <div class="request-row__main">
             <span class="request-row__title mono">${q.code}</span>
-            <span class="request-row__meta"><span class="mono">${q.ticketCode}</span> · Lập lúc ${fmt.dateTime(q.createdAt)} · Tổng thanh toán ${fmt.money(q.grandTotal)}</span>
+            <span class="request-row__meta"><span class="mono">${q.ticketCode}</span> · Lập lúc ${fmt.dateTime(q.createdAt)} · Tổng thanh toán ${fmt.money(q.grandTotal)}${q.revisionOf ? html` · Điều chỉnh từ <span class="mono">${q.revisionOf}</span>` : ""}</span>
           </div>
           <div class="request-row__right">
             ${fmt.badgeOf(L.QUOTE_APPROVAL, q.approval.status)}
@@ -396,7 +396,7 @@ export default function initialize() {
       const ticket = await api.tickets.get(quotation.ticketCode);
       state.quotation = quotation;
       const inspection = ticket.inspection || {};
-      el.quotationDrawerSubtitle.textContent = `${quotation.code} — ${ticket.code} — ${ticket.device.deviceTypeName} (${ticket.device.productName})`;
+      el.quotationDrawerSubtitle.textContent = `${quotation.code}${quotation.revisionOf ? ` (điều chỉnh từ ${quotation.revisionOf})` : ""} — ${ticket.code} — ${ticket.device.deviceTypeName} (${ticket.device.productName})`;
       el.quotationDrawerReclass.textContent = L.CLASSIFICATION[inspection.classification] || "—";
       el.quotationDrawerTech.textContent = ticket.technicianName || quotation.createdBy;
       el.quotationDrawerNoteLabel.textContent = inspection.reclassNote ? "Lý do phân loại lại" : "Lý do ngoài bảo hành";

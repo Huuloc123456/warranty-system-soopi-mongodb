@@ -257,6 +257,7 @@ export default function initialize(global = window) {
       startRepair: (code) => post(`/tickets/${enc(code)}/repair/start`),
       partsReady: (code) => post(`/tickets/${enc(code)}/repair/parts-ready`),
       recordResult: (code, body) => post(`/tickets/${enc(code)}/repair/results`, body),
+      returnUnrepaired: (code, reason) => post(`/tickets/${enc(code)}/return`, { reason }),
       customerNote: (code, text) => post(`/tickets/${enc(code)}/customer-notes`, { text }),
       internalNote: (code, text) => post(`/tickets/${enc(code)}/internal-notes`, { text }),
       billing: (code) => get(`/tickets/${enc(code)}/billing`),
@@ -274,6 +275,8 @@ export default function initialize(global = window) {
 
     quotations: {
       create: (ticketCode, body) => post(`/tickets/${enc(ticketCode)}/quotations`, body),
+      revise: (ticketCode, body) => post(`/tickets/${enc(ticketCode)}/quotations/revision`, body),
+      expire: (code) => post(`/quotations/${enc(code)}/expire`),
       list: (query) => get("/quotations", query),
       get: (code) => get(`/quotations/${enc(code)}`),
       updateLines: (code, lines) => put(`/quotations/${enc(code)}/lines`, lines),

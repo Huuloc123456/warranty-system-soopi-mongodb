@@ -102,7 +102,8 @@ public sealed class TicketStore(AppDbContext db, ProductCatalog catalog)
     {
         if (items.Count == 0) return;
         var ids = items.Select(t => t.Id).ToList();
-        var quotes = await db.ListAsync<Quotation>("quotations", q => ids.Contains(q.TicketId) && q.Approval.Status != "REJECTED");
+        // Tối đa một báo giá chờ duyệt/đã duyệt mỗi phiếu (unique index quote_active_ticket).
+        var quotes = await db.ListAsync<Quotation>("quotations", q => ids.Contains(q.TicketId) && (q.Approval.Status == "PENDING" || q.Approval.Status == "APPROVED"));
         var customerIds = items.Select(t => t.CustomerId).Distinct().ToList();
         var deviceIds = items.Select(t => t.DeviceId).Distinct().ToList();
         var customers = (await db.Customers.Where(c => customerIds.Contains(c.Id)).ToListAsync()).ToDictionary(c => c.Id);

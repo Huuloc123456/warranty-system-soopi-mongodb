@@ -124,6 +124,9 @@ public sealed record HandoverInput(
 
 public sealed record Note(DateTimeOffset At, string Text, string By, string Role);
 
+/// <summary>Đang điều chỉnh báo giá: báo giá khách đã đồng ý trước đó và trạng thái quay lại nếu báo giá mới không thành.</summary>
+public sealed record QuotationAdjustment(string PreviousQuotationId, TicketStatus ResumeStatus);
+
 public sealed record StatusHistory(TicketStatus Status, DateTimeOffset At, string? Description, string? Actor, string? ActorName, string? ActorRole);
 
 /// <summary>
@@ -134,17 +137,32 @@ public sealed class Ticket
 {
     private static readonly Dictionary<TicketStatus, TicketStatus[]> Allowed = new()
     {
-        [TicketStatus.RECEIVED] = [TicketStatus.INSPECTING],
-        [TicketStatus.INSPECTING] = [TicketStatus.DIAGNOSED],
-        [TicketStatus.DIAGNOSED] = [TicketStatus.REPAIRING, TicketStatus.AWAITING_PARTS, TicketStatus.AWAITING_QUOTE_APPROVAL],
-        [TicketStatus.AWAITING_QUOTE_APPROVAL] = [TicketStatus.AWAITING_CUSTOMER_CONFIRMATION, TicketStatus.DIAGNOSED],
-        [TicketStatus.AWAITING_CUSTOMER_CONFIRMATION] = [TicketStatus.AWAITING_PARTS, TicketStatus.REPAIRING, TicketStatus.AWAITING_RETURN],
-        [TicketStatus.AWAITING_PARTS] = [TicketStatus.REPAIRING],
-        [TicketStatus.REPAIRING] = [TicketStatus.COMPLETED],
+        [TicketStatus.RECEIVED] = [TicketStatus.INSPECTING, TicketStatus.AWAITING_RETURN],
+        [TicketStatus.INSPECTING] = [TicketStatus.DIAGNOSED, TicketStatus.AWAITING_RETURN],
+        [TicketStatus.DIAGNOSED] = [TicketStatus.REPAIRING, TicketStatus.AWAITING_PARTS, TicketStatus.AWAITING_QUOTE_APPROVAL, TicketStatus.AWAITING_RETURN],
+        // Báo giá điều chỉnh bị từ chối/hết hạn → quay lại trạng thái sửa trước khi điều chỉnh.
+        [TicketStatus.AWAITING_QUOTE_APPROVAL] = [TicketStatus.AWAITING_CUSTOMER_CONFIRMATION, TicketStatus.DIAGNOSED, TicketStatus.REPAIRING,
+            TicketStatus.AWAITING_PARTS, TicketStatus.AWAITING_RETURN],
+        [TicketStatus.AWAITING_CUSTOMER_CONFIRMATION] = [TicketStatus.AWAITING_PARTS, TicketStatus.REPAIRING, TicketStatus.AWAITING_RETURN, TicketStatus.DIAGNOSED],
+        [TicketStatus.AWAITING_PARTS] = [TicketStatus.REPAIRING, TicketStatus.AWAITING_QUOTE_APPROVAL, TicketStatus.AWAITING_RETURN],
+        [TicketStatus.REPAIRING] = [TicketStatus.COMPLETED, TicketStatus.AWAITING_PARTS, TicketStatus.AWAITING_QUOTE_APPROVAL, TicketStatus.AWAITING_RETURN],
         [TicketStatus.COMPLETED] = [TicketStatus.DELIVERED],
         [TicketStatus.AWAITING_RETURN] = [TicketStatus.RETURNED_UNREPAIRED],
         [TicketStatus.DELIVERED] = [],
         [TicketStatus.RETURNED_UNREPAIRED] = [],
+    };
+
+    /// <summary>Trạng thái được "Trả máy không sửa" (Chờ khách xác nhận đã có luồng khách từ chối báo giá).</summary>
+    public static readonly IReadOnlySet<TicketStatus> Returnable = new HashSet<TicketStatus>
+    {
+        TicketStatus.RECEIVED, TicketStatus.INSPECTING, TicketStatus.DIAGNOSED, TicketStatus.AWAITING_QUOTE_APPROVAL, TicketStatus.AWAITING_PARTS,
+        TicketStatus.REPAIRING,
+    };
+
+    /// <summary>KTV được giao chỉ trả máy khi "không sửa được" — các trạng thái đang xử lý kỹ thuật.</summary>
+    public static readonly IReadOnlySet<TicketStatus> TechnicianReturnable = new HashSet<TicketStatus>
+    {
+        TicketStatus.INSPECTING, TicketStatus.DIAGNOSED, TicketStatus.AWAITING_PARTS, TicketStatus.REPAIRING,
     };
 
     private static readonly HashSet<string> QcSteps = ["VISUAL", "MAIN_FUNCTION", "SECONDARY", "POWER_CHARGING", "DATA", "FINAL"];
@@ -235,6 +253,9 @@ public sealed class Ticket
 
     public string? ActiveQuotationId { get; internal set; }
 
+    /// <summary>Báo giá điều chỉnh đang chờ duyệt/khách xác nhận; null khi không điều chỉnh.</summary>
+    public QuotationAdjustment? Adjustment { get; internal set; }
+
     public Handover? Handover { get; internal set; }
 
     public List<Note> CustomerNotes { get; internal set; } = [];
@@ -293,18 +314,20 @@ public sealed class Ticket
         TransitionTo(TicketStatus.REPAIRING, actor, null, now, "TECHNICIAN");
     }
 
+    /// <summary>Ca miễn phí xin linh kiện khi chẩn đoán xong hoặc phát sinh thêm trong lúc sửa (đang sửa → chờ linh kiện).</summary>
     public void RequestFreeParts(DateTimeOffset now, AuthenticatedActor actor)
     {
-        if (Status is not (TicketStatus.DIAGNOSED or TicketStatus.AWAITING_PARTS)) throw new DomainException(ErrorCode.TICKET_INVALID_STATE);
+        if (Status is not (TicketStatus.DIAGNOSED or TicketStatus.AWAITING_PARTS or TicketStatus.REPAIRING))
+            throw new DomainException(ErrorCode.TICKET_INVALID_STATE);
         if (actor.Roles.Contains(Role.TECHNICIAN)) RequireAssigned(actor);
         if (Inspection?.Classification != WarrantyClassification.FREE_WARRANTY) throw new DomainException(ErrorCode.STOCK_ISSUE_FREE_ONLY);
-        if (Status == TicketStatus.DIAGNOSED) TransitionTo(TicketStatus.AWAITING_PARTS, actor, null, now, StockActorRole(actor));
+        if (Status != TicketStatus.AWAITING_PARTS) TransitionTo(TicketStatus.AWAITING_PARTS, actor, null, now, StockActorRole(actor));
     }
 
     public void StartRepairWithIssuedParts(DateTimeOffset now, AuthenticatedActor actor)
     {
         if (Status != TicketStatus.AWAITING_PARTS) throw new DomainException(ErrorCode.TICKET_INVALID_STATE);
-        StartPendingRepair(now);
+        StartOrContinueRepair(now);
         TransitionTo(TicketStatus.REPAIRING, actor, null, now, "WAREHOUSE_KEEPER");
     }
 
@@ -312,15 +335,57 @@ public sealed class Ticket
     {
         if (Status != TicketStatus.AWAITING_PARTS) throw new DomainException(ErrorCode.TICKET_INVALID_STATE);
         if (actor.Roles.Contains(Role.TECHNICIAN)) RequireAssigned(actor);
-        StartPendingRepair(now);
+        StartOrContinueRepair(now);
         TransitionTo(TicketStatus.REPAIRING, actor, null, now, StockActorRole(actor));
+    }
+
+    /// <summary>
+    /// Trả máy không sửa: khách đổi ý hoặc không sửa được. Phiếu chuyển "Chờ trả máy", lệnh sửa bị hủy; báo giá đang hiệu lực và
+    /// linh kiện do tầng dịch vụ xử lý cùng transaction. KTV chỉ trả máy phiếu mình được giao, ở các trạng thái kỹ thuật.
+    /// </summary>
+    public void ReturnUnrepaired(string? reason, DateTimeOffset now, AuthenticatedActor actor, Role actorRole)
+    {
+        if (!Returnable.Contains(Status)) throw new DomainException(ErrorCode.RETURN_NOT_ALLOWED);
+        if (actorRole == Role.TECHNICIAN)
+        {
+            if (!TechnicianReturnable.Contains(Status)) throw new DomainException(ErrorCode.RETURN_NOT_ALLOWED);
+            RequireAssigned(actor);
+        }
+        if (JavaText.IsBlank(reason)) throw new DomainException(ErrorCode.RETURN_REASON_REQUIRED);
+        if (RepairOrder is not null) RepairOrder = RepairOrder with { Status = "CANCELLED" };
+        ActiveQuotationId = null;
+        Adjustment = null;
+        TransitionTo(TicketStatus.AWAITING_RETURN, actor, "Trả máy không sửa: " + JavaText.Trim(reason), now, actorRole.ToString());
+    }
+
+    /// <summary>
+    /// Phát sinh hạng mục khi đang sửa/chờ linh kiện (ca tính phí): báo giá mới thay thế báo giá khách đã đồng ý, đi lại vòng duyệt
+    /// và khách xác nhận. Bị từ chối duyệt hoặc hết hạn thì quay lại trạng thái trước với báo giá cũ.
+    /// </summary>
+    public void StartQuotationAdjustment(string quotationCode, DateTimeOffset now, AuthenticatedActor actor)
+    {
+        if (Status is not (TicketStatus.REPAIRING or TicketStatus.AWAITING_PARTS)) throw new DomainException(ErrorCode.TICKET_INVALID_STATE);
+        RequireAssigned(actor);
+        if (ActiveQuotationId is null) throw new DomainException(ErrorCode.QUOTE_ADJUST_NOT_ALLOWED);
+        Adjustment = new QuotationAdjustment(ActiveQuotationId, Status);
+        ActiveQuotationId = quotationCode;
+        TransitionTo(TicketStatus.AWAITING_QUOTE_APPROVAL, actor, null, now, "TECHNICIAN");
+    }
+
+    /// <summary>Báo giá quá hạn khách chưa trả lời: lập lại (về "Đã chẩn đoán"), hoặc báo giá điều chỉnh thì quay lại báo giá cũ.</summary>
+    public void ExpireQuotation(string quotationCode, DateTimeOffset now, AuthenticatedActor actor, Role actorRole)
+    {
+        RequireActiveQuotation(quotationCode, TicketStatus.AWAITING_CUSTOMER_CONFIRMATION);
+        if (actorRole == Role.TECHNICIAN) RequireAssigned(actor);
+        ResumeOrRediagnose(actor, now, actorRole.ToString(), $"Báo giá {quotationCode} hết hiệu lực");
     }
 
     /// <summary>BR-27: KCS chỉ "Đạt"/"Chưa đạt"; đủ 6 bước QC, mỗi bước đúng một lần, khớp kết quả tổng.</summary>
     public void RecordRepairResult(string resultCode, string? workDone, IReadOnlyList<QcStep?>? qcSteps, string? qcResult, string? qcDetails,
         DateTimeOffset now, AuthenticatedActor actor)
     {
-        if (RepairOrder?.Status != "IN_PROGRESS") throw new DomainException(ErrorCode.REPAIR_ORDER_INVALID_STATE);
+        // Lệnh sửa vẫn "đang sửa" khi chờ duyệt báo giá điều chỉnh / chờ thêm linh kiện — chỉ ghi kết quả ở "Đang sửa chữa".
+        if (Status != TicketStatus.REPAIRING || RepairOrder?.Status != "IN_PROGRESS") throw new DomainException(ErrorCode.REPAIR_ORDER_INVALID_STATE);
         RequireAssigned(actor);
         if (actor.EmployeeId != RepairOrder.TechnicianId) throw new DomainException(ErrorCode.NOT_ASSIGNED_TECHNICIAN);
         if (qcResult is not ("PASS" or "FAIL")) throw new DomainException(ErrorCode.REPAIR_QC_RESULT_INVALID);
@@ -389,15 +454,18 @@ public sealed class Ticket
     public void RejectQuotation(string quotationCode, DateTimeOffset now, AuthenticatedActor actor)
     {
         RequireActiveQuotation(quotationCode, TicketStatus.AWAITING_QUOTE_APPROVAL);
-        ActiveQuotationId = null;
-        TransitionTo(TicketStatus.DIAGNOSED, actor, null, now, "DISPATCHER");
+        ResumeOrRediagnose(actor, now, "DISPATCHER", null);
     }
 
-    /// <summary>T7a: báo giá có dòng linh kiện (SKU) thì chờ linh kiện; chỉ tiền công thì vào sửa ngay.</summary>
+    /// <summary>
+    /// T7a: còn linh kiện có SKU chưa xuất (<paramref name="needsParts"/>) thì chờ linh kiện; không thì vào/tiếp tục sửa ngay. Báo giá
+    /// điều chỉnh được đồng ý thay hẳn báo giá cũ.
+    /// </summary>
     public void AcceptQuotation(string quotationCode, bool needsParts, DateTimeOffset now, AuthenticatedActor actor, bool onBehalf)
     {
         RequireActiveQuotation(quotationCode, TicketStatus.AWAITING_CUSTOMER_CONFIRMATION);
-        if (!needsParts) StartPendingRepair(now);
+        if (!needsParts) StartOrContinueRepair(now);
+        Adjustment = null;
         TransitionTo(needsParts ? TicketStatus.AWAITING_PARTS : TicketStatus.REPAIRING, actor, onBehalf ? "Khách hàng đồng ý báo giá (xác nhận thay khách tại quầy)." : null, now,
             DecisionRole(actor, onBehalf));
     }
@@ -405,6 +473,7 @@ public sealed class Ticket
     public void DeclineQuotation(string quotationCode, DateTimeOffset now, AuthenticatedActor actor, bool onBehalf)
     {
         RequireActiveQuotation(quotationCode, TicketStatus.AWAITING_CUSTOMER_CONFIRMATION);
+        Adjustment = null;
         RepairOrder = RepairOrder! with { Status = "CANCELLED" };
         TransitionTo(TicketStatus.AWAITING_RETURN, actor, onBehalf ? "Khách hàng từ chối báo giá (xác nhận thay khách tại quầy)." : null, now,
             DecisionRole(actor, onBehalf));
@@ -427,10 +496,27 @@ public sealed class Ticket
             ActorCode(actor), actor.DisplayName, actorRole));
     }
 
-    private void StartPendingRepair(DateTimeOffset now)
+    /// <summary>Lệnh sửa chưa bắt đầu thì bắt đầu; đang sửa dở (sau điều chỉnh báo giá / xin thêm linh kiện) thì giữ nguyên.</summary>
+    private void StartOrContinueRepair(DateTimeOffset now)
     {
+        if (RepairOrder?.Status == "IN_PROGRESS") return;
         if (RepairOrder?.Status != "PENDING") throw new DomainException(ErrorCode.REPAIR_ORDER_INVALID_STATE);
         RepairOrder = RepairOrder with { StartedAt = now, Status = "IN_PROGRESS" };
+    }
+
+    /// <summary>Báo giá điều chỉnh không thành → báo giá cũ và trạng thái trước; báo giá thường → về "Đã chẩn đoán" để lập lại.</summary>
+    private void ResumeOrRediagnose(AuthenticatedActor actor, DateTimeOffset now, string actorRole, string? reason)
+    {
+        if (Adjustment is { } adjustment)
+        {
+            ActiveQuotationId = adjustment.PreviousQuotationId;
+            Adjustment = null;
+            TransitionTo(adjustment.ResumeStatus, actor,
+                $"{reason ?? "Báo giá điều chỉnh không được duyệt"} — tiếp tục theo báo giá {adjustment.PreviousQuotationId}.", now, actorRole);
+            return;
+        }
+        ActiveQuotationId = null;
+        TransitionTo(TicketStatus.DIAGNOSED, actor, reason is null ? null : reason + " — lập lại báo giá.", now, actorRole);
     }
 
     private Inspection ValidatedInspection(string code, InspectionInput input, DateOnly receivedDate, DateTimeOffset now, AuthenticatedActor actor)

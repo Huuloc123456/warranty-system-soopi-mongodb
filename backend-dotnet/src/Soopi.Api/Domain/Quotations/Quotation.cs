@@ -77,7 +77,11 @@ public sealed class Quotation
 
     public CustomerDecision CustomerDecision { get; internal set; } = null!;
 
-    public bool Active => Approval.Status != "REJECTED";
+    /// <summary>Báo giá cũ mà báo giá điều chỉnh này thay thế (null với báo giá lập lần đầu).</summary>
+    public string? RevisionOf { get; internal set; }
+
+    /// <summary>Đang hiệu lực: chờ duyệt hoặc đã duyệt. REJECTED/SUPERSEDED/EXPIRED/CANCELLED đã ngừng.</summary>
+    public bool Active => Approval.Status is "PENDING" or "APPROVED";
 
     /// <summary>Có báo giá đã lưu (để tầng lưu trữ biết thêm mới hay cập nhật).</summary>
     internal bool Persisted { get; set; }
@@ -115,6 +119,36 @@ public sealed class Quotation
         RequirePendingDecision();
         if (JavaText.IsBlank(reason)) throw new DomainException(ErrorCode.QUOTE_DECLINE_REASON_REQUIRED);
         CustomerDecision = new CustomerDecision("DECLINED", now, JavaText.Trim(reason), channel, recordedBy);
+    }
+
+    public void MarkRevisionOf(string previousCode) => RevisionOf = previousCode;
+
+    /// <summary>Báo giá khách đã đồng ý bị báo giá điều chỉnh thay thế (chờ báo giá mới được duyệt và khách xác nhận).</summary>
+    public void Supersede()
+    {
+        if (Approval.Status != "APPROVED" || CustomerDecision.Status != "ACCEPTED") throw new DomainException(ErrorCode.QUOTE_ADJUST_NOT_ALLOWED);
+        Approval = Approval with { Status = "SUPERSEDED" };
+    }
+
+    /// <summary>Báo giá điều chỉnh bị từ chối duyệt hoặc hết hạn → báo giá cũ có hiệu lực trở lại.</summary>
+    public void RestoreSuperseded()
+    {
+        if (Approval.Status != "SUPERSEDED") throw new DomainException(ErrorCode.QUOTE_ADJUST_NOT_ALLOWED);
+        Approval = Approval with { Status = "APPROVED" };
+    }
+
+    /// <summary>Đã duyệt, khách chưa trả lời và đã quá ngày hiệu lực.</summary>
+    public void Expire(DateOnly today)
+    {
+        RequirePendingDecision();
+        if (ValidUntil is not { } until || today <= until) throw new DomainException(ErrorCode.QUOTE_NOT_EXPIRED);
+        Approval = Approval with { Status = "EXPIRED" };
+    }
+
+    /// <summary>Phiếu trả máy không sửa: báo giá đang hiệu lực ngừng theo phiếu.</summary>
+    public void Cancel()
+    {
+        if (Active) Approval = Approval with { Status = "CANCELLED" };
     }
 
     private void ReplaceLines(IReadOnlyList<QuotationLine?>? value)

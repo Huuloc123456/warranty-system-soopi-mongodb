@@ -16,7 +16,11 @@ async function files(root) {
 let endpoints=0;
 const checked=[];
 // User requested shared login for employees/customers after the initial migration.
-const approvedChanges = new Set(['frontend-react/src/behaviors/login.js', 'frontend-react/src/behaviors/auth.js']);
+const approvedChanges = new Set(['frontend-react/src/behaviors/login.js', 'frontend-react/src/behaviors/auth.js',
+  // Ticket flow fixes (Q1–Q13): trả máy không sửa, điều chỉnh/lập lại báo giá, thu ngân báo giá 0 đ, sửa dòng báo giá.
+  'backend-dotnet/src/Soopi.Api/Controllers/TicketControllers.cs', 'backend-dotnet/src/Soopi.Api/Controllers/QuotationInventoryBillingControllers.cs',
+  'frontend-react/src/behaviors/api.js', 'frontend-react/src/behaviors/labels.js', 'frontend-react/src/behaviors/cashier.js',
+  'frontend-react/src/behaviors/technician.js', 'frontend-react/src/behaviors/tickets.js', 'frontend-react/src/behaviors/dispatch.js']);
 const changed=[];
 for(const folder of ['backend-dotnet/src/Soopi.Api/Controllers','frontend-react/src','frontend-react/public']) {
   for(const path of await files(join(source,folder))) {
