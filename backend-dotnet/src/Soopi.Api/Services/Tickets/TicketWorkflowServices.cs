@@ -8,6 +8,7 @@ using Soopi.Api.Infrastructure.Security;
 using Soopi.Api.Infrastructure.Validation;
 using Soopi.Api.Services.Customers;
 using Soopi.Api.Services.Devices;
+using Soopi.Api.Services.Inventory;
 using Soopi.Api.Services.Shared;
 
 namespace Soopi.Api.Services.Tickets;
@@ -187,7 +188,8 @@ public sealed class InspectionService(
         {
             var actor = await TechnicianAsync();
             var ticket = await views.RequireAsync(ticketCode);
-            if (await docs.GetAsync("quotations", MongoDocuments.Document(("ticketId", ticketCode), ("approval.status", new MongoDB.Bson.BsonDocument("$ne", "REJECTED")))) is not null
+            if (await docs.GetAsync("quotations", MongoDocuments.Document(("ticketId", ticketCode),
+                    ("approval.status", new MongoDB.Bson.BsonDocument("$in", new MongoDB.Bson.BsonArray { "PENDING", "APPROVED" })))) is not null
                 || await docs.GetAsync("stock_issues", MongoDocuments.Eq("ticketId", ticketCode)) is not null)
                 throw new DomainException(ErrorCode.RECLASS_NOT_ALLOWED);
             var before = Summary(ticket);
@@ -212,8 +214,8 @@ public sealed class InspectionService(
 }
 
 public sealed class RepairService(
-    TicketStore tickets, TicketQueryService views, MongoDocuments docs, StaffDirectory staff, CurrentActor actors, TransactionRunner transactions,
-    AuditService audit, CodeGenerator codes, NotificationService notifications, TimeProvider clock)
+    TicketStore tickets, TicketQueryService views, MongoDocuments docs, QuotationStore quotations, IssuedParts issuedParts, StaffDirectory staff,
+    CurrentActor actors, TransactionRunner transactions, AuditService audit, CodeGenerator codes, NotificationService notifications, TimeProvider clock)
 {
     public Task<TicketView> StartFreeRepairAsync(string ticketCode)
     {
@@ -276,11 +278,15 @@ public sealed class RepairService(
         });
     }
 
-    /// <summary>D-006: báo giá khách đã đồng ý chỉ gồm hàng đặt riêng (không mã LK) và không còn phiếu xuất đang chờ.</summary>
+    /// <summary>
+    /// D-006: báo giá khách đã đồng ý không còn linh kiện có mã chưa xuất (chỉ hàng đặt riêng, hoặc phần có mã đã xuất theo báo giá
+    /// trước khi điều chỉnh) và không còn phiếu xuất đang chờ.
+    /// </summary>
     private async Task<bool> CanConfirmPartsReadyAsync(string ticketCode, string quotationCode)
     {
-        var quote = await docs.GetAsync("quotations", MongoDocuments.Document(("_id", quotationCode), ("ticketId", ticketCode), ("approval.status", "APPROVED"), ("customerDecision.status", "ACCEPTED")));
-        return quote is not null && quote["lines"].AsBsonArray.All(line => line["sku"].IsBsonNull || string.IsNullOrWhiteSpace(line["sku"].AsString))
+        var quote = await quotations.FindAsync(quotationCode);
+        return quote is { Approval.Status: "APPROVED", CustomerDecision.Status: "ACCEPTED" } && quote.TicketId == ticketCode
+            && (await issuedParts.MissingForQuotationAsync(ticketCode, quote)).Count == 0
             && await docs.GetAsync("stock_issues", MongoDocuments.Document(("ticketId", ticketCode), ("status", "PENDING"))) is null;
     }
 }
@@ -336,5 +342,59 @@ public sealed class TicketNoteService(
             return;
         }
         throw new DomainException(ErrorCode.ACCESS_DENIED);
+    }
+}
+
+public sealed record ReturnRequest([NotBlank] string Reason);
+
+/// <summary>
+/// Trả máy không sửa (khách đổi ý / không sửa được): phiếu sang "Chờ trả máy", báo giá đang hiệu lực bị hủy, phiếu xuất đang chờ được hủy
+/// và linh kiện đã xuất nhập lại kho — cùng một transaction. Điều phối, lễ tân ở mọi trạng thái cho phép; KTV được giao ở trạng thái kỹ thuật.
+/// </summary>
+public sealed class ReturnService(
+    TicketStore tickets, TicketQueryService views, QuotationStore quotations, TicketPartsRelease parts, StaffDirectory staff, CurrentActor actors,
+    TransactionRunner transactions, AuditService audit, NotificationService notifications, TimeProvider clock)
+{
+    private static readonly Role[] ReturnRoles = [Role.DISPATCHER, Role.RECEPTIONIST, Role.TECHNICIAN];
+
+    public Task<TicketView> ReturnUnrepairedAsync(string ticketCode, string? reason)
+    {
+        actors.Require(Permission.TICKET_ASSIGN, Permission.TICKET_CREATE, Permission.TICKET_REPAIR);
+        return transactions.InTransactionAsync(async () =>
+        {
+            var actor = actors.Current;
+            var role = ReturnRoles.FirstOrDefault(actor.Roles.Contains, Role.CUSTOMER);
+            if (role == Role.CUSTOMER) throw new DomainException(ErrorCode.ACCESS_DENIED);
+            await staff.RequireActiveWithRoleAsync(actor.EmployeeId, role);
+            var ticket = await views.RequireAsync(ticketCode);
+            var before = ticket.Status;
+            var quotationCode = ticket.ActiveQuotationId;
+            var now = clock.GetUtcNow();
+            ticket.ReturnUnrepaired(reason, now, actor, role);
+            if (quotationCode is not null && await quotations.FindAsync(quotationCode) is { Active: true } quotation)
+            {
+                quotation.Cancel();
+                await quotations.SaveAsync(quotation);
+            }
+            var (cancelled, returned) = await parts.ReleaseForReturnAsync(ticketCode, actor.EmployeeId!, now);
+            await tickets.SaveAsync(ticket);
+            var stock = string.Join("; ", new[]
+            {
+                cancelled is null ? null : $"hủy yêu cầu xuất {cancelled}",
+                returned.Count == 0 ? null : "nhập lại kho " + string.Join(", ", returned),
+            }.Where(part => part is not null));
+            await audit.RecordAsync(actor.AuditId, actor.DisplayName, actor.RoleNames, "TICKET_RETURNED_UNREPAIRED", "Trả máy không sửa", "TICKET",
+                ticketCode, ticketCode + " — " + before.SqlLabel(), $"{ticketCode} — {ticket.Status.SqlLabel()}: {reason?.Trim()}{(stock.Length > 0 ? " (" + stock + ")" : "")}");
+            var message = $"Phiếu {ticketCode} chuyển sang chờ trả máy không sửa.";
+            foreach (var notify in new[] { Role.CASHIER, Role.RECEPTIONIST, Role.DISPATCHER }.Where(r => r != role))
+                await notifications.ForRoleAsync(notify.ToString(), "TICKET_RETURN_PENDING", message, "/cashier#" + ticketCode, ticketCode);
+            if (ticket.Assignment is { } assignment && assignment.TechnicianId != actor.EmployeeId)
+                await notifications.ForEmployeeAsync(assignment.TechnicianId, "TICKET_RETURN_PENDING", message, "/technician", ticketCode);
+            await notifications.ForCustomerAsync(ticket.CustomerId, "TICKET_RETURN_PENDING",
+                $"Thiết bị của phiếu {ticketCode} sẽ được trả lại không sửa. Vui lòng đến trung tâm nhận máy.", ticketCode);
+            if (returned.Count > 0)
+                await notifications.ForRoleAsync("WAREHOUSE_KEEPER", "STOCK_RETURNED", $"Linh kiện của phiếu {ticketCode} đã nhập lại kho.", "/warehouse#stockout", ticketCode);
+            return await views.ViewAsync(ticket, actor);
+        });
     }
 }

@@ -35,7 +35,7 @@ npm.cmd test         # check.mjs + node --test scripts/{api,contrast,login}.test
 node --test scripts/login.test.mjs                                          # one test file
 
 # Verification (from repo root)
-node verification/check-contract.mjs   # compares Controllers/ and frontend src against ../warranty-system-soopi
+node verification/check-contract.mjs   # every API route of ../warranty-system-soopi (except chat) must exist here
 node verification/mongo-smoke.mjs      # needs the API running; writes test documents into soopi_mongodb
 ```
 
@@ -68,4 +68,4 @@ This is a hybrid, not idiomatic React. Each staff page in `src/pages/*.tsx` is s
 
 ### Contract guard
 
-`verification/check-contract.mjs` hashes every file under `Controllers/`, `frontend-react/src` and `frontend-react/public` and compares them with `../warranty-system-soopi`. Only the files in its `approvedChanges` set may differ. If you intentionally change a controller or a UI file, update that set or the check fails. `contract-snapshots/` holds the extracted Java and .NET endpoint contracts.
+`verification/check-contract.mjs` checks that every API route (HTTP method + path, ignoring parameter names) declared in `../warranty-system-soopi`'s controllers still exists here. It doesn't compare files, because the two projects have diverged on purpose. Adding routes is fine. Removing or renaming one fails the check. The original's ticket chat (`ChatController.cs`, `ChatBubble.tsx`) is excluded and must not be ported: the check fails if those files appear here. The results are written to `verification/contract-results.json`. `contract-snapshots/` holds the extracted Java and .NET endpoint contracts.

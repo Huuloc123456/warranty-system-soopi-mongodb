@@ -51,6 +51,7 @@ public sealed class TicketsController(
     TechnicianQueryService technicians,
     InspectionService inspections,
     RepairService repairs,
+    ReturnService returns,
     TicketNoteService notes) : ControllerBase
 {
     [HttpGet]
@@ -106,6 +107,9 @@ public sealed class TicketsController(
 
     [HttpPost("{code}/repair/results")]
     public Task<TicketView> RecordRepairResult(string code, [FromBody] RepairResultRequest body) => repairs.RecordResultAsync(code, body);
+
+    [HttpPost("{code}/return")]
+    public Task<TicketView> ReturnUnrepaired(string code, [FromBody] ReturnRequest body) => returns.ReturnUnrepairedAsync(code, body.Reason);
 
     [HttpPost("{code}/customer-notes")]
     public Task<TicketView> AddCustomerNote(string code, [FromBody] NoteRequest body) => notes.AddCustomerNoteAsync(code, body.Text);

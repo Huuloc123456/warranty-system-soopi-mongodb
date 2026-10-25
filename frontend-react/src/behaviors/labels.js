@@ -88,6 +88,9 @@ export default function initialize() {
     PENDING: { label: "Chờ phê duyệt", tone: "warning" },
     APPROVED: { label: "Đã phê duyệt", tone: "success" },
     REJECTED: { label: "Đã từ chối", tone: "danger" },
+    SUPERSEDED: { label: "Đã được điều chỉnh", tone: "neutral" },
+    EXPIRED: { label: "Hết hiệu lực", tone: "neutral" },
+    CANCELLED: { label: "Đã hủy", tone: "neutral" },
   };
 
   const QUOTE_DECISION = {
@@ -115,6 +118,8 @@ export default function initialize() {
     PENDING: { label: "Chờ duyệt", tone: "warning" },
     ISSUED: { label: "Đã xuất kho", tone: "success" },
     REJECTED: { label: "Đã từ chối", tone: "danger" },
+    CANCELLED: { label: "Đã hủy", tone: "neutral" },
+    RETURNED: { label: "Đã nhập lại kho", tone: "neutral" },
   };
 
   const STOCK_RECEIPT_STATUS = {

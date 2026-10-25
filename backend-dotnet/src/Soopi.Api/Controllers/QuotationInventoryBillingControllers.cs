@@ -23,6 +23,10 @@ public sealed class QuotationsController(QuotationService quotations, QuotationR
     public async Task<IActionResult> Create(string ticketCode, [FromBody] QuotationRequest body) =>
         StatusCode(StatusCodes.Status201Created, await quotations.CreateAsync(ticketCode, body));
 
+    [HttpPost("tickets/{ticketCode}/quotations/revision")]
+    public async Task<IActionResult> CreateRevision(string ticketCode, [FromBody] QuotationRequest body) =>
+        StatusCode(StatusCodes.Status201Created, await quotations.CreateRevisionAsync(ticketCode, body));
+
     [HttpGet("quotations")]
     public Task<PageResponse<QuotationView>> Search([FromQuery] string approvalStatus = "PENDING", [FromQuery] int page = 0, [FromQuery] int size = 25) =>
         quotations.SearchAsync(approvalStatus, page, size);
@@ -38,6 +42,9 @@ public sealed class QuotationsController(QuotationService quotations, QuotationR
 
     [HttpPost("quotations/{code}/reject")]
     public Task<QuotationView> Reject(string code, [FromBody] RejectRequest body) => reviews.RejectAsync(code, body.Note);
+
+    [HttpPost("quotations/{code}/expire")]
+    public Task<QuotationView> Expire(string code) => quotations.ExpireAsync(code);
 
     [HttpPost("quotations/{code}/customer-decision")]
     public Task<QuotationView> Decide(string code, [FromBody] DecisionRequest body) => decisions.DecideAsync(code, body.Decision, body.Reason);

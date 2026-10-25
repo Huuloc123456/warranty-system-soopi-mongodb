@@ -1,73 +1,16 @@
 {
-  "endpoints": 120,
-  "files": 53,
-  "unchanged": 51,
-  "changed": [
-    {
-      "path": "frontend-react/src/behaviors/auth.js",
-      "originalHash": "b17944591c1cc66956914c323c33c83dc49562092bd3b62d5dbd6e4e599c298c",
-      "currentHash": "746113b2097a4eb7c34eeb12be665a2cf46f2dbef49acdf8867614ecfbd0e134"
-    },
-    {
-      "path": "frontend-react/src/behaviors/login.js",
-      "originalHash": "85b8286ba9c8b87f2d309fdddc943f3eb6cc0d677801850d1a06ee4a31f7e34d",
-      "currentHash": "c0cc7ef2111b1f3d354d531ad80c7da11f4cc4256323ab58b1ec1beacc0af5b0"
-    }
+  "originalRoutes": 124,
+  "currentRoutes": 129,
+  "excluded": [
+    "backend-dotnet/src/Soopi.Api/Controllers/ChatController.cs",
+    "frontend-react/src/ChatBubble.tsx"
   ],
-  "checkedAt": "2026-10-09T07:47:04.866Z",
-  "checked": [
-    "backend-dotnet/src/Soopi.Api/Controllers/CatalogCustomerDeviceControllers.cs",
-    "backend-dotnet/src/Soopi.Api/Controllers/Identity/AdminEmployeesController.cs",
-    "backend-dotnet/src/Soopi.Api/Controllers/Identity/AuthController.cs",
-    "backend-dotnet/src/Soopi.Api/Controllers/PortalRequestFileControllers.cs",
-    "backend-dotnet/src/Soopi.Api/Controllers/QuotationInventoryBillingControllers.cs",
-    "backend-dotnet/src/Soopi.Api/Controllers/ReportNotificationControllers.cs",
-    "backend-dotnet/src/Soopi.Api/Controllers/TicketControllers.cs",
-    "frontend-react/src/behaviors/admin.js",
-    "frontend-react/src/behaviors/api.js",
-    "frontend-react/src/behaviors/auth.js",
-    "frontend-react/src/behaviors/cashier.js",
-    "frontend-react/src/behaviors/charts.js",
-    "frontend-react/src/behaviors/customer-portal.js",
-    "frontend-react/src/behaviors/dispatch.js",
-    "frontend-react/src/behaviors/html.js",
-    "frontend-react/src/behaviors/labels.js",
-    "frontend-react/src/behaviors/login.js",
-    "frontend-react/src/behaviors/receptionist.js",
-    "frontend-react/src/behaviors/reports.js",
-    "frontend-react/src/behaviors/shell.js",
-    "frontend-react/src/behaviors/technician.js",
-    "frontend-react/src/behaviors/tickets.js",
-    "frontend-react/src/behaviors/ui.js",
-    "frontend-react/src/behaviors/warehouse.js",
-    "frontend-react/src/customer.tsx",
-    "frontend-react/src/main.tsx",
-    "frontend-react/src/navigation.ts",
-    "frontend-react/src/pages/account.tsx",
-    "frontend-react/src/pages/admin.tsx",
-    "frontend-react/src/pages/cashier.tsx",
-    "frontend-react/src/pages/dispatch.tsx",
-    "frontend-react/src/pages/forgot-password.tsx",
-    "frontend-react/src/pages/home.tsx",
-    "frontend-react/src/pages/login.tsx",
-    "frontend-react/src/pages/portal.tsx",
-    "frontend-react/src/pages/receptionist.tsx",
-    "frontend-react/src/pages/register.tsx",
-    "frontend-react/src/pages/reports.tsx",
-    "frontend-react/src/pages/technician.tsx",
-    "frontend-react/src/pages/tickets.tsx",
-    "frontend-react/src/pages/warehouse.tsx",
-    "frontend-react/src/runtime.ts",
-    "frontend-react/src/styles/base.css",
-    "frontend-react/src/styles/brand.css",
-    "frontend-react/src/styles/components.css",
-    "frontend-react/src/styles/customer.css",
-    "frontend-react/src/styles/responsive.css",
-    "frontend-react/src/styles/tokens.css",
-    "frontend-react/src/usePage.ts",
-    "frontend-react/public/images/brand/favicon.png",
-    "frontend-react/public/images/brand/logo-mark.png",
-    "frontend-react/public/images/brand/wordmark-light.png",
-    "frontend-react/public/images/brand/wordmark.png"
-  ]
+  "added": [
+    "POST /api/v1/portal/my/email/otp",
+    "POST /api/v1/portal/my/email/verify",
+    "POST /api/v1/quotations/{}/expire",
+    "POST /api/v1/tickets/{}/quotations/revision",
+    "POST /api/v1/tickets/{}/return"
+  ],
+  "checkedAt": "2026-10-25T15:31:58.836Z"
 }

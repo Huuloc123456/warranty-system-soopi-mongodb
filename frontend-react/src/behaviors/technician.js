@@ -27,6 +27,8 @@ export default function initialize() {
     inspectionDraft: null,
     editingInspection: false,
     quoteDraft: null,
+    /** null | "edit" (sửa báo giá chờ duyệt) | "revise" (điều chỉnh báo giá khách đã đồng ý khi đang sửa). */
+    quoteMode: null,
     qc: {},
     partLines: [],
   };
@@ -50,6 +52,7 @@ export default function initialize() {
   };
 
   const pad = (n) => String(n).padStart(2, "0");
+  const RETURNABLE_BY_TECHNICIAN = ["INSPECTING", "DIAGNOSED", "AWAITING_PARTS", "REPAIRING"];
   const card = (title, meta, body, headerRight) => html`
     <section class="card">
       <div class="card__header">
@@ -129,6 +132,7 @@ export default function initialize() {
       state.inspectionDraft = null;
       state.editingInspection = false;
       state.quoteDraft = null;
+      state.quoteMode = null;
     }
     state.selected = code;
     renderQueue();
@@ -197,20 +201,32 @@ export default function initialize() {
         if (!state.editingInspection) sections.push(diagnosedActions(t));
         break;
       case "AWAITING_QUOTE_APPROVAL":
+        sections.push(inspectionSummary(t, false), state.quoteMode === "edit" ? quotationForm(t) : quotationCard(t));
+        break;
       case "AWAITING_CUSTOMER_CONFIRMATION":
       case "AWAITING_RETURN":
         sections.push(inspectionSummary(t, false), quotationCard(t));
         break;
       case "AWAITING_PARTS":
-        sections.push(inspectionSummary(t, false), partsStage(t));
-        if (state.quotation) sections.push(quotationCard(t));
+        sections.push(inspectionSummary(t, false));
+        if (state.quoteMode === "revise") sections.push(quotationForm(t));
+        else {
+          sections.push(partsStage(t));
+          if (state.quotation) sections.push(quotationCard(t));
+        }
         break;
       case "REPAIRING":
-        sections.push(inspectionSummary(t, false), qcCard(t));
+        sections.push(inspectionSummary(t, false));
+        if (state.quoteMode === "revise") sections.push(quotationForm(t));
+        else {
+          sections.push(qcCard(t));
+          sections.push(state.quotation ? quotationCard(t) : extraFreePartsCard());
+        }
         break;
       default:
         sections.push(inspectionSummary(t, false), resultsHistory(t));
     }
+    if (RETURNABLE_BY_TECHNICIAN.includes(t.status) && !state.quoteMode && !state.editingInspection) sections.push(returnCard());
     sections.push(notesCard(t));
     el.detail.innerHTML = html`${sections}`;
     bindDetail(t);
@@ -342,6 +358,17 @@ export default function initialize() {
     return quotationForm(t);
   }
 
+  /** Bản nháp từ báo giá hiện có: sửa (giữ hạn) hoặc điều chỉnh (gồm toàn bộ dòng cũ, hạn mới 3 ngày). */
+  function draftFromQuotation(q, mode) {
+    const valid = new Date(Date.now() + 3 * 24 * 3600 * 1000);
+    return {
+      serviceFeeCode: q.serviceFeeCode || "",
+      validUntil: mode === "edit" && q.validUntil ? q.validUntil : valid.toISOString().slice(0, 10),
+      vatRate: Number(q.vatRate),
+      lines: q.lines.map((l) => ({ sku: l.sku || "", description: l.description || "", quantity: l.quantity, unitPrice: Number(l.unitPrice), laborFee: Number(l.laborFee) })),
+    };
+  }
+
   function quoteDraft(t) {
     if (!state.quoteDraft) {
       const svc = state.catalog.servicePrices.find((s) => s.categoryCode === t.device.categoryCode && s.active !== false);
@@ -357,15 +384,23 @@ export default function initialize() {
 
   function quotePreviewTotal(d) {
     const subtotal = d.lines.reduce((sum, l) => sum + Number(l.quantity || 0) * Number(l.unitPrice || 0) + Number(l.laborFee || 0), 0);
-    return Math.round(subtotal * 1.08);
+    return Math.round(subtotal * (1 + (d.vatRate ?? 8) / 100));
   }
 
   function quotationForm(t) {
     const d = quoteDraft(t);
+    const mode = state.quoteMode;
     const partOptions = state.parts.filter((p) => p.active !== false);
+    const titles = {
+      edit: ["Sửa phiếu báo giá", "Báo giá đang chờ phê duyệt — lưu thay đổi trước khi Điều phối viên duyệt"],
+      revise: [
+        "Điều chỉnh báo giá",
+        html`Báo giá mới gồm toàn bộ công việc, thay báo giá <span class="mono">${state.quotation && state.quotation.code}</span> — cần duyệt và khách xác nhận lại`,
+      ],
+    }[mode] || ["Lập phiếu báo giá sửa chữa", "Thiết bị ngoài bảo hành — cần báo giá được duyệt và khách xác nhận trước khi sửa phần này"];
     return card(
-      "Lập phiếu báo giá sửa chữa",
-      "Thiết bị ngoài bảo hành — cần báo giá được duyệt và khách xác nhận trước khi sửa phần này",
+      titles[0],
+      titles[1],
       html`
         <form data-quote-form novalidate>
           <div class="table-scroll">
@@ -386,7 +421,7 @@ export default function initialize() {
             </table>
           </div>
           <button type="button" class="btn btn--secondary btn--sm" data-add-line style="margin-top:8px;">+ Thêm hạng mục</button>
-          <div class="form-row" style="margin-top:14px;">
+          ${mode === "edit" ? "" : html`<div class="form-row" style="margin-top:14px;">
             <div class="form-field">
               <label for="quote-service">Bảng giá dịch vụ tham chiếu</label>
               <select id="quote-service" data-quote-service>
@@ -398,11 +433,12 @@ export default function initialize() {
               <label for="quote-valid">Hiệu lực đến</label>
               <input type="date" id="quote-valid" name="validUntil" data-quote-valid value="${d.validUntil}" />
             </div>
-          </div>
-          <div class="billing-total-row" style="margin-top:10px;"><span>Tổng tạm tính (gồm VAT 8%)</span><span data-quote-total>${fmt.money(quotePreviewTotal(d))}</span></div>
+          </div>`}
+          <div class="billing-total-row" style="margin-top:10px;"><span>Tổng tạm tính (gồm VAT ${d.vatRate ?? 8}%)</span><span data-quote-total>${fmt.money(quotePreviewTotal(d))}</span></div>
           <div class="form-field__helper">Máy chủ tính lại tổng tiền khi gửi; đơn giá trống sẽ lấy theo giá dịch vụ của linh kiện.</div>
           <div class="action-bar" style="margin-top:12px;">
-            <button type="button" class="btn btn--primary" data-submit-quote>Gửi phiếu báo giá</button>
+            ${mode ? html`<button type="button" class="btn btn--secondary" data-cancel-quote-form>Hủy</button>` : ""}
+            <button type="button" class="btn btn--primary" data-submit-quote>${{ edit: "Lưu báo giá", revise: "Gửi báo giá điều chỉnh" }[mode] || "Gửi phiếu báo giá"}</button>
           </div>
         </form>`
     );
@@ -412,10 +448,24 @@ export default function initialize() {
     const q = state.quotation;
     if (!q) {
       return t.status === "AWAITING_RETURN"
-        ? card("Báo giá sửa chữa", "", banner("Khách hàng từ chối báo giá — phiếu chờ bàn giao lại thiết bị chưa sửa.", true))
+        ? card("Báo giá sửa chữa", "", banner("Phiếu chờ bàn giao lại thiết bị chưa sửa.", true))
         : "";
     }
-    const note = {
+    const me = (window.LML_AUTH.user() || {}).employeeId;
+    const canEdit = t.status === "AWAITING_QUOTE_APPROVAL" && q.approval.status === "PENDING" && q.createdBy === me;
+    const expired = t.status === "AWAITING_CUSTOMER_CONFIRMATION" && q.approval.status === "APPROVED"
+      && q.customerDecision.status === "PENDING" && q.validUntil && q.validUntil < localToday();
+    const canRevise = ["REPAIRING", "AWAITING_PARTS"].includes(t.status) && q.customerDecision.status === "ACCEPTED";
+    const actions = [
+      canEdit ? html`<button type="button" class="btn btn--secondary btn--sm" data-edit-quote>Sửa báo giá</button>` : "",
+      expired ? html`<button type="button" class="btn btn--primary btn--sm" data-expire-quote>Lập lại báo giá</button>` : "",
+      canRevise ? html`<button type="button" class="btn btn--secondary btn--sm" data-revise-quote>Điều chỉnh báo giá</button>` : "",
+    ].filter(Boolean);
+    const note = expired
+      ? q.revisionOf
+        ? `Báo giá điều chỉnh đã quá hạn hiệu lực mà khách chưa trả lời — đánh dấu hết hạn để tiếp tục theo báo giá ${q.revisionOf}.`
+        : "Báo giá đã quá hạn hiệu lực mà khách chưa trả lời — đánh dấu hết hạn để lập báo giá mới."
+      : {
       PENDING: "Đang chờ Điều phối viên phê duyệt báo giá.",
       APPROVED:
         q.customerDecision.status === "ACCEPTED"
@@ -426,7 +476,7 @@ export default function initialize() {
     }[q.approval.status];
     return card(
       html`Phiếu báo giá sửa chữa — <span class="mono">${q.code}</span>`,
-      `Hiệu lực đến ${fmt.date(q.validUntil)}`,
+      html`${q.revisionOf ? html`Điều chỉnh từ <span class="mono">${q.revisionOf}</span> · ` : ""}Hiệu lực đến ${fmt.date(q.validUntil)}`,
       html`
         <div class="table-scroll">
           <table class="drawer-table">
@@ -438,8 +488,32 @@ export default function initialize() {
         <div class="billing-row"><span>Tiền công</span><span>${fmt.money(q.laborTotal)}</span></div>
         <div class="billing-row"><span>Thuế VAT (${Number(q.vatRate)}%)</span><span>${fmt.money(q.grandTotal - q.partsTotal - q.laborTotal)}</span></div>
         <div class="billing-total-row"><span>Tổng thanh toán</span><span>${fmt.money(q.grandTotal)}</span></div>
-        ${note ? banner(note, q.customerDecision.status === "DECLINED") : ""}`,
+        ${note ? banner(note, expired || q.customerDecision.status === "DECLINED") : ""}
+        ${actions.length ? html`<div class="action-bar action-bar--start" style="margin-top:12px;">${actions}</div>` : ""}`,
       html`<div style="display:flex; gap:6px;">${fmt.badgeOf(L.QUOTE_APPROVAL, q.approval.status)}${q.approval.status === "APPROVED" ? fmt.badgeOf(L.QUOTE_DECISION, q.customerDecision.status) : ""}</div>`
+    );
+  }
+
+  function localToday() {
+    const d = new Date();
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  }
+
+  /** Ca miễn phí đang sửa phát sinh linh kiện: gửi yêu cầu mới, phiếu chờ linh kiện tới khi kho xuất. */
+  function extraFreePartsCard() {
+    return card(
+      "Phát sinh linh kiện",
+      "Cần thêm linh kiện bảo hành trong lúc sửa — phiếu chuyển Chờ linh kiện tới khi kho duyệt xuất",
+      html`<div class="action-bar action-bar--start"><button type="button" class="btn btn--secondary" data-open-parts>Gửi yêu cầu linh kiện</button></div>`
+    );
+  }
+
+  /** Không sửa được: chuyển phiếu sang Chờ trả máy (linh kiện đã xuất tự nhập lại kho). */
+  function returnCard() {
+    return card(
+      "Không sửa được",
+      "Chuyển phiếu sang Chờ trả máy — thu ngân trả lại thiết bị chưa sửa; linh kiện đã xuất được nhập lại kho",
+      html`<div class="action-bar action-bar--start"><button type="button" class="btn btn--destructive" data-return-unrepaired>Trả máy không sửa</button></div>`
     );
   }
 
@@ -616,6 +690,7 @@ export default function initialize() {
       state.inspectionDraft = null;
       state.editingInspection = false;
       state.quoteDraft = null;
+      state.quoteMode = null;
       await loadQueue();
       await selectTicket(state.selected);
     } catch (error) {
@@ -713,13 +788,13 @@ export default function initialize() {
       d.lines.push({ sku: "", description: "", quantity: 1, unitPrice: "", laborFee: 0 });
       renderDetail();
     });
-    form.querySelector("[data-quote-service]").addEventListener("change", (e) => {
+    form.querySelector("[data-quote-service]")?.addEventListener("change", (e) => {
       d.serviceFeeCode = e.target.value;
       const svc = state.catalog.servicePrices.find((s) => s._id === d.serviceFeeCode);
       if (svc && !Number(d.lines[0].laborFee)) d.lines[0].laborFee = Number(svc.price);
       renderDetail();
     });
-    form.querySelector("[data-quote-valid]").addEventListener("input", (e) => {
+    form.querySelector("[data-quote-valid]")?.addEventListener("input", (e) => {
       d.validUntil = e.target.value;
     });
     form.querySelector("[data-submit-quote]").addEventListener("click", (e) => {
@@ -736,11 +811,17 @@ export default function initialize() {
         window.showToast("Báo giá phải có ít nhất 1 dòng chi tiết.", "error");
         return;
       }
-      act(
-        e.currentTarget,
-        () => api.quotations.create(t.code, { validUntil: d.validUntil || null, vatRate: 8, serviceFeeCode: d.serviceFeeCode || null, lines }),
-        `Đã gửi phiếu báo giá cho ${t.code} tới Điều phối viên để phê duyệt.`
-      );
+      const body = { validUntil: d.validUntil || null, vatRate: d.vatRate ?? 8, serviceFeeCode: d.serviceFeeCode || null, lines };
+      const submit = {
+        edit: [() => api.quotations.updateLines(state.quotation.code, { lines }), `Đã cập nhật báo giá ${state.quotation && state.quotation.code}.`],
+        revise: [() => api.quotations.revise(t.code, body), `Đã gửi báo giá điều chỉnh cho ${t.code} tới Điều phối viên để phê duyệt.`],
+      }[state.quoteMode] || [() => api.quotations.create(t.code, body), `Đã gửi phiếu báo giá cho ${t.code} tới Điều phối viên để phê duyệt.`];
+      act(e.currentTarget, submit[0], submit[1]);
+    });
+    form.querySelector("[data-cancel-quote-form]")?.addEventListener("click", () => {
+      state.quoteMode = null;
+      state.quoteDraft = null;
+      renderDetail();
     });
   }
 
@@ -801,6 +882,27 @@ export default function initialize() {
         `Đã gửi yêu cầu linh kiện theo báo giá ${state.quotation.code} tới kho vật tư.`
       )
     );
+    const openQuoteForm = (mode) => {
+      state.quoteMode = mode;
+      state.quoteDraft = draftFromQuotation(state.quotation, mode);
+      renderDetail();
+    };
+    on("[data-edit-quote]", () => openQuoteForm("edit"));
+    on("[data-revise-quote]", () => openQuoteForm("revise"));
+    on("[data-expire-quote]", (e) =>
+      act(e.currentTarget, () => api.quotations.expire(state.quotation.code), `Đã đánh dấu báo giá ${state.quotation.code} hết hiệu lực.`)
+    );
+    on("[data-return-unrepaired]", async (e) => {
+      const button = e.currentTarget;
+      const reason = await ui.promptReason({
+        title: `Trả máy không sửa — ${t.code}`,
+        message: "Phiếu chuyển sang Chờ trả máy. Yêu cầu xuất kho đang chờ bị hủy và linh kiện đã xuất được nhập lại kho.",
+        label: "Lý do không sửa",
+        confirmLabel: "Trả máy không sửa",
+        placeholder: "VD: Hư bo mạch chính, hãng ngừng cung cấp linh kiện",
+      });
+      if (reason) act(button, () => api.tickets.returnUnrepaired(t.code, reason), `Phiếu ${t.code} chuyển sang Chờ trả máy.`);
+    });
     el.detail.querySelectorAll("[data-open-parts]").forEach((btn) => btn.addEventListener("click", () => openPartsDrawer(t)));
     el.detail.querySelectorAll("[data-add-note]").forEach((btn) => {
       btn.addEventListener("click", () => {

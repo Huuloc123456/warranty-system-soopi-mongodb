@@ -160,4 +160,104 @@ public class TicketTests
         Assert.Throws<DomainException>(() => ticket.UpdateRating(6, null, Now));
         Assert.Throws<DomainException>(() => ticket.UpdateRating(5, new string('x', 1001), Now));
     }
+
+    [Fact]
+    public void ReturnUnrepaired_FromTechnicalStates_CancelsRepairOrder()
+    {
+        var ticket = Diagnosed(WarrantyClassification.FREE_WARRANTY);
+        ticket.StartFreeRepair(Now, Technician);
+        Assert.Equal(ErrorCode.RETURN_REASON_REQUIRED,
+            Assert.Throws<DomainException>(() => ticket.ReturnUnrepaired(" ", Now, Technician, Role.TECHNICIAN)).Code);
+        ticket.ReturnUnrepaired("Không sửa được", Now, Technician, Role.TECHNICIAN);
+        Assert.Equal(TicketStatus.AWAITING_RETURN, ticket.Status);
+        Assert.Equal("CANCELLED", ticket.RepairOrder!.Status);
+        Assert.Equal("Trả máy không sửa: Không sửa được", ticket.StatusHistory[^1].Description);
+        Assert.Equal(ErrorCode.RETURN_NOT_ALLOWED,
+            Assert.Throws<DomainException>(() => ticket.ReturnUnrepaired("lần 2", Now, Dispatcher, Role.DISPATCHER)).Code);
+    }
+
+    [Fact]
+    public void ReturnUnrepaired_TechnicianOnlyFromTechnicalStates_ReceptionistAnytimeBeforeCompletion()
+    {
+        var received = NewTicket();
+        Assert.Equal(ErrorCode.RETURN_NOT_ALLOWED,
+            Assert.Throws<DomainException>(() => received.ReturnUnrepaired("x", Now, Technician, Role.TECHNICIAN)).Code);
+        received.ReturnUnrepaired("Khách đổi ý", Now, Receptionist, Role.RECEPTIONIST);
+        Assert.Equal(TicketStatus.AWAITING_RETURN, received.Status);
+        var other = Diagnosed(WarrantyClassification.FREE_WARRANTY);
+        Assert.Equal(ErrorCode.NOT_ASSIGNED_TECHNICIAN,
+            Assert.Throws<DomainException>(() => other.ReturnUnrepaired("x", Now, Actor("NV-009", Role.TECHNICIAN), Role.TECHNICIAN)).Code);
+    }
+
+    [Fact]
+    public void QuotationAdjustment_RejectedResumesWithPreviousQuote_AcceptedKeepsRepairGoing()
+    {
+        var ticket = Diagnosed(WarrantyClassification.OUT_OF_WARRANTY, "Hết hạn", "Hết hạn thực tế");
+        ticket.MarkQuotationPending("BG-1", Now, Technician);
+        ticket.ApproveQuotation("BG-1", Now, Dispatcher);
+        ticket.AcceptQuotation("BG-1", needsParts: false, Now, Receptionist, onBehalf: true);
+        Assert.Equal(TicketStatus.REPAIRING, ticket.Status);
+
+        ticket.StartQuotationAdjustment("BG-2", Now, Technician);
+        Assert.Equal(TicketStatus.AWAITING_QUOTE_APPROVAL, ticket.Status);
+        Assert.Equal("BG-2", ticket.ActiveQuotationId);
+        Assert.Equal(ErrorCode.REPAIR_ORDER_INVALID_STATE,
+            Assert.Throws<DomainException>(() => ticket.RecordRepairResult("KQ-1", "x", Steps(), "PASS", null, Now, Technician)).Code);
+        ticket.RejectQuotation("BG-2", Now, Dispatcher);
+        Assert.Equal(TicketStatus.REPAIRING, ticket.Status);
+        Assert.Equal("BG-1", ticket.ActiveQuotationId);
+        Assert.Null(ticket.Adjustment);
+
+        ticket.StartQuotationAdjustment("BG-3", Now, Technician);
+        ticket.ApproveQuotation("BG-3", Now, Dispatcher);
+        ticket.AcceptQuotation("BG-3", needsParts: false, Now, Receptionist, onBehalf: true);
+        Assert.Equal(TicketStatus.REPAIRING, ticket.Status);
+        Assert.Equal("IN_PROGRESS", ticket.RepairOrder!.Status);
+        ticket.RecordRepairResult("KQ-1", "Đã sửa", Steps(), "PASS", null, Now, Technician);
+        Assert.Equal(TicketStatus.COMPLETED, ticket.Status);
+    }
+
+    [Fact]
+    public void ExpiredQuotation_ReturnsToDiagnosed_OrResumesAdjustment()
+    {
+        var ticket = Diagnosed(WarrantyClassification.OUT_OF_WARRANTY, "Hết hạn", "Hết hạn thực tế");
+        ticket.MarkQuotationPending("BG-1", Now, Technician);
+        ticket.ApproveQuotation("BG-1", Now, Dispatcher);
+        ticket.ExpireQuotation("BG-1", Now, Dispatcher, Role.DISPATCHER);
+        Assert.Equal(TicketStatus.DIAGNOSED, ticket.Status);
+        Assert.Null(ticket.ActiveQuotationId);
+
+        ticket.MarkQuotationPending("BG-2", Now, Technician);
+        ticket.ApproveQuotation("BG-2", Now, Dispatcher);
+        ticket.AcceptQuotation("BG-2", needsParts: true, Now, Receptionist, onBehalf: true);
+        ticket.StartQuotationAdjustment("BG-3", Now, Technician);
+        ticket.ApproveQuotation("BG-3", Now, Dispatcher);
+        ticket.ExpireQuotation("BG-3", Now, Technician, Role.TECHNICIAN);
+        Assert.Equal(TicketStatus.AWAITING_PARTS, ticket.Status);
+        Assert.Equal("BG-2", ticket.ActiveQuotationId);
+    }
+
+    [Fact]
+    public void QuotationStatuses_SupersedeRestoreExpireCancel()
+    {
+        var quote = new Soopi.Api.Domain.Quotations.Quotation("BG-1", "TN-1", null, "NV-002", Now, new DateOnly(2026, 9, 26), new DateOnly(2026, 9, 27), 10, null,
+            [Soopi.Api.Domain.Quotations.QuotationLine.Of(1, null, "Công", 1, 0, 100000)]);
+        Assert.Equal(ErrorCode.QUOTE_ADJUST_NOT_ALLOWED, Assert.Throws<DomainException>(quote.Supersede).Code);
+        quote.Approve("NV-001", null, Now);
+        Assert.Equal(ErrorCode.QUOTE_NOT_EXPIRED, Assert.Throws<DomainException>(() => quote.Expire(new DateOnly(2026, 9, 27))).Code);
+        quote.Expire(new DateOnly(2026, 9, 28));
+        Assert.Equal("EXPIRED", quote.Approval.Status);
+        Assert.False(quote.Active);
+
+        var accepted = new Soopi.Api.Domain.Quotations.Quotation("BG-2", "TN-1", null, "NV-002", Now, new DateOnly(2026, 9, 26), null, 10, null,
+            [Soopi.Api.Domain.Quotations.QuotationLine.Of(1, null, "Công", 1, 0, 100000)]);
+        accepted.Approve("NV-001", null, Now);
+        accepted.Accept("NV-004", "COUNTER", new DateOnly(2026, 9, 26), Now);
+        accepted.Supersede();
+        Assert.False(accepted.Active);
+        accepted.RestoreSuperseded();
+        Assert.Equal("APPROVED", accepted.Approval.Status);
+        accepted.Cancel();
+        Assert.Equal("CANCELLED", accepted.Approval.Status);
+    }
 }
