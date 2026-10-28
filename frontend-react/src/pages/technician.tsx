@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../usePage";
 import controller from "../behaviors/technician.js";
-import { BrandLogo } from "../customer";
+import { BrandLogo } from "../brand";
 
 export default function TechnicianPage() {
   usePage("technician", {"data-roles": "TECHNICIAN"}, "Soopi — Kỹ thuật", controller);

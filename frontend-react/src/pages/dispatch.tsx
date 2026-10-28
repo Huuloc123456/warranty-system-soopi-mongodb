@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../usePage";
 import controller from "../behaviors/dispatch.js";
-import { BrandLogo } from "../customer";
+import { BrandLogo } from "../brand";
 
 export default function DispatchPage() {
   usePage("dispatch", {"data-roles": "DISPATCHER"}, "Soopi — Điều phối", controller);

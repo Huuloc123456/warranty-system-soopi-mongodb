@@ -15,6 +15,8 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: '../backend-dotnet/src/Soopi.Api/wwwroot',
       emptyOutDir: true,
+      // Font luôn là tệp riêng: CSP chỉ cho font-src 'self' (không data:), và CSS chính không phình vì font nhúng base64.
+      assetsInlineLimit: (file) => (file.endsWith('.woff2') || file.endsWith('.woff') ? false : undefined),
     },
   };
 });

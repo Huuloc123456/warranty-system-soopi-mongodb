@@ -73,7 +73,7 @@ export default function initialize() {
       <section class="card"><div class="card__header"><h2 class="card__title">Kiểm tra và xác nhận bàn giao</h2></div><div class="card__body">
         <div class="form-field"><label for="receiver-name">Người nhận<span class="required-mark">*</span></label><input id="receiver-name" data-receiver-name value="${ticket.customer ? ticket.customer.fullName : ""}" /></div>
         <div class="form-field"><label for="return-condition">Tình trạng khi trả<span class="required-mark">*</span></label><textarea id="return-condition" data-return-condition>${cancelled ? "Trả nguyên trạng, chưa sửa chữa" : "Thiết bị hoạt động bình thường sau sửa chữa"}</textarea></div>
-        ${cancelled ? "" : html`${rechecks()}<div class="form-field"><label>Chữ ký điện tử khách hàng<span class="required-mark">*</span></label><canvas data-signature width="640" height="160" style="width:100%;height:160px;border:1px dashed var(--border-universal);border-radius:var(--radius-table);touch-action:none"></canvas><button type="button" class="btn btn--secondary btn--sm" data-clear-signature style="margin-top:8px;align-self:flex-start;">Xóa chữ ký</button></div>`}
+        ${cancelled ? "" : html`${rechecks()}<div class="form-field"><label id="signature-label">Chữ ký điện tử khách hàng<span class="required-mark">*</span></label><canvas data-signature class="signature-pad" width="640" height="160" role="img" aria-labelledby="signature-label" aria-describedby="signature-hint"></canvas><span class="form-field__helper" id="signature-hint">Khách ký bằng ngón tay, bút cảm ứng hoặc chuột trong khung.</span><button type="button" class="btn btn--secondary btn--sm" data-clear-signature style="margin-top:8px;align-self:flex-start;">Xóa chữ ký</button></div>`}
         <div class="checkbox-row" style="padding-left:0"><input type="checkbox" id="customer-confirmed" data-customer-confirmed /><label for="customer-confirmed">Khách hàng xác nhận đã nhận lại thiết bị và phụ kiện.</label></div>
       </div><div class="card__footer"><button type="button" class="btn btn--primary" data-complete-handover ${settled ? "" : "disabled"}>${cancelled ? "Hoàn tất trả máy" : "Hoàn tất bàn giao"}</button></div></section>`;
     bindDetail();
@@ -104,7 +104,7 @@ export default function initialize() {
       ["cosmeticMatches", "Ngoại quan khớp biên nhận"], ["bootsNormally", "Thiết bị khởi động bình thường"],
       ["mainFunctionsOk", "Chức năng chính hoạt động tốt"], ["accessoriesComplete", "Đủ phụ kiện"], ["noNewIssues", "Không phát sinh lỗi mới"],
     ];
-    return html`<div class="form-field"><label>Kiểm tra lại thiết bị<span class="required-mark">*</span></label>${rows.map(([key, label]) => html`<div class="checkbox-row"><input type="checkbox" id="recheck-${key}" data-recheck="${key}" /><label for="recheck-${key}">${label}</label></div>`)}</div>`;
+    return html`<div class="form-field" role="group" aria-labelledby="recheck-label"><span class="form-field__label" id="recheck-label">Kiểm tra lại thiết bị<span class="required-mark">*</span></span>${rows.map(([key, label]) => html`<div class="checkbox-row"><input type="checkbox" id="recheck-${key}" data-recheck="${key}" /><label for="recheck-${key}">${label}</label></div>`)}</div>`;
   }
 
   function bindDetail() {
@@ -150,7 +150,9 @@ export default function initialize() {
     };
     canvas.addEventListener("pointerdown", (event) => { drawing = true; const p = point(event); context.beginPath(); context.moveTo(p.x, p.y); canvas.setPointerCapture(event.pointerId); });
     canvas.addEventListener("pointermove", (event) => { if (!drawing) return; const p = point(event); context.lineTo(p.x, p.y); context.stroke(); state.signed = true; });
-    canvas.addEventListener("pointerup", () => { drawing = false; });
+    // Nét bị ngắt (cuộc gọi đến, cử chỉ hệ thống, mất capture) cũng kết thúc nét vẽ, tránh kẹt ở trạng thái đang vẽ.
+    const stop = () => { drawing = false; };
+    ["pointerup", "pointercancel", "lostpointercapture"].forEach((type) => canvas.addEventListener(type, stop));
   }
 
   function canvasBlob(canvas) {

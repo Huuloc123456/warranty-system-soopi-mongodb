@@ -2,12 +2,15 @@ import { lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { legacyRoutes } from './navigation';
+// Font tự lưu (gói @fontsource, OFL-1.1): chỉ tệp đúng bảng mã trang dùng được trình duyệt tải về (unicode-range).
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/components.css';
 import './styles/brand.css';
 import './styles/responsive.css';
-import './styles/customer.css';
 
 // Mỗi trang là một chunk riêng kèm controller của nó; mở /login không tải code kho, quản trị, báo cáo.
 const Home = lazy(() => import('./pages/home'));

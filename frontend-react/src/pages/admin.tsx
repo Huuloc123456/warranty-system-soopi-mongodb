@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../usePage";
 import controller from "../behaviors/admin.js";
-import { BrandLogo } from "../customer";
+import { BrandLogo } from "../brand";
 import { NotificationBroadcast } from "../NotificationBroadcast";
 
 export default function AdminPage() {

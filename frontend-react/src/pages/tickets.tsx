@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../usePage";
 import controller from "../behaviors/tickets.js";
-import { BrandLogo } from "../customer";
+import { BrandLogo } from "../brand";
 
 export default function TicketsPage() {
   usePage("tickets", {"data-roles": "DISPATCHER,RECEPTIONIST,CASHIER,TECHNICIAN"}, "Soopi — Phiếu sửa chữa", controller);

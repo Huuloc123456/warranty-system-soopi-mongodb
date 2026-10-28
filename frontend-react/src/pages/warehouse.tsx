@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { usePage } from "../usePage";
 import controller from "../behaviors/warehouse.js";
-import { BrandLogo } from "../customer";
+import { BrandLogo } from "../brand";
 
 export default function WarehousePage() {
   usePage("warehouse", {"data-roles": "WAREHOUSE_KEEPER"}, "Soopi — Kho vật tư", controller);
