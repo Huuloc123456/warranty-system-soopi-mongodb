@@ -52,6 +52,7 @@ builder.Services.AddHttpContextAccessor();
 if (config["Push:Provider"] is { } push && push != "log")
     throw new InvalidOperationException($"Push:Provider={push} chưa được hỗ trợ ở bản .NET — dùng \"log\"");
 builder.Services.AddScoped<AuditService>();
+builder.Services.AddScoped<BackupService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<PushDispatcher>();
 builder.Services.AddScoped<PushDeviceStore>();
