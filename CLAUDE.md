@@ -17,6 +17,9 @@ MongoDB has to run locally on `127.0.0.1:27017` as **replica set `rs0`**, becaus
 ```powershell
 .\run.bat            # npm ci if needed, build the frontend into the API's wwwroot, then run the API at http://localhost:8081
 .\run.bat initdb     # only create collections/indexes/demo data (--InitializeOnly=true), then exit
+.\run.bat demo-restore   # load the 6-month demo snapshot into soopi_mongodb_demo (DB must not exist)
+.\run.bat demo           # run the app on soopi_mongodb_demo
+.\run.bat demo-generate  # regenerate the demo DB through the API (database/demo-data/README.md)
 .\run.bat test       # dotnet test backend-dotnet/Soopi.slnx
 
 # Dev loop (two terminals)
@@ -54,7 +57,10 @@ Integration tests create a throwaway `soopi_mongodb_test_<guid>` database (or `s
 - **Auth:** JWT (RSA keys are required outside Development), plus rotating refresh tokens stored as hashes with token-family revocation. A refresh cookie is protected by middleware. Role-based policies are in `Services/Identity/Policies.cs`, and portal and file-ownership checks are enforced in the backend.
 - **Files:** uploaded content lives on disk under `Storage:Directory` (`./data/files`, gitignored). MongoDB holds only the metadata and ownership in `attachments`. A backup needs both.
 - **Hosting:** the API serves the built SPA from `wwwroot`. Old `.html` and Thymeleaf URLs redirect to SPA routes (the `pages` map in `Program.cs`). Only known UI routes fall back to `index.html`, so a wrong `/api/...` path still returns Problem Details.
-- **Known limit:** reports filter in MongoDB but aggregate in memory (`Services/Reporting`). The push provider must be `"log"`.
+- **Schema and indexes at startup:** `MongoInitializer` creates indexes and applies `$jsonSchema` validators (`Data/MongoSchemas.cs`; `validationLevel: moderate`, `validationAction: error`) via `collMod` on every start. It also creates TTL indexes (refresh tokens, OTP) and the `ticket_text` text index. A document the domain can produce must satisfy those schemas. Tests that insert skeleton documents call `SkipSchemaAsync` on their throwaway DB.
+- **Reports:** revenue, tickets-by-status, warranty ratio, turnaround and SLA distribution are MongoDB aggregation pipelines. Their output was diffed byte-for-byte against the previous in-memory version. The other reports still filter in MongoDB and aggregate in memory. The push provider must be `"log"`.
+- **Demo clock:** in Development with `--Demo:ClockOverride=true`, an `X-Demo-Now` header overrides `TimeProvider` for that request (`Infrastructure/DemoClock.cs`). `database/demo-data/generate.mjs` uses it to build months of history through the real API. Never enable it elsewhere.
+- **Query pack:** `database/queries/*.js` are mongosh scripts (basic, aggregation, indexes/schema) for Compass demos; they default to `soopi_mongodb_demo`.
 
 ### Frontend (`frontend-react`, React 19 + Vite + TypeScript)
 

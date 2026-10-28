@@ -29,6 +29,12 @@ public sealed class MongoIntegrationTests : IAsyncLifetime
             .AddSingleton(TimeProvider.System).AddScoped<AppDbContext>().AddScoped<MongoDocuments>().AddScoped<TransactionRunner>().BuildServiceProvider();
         await MongoInitializer.InitializeAsync(provider, false);
     }
+    /// <summary>
+    /// Vài test chèn document "xương" (chỉ đủ trường cho cơ chế đang thử: rollback, khóa tồn, phiên bản) mà ứng dụng không bao
+    /// giờ tạo, nên không qua được $jsonSchema (MongoSchemas). Tắt kiểm tra chỉ cho collection đó trong database test riêng.
+    /// </summary>
+    private Task SkipSchemaAsync(string collection) => provider.GetRequiredService<MongoClient>().GetDatabase(databaseName)
+        .RunCommandAsync<BsonDocument>(new BsonDocument { { "collMod", collection }, { "validationLevel", "off" } });
     public async Task DisposeAsync()
     {
         Assert.StartsWith("soopi_mongodb_test_", databaseName);
@@ -60,6 +66,7 @@ public sealed class MongoIntegrationTests : IAsyncLifetime
     [Fact]
     public async Task TransactionRollsBackDocumentsButCountersAdvanceOutsideTransaction()
     {
+        await SkipSchemaAsync("customers");
         using var scope = provider.CreateScope(); var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         var docs = scope.ServiceProvider.GetRequiredService<MongoDocuments>(); var transactions = scope.ServiceProvider.GetRequiredService<TransactionRunner>();
         await Assert.ThrowsAsync<DomainException>(() => transactions.InTransactionAsync(async () =>
@@ -151,6 +158,7 @@ public sealed class MongoIntegrationTests : IAsyncLifetime
     [Fact]
     public async Task BinFailureRollsBackPartDeduction()
     {
+        await SkipSchemaAsync("parts");
         using var scope = provider.CreateScope(); var docs = scope.ServiceProvider.GetRequiredService<MongoDocuments>();
         var transactions = scope.ServiceProvider.GetRequiredService<TransactionRunner>(); var stock = new InventoryStore(docs);
         await docs.InsertAsync("parts", Document(("_id", "LK-ROLLBACK"), ("active", true), ("onHand", 10), ("reserved", 4), ("version", 0), ("bins", new BsonArray { Document(("binCode", "A1"), ("qty", 10)) })));
@@ -161,6 +169,7 @@ public sealed class MongoIntegrationTests : IAsyncLifetime
     [Fact]
     public async Task ConcurrentReservationsCannotExceedStock()
     {
+        await SkipSchemaAsync("parts");
         using (var setup = provider.CreateScope())
             await setup.ServiceProvider.GetRequiredService<MongoDocuments>().InsertAsync("parts", Document(("_id", "LK-RACE"), ("active", true), ("onHand", 5), ("reserved", 0), ("version", 0), ("bins", new BsonArray())));
         var results = await Task.WhenAll(Enumerable.Range(0, 8).Select(async _ =>
@@ -176,6 +185,7 @@ public sealed class MongoIntegrationTests : IAsyncLifetime
     [Fact]
     public async Task TicketContactAndSearchFollowUpdatedCustomerProfile()
     {
+        await SkipSchemaAsync("tickets");
         using var scope = provider.CreateScope(); var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         var docs = scope.ServiceProvider.GetRequiredService<MongoDocuments>(); var store = new TicketStore(db, new ProductCatalog(docs));
         var customer = new Customer("KH-LIVE", "Khách demo", "0901234580", null, null, DateTimeOffset.UtcNow);
@@ -369,6 +379,7 @@ public sealed class MongoIntegrationTests : IAsyncLifetime
     [Fact]
     public async Task TicketHistoryCannotBeOverwrittenByStaleVersion()
     {
+        await SkipSchemaAsync("tickets");
         using var scope = provider.CreateScope(); var db = scope.ServiceProvider.GetRequiredService<AppDbContext>(); var store = new TicketStore(db, new ProductCatalog(new MongoDocuments(db)));
         var document = Document(("_id", "TN-TEST"), ("version", 0), ("status", "RECEIVED"), ("open", true));
         await db.InsertAsync("tickets", document);

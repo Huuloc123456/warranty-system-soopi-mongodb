@@ -18,6 +18,15 @@ mongodb://127.0.0.1:27017/?replicaSet=rs0
 
 Collection, unique index và dữ liệu demo được tạo khi chạy lần đầu ở Development; các lần sau không ghi đè tài khoản/danh mục. Không đọc hay sao chép dữ liệu từ `service_center` hoặc SQL Server. Database mới có các chứng từ demo do bộ kiểm chứng tạo, được ghi rõ là kiểm thử.
 
+### Dữ liệu demo 6 tháng (cho báo cáo NoSQL)
+
+```powershell
+.\run.bat demo-restore   # nạp khoảng 4.500 document vào soopi_mongodb_demo (một lần)
+.\run.bat demo           # chạy ứng dụng trên soopi_mongodb_demo
+```
+
+Bộ truy vấn cơ bản, aggregation nâng cao, index và `$jsonSchema` để chạy trong Compass nằm ở [`database/queries`](database/queries). Cách sinh lại dữ liệu: [`database/demo-data`](database/demo-data).
+
 ## Tài khoản demo
 
 Mật khẩu chung trong Development: **`1234`**.

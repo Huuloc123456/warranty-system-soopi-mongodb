@@ -1,10 +1,11 @@
 // Run from the repository root with mongosh --file database/export-current.js.
 // Reads the source database; writes scripts and a manifest in ./database.
+// SOOPI_EXPORT_DB chooses another source (e.g. soopi_mongodb_demo); its files are named after that database.
 (() => {
   const fs = require('fs');
   const path = require('path');
   const crypto = require('crypto');
-  const sourceName = 'soopi_mongodb';
+  const sourceName = process.env.SOOPI_EXPORT_DB || 'soopi_mongodb';
   const source = db.getSiblingDB(sourceName);
   const directory = path.resolve('database');
   const canonical = (value, indent = 0) => EJSON.stringify(value, null, indent, { relaxed: false });
@@ -98,8 +99,9 @@
     return lines.join('\n');
   }
   fs.mkdirSync(directory, { recursive: true });
-  fs.writeFileSync(path.join(directory, 'soopi_mongodb.full.js'), render(true), 'utf8');
-  fs.writeFileSync(path.join(directory, 'soopi_mongodb.schema.js'), render(false), 'utf8');
-  fs.writeFileSync(path.join(directory, 'snapshot-manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+  fs.writeFileSync(path.join(directory, sourceName + '.full.js'), render(true), 'utf8');
+  fs.writeFileSync(path.join(directory, sourceName + '.schema.js'), render(false), 'utf8');
+  const manifestFile = sourceName === 'soopi_mongodb' ? 'snapshot-manifest.json' : sourceName + '.manifest.json';
+  fs.writeFileSync(path.join(directory, manifestFile), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
   print(JSON.stringify({ output: directory, capturedAt, collections: manifest.totalCollections, documents: manifest.totalDocuments, indexes: manifest.totalIndexes }));
 })();
