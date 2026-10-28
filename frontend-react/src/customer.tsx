@@ -2,6 +2,10 @@
    API, nhãn và định dạng lấy từ các module behaviors đã gắn lên window (api.js, labels.js). */
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { internalRoute } from './navigation';
+import { BrandLogo } from './brand';
+// Style và font tiêu đề riêng của giao diện khách: chỉ tải cùng các trang khách (chunk riêng), màn nhân viên không cần.
+import '@fontsource-variable/plus-jakarta-sans/wght.css';
+import './styles/customer.css';
 
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 const w = window as unknown as { LML_API: Json; LML_LABELS: Json; LML_FMT: Json; LML_AUTH?: Json };
@@ -55,6 +59,7 @@ const PATHS: Record<string, ReactNode> = {
   shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
   list: <><path d="M8 6h13M8 12h13M8 18h13" /><path d="M3 6h.01M3 12h.01M3 18h.01" /></>,
   plus: <path d="M12 5v14M5 12h14" />,
+  star: <path d="m12 3.2 2.7 5.5 6 .9-4.35 4.25 1.03 6L12 17l-5.38 2.85 1.03-6L3.3 9.6l6-.9z" />,
   logout: <><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><path d="m16 17 5-5-5-5M21 12H9" /></>,
   search: <><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></>,
   wrench: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />,
@@ -143,15 +148,7 @@ const MENU = [
   { key: 'history', href: '/account#lich-su', icon: 'list', label: 'Lịch sử bảo hành' },
 ];
 
-/** Logo soopiwarranty: mascot + chữ; light = chữ trắng cho nền tối. */
-export function BrandLogo({ light = false }: { light?: boolean }) {
-  return (
-    <>
-      <img src="/images/brand/logo-mark.png" className="brand-mark" width={44} height={44} alt="" />
-      <img src={`/images/brand/${light ? 'wordmark-light' : 'wordmark'}.png`} className="brand-wordmark" width={162} height={26} alt="soopiwarranty" />
-    </>
-  );
-}
+export { BrandLogo };
 
 export function Brand({ href }: { href: string }) {
   return <a href={href} className="nav-brand"><BrandLogo /></a>;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { usePage } from "../usePage";
 import controller from "../behaviors/cashier.js";
-import { BrandLogo } from "../customer";
+import { BrandLogo } from "../brand";
 
 export default function CashierPage() {
   usePage("cashier", {"data-roles": "CASHIER"}, "Soopi — Thu ngân & Bàn giao", controller);

@@ -505,12 +505,12 @@ function Quotation({ ticket, onDecided }: { ticket: Json; onDecided: (ticket: Js
   );
 }
 
-const RATING_LABELS: Record<number, { text: string; desc: string; emoji: string }> = {
-  1: { text: "Rất không hài lòng", desc: "Dịch vụ chưa đáp ứng kỳ vọng của bạn", emoji: "😞" },
-  2: { text: "Chưa hài lòng", desc: "Cần cải thiện chất lượng sửa chữa hoặc thời gian xử lý", emoji: "🙁" },
-  3: { text: "Bình thường", desc: "Chất lượng dịch vụ ở mức tạm ổn", emoji: "😐" },
-  4: { text: "Hài lòng", desc: "Dịch vụ tốt, sửa chữa chu đáo và đúng hẹn", emoji: "😊" },
-  5: { text: "Rất hài lòng & Xuất sắc", desc: "Chất lượng kỹ thuật và phục vụ vượt mong đợi!", emoji: "🌟" },
+const RATING_LABELS: Record<number, { text: string; desc: string }> = {
+  1: { text: "Rất không hài lòng", desc: "Dịch vụ chưa đáp ứng kỳ vọng của bạn" },
+  2: { text: "Chưa hài lòng", desc: "Cần cải thiện chất lượng sửa chữa hoặc thời gian xử lý" },
+  3: { text: "Bình thường", desc: "Chất lượng dịch vụ ở mức tạm ổn" },
+  4: { text: "Hài lòng", desc: "Dịch vụ tốt, sửa chữa chu đáo và đúng hẹn" },
+  5: { text: "Rất hài lòng & Xuất sắc", desc: "Chất lượng kỹ thuật và phục vụ vượt mong đợi!" },
 };
 
 function RatingReviewSection({ ticket, onRated }: { ticket: Json; onRated: (updatedTicket: Json) => void }) {
@@ -560,9 +560,7 @@ function RatingReviewSection({ ticket, onRated }: { ticket: Json; onRated: (upda
     <section className="content-panel-card customer-rating-card">
       <div className="panel-head">
         <div>
-          <h2 className="card-heading-title" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span>⭐</span> Đánh giá chất lượng dịch vụ
-          </h2>
+          <h2 className="card-heading-title">Đánh giá chất lượng dịch vụ</h2>
           <p className="card-heading-desc">
             Ý kiến đóng góp của bạn giúp trung tâm Soopi nâng cao chất lượng phục vụ và kỹ thuật sửa chữa.
           </p>
@@ -577,10 +575,10 @@ function RatingReviewSection({ ticket, onRated }: { ticket: Json; onRated: (upda
       {currentRating > 0 && !editing ? (
         <div className="rated-view-box">
           <div className="rated-header-row">
-            <div className="rated-stars-wrap">
+            <div className="rated-stars-wrap" role="img" aria-label={`${currentRating} trên 5 sao`}>
               {[1, 2, 3, 4, 5].map((s) => (
-                <span key={s} className={"star-glyph " + (s <= currentRating ? "is-filled" : "")}>
-                  ★
+                <span key={s} className={"star-icon " + (s <= currentRating ? "is-filled" : "")}>
+                  <Icon glyph="star" />
                 </span>
               ))}
               <span className="rated-score-text">{currentRating}/5 sao</span>
@@ -629,12 +627,11 @@ function RatingReviewSection({ ticket, onRated }: { ticket: Json; onRated: (upda
                   }}
                   aria-label={`${s} sao - ${RATING_LABELS[s]?.text}`}
                 >
-                  ★
+                  <Icon glyph="star" />
                 </button>
               ))}
             </div>
-            <div className="star-picker-label-box">
-              <span className="star-rating-emoji">{ratingInfo.emoji}</span>
+            <div className="star-picker-label-box" aria-live="polite">
               <div>
                 <strong className="star-rating-title">{ratingInfo.text}</strong>
                 <div className="star-rating-subtitle">{ratingInfo.desc}</div>
@@ -656,7 +653,8 @@ function RatingReviewSection({ ticket, onRated }: { ticket: Json; onRated: (upda
                     className={"quick-tag-chip " + (isSelected ? "is-selected" : "")}
                     onClick={() => toggleTag(tag)}
                   >
-                    {isSelected ? "✓ " : "+ "}{tag}
+                    <Icon glyph={isSelected ? "check" : "plus"} />
+                    {tag}
                   </button>
                 );
               })}
