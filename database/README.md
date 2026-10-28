@@ -7,7 +7,9 @@
 | `soopi_mongodb.full.js` | Tạo toàn bộ collection, index và chèn toàn bộ dữ liệu tại thời điểm xuất, kể cả counter, tài khoản và nhật ký. Chạy độc lập, không cần đọc file manifest. |
 | `soopi_mongodb.schema.js` | Chỉ tạo collection và index, không chèn dữ liệu. |
 | `snapshot-manifest.json` | Số lượng document/index và checksum để đối chiếu. |
-| `export-current.js` | Xuất lại script từ database local khi dữ liệu thay đổi. |
+| `export-current.js` | Xuất lại script từ database local khi dữ liệu thay đổi. Biến `SOOPI_EXPORT_DB` chọn database nguồn khác; file mang tên database đó. |
+| `soopi_mongodb_demo.full.js`, `.schema.js`, `.manifest.json` | Bản xuất dữ liệu demo 6 tháng (khoảng 4.500 document, kèm validator `$jsonSchema`, TTL và text index). Nạp bằng `run.bat demo-restore`; xem [`demo-data`](demo-data). |
+| [`queries/`](queries) | Bộ truy vấn cơ bản, aggregation nâng cao, index và schema chạy trong Compass/mongosh. |
 
 ## Chạy script đầy đủ
 

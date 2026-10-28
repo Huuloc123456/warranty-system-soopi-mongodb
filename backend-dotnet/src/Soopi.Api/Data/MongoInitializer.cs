@@ -42,19 +42,48 @@ public static class MongoInitializer
         await IndexAsync(db, "refresh_tokens", "refresh_hash", new BsonDocument("tokenHash", 1), true);
         await IndexAsync(db, "refresh_tokens", "refresh_account", new BsonDocument { { "accountId", 1 }, { "revokedAt", 1 } });
         await IndexAsync(db, "refresh_tokens", "refresh_family", new BsonDocument("familyId", 1));
-        await IndexAsync(db, "refresh_tokens", "refresh_expiry", new BsonDocument("expiresAt", 1));
+        // TTL: MongoDB tự xóa phiên/OTP hết hạn (giữ thêm ít ngày để tra soát), thay vì chỉ trông vào job dọn dẹp.
+        await TtlIndexAsync(db, "refresh_tokens", "refresh_expiry", "expiresAt", TimeSpan.FromDays(7));
         await IndexAsync(db, "push_devices", "push_token", new BsonDocument("pushToken", 1), true);
         await IndexAsync(db, "otp_codes", "otp_pending", new BsonDocument { { "phone", 1 }, { "purpose", 1 }, { "createdAt", -1 } });
+        await TtlIndexAsync(db, "otp_codes", "otp_expiry", "expiresAt", TimeSpan.FromDays(1));
+        // Text index tìm phiếu theo triệu chứng/kết quả kiểm tra; tiếng Việt không có bộ stemming nên dùng "none".
+        await db.Collection<BsonDocument>("tickets").Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>(
+            new BsonDocument { { "reportedIssue", "text" }, { "inspection.findings", "text" } },
+            new CreateIndexOptions<BsonDocument> { Name = "ticket_text", DefaultLanguage = "none", Weights = new BsonDocument { { "reportedIssue", 3 }, { "inspection.findings", 1 } } }));
         await IndexAsync(db, "attachments", "attachment_owner", new BsonDocument { { "ownerType", 1 }, { "ownerId", 1 } });
         await IndexAsync(db, "audit_logs", "audit_entity_date", new BsonDocument { { "entityType", 1 }, { "entityId", 1 }, { "at", -1 } });
         await IndexAsync(db, "notifications", "notification_account", new BsonDocument { { "accountId", 1 }, { "createdAt", -1 } });
         await IndexAsync(db, "notifications", "notification_role", new BsonDocument { { "role", 1 }, { "createdAt", -1 } });
         await IndexAsync(db, "warranty_requests", "request_status_date", new BsonDocument { { "status", 1 }, { "createdAt", -1 } });
+        foreach (var (collection, schema) in MongoSchemas.Validators)
+            await db.Database.RunCommandAsync<BsonDocument>(new BsonDocument
+            {
+                { "collMod", collection },
+                { "validator", new BsonDocument("$jsonSchema", schema) },
+                { "validationLevel", "moderate" },
+                { "validationAction", "error" },
+            });
         if (seedDemo && await docs.CountAsync("accounts", new BsonDocument()) == 0)
             await scope.ServiceProvider.GetRequiredService<TransactionRunner>().InTransactionAsync(() => SeedDemoAsync(db, docs));
     }
     private static Task IndexAsync(AppDbContext db, string collection, string name, BsonDocument keys, bool unique = false, BsonDocument? partial = null) =>
         db.Collection<BsonDocument>(collection).Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>(keys, new CreateIndexOptions<BsonDocument> { Name = name, Unique = unique, PartialFilterExpression = partial }));
+    /// <summary>Index TTL trên một trường date; database cũ có index thường cùng tên thì chuyển sang TTL bằng collMod (giữ index).</summary>
+    private static async Task TtlIndexAsync(AppDbContext db, string collection, string name, string field, TimeSpan keep)
+    {
+        var indexes = db.Collection<BsonDocument>(collection).Indexes;
+        var seconds = (long)keep.TotalSeconds;
+        var found = await FindIndexAsync(indexes, name);
+        if (found is null)
+            await indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>(new BsonDocument(field, 1), new CreateIndexOptions<BsonDocument> { Name = name, ExpireAfter = keep }));
+        else if (!found.Contains("expireAfterSeconds") || found["expireAfterSeconds"].ToInt64() != seconds)
+            await db.Database.RunCommandAsync<BsonDocument>(new BsonDocument
+            {
+                { "collMod", collection },
+                { "index", new BsonDocument { { "name", name }, { "expireAfterSeconds", seconds } } },
+            });
+    }
     private static readonly Collation UsernameCollation = new("en", strength: CollationStrength.Secondary);
     private const string UsernameIndexName = "account_username";
     /// <summary>Tên index collated sau migration. MongoDB không cho hai index giống hệt (cùng key + options) dù khác tên,

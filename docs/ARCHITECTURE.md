@@ -31,9 +31,17 @@ Unique/partial index bảo vệ tên đăng nhập, serial, số điện thoại
 
 Refresh token chỉ lưu hash, xoay vòng theo họ token; đọc lại trong transaction khi thử lại. Phát hiện dùng lại token thu hồi họ token đó. Phân quyền và kiểm quyền sở hữu tệp/portal vẫn ở backend.
 
+Validator `$jsonSchema` (`Data/MongoSchemas.cs`) trên `tickets`, `quotations`, `payments`, `customers`, `devices`, `parts`, `stock_issues`: trường bắt buộc, kiểu BSON (tiền decimal, thời điểm date), tập trạng thái, tiền tố mã nghiệp vụ, tồn kho không âm. `validationLevel: moderate`, `validationAction: error`; áp bằng `collMod` mỗi lần khởi động nên database cũ cũng nhận. Đây là lớp phòng thủ dưới luật nghiệp vụ của API.
+
+Index TTL tự xóa refresh token sau hạn 7 ngày và OTP sau hạn 1 ngày (database cũ có index thường được chuyển sang TTL bằng `collMod`). Text index `ticket_text` trên triệu chứng và kết quả kiểm tra, `default_language: none` vì MongoDB không có bộ stemming tiếng Việt.
+
+## Báo cáo bằng aggregation pipeline
+
+Doanh thu theo tháng, phiếu theo trạng thái, tỉ lệ bảo hành, thời gian xử lý và phân bố SLA chạy bằng aggregation pipeline tại MongoDB (`$match`, `$lookup`, `$group` + `$dateToString` giờ VN, `$cond`, `$facet`). Kết quả đã đối chiếu từng byte với bản tổng hợp trong bộ nhớ trước đó trên 30 truy vấn mẫu. Hiệu suất kỹ thuật viên, sửa lặp lại, đối soát báo giá và đánh giá khách vẫn lọc tại MongoDB rồi tổng hợp trong bộ nhớ.
+
 ## Giới hạn đã ghi nhận
 
-Các báo cáo lọc dữ liệu theo khoảng ngày/trạm tại MongoDB, rồi tổng hợp các document phù hợp trong bộ nhớ. Phù hợp chạy local; khi dữ liệu báo cáo tăng lớn cần chuyển phần tổng hợp sang aggregation pipeline. OTP gửi qua Gmail SMTP khi có mật khẩu ứng dụng; push vẫn ở chế độ log. Không chuyển dữ liệu SQL Server hay `service_center` sang database mới.
+OTP gửi qua Gmail SMTP khi có mật khẩu ứng dụng; push vẫn ở chế độ log. Không chuyển dữ liệu SQL Server hay `service_center` sang database mới.
 
 ## Tài liệu chính thức
 

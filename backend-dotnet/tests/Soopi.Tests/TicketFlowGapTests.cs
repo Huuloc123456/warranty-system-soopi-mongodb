@@ -223,6 +223,38 @@ public sealed class TicketFlowGapTests : IAsyncLifetime
         await RequireAsync("cashier", HttpMethod.Post, $"/api/v1/tickets/{code}/payments", new { payerName = "Khách", method = "CASH", expectedAmount = 0 }, HttpStatusCode.Created);
     }
 
+    [Fact]
+    public async Task AdminBackup_IsZipOfExtendedJsonWithManifest_WithoutSecrets()
+    {
+        await login("admin");
+        using var request = new HttpRequestMessage(HttpMethod.Get, "/api/v1/admin/backup");
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokens["admin"]);
+        using var response = await client.SendAsync(request);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal("application/zip", response.Content.Headers.ContentType!.MediaType);
+        using var zip = new System.IO.Compression.ZipArchive(await response.Content.ReadAsStreamAsync());
+        var manifest = JsonDocument.Parse(new StreamReader(zip.GetEntry("manifest.json")!.Open()).ReadToEnd()).RootElement;
+        Assert.NotNull(zip.GetEntry("restore.js"));
+        Assert.Null(zip.GetEntry("refresh_tokens.json"));
+        long total = 0;
+        foreach (var collection in manifest.GetProperty("collections").EnumerateObject())
+        {
+            var array = JsonDocument.Parse(new StreamReader(zip.GetEntry(collection.Name + ".json")!.Open()).ReadToEnd()).RootElement;
+            Assert.Equal(collection.Value.GetInt64(), array.GetArrayLength());
+            total += array.GetArrayLength();
+        }
+        Assert.Equal(manifest.GetProperty("documents").GetInt64(), total);
+        var accounts = new StreamReader(zip.GetEntry("accounts.json")!.Open()).ReadToEnd();
+        Assert.DoesNotContain("passwordHash", accounts);
+        Assert.Contains("$date", new StreamReader(zip.GetEntry("customers.json")!.Open()).ReadToEnd());
+
+        var (status, _) = await SendAsync("receptionist", HttpMethod.Get, "/api/v1/admin/backup", null);
+        Assert.Equal(HttpStatusCode.Forbidden, status);
+    }
+
+    private async Task login(string user) => tokens[user] = tokens.TryGetValue(user, out var t) ? t
+        : (await SendAsync(null, HttpMethod.Post, "/api/v1/auth/login", new { username = user, password = "1234", remember = false })).Body.GetProperty("accessToken").GetString()!;
+
     private static object PassingQc() => new
     {
         workDone = "Đã sửa",

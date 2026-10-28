@@ -490,3 +490,9 @@ backend-dotnet/data/
 # … hoặc tương đối với thư mục project khi chạy bằng dotnet run --project
 backend-dotnet/src/Soopi.Api/Data/files/
 backend-dotnet/src/Soopi.Api/data/files/
+
+# MongoDB Database Tools tải về cục bộ (mongodump/mongorestore...), không đưa vào git
+tools/
+backups/
+# Quy tắc "Backup*/" của Visual Studio ở trên (git không phân biệt hoa thường) sẽ bỏ qua cả kịch bản sao lưu
+!database/backup/

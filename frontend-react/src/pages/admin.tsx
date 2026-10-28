@@ -4,6 +4,7 @@ import { usePage } from "../usePage";
 import controller from "../behaviors/admin.js";
 import { BrandLogo } from "../brand";
 import { NotificationBroadcast } from "../NotificationBroadcast";
+import { DataBackup } from "../DataBackup";
 
 export default function AdminPage() {
   usePage("admin", {"data-roles": "ADMIN"}, "Soopi — Quản trị hệ thống", controller);
@@ -59,6 +60,13 @@ export default function AdminPage() {
                 </path>
               </svg>
               {"\n          Báo cáo & Thống kê\n        "}
+            </a>
+            <a className="sidebar-nav__item" data-roles="ADMIN" data-page-tab="backup" href="#backup">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <ellipse cx="10" cy="5" rx="6" ry="2.5" />
+                <path d="M4 5v10c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V5M4 10c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5" />
+              </svg>
+              {"\n          Sao lưu dữ liệu\n        "}
             </a>
           </div>
         </nav>
@@ -459,6 +467,9 @@ export default function AdminPage() {
         </div>
         <div data-page-panel="notifications-broadcast" hidden={true}>
           <NotificationBroadcast />
+        </div>
+        <div data-page-panel="backup" hidden={true}>
+          <DataBackup />
         </div>
         <div data-page-panel="reports" hidden={true}>
           <section className="card" aria-labelledby="reports-title">

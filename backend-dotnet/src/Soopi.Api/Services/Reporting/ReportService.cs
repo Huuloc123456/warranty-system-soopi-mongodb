@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Soopi.Api.Data;
 using Soopi.Api.Data.Entities;
@@ -99,16 +100,22 @@ public sealed class ReportService(AppDbContext db, CurrentActor actors, TimeProv
     {
         actors.Require(Permission.REPORT_SYSTEM);
         var range = RangeOf(from, to, station);
-        var filter = Builders<Payment>.Filter.Eq(p => p.Type, "CHARGED");
-        if (range.From is { } f) filter &= Builders<Payment>.Filter.Gte(p => p.PaidAt, f);
-        if (range.To is { } t) filter &= Builders<Payment>.Filter.Lt(p => p.PaidAt, t);
+        // Aggregation pipeline chạy tại MongoDB: lọc phiếu thu có phí → (lọc trạm qua $lookup phiếu) → gom theo tháng giờ VN.
+        var pipeline = new List<BsonDocument> { new("$match", DateRange(new BsonDocument("type", "CHARGED"), "paidAt", range)) };
         if (range.Station is { } st)
         {
-            var codes = (await db.ListAsync<Ticket>("tickets", t => t.StationCode == st)).Select(t => t.Id).ToList();
-            filter &= Builders<Payment>.Filter.In(p => p.TicketId, codes);
+            pipeline.Add(new BsonDocument("$lookup", new BsonDocument { { "from", "tickets" }, { "localField", "ticketId" }, { "foreignField", "_id" }, { "as", "ticket" } }));
+            pipeline.Add(new BsonDocument("$match", new BsonDocument("ticket.stationCode", st)));
         }
-        var payments = await db.Find<Payment>("payments", filter).ToListAsync();
-        return payments.GroupBy(p => p.PaidAt.ToOffset(DbTime.Offset).ToString("yyyy-MM")).OrderByDescending(g => g.Key).Select(g => new MonthlyRevenue(g.Key, g.LongCount(), g.Sum(p => p.Amount))).ToList();
+        pipeline.Add(new BsonDocument("$group", new BsonDocument
+        {
+            { "_id", new BsonDocument("$dateToString", new BsonDocument { { "format", "%Y-%m" }, { "date", "$paidAt" }, { "timezone", VietnamZone } }) },
+            { "payments", new BsonDocument("$sum", 1) },
+            { "total", new BsonDocument("$sum", "$amount") },
+        }));
+        pipeline.Add(new BsonDocument("$sort", new BsonDocument("_id", -1)));
+        var rows = await AggregateAsync("payments", pipeline);
+        return rows.Select(r => new MonthlyRevenue(r["_id"].AsString, r["payments"].ToInt64(), r["total"].ToDecimal())).ToList();
     }
     public async Task<List<TechnicianPerformance>> TechnicianPerformanceAsync(DateOnly? from, DateOnly? to, string? station)
     {
@@ -131,18 +138,51 @@ public sealed class ReportService(AppDbContext db, CurrentActor actors, TimeProv
     public async Task<Turnaround> TurnaroundAsync(DateOnly? from, DateOnly? to, string? station)
     {
         actors.Require(Permission.REPORT_OPERATIONS);
-        var items = (await TicketsAsync("handover.handedOverAt", RangeOf(from, to, station))).Where(t => t.Status == TicketStatus.DELIVERED && t.Handover is not null).ToList();
-        var durations = items.Select(t => (Category: t.DeviceSnapshot.GetValueOrDefault("categoryCode", ""), Hours: Hours(t.ReceivedAt, t.Handover!.HandedOverAt))).ToList();
-        var categories = durations.GroupBy(i => i.Category).OrderBy(g => g.Key, StringComparer.Ordinal).Select(g => new CategoryTurnaround(g.Key, g.LongCount(), Average(g.Select(i => i.Hours).ToList()))).ToList();
-        var hours = durations.Select(i => i.Hours).ToList();
-        return new Turnaround(hours.Count, Average(hours), hours.Count == 0 ? null : hours.Min(), hours.Count == 0 ? null : hours.Max(), categories);
+        var range = RangeOf(from, to, station);
+        var match = TicketMatch(new BsonDocument { { "status", "DELIVERED" }, { "handover.handedOverAt", new BsonDocument("$type", "date") } }, "handover.handedOverAt", range);
+        // Số giờ = số giây trọn / 3600 làm tròn xuống (như Hours()); $facet tính tổng thể và theo nhóm thiết bị trong một lượt.
+        var hours = new BsonDocument("$toLong", new BsonDocument("$floor", new BsonDocument("$divide", new BsonArray
+        {
+            new BsonDocument("$floor", new BsonDocument("$divide", new BsonArray { new BsonDocument("$subtract", new BsonArray { "$handover.handedOverAt", "$receivedAt" }), 1000 })),
+            3600,
+        })));
+        BsonDocument Stats(BsonValue key, bool range) => new BsonDocument
+        {
+            { "_id", key }, { "n", new BsonDocument("$sum", 1) }, { "sum", new BsonDocument("$sum", "$hours") },
+        }.AddRange(range ? new BsonDocument { { "min", new BsonDocument("$min", "$hours") }, { "max", new BsonDocument("$max", "$hours") } } : new BsonDocument());
+        var pipeline = new List<BsonDocument>
+        {
+            new("$match", match),
+            new("$project", new BsonDocument { { "category", new BsonDocument("$ifNull", new BsonArray { "$deviceSnapshot.categoryCode", "" }) }, { "hours", hours } }),
+            new("$facet", new BsonDocument
+            {
+                { "overall", new BsonArray { new BsonDocument("$group", Stats(BsonNull.Value, true)) } },
+                { "byCategory", new BsonArray { new BsonDocument("$group", Stats("$category", false)) } },
+            }),
+        };
+        var facet = (await AggregateAsync("tickets", pipeline)).Single();
+        var overall = facet["overall"].AsBsonArray.Select(v => v.AsBsonDocument).FirstOrDefault();
+        var categories = facet["byCategory"].AsBsonArray.Select(v => v.AsBsonDocument).OrderBy(c => c["_id"].AsString, StringComparer.Ordinal)
+            .Select(c => new CategoryTurnaround(c["_id"].AsString, c["n"].ToInt64(), AverageOf(c["sum"].ToInt64(), c["n"].ToInt64()))).ToList();
+        return overall is null
+            ? new Turnaround(0, null, null, null, categories)
+            : new Turnaround(overall["n"].ToInt64(), AverageOf(overall["sum"].ToInt64(), overall["n"].ToInt64()), overall["min"].ToInt64(), overall["max"].ToInt64(), categories);
     }
     public async Task<WarrantyRatio> WarrantyRatioAsync(DateOnly? from, DateOnly? to, string? station)
     {
         actors.Require(Permission.REPORT_OPERATIONS);
-        var items = await TicketsAsync("inspection.inspectedAt", RangeOf(from, to, station));
-        var free = items.LongCount(t => t.Inspection?.Classification == WarrantyClassification.FREE_WARRANTY);
-        var charged = items.LongCount(t => t.Inspection?.Classification is WarrantyClassification.OUT_OF_WARRANTY or WarrantyClassification.PARTIAL_WARRANTY);
+        var pipeline = new List<BsonDocument>
+        {
+            new("$match", TicketMatch(new BsonDocument(), "inspection.inspectedAt", RangeOf(from, to, station))),
+            new("$group", new BsonDocument
+            {
+                { "_id", BsonNull.Value },
+                { "free", CountWhen(new BsonDocument("$eq", new BsonArray { "$inspection.classification", "FREE_WARRANTY" })) },
+                { "charged", CountWhen(new BsonDocument("$in", new BsonArray { "$inspection.classification", new BsonArray { "OUT_OF_WARRANTY", "PARTIAL_WARRANTY" } })) },
+            }),
+        };
+        var row = (await AggregateAsync("tickets", pipeline)).FirstOrDefault();
+        long free = row?["free"].ToInt64() ?? 0, charged = row?["charged"].ToInt64() ?? 0;
         return new WarrantyRatio(free, charged, Percent(free, free + charged));
     }
     public async Task<List<RepeatRepair>> RepeatRepairsAsync(DateOnly? from, DateOnly? to, string? station)
@@ -165,15 +205,58 @@ public sealed class ReportService(AppDbContext db, CurrentActor actors, TimeProv
     public async Task<List<StatusCount>> TicketsByStatusAsync(DateOnly? from, DateOnly? to, string? station)
     {
         actors.Require(Permission.REPORT_OPERATIONS);
-        return (await TicketsAsync("receivedAt", RangeOf(from, to, station))).GroupBy(t => t.Status).OrderBy(g => g.Key).Select(g => new StatusCount(g.Key.ToString(), g.LongCount())).ToList();
+        var pipeline = new List<BsonDocument>
+        {
+            new("$match", TicketMatch(new BsonDocument(), "receivedAt", RangeOf(from, to, station))),
+            new("$group", new BsonDocument { { "_id", "$status" }, { "count", new BsonDocument("$sum", 1) } }),
+        };
+        // Thứ tự theo vòng đời phiếu (thứ tự enum), không theo bảng chữ cái.
+        return (await AggregateAsync("tickets", pipeline)).OrderBy(r => Enum.Parse<TicketStatus>(r["_id"].AsString))
+            .Select(r => new StatusCount(r["_id"].AsString, r["count"].ToInt64())).ToList();
     }
     public async Task<List<SlaBucket>> SlaDistributionAsync()
     {
         actors.Require(Permission.REPORT_OPERATIONS);
         var now = clock.GetUtcNow(); var until = now + configuration.GetValue("Sla:AtRiskThreshold", TimeSpan.FromHours(2));
-        var items = await db.Find<Ticket>("tickets", new MongoDB.Bson.BsonDocument { { "open", true }, { "status", new MongoDB.Bson.BsonDocument("$nin", new MongoDB.Bson.BsonArray { "COMPLETED", "AWAITING_RETURN" }) } }).ToListAsync();
-        return items.GroupBy(t => t.Sla.Level).OrderBy(g => g.Key.ToString()).Select(g => new SlaBucket(g.Key.ToString(), g.LongCount(t => t.Sla.DueAt < now), g.LongCount(t => t.Sla.DueAt >= now && t.Sla.DueAt <= until), g.LongCount(t => t.Sla.DueAt > until))).ToList();
+        BsonValue At(DateTimeOffset value) => MongoDocuments.Value(value);
+        var pipeline = new List<BsonDocument>
+        {
+            new("$match", new BsonDocument { { "open", true }, { "status", new BsonDocument("$nin", new BsonArray { "COMPLETED", "AWAITING_RETURN" }) } }),
+            new("$group", new BsonDocument
+            {
+                { "_id", "$sla.level" },
+                { "breached", CountWhen(new BsonDocument("$lt", new BsonArray { "$sla.dueAt", At(now) })) },
+                { "atRisk", CountWhen(new BsonDocument("$and", new BsonArray { new BsonDocument("$gte", new BsonArray { "$sla.dueAt", At(now) }), new BsonDocument("$lte", new BsonArray { "$sla.dueAt", At(until) }) })) },
+                { "onTrack", CountWhen(new BsonDocument("$gt", new BsonArray { "$sla.dueAt", At(until) })) },
+            }),
+        };
+        return (await AggregateAsync("tickets", pipeline)).OrderBy(r => r["_id"].AsString, StringComparer.Ordinal)
+            .Select(r => new SlaBucket(r["_id"].AsString, r["breached"].ToInt64(), r["atRisk"].ToInt64(), r["onTrack"].ToInt64())).ToList();
     }
+    private const string VietnamZone = "+07:00";
+    private Task<List<BsonDocument>> AggregateAsync(string collection, List<BsonDocument> pipeline) =>
+        db.Collection<BsonDocument>(collection).Aggregate<BsonDocument>(pipeline).ToListAsync();
+    private static BsonDocument CountWhen(BsonValue condition) => new("$sum", new BsonDocument("$cond", new BsonArray { condition, 1, 0 }));
+    /// <summary>Điều kiện $match: khoảng [From, To) trên một trường date (gộp với điều kiện sẵn có của trường đó).</summary>
+    private static BsonDocument DateRange(BsonDocument match, string timeField, Range range)
+    {
+        var window = new BsonDocument();
+        if (range.From is { } f) window.Add("$gte", MongoDocuments.Value(f));
+        if (range.To is { } t) window.Add("$lt", MongoDocuments.Value(t));
+        if (window.ElementCount == 0) return match;
+        var result = new BsonDocument(match);
+        result[timeField] = match.Contains(timeField) ? new BsonDocument(match[timeField].AsBsonDocument).AddRange(window) : window;
+        return result;
+    }
+    /// <summary>Như TicketsAsync nhưng là $match cho pipeline: khoảng thời gian trên timeField và trạm.</summary>
+    private static BsonDocument TicketMatch(BsonDocument match, string timeField, Range range)
+    {
+        var result = DateRange(match, timeField, range);
+        if (range.Station is { } st) result = new BsonDocument(result) { { "stationCode", st } };
+        return result;
+    }
+    /// <summary>Trung bình như Average(): (double)tổng / số lượng, làm tròn 2 chữ số.</summary>
+    private static decimal? AverageOf(long sum, long count) => count == 0 ? null : Scaled((decimal)((double)sum / count), 2);
     private Task<List<Ticket>> TicketsAsync(string timeField, Range range)
     {
         var filter = Builders<Ticket>.Filter.Empty;

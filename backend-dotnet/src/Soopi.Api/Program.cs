@@ -40,7 +40,11 @@ builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<MongoDocuments>();
 builder.Services.AddScoped<TransactionRunner>();
 builder.Services.AddScoped<CodeGenerator>();
-builder.Services.AddSingleton(TimeProvider.System);
+// Bộ sinh dữ liệu demo (database/demo-data) cần lùi thời gian theo request; chỉ bật được ở Development.
+if (builder.Environment.IsDevelopment() && config.GetValue("Demo:ClockOverride", false))
+    builder.Services.AddSingleton<TimeProvider>(provider => new DemoClock(provider.GetRequiredService<IHttpContextAccessor>()));
+else
+    builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
 
@@ -48,6 +52,7 @@ builder.Services.AddHttpContextAccessor();
 if (config["Push:Provider"] is { } push && push != "log")
     throw new InvalidOperationException($"Push:Provider={push} chưa được hỗ trợ ở bản .NET — dùng \"log\"");
 builder.Services.AddScoped<AuditService>();
+builder.Services.AddScoped<BackupService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<PushDispatcher>();
 builder.Services.AddScoped<PushDeviceStore>();
