@@ -210,7 +210,7 @@ public sealed class QuotationReviewService(
             await tickets.SaveAsync(ticket);
             await audit.RecordAsync(actor.AuditId, actor.DisplayName, actor.RoleNames, "QUOTATION_APPROVED", "Phê duyệt báo giá", "QUOTATION", code, "PENDING", "APPROVED");
             await notifications.ForRoleAsync("RECEPTIONIST", "QUOTATION_APPROVED", $"Báo giá {code} đã được duyệt, chờ khách xác nhận.", "/receptionist", code);
-            // App khách mở theo mã phiếu nên entityId là mã phiếu, không phải mã báo giá.
+            // Cổng khách mở theo mã phiếu nên entityId là mã phiếu, không phải mã báo giá.
             await notifications.ForCustomerAsync(ticket.CustomerId, "QUOTATION_AWAITING_CUSTOMER",
                 $"Báo giá {code} cho phiếu {ticket.Id} đang chờ xác nhận.", ticket.Id);
             return QuotationView.From(quotation);

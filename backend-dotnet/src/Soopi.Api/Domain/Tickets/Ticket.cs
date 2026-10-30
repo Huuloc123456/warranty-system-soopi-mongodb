@@ -22,7 +22,6 @@ public enum TicketStatus
 public enum Channel
 {
     COUNTER,
-    MOBILE_APP,
     ONLINE_REQUEST,
     PHONE,
 }

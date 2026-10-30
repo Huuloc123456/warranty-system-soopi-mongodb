@@ -25,7 +25,7 @@ public static class MongoSchemas
             "receivedAt": { "bsonType": "date" },
             "customerId": { "bsonType": "string" },
             "deviceId": { "bsonType": "string" },
-            "channel": { "enum": ["COUNTER", "MOBILE_APP", "ONLINE_REQUEST", "PHONE"] },
+            "channel": { "enum": ["COUNTER", "ONLINE_REQUEST", "PHONE"] },
             "requestType": { "enum": ["WARRANTY", "PAID_REPAIR"] },
             "status": { "enum": ["RECEIVED", "INSPECTING", "DIAGNOSED", "AWAITING_QUOTE_APPROVAL", "AWAITING_CUSTOMER_CONFIRMATION",
                                  "AWAITING_PARTS", "AWAITING_RETURN", "REPAIRING", "COMPLETED", "DELIVERED", "RETURNED_UNREPAIRED"] },

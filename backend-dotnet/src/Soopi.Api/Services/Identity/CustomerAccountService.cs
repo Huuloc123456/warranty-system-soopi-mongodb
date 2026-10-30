@@ -5,7 +5,6 @@ using Soopi.Api.Domain.Shared;
 using Soopi.Api.DTOs.Identity;
 using Soopi.Api.Infrastructure.Security;
 using Soopi.Api.Infrastructure.Validation;
-using Soopi.Api.Services.Notifications;
 using Soopi.Api.Services.Shared;
 
 namespace Soopi.Api.Services.Identity;
@@ -13,7 +12,7 @@ namespace Soopi.Api.Services.Identity;
 public sealed record RegisterCommand(string Phone, string Otp, string? FullName, string Password, string? Email);
 
 /// <summary>
-/// Tài khoản khách tự phục vụ qua app di động: đăng ký và quên mật khẩu bằng OTP email. Tên đăng nhập là email. Hồ sơ khách có
+/// Tài khoản khách tự phục vụ trên cổng khách hàng: đăng ký và quên mật khẩu bằng OTP email. Tên đăng nhập là email. Hồ sơ khách có
 /// sẵn cùng SĐT (khách từng mang máy tới) được gắn vào tài khoản để thấy phiếu cũ.
 /// </summary>
 public sealed class CustomerAccountService(
@@ -25,12 +24,11 @@ public sealed class CustomerAccountService(
     TransactionRunner transactions,
     AuthService auth,
     AuditService audit,
-    PushDeviceService pushDevices,
     RateLimiter limiter,
     TimeProvider clock)
 {
     /// <summary>
-    /// Báo rõ SĐT đã/chưa có tài khoản để app dẫn khách sang đúng luồng (D-070) — đánh đổi quyền riêng tư nhỏ, được hạn chế
+    /// Báo rõ SĐT đã/chưa có tài khoản để giao diện dẫn khách sang đúng luồng (D-070) — đánh đổi quyền riêng tư nhỏ, được hạn chế
     /// bằng rate limit theo IP trước khi tra cứu.
     /// </summary>
     public async Task<OtpIssued> RequestOtpAsync(string? rawPhone, OtpPurpose? purpose, string? rawEmail, string? clientIp)
@@ -89,7 +87,7 @@ public sealed class CustomerAccountService(
         await otp.VerifyAsync(profile.Phone, OtpPurpose.RESET_PASSWORD, email, code);
     }
 
-    /// <summary>Thu hồi mọi phiên và mọi thiết bị nhận push: máy bị mất không còn đăng nhập hay nhận thông báo được nữa.</summary>
+    /// <summary>Thu hồi mọi phiên: máy bị mất không còn đăng nhập được nữa.</summary>
     public async Task ResetPasswordAsync(string rawEmail, string code, string newPassword)
     {
         var email = RequireEmail(rawEmail);
@@ -99,7 +97,6 @@ public sealed class CustomerAccountService(
         passwordPolicy.Validate(account.Username, newPassword);
         await otp.ConsumeAsync(profile!.Phone, OtpPurpose.RESET_PASSWORD, email, code);
         await auth.RecoverPasswordAsync(account.Id, newPassword);
-        await pushDevices.ForgetAllAsync(account.Id);
     }
 
     private async Task<long> CreateAccountAsync(string phone, RegisterCommand command)
@@ -120,7 +117,7 @@ public sealed class CustomerAccountService(
         await profiles.LinkAccountAsync(customerCode, account.Id);
         await audit.RecordAsync(
             "KH:" + customerCode, fullName, ["CUSTOMER"], "CUSTOMER_ACCOUNT_REGISTERED",
-            "Đăng ký tài khoản qua ứng dụng di động", "ACCOUNT", account.Id.ToString());
+            "Đăng ký tài khoản trên cổng khách hàng", "ACCOUNT", account.Id.ToString());
         return account.Id;
     }
 

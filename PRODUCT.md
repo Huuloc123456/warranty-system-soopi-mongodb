@@ -19,8 +19,6 @@ Soopi phục vụ một trung tâm bảo hành và sửa chữa thiết bị đi
   - **Quản trị viên:** quản lý tài khoản nhân viên, vai trò, khóa/mở, đặt lại mật khẩu, danh mục và báo cáo tổng.
 - **Khách hàng mang máy đi bảo hành/sửa:** tra cứu tiến độ bằng mã phiếu và số điện thoại mà không cần đăng nhập; hoặc đăng ký bằng số điện thoại có OTP để xem lịch sử, chi tiết phiếu, đồng ý hoặc từ chối báo giá, và gửi yêu cầu bảo hành online kèm ảnh/video.
 
-Có một app di động cho khách do bên khác phát triển, dùng chung API.
-
 ## Product Purpose
 
 Soopi giúp trung tâm quản lý toàn bộ vòng đời một ca bảo hành/sửa chữa trên một hệ thống: yêu cầu online → tiếp nhận → phân công → chẩn đoán → báo giá → khách xác nhận → xuất linh kiện → sửa và QC → thu tiền → bàn giao.
@@ -48,12 +46,12 @@ Bản MongoDB chạy local để phát triển và kiểm thử, kế thừa to�
   - khách: `KH-…`;
   - nhân viên: `NV-…`;
   - thiết bị: serial/IMEI.
-- **Thông báo:** chuông thông báo trong web cho nhân viên. Push và SMS OTP hiện chỉ ghi log; nhà cung cấp thật (eSMS/FCM) chưa được tích hợp.
+- **Thông báo:** chuông thông báo trong web cho nhân viên và khách. OTP gửi qua email (Gmail SMTP); không có SMS hay push.
 
 ## Capabilities and Constraints
 
-- **Kiến trúc:** ASP.NET Core Web API (.NET 10) phục vụ bản build React + Vite + TypeScript cùng origin, dùng MongoDB local replica set rs0, database mới soopi_mongodb (26 collection). Có 120 action HTTP kế thừa từ controller Soopi.
-- **Hợp đồng API giữ nguyên** (URL, JSON, mã lỗi RFC 9457) để app di động không phải sửa. Database MongoDB mới độc lập với SQL Server và service_center.
+- **Kiến trúc:** ASP.NET Core Web API (.NET 10) phục vụ bản build React + Vite + TypeScript cùng origin, dùng MongoDB local replica set rs0, database mới soopi_mongodb (25 collection). Có 124 endpoint HTTP: 114 kế thừa từ controller Soopi, 10 bổ sung ở bản này.
+- **Hợp đồng API giữ nguyên** với bản gốc (URL, JSON, mã lỗi RFC 9457), trừ API riêng của app di động đã bỏ vì hệ thống chỉ có giao diện web. Database MongoDB mới độc lập với SQL Server và service_center.
 - **Phân quyền** kiểm tại backend theo vai trò/quyền. Ẩn hiện trên frontend chỉ phục vụ điều hướng.
 - **Ràng buộc giao diện nhân viên** (thay đổi so với D-014):
   - Được *tinh chỉnh*: sửa CSS/token để cải thiện accessibility, hiệu năng, responsive và đồng bộ thương hiệu.
@@ -62,7 +60,7 @@ Bản MongoDB chạy local để phát triển và kiểm thử, kế thừa to�
 - **Giao diện khách** (`/login`, `/register`, `/account`, `/portal`) port từ web khách KLCN theo D-045, style riêng trong `customer.css`.
 - **Chưa có hoặc chưa quyết định:**
   - khách tự kích hoạt bảo hành (backend chưa có endpoint);
-  - gửi SMS/push thật;
+  - gửi SMS thật;
   - dark mode;
   - ngôn ngữ ngoài tiếng Việt.
 
@@ -88,7 +86,7 @@ Bản MongoDB chạy local để phát triển và kiểm thử, kế thừa to�
 1. **Quy trình là sản phẩm.** Mỗi màn hình phục vụ đúng một bước trong vòng đời phiếu. Trạng thái, SLA và bước tiếp theo phải luôn rõ hơn mọi thứ khác.
 2. **Khách thấy sự thật, không cần gọi hỏi.** Những gì khách xem (tiến độ, báo giá, chi phí) lấy từ chính dữ liệu nhân viên đang làm; không làm đẹp hay tô vẽ.
 3. **Dùng được ở nơi công việc diễn ra.** Quầy tiếp nhận, bàn kỹ thuật, kho, quầy thu ngân và điện thoại của khách đều là bối cảnh hạng nhất.
-4. **Không đổi hợp đồng ngầm.** API, mã nghiệp vụ và dữ liệu cũ phải giữ ổn định cho app di động và lịch sử phiếu.
+4. **Không đổi hợp đồng ngầm.** API, mã nghiệp vụ và dữ liệu cũ phải giữ ổn định cho giao diện web và lịch sử phiếu.
 5. **Không thông tin giả.** Chỉ hiển thị dữ liệu và năng lực hệ thống thật sự có.
 
 ## Accessibility & Inclusion

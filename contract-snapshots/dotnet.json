@@ -98,7 +98,7 @@
   "/api/v1/auth/me": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -112,7 +112,7 @@
   "/api/v1/customers": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -126,7 +126,7 @@
   "/api/v1/portal/my/profile": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -140,7 +140,7 @@
   "/api/v1/tickets": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -154,7 +154,7 @@
   "/api/v1/files/1": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -168,7 +168,7 @@
   "/api/v1/migration-not-found": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -197,7 +197,7 @@
   "/api/v1/auth/login": {
     "status": 405,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 405,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -211,7 +211,7 @@
   "/api/v1/portal/lookup": {
     "status": 405,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 405,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -225,7 +225,7 @@
   "/api/v1/portal/warranty-requests": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -239,7 +239,7 @@
   "/api/v1/auth/mobile/otp": {
     "status": 405,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 405,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -258,7 +258,7 @@
   "/js/migration-not-found.js": {
     "status": 404,
     "body": {
-      "type": "https://longmanloc.vn/errors/NOT_FOUND",
+      "type": "urn:soopi:errors:NOT_FOUND",
       "title": "Yêu cầu không hợp lệ",
       "status": 404,
       "detail": "Không tìm thấy dữ liệu yêu cầu.",
@@ -298,7 +298,7 @@
   "/api/v1/portal/catalog [invalid bearer]": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -312,7 +312,7 @@
   "/api/v1/migration-not-found [invalid bearer]": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -326,7 +326,7 @@
   "/api/v1/portal/catalog [bare bearer]": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -340,7 +340,7 @@
   "/api/v1/portal/catalog [empty bearer]": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -354,7 +354,7 @@
   "/api/v1/portal/catalog [malformed bearer]": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -453,7 +453,7 @@
   "/api/v1/portal/catalog [lowercase bearer]": {
     "status": 401,
     "body": {
-      "type": "https://longmanloc.vn/errors/AUTH_TOKEN_INVALID",
+      "type": "urn:soopi:errors:AUTH_TOKEN_INVALID",
       "title": "Yêu cầu không hợp lệ",
       "status": 401,
       "detail": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
@@ -467,7 +467,7 @@
   "POST login empty object": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -490,7 +490,7 @@
   "POST login malformed JSON": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -504,7 +504,7 @@
   "POST login null body": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -518,7 +518,7 @@
   "POST login array body": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -532,7 +532,7 @@
   "POST login string coercion": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -551,7 +551,7 @@
   "POST login property case": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -574,7 +574,7 @@
   "POST login boolean coercion": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -597,7 +597,7 @@
   "POST login invalid boolean": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -611,7 +611,7 @@
   "POST login NBSP": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -630,7 +630,7 @@
   "POST login em space": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -653,7 +653,7 @@
   "POST OTP empty object": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -676,7 +676,7 @@
   "POST OTP enum case": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -690,7 +690,7 @@
   "POST OTP enum ordinal": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -709,7 +709,7 @@
   "POST register invalid email": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -740,7 +740,7 @@
   "POST register quoted email": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",
@@ -767,7 +767,7 @@
   "POST password reset empty object": {
     "status": 400,
     "body": {
-      "type": "https://longmanloc.vn/errors/VALIDATION_FAILED",
+      "type": "urn:soopi:errors:VALIDATION_FAILED",
       "title": "Yêu cầu không hợp lệ",
       "status": 400,
       "detail": "Vui lòng kiểm tra lại các trường còn thiếu hoặc chưa hợp lệ.",

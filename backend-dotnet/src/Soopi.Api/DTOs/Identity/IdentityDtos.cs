@@ -26,22 +26,9 @@ public sealed record AuthResponse(string AccessToken, long ExpiresIn, UserView U
     public static AuthResponse From(AuthResult result) => new(result.AccessToken, result.ExpiresIn, result.User);
 }
 
-/// <summary>Như AuthResponse của web, thêm refresh token (và hạn) vì app không dùng cookie.</summary>
-public sealed record MobileAuthResponse(string AccessToken, long ExpiresIn, string RefreshToken, long RefreshExpiresIn, UserView User)
-{
-    public static MobileAuthResponse From(AuthResult result) =>
-        new(result.AccessToken, result.ExpiresIn, result.RefreshToken, result.RefreshMaxAge, result.User);
-}
-
 public sealed record LoginRequest([NotBlank] string Username, [NotBlank] string Password, bool Remember);
 
 public sealed record ChangePasswordRequest([NotBlank] string CurrentPassword, [NotBlank] string NewPassword);
-
-public sealed record MobileLoginBody([NotBlank] string Username, [NotBlank] string Password);
-
-public sealed record RefreshBody([NotBlank] string RefreshToken);
-
-public sealed record LogoutBody(string? RefreshToken, string? InstallationId, bool All);
 
 public enum OtpPurpose
 {

@@ -48,7 +48,6 @@ export default function initialize() {
 
   const CHANNEL = {
     COUNTER: "Tại quầy",
-    MOBILE_APP: "Qua App Mobile",
     ONLINE_REQUEST: "Đăng ký trực tuyến",
     PHONE: "Qua điện thoại",
   };

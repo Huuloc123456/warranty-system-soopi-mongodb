@@ -6,7 +6,7 @@ using Soopi.Api.Domain.Shared;
 using static Soopi.Api.Data.MongoDocuments;
 namespace Soopi.Api.Services.Shared;
 
-public sealed class NotificationService(AppDbContext db, MongoDocuments docs, TimeProvider clock, PushDispatcher pushes, TransactionRunner transactions)
+public sealed class NotificationService(AppDbContext db, MongoDocuments docs, TimeProvider clock, TransactionRunner transactions)
 {
     public const string CustomerPortal = "/portal";
     public const string CustomAnnouncementType = "CUSTOM_ANNOUNCEMENT";
@@ -56,7 +56,6 @@ public sealed class NotificationService(AppDbContext db, MongoDocuments docs, Ti
         var id = await db.NextIdAsync("notifications");
         var storedType = Limit(type, 40)!; var storedMessage = Limit(message, 255)!; var storedEntity = Limit(entityId, 30);
         await docs.InsertAsync("notifications", Document(("_id", id), ("role", role), ("accountId", accountId), ("type", storedType), ("message", storedMessage), ("link", Limit(link, 255)), ("entityId", storedEntity), ("createdAt", clock.GetUtcNow()), ("readBy", new BsonArray())));
-        if (accountId is not null) pushes.Dispatch(accountId.Value, id, storedType, storedMessage, storedEntity);
     }
     private static string? Limit(string? value, int max) => value is null || value.Length <= max ? value : value[..max];
 }

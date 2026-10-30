@@ -1,6 +1,6 @@
 // Soopi MongoDB: complete data and index snapshot
-// Source: soopi_mongodb; captured at: 2026-10-30T04:52:25.462Z
-// 26 collections; 52 indexes (including _id_).
+// Source: soopi_mongodb; captured at: 2026-10-30T07:40:16.834Z
+// 25 collections; 52 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
 // Attachment contents live on disk and must be copied separately.
@@ -7390,7 +7390,55 @@
   if (target.getCollection("counters").countDocuments({}) !== 23) throw new Error("Count mismatch: counters");
 
   // Collection: customers (4 documents in source).
-  target.createCollection("customers", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("customers", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Khách hàng",
+      "required": [
+        "_id",
+        "fullName",
+        "phone",
+        "status",
+        "createdAt"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string",
+          "pattern": "^KH-"
+        },
+        "fullName": {
+          "bsonType": "string",
+          "minLength": {
+            "$numberInt": "1"
+          }
+        },
+        "phone": {
+          "bsonType": "string",
+          "pattern": "^0\\d{9,10}$"
+        },
+        "email": {
+          "bsonType": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "ACTIVE",
+            "ARCHIVED",
+            "MERGED"
+          ]
+        },
+        "createdAt": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("customers").createIndex(EJSON.deserialize({
   "accountId": {
     "$numberInt": "1"
@@ -7621,7 +7669,55 @@
   if (target.getCollection("device_categories").countDocuments({}) !== 6) throw new Error("Count mismatch: device_categories");
 
   // Collection: devices (15 documents in source).
-  target.createCollection("devices", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("devices", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Thiết bị",
+      "required": [
+        "_id",
+        "productId",
+        "identifierType",
+        "serialNormalized",
+        "customerId"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string",
+          "pattern": "^TB-"
+        },
+        "identifierType": {
+          "enum": [
+            "IMEI",
+            "SERIAL"
+          ]
+        },
+        "serialNormalized": {
+          "bsonType": "string",
+          "minLength": {
+            "$numberInt": "1"
+          }
+        },
+        "warrantyActivatedOn": {
+          "bsonType": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "warrantyExpiresOn": {
+          "bsonType": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("devices").createIndex(EJSON.deserialize({
   "customerId": {
     "$numberInt": "1"
@@ -10311,6 +10407,16 @@
   // Collection: otp_codes (0 documents in source).
   target.createCollection("otp_codes", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("otp_codes").createIndex(EJSON.deserialize({
+  "expiresAt": {
+    "$numberInt": "1"
+  }
+}, { relaxed: false }), EJSON.deserialize({
+  "name": "otp_expiry",
+  "expireAfterSeconds": {
+    "$numberInt": "86400"
+  }
+}, { relaxed: false }));
+  target.getCollection("otp_codes").createIndex(EJSON.deserialize({
   "phone": {
     "$numberInt": "1"
   },
@@ -10326,7 +10432,95 @@
   if (target.getCollection("otp_codes").countDocuments({}) !== 0) throw new Error("Count mismatch: otp_codes");
 
   // Collection: parts (5 documents in source).
-  target.createCollection("parts", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("parts", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Linh kiện",
+      "required": [
+        "_id",
+        "name",
+        "onHand",
+        "reserved",
+        "servicePrice",
+        "active"
+      ],
+      "properties": {
+        "name": {
+          "bsonType": "string",
+          "minLength": {
+            "$numberInt": "1"
+          }
+        },
+        "onHand": {
+          "bsonType": [
+            "int",
+            "long"
+          ],
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "reserved": {
+          "bsonType": [
+            "int",
+            "long"
+          ],
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "minLevel": {
+          "bsonType": [
+            "int",
+            "long"
+          ],
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "costPrice": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "servicePrice": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "bins": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "binCode",
+              "qty"
+            ],
+            "properties": {
+              "qty": {
+                "bsonType": [
+                  "int",
+                  "long"
+                ],
+                "minimum": {
+                  "$numberInt": "0"
+                }
+              }
+            }
+          }
+        },
+        "active": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("parts").insertMany(EJSON.deserialize([
   {
     "_id": "LK-CABLE",
@@ -10545,7 +10739,58 @@
   if (target.getCollection("parts").countDocuments({}) !== 5) throw new Error("Count mismatch: parts");
 
   // Collection: payments (12 documents in source).
-  target.createCollection("payments", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("payments", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Phiếu thu",
+      "required": [
+        "_id",
+        "ticketId",
+        "type",
+        "paidAt",
+        "amount",
+        "method",
+        "cashierId"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string",
+          "pattern": "^PT-"
+        },
+        "ticketId": {
+          "bsonType": "string"
+        },
+        "type": {
+          "enum": [
+            "CHARGED",
+            "FREE_WARRANTY"
+          ]
+        },
+        "paidAt": {
+          "bsonType": "date"
+        },
+        "amount": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "method": {
+          "enum": [
+            "CASH",
+            "BANK_TRANSFER",
+            "E_WALLET",
+            "CARD",
+            "NONE"
+          ]
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("payments").createIndex(EJSON.deserialize({
   "paidAt": {
     "$numberInt": "-1"
@@ -10853,20 +11098,120 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("products").countDocuments({}) !== 6) throw new Error("Count mismatch: products");
 
-  // Collection: push_devices (0 documents in source).
-  target.createCollection("push_devices", EJSON.deserialize({}, { relaxed: false }));
-  target.getCollection("push_devices").createIndex(EJSON.deserialize({
-  "pushToken": {
-    "$numberInt": "1"
-  }
-}, { relaxed: false }), EJSON.deserialize({
-  "name": "push_token",
-  "unique": true
-}, { relaxed: false }));
-  if (target.getCollection("push_devices").countDocuments({}) !== 0) throw new Error("Count mismatch: push_devices");
-
   // Collection: quotations (6 documents in source).
-  target.createCollection("quotations", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("quotations", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Báo giá",
+      "required": [
+        "_id",
+        "ticketId",
+        "lines",
+        "partsTotal",
+        "laborTotal",
+        "grandTotal",
+        "vatRate",
+        "approval",
+        "customerDecision"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string",
+          "pattern": "^BG-"
+        },
+        "ticketId": {
+          "bsonType": "string"
+        },
+        "lines": {
+          "bsonType": "array",
+          "minItems": {
+            "$numberInt": "1"
+          },
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "quantity"
+            ],
+            "properties": {
+              "quantity": {
+                "bsonType": [
+                  "int",
+                  "long"
+                ],
+                "minimum": {
+                  "$numberInt": "1"
+                }
+              }
+            }
+          }
+        },
+        "partsTotal": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "laborTotal": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "grandTotal": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "vatRate": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          },
+          "maximum": {
+            "$numberInt": "100"
+          }
+        },
+        "approval": {
+          "bsonType": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PENDING",
+                "APPROVED",
+                "REJECTED",
+                "SUPERSEDED",
+                "EXPIRED",
+                "CANCELLED"
+              ]
+            }
+          }
+        },
+        "customerDecision": {
+          "bsonType": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PENDING",
+                "ACCEPTED",
+                "DECLINED"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("quotations").createIndex(EJSON.deserialize({
   "ticketId": {
     "$numberInt": "1"
@@ -11294,7 +11639,10 @@
     "$numberInt": "1"
   }
 }, { relaxed: false }), EJSON.deserialize({
-  "name": "refresh_expiry"
+  "name": "refresh_expiry",
+  "expireAfterSeconds": {
+    "$numberInt": "604800"
+  }
 }, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "familyId": {
@@ -14738,7 +15086,68 @@
   if (target.getCollection("service_stations").countDocuments({}) !== 1) throw new Error("Count mismatch: service_stations");
 
   // Collection: stock_issues (6 documents in source).
-  target.createCollection("stock_issues", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("stock_issues", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Phiếu xuất kho",
+      "required": [
+        "_id",
+        "ticketId",
+        "source",
+        "status",
+        "lines"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string",
+          "pattern": "^PX-"
+        },
+        "source": {
+          "enum": [
+            "QUOTATION",
+            "FREE_WARRANTY"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PENDING",
+            "ISSUED",
+            "REJECTED",
+            "CANCELLED",
+            "RETURNED"
+          ]
+        },
+        "lines": {
+          "bsonType": "array",
+          "minItems": {
+            "$numberInt": "1"
+          },
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "sku",
+              "quantity"
+            ],
+            "properties": {
+              "quantity": {
+                "bsonType": [
+                  "int",
+                  "long"
+                ],
+                "minimum": {
+                  "$numberInt": "1"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("stock_issues").createIndex(EJSON.deserialize({
   "ticketId": {
     "$numberInt": "1"
@@ -15218,7 +15627,120 @@
   if (target.getCollection("suppliers").countDocuments({}) !== 1) throw new Error("Count mismatch: suppliers");
 
   // Collection: tickets (13 documents in source).
-  target.createCollection("tickets", EJSON.deserialize({}, { relaxed: false }));
+  target.createCollection("tickets", EJSON.deserialize({
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "title": "Phiếu tiếp nhận",
+      "required": [
+        "_id",
+        "stationCode",
+        "receivedAt",
+        "customerId",
+        "deviceId",
+        "status",
+        "sla",
+        "statusHistory",
+        "open"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string",
+          "pattern": "^TN-"
+        },
+        "receivedAt": {
+          "bsonType": "date"
+        },
+        "customerId": {
+          "bsonType": "string"
+        },
+        "deviceId": {
+          "bsonType": "string"
+        },
+        "channel": {
+          "enum": [
+            "COUNTER",
+            "ONLINE_REQUEST",
+            "PHONE"
+          ]
+        },
+        "requestType": {
+          "enum": [
+            "WARRANTY",
+            "PAID_REPAIR"
+          ]
+        },
+        "status": {
+          "enum": [
+            "RECEIVED",
+            "INSPECTING",
+            "DIAGNOSED",
+            "AWAITING_QUOTE_APPROVAL",
+            "AWAITING_CUSTOMER_CONFIRMATION",
+            "AWAITING_PARTS",
+            "AWAITING_RETURN",
+            "REPAIRING",
+            "COMPLETED",
+            "DELIVERED",
+            "RETURNED_UNREPAIRED"
+          ]
+        },
+        "estimatedCost": {
+          "bsonType": "decimal",
+          "minimum": {
+            "$numberInt": "0"
+          }
+        },
+        "sla": {
+          "bsonType": "object",
+          "required": [
+            "level",
+            "dueAt"
+          ],
+          "properties": {
+            "level": {
+              "enum": [
+                "EXPRESS_12H",
+                "PRIORITY_24H",
+                "STANDARD_48H"
+              ]
+            },
+            "dueAt": {
+              "bsonType": "date"
+            }
+          }
+        },
+        "statusHistory": {
+          "bsonType": "array",
+          "minItems": {
+            "$numberInt": "1"
+          },
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "status",
+              "at"
+            ]
+          }
+        },
+        "open": {
+          "bsonType": "bool"
+        },
+        "version": {
+          "bsonType": [
+            "int",
+            "long"
+          ],
+          "minimum": {
+            "$numberInt": "0"
+          }
+        }
+      }
+    }
+  },
+  "validationLevel": "moderate",
+  "validationAction": "error"
+}, { relaxed: false }));
   target.getCollection("tickets").createIndex(EJSON.deserialize({
   "customerId": {
     "$numberInt": "1"
@@ -15262,6 +15784,27 @@
   }
 }, { relaxed: false }), EJSON.deserialize({
   "name": "ticket_technician"
+}, { relaxed: false }));
+  target.getCollection("tickets").createIndex(EJSON.deserialize({
+  "_fts": "text",
+  "_ftsx": {
+    "$numberInt": "1"
+  }
+}, { relaxed: false }), EJSON.deserialize({
+  "name": "ticket_text",
+  "weights": {
+    "inspection.findings": {
+      "$numberInt": "1"
+    },
+    "reportedIssue": {
+      "$numberInt": "3"
+    }
+  },
+  "default_language": "none",
+  "language_override": "language",
+  "textIndexVersion": {
+    "$numberInt": "3"
+  }
 }, { relaxed: false }));
   target.getCollection("tickets").insertMany(EJSON.deserialize([
   {
@@ -19182,5 +19725,5 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("warranty_requests").countDocuments({}) !== 3) throw new Error("Count mismatch: warranty_requests");
 
-  print("Restored 700 documents in 26 collections to " + targetName);
+  print("Restored 700 documents in 25 collections to " + targetName);
 })();

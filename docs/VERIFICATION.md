@@ -35,7 +35,7 @@ Mọi tài khoản đăng nhập tại `/login`, mật khẩu demo chung `1234`.
 - Ca tính phí có báo giá, sửa dòng báo giá, điều phối duyệt, khách đồng ý, giữ linh kiện, xuất từ đúng kệ và kiểm lượng tồn/đã giữ.
 - Tạo/sửa/duyệt phiếu nhập, tạo/duyệt điều chuyển và liệt kê chứng từ kho.
 - Yêu cầu online với PNG, tra cứu token portal, xem yêu cầu của khách, tải lại đúng bytes của tệp và hủy yêu cầu.
-- Báo cáo doanh thu, hiệu suất, thời gian xử lý, tỷ lệ bảo hành, sửa lại, đối chiếu báo giá, trạng thái và SLA; nhật ký/thông báo; đánh dấu đã đọc; đăng ký/gỡ thiết bị push demo.
+- Báo cáo doanh thu, hiệu suất, thời gian xử lý, tỷ lệ bảo hành, sửa lại, đối chiếu báo giá, trạng thái và SLA; nhật ký/thông báo; đánh dấu đã đọc.
 
 Kết quả HTTP chi tiết và mã phiếu demo: `verification/mongo-smoke-results.json`. Các lần chạy smoke tạo dữ liệu kiểm thử có nhãn demo trong database mới và file PNG/chữ ký ở thư mục lưu tệp riêng.
 
@@ -53,4 +53,4 @@ Giao diện kế thừa nguyên bản; không đổi thiết kế/tokens, chỉ 
 
 ## Giới hạn
 
-Chưa đối chiếu response từng endpoint với một SQL Server đang chạy và chưa thử tải lớn/replica-set failover. Các báo cáo tổng hợp trong bộ nhớ sau khi lọc theo ngày/trạm. OTP gửi qua Gmail SMTP khi có mật khẩu ứng dụng; push vẫn là log như project nguồn. Build Vite có cảnh báo `use client` từ react-router nhưng build/test/lint đều thành công.
+Chưa đối chiếu response từng endpoint với một SQL Server đang chạy và chưa thử tải lớn/replica-set failover. Các báo cáo tổng hợp trong bộ nhớ sau khi lọc theo ngày/trạm. OTP gửi qua Gmail SMTP khi có mật khẩu ứng dụng; API riêng của app di động và push đã được bỏ. Build Vite có cảnh báo `use client` từ react-router nhưng build/test/lint đều thành công.

@@ -10,7 +10,7 @@ namespace Soopi.Api.Data;
 
 public static class MongoInitializer
 {
-    public static readonly string[] Collections = ["accounts", "refresh_tokens", "customers", "employees", "devices", "tickets", "quotations", "payments", "parts", "stock_receipts", "stock_issues", "stock_transfers", "warranty_requests", "attachments", "audit_logs", "notifications", "push_devices", "otp_codes", "counters", "service_stations", "device_categories", "brands", "products", "warranty_policies", "service_prices", "suppliers"];
+    public static readonly string[] Collections = ["accounts", "refresh_tokens", "customers", "employees", "devices", "tickets", "quotations", "payments", "parts", "stock_receipts", "stock_issues", "stock_transfers", "warranty_requests", "attachments", "audit_logs", "notifications", "otp_codes", "counters", "service_stations", "device_categories", "brands", "products", "warranty_policies", "service_prices", "suppliers"];
     public static async Task InitializeAsync(IServiceProvider services, bool seedDemo)
     {
         using var scope = services.CreateScope();
@@ -44,7 +44,6 @@ public static class MongoInitializer
         await IndexAsync(db, "refresh_tokens", "refresh_family", new BsonDocument("familyId", 1));
         // TTL: MongoDB tự xóa phiên/OTP hết hạn (giữ thêm ít ngày để tra soát), thay vì chỉ trông vào job dọn dẹp.
         await TtlIndexAsync(db, "refresh_tokens", "refresh_expiry", "expiresAt", TimeSpan.FromDays(7));
-        await IndexAsync(db, "push_devices", "push_token", new BsonDocument("pushToken", 1), true);
         await IndexAsync(db, "otp_codes", "otp_pending", new BsonDocument { { "phone", 1 }, { "purpose", 1 }, { "createdAt", -1 } });
         await TtlIndexAsync(db, "otp_codes", "otp_expiry", "expiresAt", TimeSpan.FromDays(1));
         // Text index tìm phiếu theo triệu chứng/kết quả kiểm tra; tiếng Việt không có bộ stemming nên dùng "none".

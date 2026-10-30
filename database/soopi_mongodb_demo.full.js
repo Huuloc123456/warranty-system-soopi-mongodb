@@ -1,6 +1,6 @@
 // Soopi MongoDB: complete data and index snapshot
-// Source: soopi_mongodb_demo; captured at: 2026-10-30T04:52:26.668Z
-// 26 collections; 54 indexes (including _id_).
+// Source: soopi_mongodb_demo; captured at: 2026-10-30T07:40:17.831Z
+// 25 collections; 52 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
 // Attachment contents live on disk and must be copied separately.
@@ -65,7 +65,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793334455196"
+        "$numberLong": "1793344220987"
       }
     },
     "passwordChangedAt": null
@@ -127,7 +127,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793334523909"
+        "$numberLong": "1793344266352"
       }
     },
     "passwordChangedAt": null
@@ -189,7 +189,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793334607495"
+        "$numberLong": "1793344231741"
       }
     },
     "passwordChangedAt": null
@@ -220,7 +220,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793334637421"
+        "$numberLong": "1793344219597"
       }
     },
     "passwordChangedAt": null
@@ -282,7 +282,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793334344146"
+        "$numberLong": "1793345981559"
       }
     },
     "passwordChangedAt": null
@@ -3627,7 +3627,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("attachments").countDocuments({}) !== 171) throw new Error("Count mismatch: attachments");
 
-  // Collection: audit_logs (2153 documents in source).
+  // Collection: audit_logs (2162 documents in source).
   target.createCollection("audit_logs", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("audit_logs").createIndex(EJSON.deserialize({
   "entityType": {
@@ -48897,9 +48897,198 @@
     "entityId": "6",
     "before": null,
     "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2154"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344218940"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2155"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344219610"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "cashier",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "6",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2156"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344220281"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2157"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344221048"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2158"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344231140"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2159"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344231805"
+      }
+    },
+    "actorId": "NV-005",
+    "actorName": "warehouse",
+    "actorRoles": [
+      "WAREHOUSE_KEEPER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "5",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2160"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793344266413"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2161"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793345961268"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2162"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793345981651"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("audit_logs").countDocuments({}) !== 2153) throw new Error("Count mismatch: audit_logs");
+  if (target.getCollection("audit_logs").countDocuments({}) !== 2162) throw new Error("Count mismatch: audit_logs");
 
   // Collection: brands (11 documents in source).
   target.createCollection("brands", EJSON.deserialize({}, { relaxed: false }));
@@ -50296,7 +50485,7 @@
   {
     "_id": "audit_logs",
     "value": {
-      "$numberLong": "2153"
+      "$numberLong": "2162"
     }
   },
   {
@@ -50308,7 +50497,7 @@
   {
     "_id": "refresh_tokens",
     "value": {
-      "$numberLong": "45"
+      "$numberLong": "54"
     }
   }
 ], { relaxed: false }), { ordered: true });
@@ -81598,18 +81787,6 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("products").countDocuments({}) !== 19) throw new Error("Count mismatch: products");
 
-  // Collection: push_devices (0 documents in source).
-  target.createCollection("push_devices", EJSON.deserialize({}, { relaxed: false }));
-  target.getCollection("push_devices").createIndex(EJSON.deserialize({
-  "pushToken": {
-    "$numberInt": "1"
-  }
-}, { relaxed: false }), EJSON.deserialize({
-  "name": "push_token",
-  "unique": true
-}, { relaxed: false }));
-  if (target.getCollection("push_devices").countDocuments({}) !== 0) throw new Error("Count mismatch: push_devices");
-
   // Collection: quotations (86 documents in source).
   target.createCollection("quotations", EJSON.deserialize({
   "validator": {
@@ -87360,7 +87537,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("quotations").countDocuments({}) !== 86) throw new Error("Count mismatch: quotations");
 
-  // Collection: refresh_tokens (45 documents in source).
+  // Collection: refresh_tokens (54 documents in source).
   target.createCollection("refresh_tokens", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "accountId": {
@@ -88530,9 +88707,234 @@
     "remember": false,
     "ip": "::1",
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "46"
+    },
+    "tokenHash": "cad0dd8f27e1fe986d12da3ccc275d3d68812dffecaec9d7ee579b5c35eaf974",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "70620210-1547-484e-88ac-8816adc3729c",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344218958"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387418958"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "47"
+    },
+    "tokenHash": "96e371fd2ad7af6c5e0a5806b598eb5d7dec38ff7be6451cc5efae62516273ed",
+    "accountId": {
+      "$numberLong": "6"
+    },
+    "familyId": "0049d0e6-2216-44a3-8562-3244f955695b",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344219618"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387419618"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "48"
+    },
+    "tokenHash": "292b4f8b36e84335776d18f23d9976ba1a95378d120861b924b55abdb7a99e89",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "dafdab2b-7ad6-4146-bacc-c79a7963f913",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344220289"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387420289"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "49"
+    },
+    "tokenHash": "6ca879359f90efb581ac86d928322e1b36ce4711163647964216d400092b6690",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "6ea30be2-4ec8-4eaa-9cd2-c2fc1f4a3e88",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344221051"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387421051"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "50"
+    },
+    "tokenHash": "ffaeb090e785ca8a77ebd8e0e54c46608f4c12c56b7b8a53420c4bea1d5612dd",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "d84bb14f-4ee7-4ccb-8651-7afd9e42f5d9",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344231144"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387431144"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "51"
+    },
+    "tokenHash": "de9d41686783515e5f787b15daa9d80b81e9bd21d3d7558d4aa379a054504152",
+    "accountId": {
+      "$numberLong": "5"
+    },
+    "familyId": "0ce6f489-6a6f-4208-b220-e60a3e720747",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344231808"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387431808"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "52"
+    },
+    "tokenHash": "9456247122e4cbfe471cf2c9f4d51b6d6f81f85e98f18b4402a74ff71e3ecb77",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "c144c79a-9d68-4e7b-a422-f6557eb101e8",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793344266415"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793387466415"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "53"
+    },
+    "tokenHash": "8ac6862970d8058a08a95d451a03afc453d6d453206ec2b4604eeba966934414",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "1f19dc06-6548-474a-8089-d0c4c2be8951",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793345961289"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793389161289"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "54"
+    },
+    "tokenHash": "bc05ade3fc5a96108be71c69bc1ff82ed83cc02fc3bfef094a972b741268ae4c",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "e1160fd4-5206-49a2-8efe-ed32c4e0191b",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793345981655"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793389181655"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("refresh_tokens").countDocuments({}) !== 45) throw new Error("Count mismatch: refresh_tokens");
+  if (target.getCollection("refresh_tokens").countDocuments({}) !== 54) throw new Error("Count mismatch: refresh_tokens");
 
   // Collection: service_prices (4 documents in source).
   target.createCollection("service_prices", EJSON.deserialize({}, { relaxed: false }));
@@ -93526,7 +93928,6 @@
         "channel": {
           "enum": [
             "COUNTER",
-            "MOBILE_APP",
             "ONLINE_REQUEST",
             "PHONE"
           ]
@@ -154909,5 +155310,5 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("warranty_requests").countDocuments({}) !== 28) throw new Error("Count mismatch: warranty_requests");
 
-  print("Restored 4807 documents in 26 collections to " + targetName);
+  print("Restored 4825 documents in 25 collections to " + targetName);
 })();

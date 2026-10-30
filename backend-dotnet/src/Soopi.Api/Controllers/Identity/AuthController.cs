@@ -11,7 +11,7 @@ namespace Soopi.Api.Controllers.Identity;
 [ApiController]
 [Authorize]
 [Route("api/v1/auth")]
-public sealed class AuthController(AuthService auth, CurrentActor actors) : ControllerBase
+public sealed class AuthController(AuthService auth, CustomerAccountService customerAccounts, CurrentActor actors) : ControllerBase
 {
     private const string Cookie = "LML_RT";
     private const string CookiePath = "/api/v1/auth";
@@ -44,8 +44,36 @@ public sealed class AuthController(AuthService auth, CurrentActor actors) : Cont
 
     [HttpPost("change-password")]
     public async Task<AuthResponse> ChangePassword([FromBody] ChangePasswordRequest body) =>
-        Respond(await auth.ChangePasswordAsync(
-            actors.Current, body.CurrentPassword, body.NewPassword, false, actors.ClientIp, actors.UserAgent));
+        Respond(await auth.ChangePasswordAsync(actors.Current, body.CurrentPassword, body.NewPassword, actors.ClientIp, actors.UserAgent));
+
+    [HttpPost("otp")]
+    [AllowAnonymous]
+    public async Task<IActionResult> RequestOtp([FromBody] OtpBody body) =>
+        StatusCode(StatusCodes.Status202Accepted, await customerAccounts.RequestOtpAsync(body.Phone, body.Purpose, body.Email, actors.ClientIp));
+
+    /// <summary>Khách tự đăng ký: tạo tài khoản rồi mở phiên ngay (cookie phiên, không "ghi nhớ").</summary>
+    [HttpPost("register")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Register([FromBody] RegisterBody body) =>
+        StatusCode(StatusCodes.Status201Created, Respond(await customerAccounts.RegisterAsync(
+            new RegisterCommand(body.Phone, body.Otp, body.FullName, body.Password, body.Email), actors.ClientIp, actors.UserAgent)));
+
+    /// <summary>Kiểm OTP đặt lại mật khẩu mà không tiêu mã (D-047); 204 khi đúng, 422 OTP_INVALID khi sai.</summary>
+    [HttpPost("password-reset/verify")]
+    [AllowAnonymous]
+    public async Task<IActionResult> VerifyPasswordReset([FromBody] PasswordResetVerifyBody body)
+    {
+        await customerAccounts.VerifyResetOtpAsync(body.Email, body.Otp);
+        return NoContent();
+    }
+
+    [HttpPost("password-reset")]
+    [AllowAnonymous]
+    public async Task<IActionResult> ResetPassword([FromBody] PasswordResetBody body)
+    {
+        await customerAccounts.ResetPasswordAsync(body.Email, body.Otp, body.NewPassword);
+        return NoContent();
+    }
 
     private AuthResponse Respond(AuthResult result)
     {
@@ -66,72 +94,5 @@ public sealed class AuthController(AuthService auth, CurrentActor actors) : Cont
         };
         if (maxAge == TimeSpan.Zero) options.Expires = DateTimeOffset.UnixEpoch;
         return options;
-    }
-}
-
-/// <summary>
-/// Xác thực cho app di động khách hàng: refresh token đi trong body thay cho cookie của web. Các endpoint đăng ký/đăng nhập
-/// chỉ nhận tài khoản khách.
-/// </summary>
-[ApiController]
-[Authorize]
-[Route("api/v1/auth/mobile")]
-public sealed class MobileAuthController(
-    AuthService auth,
-    CustomerAccountService customerAccounts,
-    Services.Notifications.PushDeviceService pushDevices,
-    CurrentActor actors) : ControllerBase
-{
-    [HttpPost("login")]
-    [AllowAnonymous]
-    public async Task<MobileAuthResponse> Login([FromBody] MobileLoginBody body) =>
-        MobileAuthResponse.From(await auth.LoginCustomerAsync(body.Username, body.Password, actors.ClientIp, actors.UserAgent));
-
-    [HttpPost("refresh")]
-    [AllowAnonymous]
-    public async Task<MobileAuthResponse> Refresh([FromBody] RefreshBody body) =>
-        MobileAuthResponse.From(await auth.RefreshAsync(body.RefreshToken, actors.ClientIp, actors.UserAgent));
-
-    /// <summary>Luôn 204: đăng xuất không được để lộ refresh token nào còn hiệu lực.</summary>
-    [HttpPost("logout")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Logout([FromBody] LogoutBody body)
-    {
-        if (await auth.LogoutAsync(body.RefreshToken, body.All) is { } accountId)
-            await pushDevices.ForgetAsync(body.InstallationId, accountId);
-        return NoContent();
-    }
-
-    [HttpPost("change-password")]
-    public async Task<MobileAuthResponse> ChangePassword([FromBody] ChangePasswordRequest body) =>
-        MobileAuthResponse.From(await auth.ChangePasswordAsync(
-            actors.Current, body.CurrentPassword, body.NewPassword, true, actors.ClientIp, actors.UserAgent));
-
-    [HttpPost("otp")]
-    [AllowAnonymous]
-    public async Task<IActionResult> RequestOtp([FromBody] OtpBody body) =>
-        StatusCode(StatusCodes.Status202Accepted, await customerAccounts.RequestOtpAsync(body.Phone, body.Purpose, body.Email, actors.ClientIp));
-
-    [HttpPost("register")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Register([FromBody] RegisterBody body) =>
-        StatusCode(StatusCodes.Status201Created, MobileAuthResponse.From(await customerAccounts.RegisterAsync(
-            new RegisterCommand(body.Phone, body.Otp, body.FullName, body.Password, body.Email), actors.ClientIp, actors.UserAgent)));
-
-    /// <summary>Chỉ có ở Soopi (D-047): kiểm OTP đặt lại mật khẩu mà không tiêu mã; 204 khi đúng, 422 OTP_INVALID khi sai.</summary>
-    [HttpPost("password-reset/verify")]
-    [AllowAnonymous]
-    public async Task<IActionResult> VerifyPasswordReset([FromBody] PasswordResetVerifyBody body)
-    {
-        await customerAccounts.VerifyResetOtpAsync(body.Email, body.Otp);
-        return NoContent();
-    }
-
-    [HttpPost("password-reset")]
-    [AllowAnonymous]
-    public async Task<IActionResult> ResetPassword([FromBody] PasswordResetBody body)
-    {
-        await customerAccounts.ResetPasswordAsync(body.Email, body.Otp, body.NewPassword);
-        return NoContent();
     }
 }

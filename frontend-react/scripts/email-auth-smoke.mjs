@@ -10,7 +10,7 @@ try {
       await s.page.fill('#fullName', 'Khách thử');
       await s.page.fill('#phone', '0901234567');
       await s.page.fill('#email', 'owner@example.com');
-      const issued = s.page.waitForRequest(r => r.url().endsWith('/auth/mobile/otp'));
+      const issued = s.page.waitForRequest(r => r.url().endsWith('/auth/otp'));
       await s.page.click('.btn-otp');
       assert.deepEqual((await issued).postDataJSON(), { phone: '0901234567', email: 'owner@example.com', purpose: 'REGISTER' });
       await s.page.getByText('Mã OTP đã gửi tới owner@example.com.', { exact: true }).waitFor();
@@ -24,7 +24,7 @@ try {
 
       await s.page.goto(base + '/forgot-password');
       await s.page.fill('#email', 'owner@example.com');
-      const recovery = s.page.waitForRequest(r => r.url().endsWith('/auth/mobile/otp'));
+      const recovery = s.page.waitForRequest(r => r.url().endsWith('/auth/otp'));
       await s.page.click('.btn-otp');
       assert.deepEqual((await recovery).postDataJSON(), { email: 'owner@example.com', purpose: 'RESET_PASSWORD' });
       await s.page.getByText(/Mã OTP đã gửi tới email/).waitFor();
@@ -37,7 +37,7 @@ try {
       await s.page.getByRole('heading', { name: 'Đặt mật khẩu mới', level: 1 }).waitFor();
       await s.page.fill('#password', 'MatKhauKhac2026');
       await s.page.fill('#confirm', 'MatKhauKhac2026');
-      const reset = s.page.waitForRequest(r => r.url().endsWith('/auth/mobile/password-reset'));
+      const reset = s.page.waitForRequest(r => r.url().endsWith('/auth/password-reset'));
       await s.page.click('button[type="submit"]');
       assert.deepEqual((await reset).postDataJSON(), { email: 'owner@example.com', otp: '123456', newPassword: 'MatKhauKhac2026' });
       await s.page.getByRole('heading', { name: 'Đã đặt lại mật khẩu' }).waitFor();

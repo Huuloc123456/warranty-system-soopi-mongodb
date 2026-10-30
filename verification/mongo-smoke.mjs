@@ -122,8 +122,6 @@ const download = await fetch(`${base}/api/v1/files/${onlineDetail.attachments[0]
 assert.equal(download.status,200); assert.deepEqual(Buffer.from(await download.arrayBuffer()),png);
 results.push({method:'GET',path:'/api/v1/files/{id}',status:200});
 await request('receptionist','POST',`/api/v1/warranty-requests/${online.code}/cancel`,{reason:'Hoàn tất kiểm thử demo'});
-await request('0900000001','PUT',`/api/v1/notifications/devices/demo-${stamp}`,{platform:'ANDROID',pushToken:`demo-${stamp}`,appVersion:'demo'},204);
-await request('0900000001','DELETE',`/api/v1/notifications/devices/demo-${stamp}`,undefined,204);
 const oldCookie = cookies.admin;
 sessions.admin = await request('admin','POST','/api/v1/auth/refresh');
 await request('admin','GET','/api/v1/auth/me');

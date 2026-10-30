@@ -6,9 +6,9 @@ type Field = "email" | "otp" | "password" | "confirm";
 const EMPTY: Record<Field, string> = { email: "", otp: "", password: "", confirm: "" };
 
 /* Quên mật khẩu cho khách, hai bước:
-   1. Tìm tài khoản theo email đã xác minh, gửi OTP tới email đó (/auth/mobile/otp, RESET_PASSWORD) và xác nhận mã,
+   1. Tìm tài khoản theo email đã xác minh, gửi OTP tới email đó (/auth/otp, RESET_PASSWORD) và xác nhận mã,
       chưa tiêu mã — D-047). Chỉ khi mã đúng mới sang bước 2.
-   2. Đặt mật khẩu mới (/auth/mobile/password-reset): backend kiểm lại mã, tiêu mã và thu hồi mọi phiên cũ.
+   2. Đặt mật khẩu mới (/auth/password-reset): backend kiểm lại mã, tiêu mã và thu hồi mọi phiên cũ.
    Nhân viên không tự đặt lại được — quản trị viên đặt lại trong màn Quản trị. */
 export default function ForgotPasswordPage() {
   usePage("forgot-password", {}, "Quên mật khẩu — Soopi");
@@ -46,7 +46,7 @@ export default function ForgotPasswordPage() {
     if (!email) return setErrors({ ...errors, email: "Vui lòng nhập email đã xác minh." });
     await runSend(async () => {
       try {
-        const issued = await api().request("POST", "/auth/mobile/otp", { body: { email, purpose: "RESET_PASSWORD" }, auth: "none" });
+        const issued = await api().request("POST", "/auth/otp", { body: { email, purpose: "RESET_PASSWORD" }, auth: "none" });
         setOtpSentTo(email);
         setResendIn(Number(issued.resendAfter) || 60);
         document.getElementById("otp")?.focus();
@@ -67,7 +67,7 @@ export default function ForgotPasswordPage() {
     if (Object.keys(next).length) return;
     await runVerify(async () => {
       try {
-        await api().request("POST", "/auth/mobile/password-reset/verify", { body: { email: otpSentTo, otp: form.otp.trim() }, auth: "none" });
+        await api().request("POST", "/auth/password-reset/verify", { body: { email: otpSentTo, otp: form.otp.trim() }, auth: "none" });
         setStep("password");
       } catch (error) {
         setErrors({ otp: errorText(error) });
@@ -85,7 +85,7 @@ export default function ForgotPasswordPage() {
     if (Object.keys(next).length) return;
     await runSubmit(async () => {
       try {
-        await api().request("POST", "/auth/mobile/password-reset", {
+        await api().request("POST", "/auth/password-reset", {
           body: { email: otpSentTo, otp: form.otp.trim(), newPassword: form.password },
           auth: "none",
         });

@@ -17,7 +17,7 @@ public sealed class SecurityOptions
 
     public sealed class JwtOptions
     {
-        public string Issuer { get; set; } = "longmanloc-service-center";
+        public string Issuer { get; set; } = "soopi-service-center";
 
         public TimeSpan AccessTokenTtl { get; set; } = TimeSpan.FromMinutes(15);
 

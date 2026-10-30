@@ -1,6 +1,6 @@
 # Dữ liệu demo 6 tháng
 
-Đã có thêm [bộ demo trực tiếp Phase6 ngày 30/10/2026](PHASE6-DEMO.md): 13 phiếu mới ở đủ 11 trạng thái, nâng database local `soopi_mongodb_demo` lên 210 phiếu. Chạy `run.bat demo` để dùng dữ liệu đã nạp. File `database/soopi_mongodb_demo.full.js` được xuất lại ngày 30/10/2026 và đã chứa phần bổ sung Phase6 (4.807 document). Bảng bên dưới mô tả bộ sinh gốc 197 phiếu.
+Đã có thêm [bộ demo trực tiếp Phase6 ngày 30/10/2026](PHASE6-DEMO.md): 13 phiếu mới ở đủ 11 trạng thái, nâng database local `soopi_mongodb_demo` lên 210 phiếu. Chạy `run.bat demo` để dùng dữ liệu đã nạp. File `database/soopi_mongodb_demo.full.js` được xuất lại ngày 30/10/2026 và đã chứa phần bổ sung Phase6 (4.825 document). Bảng bên dưới mô tả bộ sinh gốc 197 phiếu.
 
 Database **`soopi_mongodb_demo`** chứa lịch sử vận hành giả lập của trung tâm trong khoảng 180 ngày, dùng cho demo và các truy vấn ở [`database/queries`](../queries). Database dùng hằng ngày `soopi_mongodb` không bị thay đổi.
 
@@ -12,7 +12,7 @@ Database **`soopi_mongodb_demo`** chứa lịch sử vận hành giả lập c�
 | Yêu cầu bảo hành online | 27 (đa số chuyển thành phiếu, một phần bị hủy) |
 | Kỹ thuật viên | 4 (2 tạo mới qua trang quản trị) |
 | Danh mục | 11 hãng, 19 sản phẩm, 14 linh kiện, 4 bảng giá dịch vụ |
-| Tổng document | khoảng 4.500 trong 26 collection |
+| Tổng document | khoảng 4.500 trong 25 collection |
 
 Các tình huống có trong dữ liệu: bảo hành miễn phí (có hoặc không cần linh kiện), sửa có phí, điều phối trả báo giá về để lập lại, báo giá hết hạn rồi lập lại, khách từ chối báo giá, khách đổi ý ngay tại quầy, không sửa được (trả máy), kiểm tra chất lượng lần đầu chưa đạt, máy quay lại sửa lần hai, khách đánh giá trên cổng khách hàng, nhập kho định kỳ.
 

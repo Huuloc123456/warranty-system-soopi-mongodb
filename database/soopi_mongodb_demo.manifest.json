@@ -1,18 +1,18 @@
 {
   "sourceDatabase": "soopi_mongodb_demo",
-  "capturedAt": "2026-10-30T04:52:26.668Z",
+  "capturedAt": "2026-10-30T07:40:17.831Z",
   "serverVersion": "8.3.8",
   "readConcern": "snapshot",
-  "totalCollections": 26,
-  "totalDocuments": 4807,
-  "totalIndexes": 54,
+  "totalCollections": 25,
+  "totalDocuments": 4825,
+  "totalIndexes": 52,
   "includesFileContents": false,
   "collections": [
     {
       "name": "accounts",
       "documents": 10,
       "indexes": 2,
-      "dataSha256": "f0216cde815853969109b162805564a98a2b883bd9d64986942b472b5384fa70",
+      "dataSha256": "f5f5eec5f4faf51307a27e6422899951ceaacda5bb451177462a8eced79ffd26",
       "indexesSha256": "47e052d92d8fa61c1843b151eabea4f884b8f404dcd42761ac7a0a22c4115c99",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -26,9 +26,9 @@
     },
     {
       "name": "audit_logs",
-      "documents": 2153,
+      "documents": 2162,
       "indexes": 2,
-      "dataSha256": "e5cd5f78a99e11784668dd3ee78025c73fb12242761217d18c9e449cb1ee94f6",
+      "dataSha256": "657557bd6e4dc2a67f7ecf86a23d2d030d260c8f6c60b8ba8b09f78cdff7e9f7",
       "indexesSha256": "74fbc29ca6ec779addde15711f3e214eff85c1d92063d3fa8a899b484e63c6a5",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -44,7 +44,7 @@
       "name": "counters",
       "documents": 214,
       "indexes": 1,
-      "dataSha256": "92f2d16e9434e559e2b30d00338b1cc37d291291d6d7c58d9665f878ad125aa7",
+      "dataSha256": "a01d0d08d10c07356d1e07c7056a9260b217935ae4030314a36d9457a7988a49",
       "indexesSha256": "6c2a05e3c465ac39b853e474d573d1a3987f8b1af14485d0ef68aa10a6a811ff",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -121,14 +121,6 @@
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "name": "push_devices",
-      "documents": 0,
-      "indexes": 2,
-      "dataSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "indexesSha256": "96a12bfcc6febf48a2a628462f1ec379a4ade7687ef7e0b923f37ec8e078fdf6",
-      "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
       "name": "quotations",
       "documents": 86,
       "indexes": 2,
@@ -138,9 +130,9 @@
     },
     {
       "name": "refresh_tokens",
-      "documents": 45,
+      "documents": 54,
       "indexes": 5,
-      "dataSha256": "4f48f4f3b8e1cb0a81c2aa8a55158755686c09eb5050dd23ce7ee84265acd795",
+      "dataSha256": "976fa7bec9631ba9b10bbc9d5a78acaa086d6134219b48fdf8df8c17616fd9cc",
       "indexesSha256": "8e604700916e204f8e620bd43289672c9e8ddda20e8f16e7e93f25b7fce46382",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -198,7 +190,7 @@
       "indexes": 6,
       "dataSha256": "9bb28cf88c040f9bf3c7360eac77d27abfbca29c180050d0f54eaf4b83128642",
       "indexesSha256": "009e06bb63f5587f8543b21710c702fc60c1f9acaad70a0e04f252024281aa43",
-      "optionsSha256": "6e6eae45bf5860a0d9c306ac8c0344588f4494a51a92d57718f727b3e3acc0a8"
+      "optionsSha256": "08fb6af0680b0a6032b6c62750fe238345152f6aa1c2260b4d165368dafdba55"
     },
     {
       "name": "warranty_policies",

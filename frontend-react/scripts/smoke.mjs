@@ -73,17 +73,16 @@ export async function session(role, landing, width = 1440) {
     else if (path === '/portal/my/warranty-requests') data = { code: 'YC-OWN-MOCK' };
     else if (path === '/portal/tickets/TN-2026-1002-00001') data = ticketView(true);
     else if (path.endsWith('/quotation-decision')) data = ticketView(false);
-    else if (path === '/auth/mobile/otp') data = { expiresIn: 300, resendAfter: 60 };
-    else if (path === '/auth/mobile/register') {
+    else if (path === '/auth/otp') data = { expiresIn: 300, resendAfter: 60 };
+    else if (path === '/auth/register') {
       user.username = JSON.parse(request.postData()).email;
-      data = { accessToken: 'mock-mobile', refreshToken: 'mock-mobile-rt', user };
+      data = { accessToken: 'mock-access', user };
     }
     else if (path === '/portal/my/email/otp') data = { expiresIn: 300, resendAfter: 60 };
     else if (path === '/portal/my/email/verify') data = { ...customer.profile, email: JSON.parse(request.postData()).email,
       username: JSON.parse(request.postData()).email, emailVerified: true };
-    else if (path === '/auth/mobile/logout') return route.fulfill({ status: 204 });
-    else if (path === '/auth/mobile/password-reset') return route.fulfill({ status: 204 });
-    else if (path === '/auth/mobile/password-reset/verify') {
+    else if (path === '/auth/password-reset') return route.fulfill({ status: 204 });
+    else if (path === '/auth/password-reset/verify') {
       if (JSON.parse(request.postData()).otp === '123456') return route.fulfill({ status: 204 });
       expectedResource404++;
       return route.fulfill({ status: 422, contentType: 'application/problem+json', body: JSON.stringify({ code: 'OTP_INVALID', detail: 'Mã xác minh không đúng hoặc đã hết hạn.' }) });
@@ -209,7 +208,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) { try {
     await c.page.goto(base + '/register');
     await c.page.click('button[type="submit"]');
     await c.page.getByText('Vui lòng nhập họ và tên.', { exact: true }).waitFor(); assertions++;
-    assert(!c.calls.includes('/auth/mobile/register')); assertions++;
+    assert(!c.calls.includes('/auth/register')); assertions++;
     if (width === 1440) await c.page.screenshot({ path: fileURLToPath(new URL('register-desktop.png', output)) });
     await c.page.fill('#fullName', 'Nguyễn Văn Khách');
     await c.page.fill('#email', 'khach@example.com');
@@ -221,7 +220,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) { try {
     await c.page.fill('#confirm', 'Khach-mat-khau-1');
     await c.page.click('button[type="submit"]');
     await c.page.waitForURL(base + '/account');
-    for (const path of ['/auth/mobile/register', '/auth/mobile/logout', '/auth/login']) assert(c.calls.includes(path), path);
+    assert(c.calls.includes('/auth/register'));
     assertions++;
     await c.page.getByRole('heading', { name: 'Xin chào, Nguyễn Văn Khách' }).waitFor(); assertions++;
     await c.page.goto(base + '/portal');
@@ -298,9 +297,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) { try {
     await f.page.waitForURL(base + '/forgot-password'); assertions++;
     await f.page.click('button[type="submit"]');
     await f.page.getByText('Vui lòng nhập email đã xác minh.', { exact: true }).waitFor(); assertions++;
-    assert(!f.calls.includes('/auth/mobile/password-reset')); assertions++;
+    assert(!f.calls.includes('/auth/password-reset')); assertions++;
     await f.page.fill('#email', 'khach@example.com');
-    const otp = f.page.waitForRequest(request => request.url().endsWith('/auth/mobile/otp'));
+    const otp = f.page.waitForRequest(request => request.url().endsWith('/auth/otp'));
     await f.page.click('.btn-otp');
     assert.deepEqual(JSON.parse((await otp).postData()), { email: 'khach@example.com', purpose: 'RESET_PASSWORD' }); assertions++;
     // Mã sai: ở lại bước 1, chưa hiện ô mật khẩu.
@@ -310,14 +309,14 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) { try {
     assert.equal(await f.page.locator('#password').count(), 0); assertions++;
     // Mã đúng: sang bước 2 rồi mới đặt mật khẩu.
     await f.page.fill('#otp', '123456');
-    const verify = f.page.waitForRequest(request => request.url().endsWith('/auth/mobile/password-reset/verify'));
+    const verify = f.page.waitForRequest(request => request.url().endsWith('/auth/password-reset/verify'));
     await f.page.getByRole('button', { name: 'Xác nhận mã' }).click();
     assert.deepEqual(JSON.parse((await verify).postData()), { email: 'khach@example.com', otp: '123456' }); assertions++;
     await f.page.getByRole('heading', { name: 'Đặt mật khẩu mới', level: 1 }).waitFor(); assertions++;
-    assert(!f.calls.includes('/auth/mobile/password-reset')); assertions++;
+    assert(!f.calls.includes('/auth/password-reset')); assertions++;
     await f.page.fill('#password', 'Khach-mat-khau-moi-1');
     await f.page.fill('#confirm', 'Khach-mat-khau-moi-1');
-    const reset = f.page.waitForRequest(request => request.url().endsWith('/auth/mobile/password-reset'));
+    const reset = f.page.waitForRequest(request => request.url().endsWith('/auth/password-reset'));
     await f.page.click('button[type="submit"]');
     assert.deepEqual(JSON.parse((await reset).postData()), { email: 'khach@example.com', otp: '123456', newPassword: 'Khach-mat-khau-moi-1' }); assertions++;
     await f.page.getByRole('heading', { name: 'Đã đặt lại mật khẩu' }).waitFor(); assertions++;

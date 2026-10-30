@@ -182,7 +182,7 @@ public sealed class PortalWarrantyRequestService(
             uploads);
     }
 
-    /// <summary>App khách hàng: họ tên, SĐT, liên hệ lấy từ hồ sơ; giới hạn theo tài khoản vì thuê bao 4G dùng chung IP.</summary>
+    /// <summary>Cổng khách hàng: họ tên, SĐT, liên hệ lấy từ hồ sơ; giới hạn theo tài khoản vì thuê bao 4G dùng chung IP.</summary>
     public async Task<string> SubmitOwnAsync(OwnWarrantyRequestData data, IReadOnlyList<Upload> uploads)
     {
         actors.Require(Permission.PORTAL_SELF);
@@ -215,7 +215,7 @@ public sealed class PortalWarrantyRequestService(
 }
 
 /// <summary>
-/// Hồ sơ và thiết bị của khách đang đăng nhập (app di động). Khách chỉ tự sửa email/địa chỉ; họ tên và SĐT (định danh đăng
+/// Hồ sơ và thiết bị của khách đang đăng nhập. Khách chỉ tự sửa email/địa chỉ; họ tên và SĐT (định danh đăng
 /// nhập, đối chiếu phiếu) do quầy cập nhật.
 /// </summary>
 public sealed class PortalProfileService(

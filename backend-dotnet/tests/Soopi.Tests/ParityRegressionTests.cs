@@ -313,16 +313,16 @@ public sealed class ParityRegressionTests : IAsyncLifetime
     public async Task EmailCodeMustMatchRegistrationAddressAndResetUsesVerifiedAddress()
     {
         var sender = factory.Services.GetRequiredService<RecordingEmailSender>();
-        var issued = await client.PostAsJsonAsync("/api/v1/auth/mobile/otp",
+        var issued = await client.PostAsJsonAsync("/api/v1/auth/otp",
             new { phone = "0905555555", email = "owner@example.com", purpose = "REGISTER" });
         Assert.Equal(HttpStatusCode.Accepted, issued.StatusCode);
         Assert.Equal("owner@example.com", sender.LastRecipient);
         var code = sender.LastCode;
-        var wrong = await client.PostAsJsonAsync("/api/v1/auth/mobile/register",
+        var wrong = await client.PostAsJsonAsync("/api/v1/auth/register",
             new { phone = "0905555555", email = "other@example.com", otp = code, fullName = "Owner",
                 password = "MatKhauMoi2026" });
         Assert.Equal(HttpStatusCode.UnprocessableEntity, wrong.StatusCode);
-        var registered = await client.PostAsJsonAsync("/api/v1/auth/mobile/register",
+        var registered = await client.PostAsJsonAsync("/api/v1/auth/register",
             new { phone = "0905555555", email = "owner@example.com", otp = code, fullName = "Owner",
                 password = "MatKhauMoi2026" });
         Assert.Equal(HttpStatusCode.Created, registered.StatusCode);
@@ -331,7 +331,7 @@ public sealed class ParityRegressionTests : IAsyncLifetime
         var accessToken = registration.RootElement.GetProperty("accessToken").GetString();
         var phoneLogin = await client.PostAsJsonAsync("/api/v1/auth/login", new { username = "0905555555", password = "MatKhauMoi2026", remember = false });
         Assert.Equal(HttpStatusCode.Unauthorized, phoneLogin.StatusCode);
-        var duplicateEmail = await client.PostAsJsonAsync("/api/v1/auth/mobile/otp",
+        var duplicateEmail = await client.PostAsJsonAsync("/api/v1/auth/otp",
             new { phone = "0907777777", email = "owner@example.com", purpose = "REGISTER" });
         Assert.Equal(HttpStatusCode.Conflict, duplicateEmail.StatusCode);
         var changeEmail = new HttpRequestMessage(HttpMethod.Patch, "/api/v1/portal/my/profile")
@@ -340,7 +340,7 @@ public sealed class ParityRegressionTests : IAsyncLifetime
         };
         changeEmail.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         Assert.Equal(HttpStatusCode.OK, (await client.SendAsync(changeEmail)).StatusCode);
-        var unverifiedReset = await client.PostAsJsonAsync("/api/v1/auth/mobile/otp",
+        var unverifiedReset = await client.PostAsJsonAsync("/api/v1/auth/otp",
             new { email = "new@example.com", purpose = "RESET_PASSWORD" });
         Assert.Equal(HttpStatusCode.NotFound, unverifiedReset.StatusCode);
         var emailOtp = new HttpRequestMessage(HttpMethod.Post, "/api/v1/portal/my/email/otp")
@@ -369,14 +369,14 @@ public sealed class ParityRegressionTests : IAsyncLifetime
         Assert.Equal(HttpStatusCode.Unauthorized, oldLogin.StatusCode);
         var newLogin = await client.PostAsJsonAsync("/api/v1/auth/login", new { username = "new@example.com", password = "MatKhauMoi2026", remember = false });
         Assert.Equal(HttpStatusCode.OK, newLogin.StatusCode);
-        var reset = await client.PostAsJsonAsync("/api/v1/auth/mobile/otp",
+        var reset = await client.PostAsJsonAsync("/api/v1/auth/otp",
             new { email = "new@example.com", purpose = "RESET_PASSWORD" });
         Assert.Equal(HttpStatusCode.Accepted, reset.StatusCode);
         Assert.Equal("new@example.com", sender.LastRecipient);
-        var verifiedReset = await client.PostAsJsonAsync("/api/v1/auth/mobile/password-reset/verify",
+        var verifiedReset = await client.PostAsJsonAsync("/api/v1/auth/password-reset/verify",
             new { email = "new@example.com", otp = sender.LastCode });
         Assert.Equal(HttpStatusCode.NoContent, verifiedReset.StatusCode);
-        var changedPassword = await client.PostAsJsonAsync("/api/v1/auth/mobile/password-reset",
+        var changedPassword = await client.PostAsJsonAsync("/api/v1/auth/password-reset",
             new { email = "new@example.com", otp = sender.LastCode, newPassword = "MatKhauKhac2026" });
         Assert.Equal(HttpStatusCode.NoContent, changedPassword.StatusCode);
         var recovered = await client.PostAsJsonAsync("/api/v1/auth/login", new { username = "new@example.com", password = "MatKhauKhac2026", remember = false });
@@ -392,11 +392,11 @@ public sealed class ParityRegressionTests : IAsyncLifetime
             db.Customers.Add(new Customer("KH-LEGACY", "Legacy", "0906666666", "known@example.com", null, DateTimeOffset.UtcNow));
             await db.SaveChangesAsync();
         }
-        var rejected = await client.PostAsJsonAsync("/api/v1/auth/mobile/otp",
+        var rejected = await client.PostAsJsonAsync("/api/v1/auth/otp",
             new { phone = "0906666666", email = "attacker@example.com", purpose = "REGISTER" });
         Assert.Equal(HttpStatusCode.BadRequest, rejected.StatusCode);
         Assert.Null(factory.Services.GetRequiredService<RecordingEmailSender>().LastRecipient);
-        var allowed = await client.PostAsJsonAsync("/api/v1/auth/mobile/otp",
+        var allowed = await client.PostAsJsonAsync("/api/v1/auth/otp",
             new { phone = "0906666666", email = "known@example.com", purpose = "REGISTER" });
         Assert.Equal(HttpStatusCode.Accepted, allowed.StatusCode);
     }

@@ -10,7 +10,7 @@ public sealed record FieldErrorView(string Field, string Message);
 /// <summary>Lỗi RFC 9457 giống ApiErrorHandler của bản Java: type/title/status/detail/instance + code, correlationId, fieldErrors.</summary>
 public static class ProblemWriter
 {
-    private const string ErrorBase = "https://longmanloc.vn/errors/";
+    private const string ErrorBase = "urn:soopi:errors:";
     private static readonly JsonSerializerOptions Json = JsonSetup.Create();
 
     public static ProblemDetails Create(

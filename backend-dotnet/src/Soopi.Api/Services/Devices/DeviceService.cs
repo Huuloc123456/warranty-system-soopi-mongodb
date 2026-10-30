@@ -90,7 +90,7 @@ public sealed class DeviceService(
         return await ListByCustomerAsync(customerCode);
     }
 
-    /// <summary>App khách hàng: thiết bị đứng tên chính khách đang đăng nhập.</summary>
+    /// <summary>Cổng khách hàng: thiết bị đứng tên chính khách đang đăng nhập.</summary>
     public async Task<List<DeviceView>> ListOwnedAsync()
     {
         var customerCode = actors.Require(Permission.PORTAL_SELF).CustomerId ?? throw new DomainException(ErrorCode.ACCESS_DENIED);

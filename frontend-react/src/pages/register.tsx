@@ -5,8 +5,8 @@ import { BrandLogo, Icon, PasswordInput, api, errorText, useAuthScale, useBusy }
 type Field = "fullName" | "phone" | "email" | "otp" | "password" | "confirm";
 const EMPTY: Record<Field, string> = { fullName: "", phone: "", email: "", otp: "", password: "", confirm: "" };
 
-/* Đăng ký tài khoản khách (giao diện web khách KLCN). Backend xác thực email bằng OTP qua /auth/mobile; đăng ký xong
-   đăng nhập phiên web (cookie refresh) rồi thu hồi refresh token kiểu mobile mà /register trả về. */
+/* Đăng ký tài khoản khách (giao diện web khách KLCN). Backend xác thực email bằng OTP (/auth/otp); /auth/register tạo
+   tài khoản và mở luôn phiên web (refresh token trong cookie), trả access token như /auth/login. */
 export default function RegisterPage() {
   usePage("register", {}, "Đăng ký — Soopi");
   const scaled = useAuthScale();
@@ -38,7 +38,7 @@ export default function RegisterPage() {
     if (!email) return setErrors({ ...errors, email: "Vui lòng nhập email nhận mã xác minh." });
     await runSend(async () => {
       try {
-        const issued = await api().request("POST", "/auth/mobile/otp", { body: { phone, email, purpose: "REGISTER" }, auth: "none" });
+        const issued = await api().request("POST", "/auth/otp", { body: { phone, email, purpose: "REGISTER" }, auth: "none" });
         setOtpSentTo(email);
         setResendIn(Number(issued.resendAfter) || 60);
         document.getElementById("otp")?.focus();
@@ -63,12 +63,11 @@ export default function RegisterPage() {
     if (Object.keys(next).length) return;
     await runSubmit(async () => {
       try {
-        const created = await api().request("POST", "/auth/mobile/register", {
+        const session = await api().request("POST", "/auth/register", {
           body: { phone: form.phone.trim(), otp: form.otp.trim(), fullName: form.fullName.trim(), password: form.password, email: form.email.trim() || null },
           auth: "none",
         });
-        void api().request("POST", "/auth/mobile/logout", { body: { refreshToken: created.refreshToken }, auth: "none" }).catch(() => undefined);
-        const session = await api().auth.login(created.user.username, form.password, false);
+        api().session.remember(session.user);
         api().tokens.set(session.accessToken);
         window.location.href = "/account";
       } catch (error) {

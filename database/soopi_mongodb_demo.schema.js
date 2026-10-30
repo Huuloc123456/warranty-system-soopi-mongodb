@@ -1,6 +1,6 @@
 // Soopi MongoDB: collections and indexes only
-// Source: soopi_mongodb_demo; captured at: 2026-10-30T04:52:26.668Z
-// 26 collections; 54 indexes (including _id_).
+// Source: soopi_mongodb_demo; captured at: 2026-10-30T07:40:17.831Z
+// 25 collections; 52 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
 // Attachment contents live on disk and must be copied separately.
@@ -54,7 +54,7 @@
 }, { relaxed: false }));
   if (target.getCollection("attachments").countDocuments({}) !== 0) throw new Error("Count mismatch: attachments");
 
-  // Collection: audit_logs (2153 documents in source).
+  // Collection: audit_logs (2162 documents in source).
   target.createCollection("audit_logs", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("audit_logs").createIndex(EJSON.deserialize({
   "entityType": {
@@ -476,18 +476,6 @@
   target.createCollection("products", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("products").countDocuments({}) !== 0) throw new Error("Count mismatch: products");
 
-  // Collection: push_devices (0 documents in source).
-  target.createCollection("push_devices", EJSON.deserialize({}, { relaxed: false }));
-  target.getCollection("push_devices").createIndex(EJSON.deserialize({
-  "pushToken": {
-    "$numberInt": "1"
-  }
-}, { relaxed: false }), EJSON.deserialize({
-  "name": "push_token",
-  "unique": true
-}, { relaxed: false }));
-  if (target.getCollection("push_devices").countDocuments({}) !== 0) throw new Error("Count mismatch: push_devices");
-
   // Collection: quotations (86 documents in source).
   target.createCollection("quotations", EJSON.deserialize({
   "validator": {
@@ -620,7 +608,7 @@
 }, { relaxed: false }));
   if (target.getCollection("quotations").countDocuments({}) !== 0) throw new Error("Count mismatch: quotations");
 
-  // Collection: refresh_tokens (45 documents in source).
+  // Collection: refresh_tokens (54 documents in source).
   target.createCollection("refresh_tokens", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "accountId": {
@@ -789,7 +777,6 @@
         "channel": {
           "enum": [
             "COUNTER",
-            "MOBILE_APP",
             "ONLINE_REQUEST",
             "PHONE"
           ]
@@ -956,5 +943,5 @@
 }, { relaxed: false }));
   if (target.getCollection("warranty_requests").countDocuments({}) !== 0) throw new Error("Count mismatch: warranty_requests");
 
-  print("Restored 0 documents in 26 collections to " + targetName);
+  print("Restored 0 documents in 25 collections to " + targetName);
 })();

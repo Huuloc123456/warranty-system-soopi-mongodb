@@ -15,12 +15,12 @@ public sealed record BackupFile(string FileName, byte[] Content, long Documents)
 /// <summary>
 /// Sao lưu dữ liệu tải từ trang quản trị: tệp zip gồm mỗi collection một mảng Extended JSON chuẩn (đúng định dạng
 /// mongoimport --jsonArray, giữ kiểu Date/Decimal128/Int64), manifest.json và restore.js để nạp lại bằng mongosh vào database
-/// mới. Không gồm bí mật: phiên đăng nhập, OTP, thiết bị push và hash mật khẩu. Sao lưu đầy đủ để chạy lại ứng dụng dùng
+/// mới. Không gồm bí mật: phiên đăng nhập, OTP và hash mật khẩu. Sao lưu đầy đủ để chạy lại ứng dụng dùng
 /// mongodump (database/backup/backup.ps1).
 /// </summary>
 public sealed class BackupService(AppDbContext db, CurrentActor actors, AuditService audit, TimeProvider clock)
 {
-    private static readonly HashSet<string> Excluded = ["refresh_tokens", "otp_codes", "push_devices"];
+    private static readonly HashSet<string> Excluded = ["refresh_tokens", "otp_codes"];
     private static readonly JsonWriterSettings Canonical = new() { OutputMode = JsonOutputMode.CanonicalExtendedJson };
 
     public async Task<BackupFile> CreateAsync()

@@ -10,8 +10,6 @@ using Soopi.Api.Services.Shared;
 
 namespace Soopi.Api.Controllers;
 
-public sealed record DeviceRegistration([NotBlank] string Platform, [NotBlank] string PushToken, string? AppVersion);
-
 [ApiController]
 [Authorize]
 [Route("api/v1/reports")]
@@ -65,7 +63,7 @@ public sealed class ReportsController(ReportService reports) : ControllerBase
 [ApiController]
 [Authorize]
 [Route("api/v1")]
-public sealed class AuditAndNotificationsController(AuditQueryService audits, NotificationQueryService notifications, PushDeviceService pushDevices) : ControllerBase
+public sealed class AuditAndNotificationsController(AuditQueryService audits, NotificationQueryService notifications) : ControllerBase
 {
     [HttpGet("audit-logs")]
     public Task<PageResponse<AuditEntryView>> AuditLogs(
@@ -87,21 +85,6 @@ public sealed class AuditAndNotificationsController(AuditQueryService audits, No
     public async Task<IActionResult> MarkAllRead()
     {
         await notifications.MarkAllReadAsync();
-        return NoContent();
-    }
-
-    /// <summary>App di động đăng ký FCM token cho lượt cài app; gọi lặp lại an toàn.</summary>
-    [HttpPut("notifications/devices/{installationId}")]
-    public async Task<IActionResult> RegisterDevice(string installationId, [FromBody] DeviceRegistration body)
-    {
-        await pushDevices.RegisterAsync(installationId, body.Platform, body.PushToken, body.AppVersion);
-        return NoContent();
-    }
-
-    [HttpDelete("notifications/devices/{installationId}")]
-    public async Task<IActionResult> UnregisterDevice(string installationId)
-    {
-        await pushDevices.UnregisterAsync(installationId);
         return NoContent();
     }
 }

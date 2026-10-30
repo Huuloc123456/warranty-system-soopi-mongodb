@@ -30,25 +30,18 @@ public sealed class AuthService(
     /// <summary>Lỗi nghiệp vụ (sai mật khẩu, khóa tạm) vẫn ghi bộ đếm đăng nhập sai và nhật ký trước khi báo lỗi.</summary>
     public async Task<AuthResult> LoginAsync(string username, string password, bool remember, string? ip, string? userAgent)
     {
-        var (account, displayName) = await AuthenticateAsync(username, password, ip, customerOnly: false);
+        var (account, displayName) = await AuthenticateAsync(username, password, ip);
         return await IssueAsync(account, displayName, remember, Guid.NewGuid().ToString(), ip, userAgent);
     }
 
-    /// <summary>App di động: chỉ tài khoản khách hàng; phiên luôn "ghi nhớ" như ứng dụng thường làm.</summary>
-    public async Task<AuthResult> LoginCustomerAsync(string username, string password, string? ip, string? userAgent)
-    {
-        var (account, displayName) = await AuthenticateAsync(username, password, ip, customerOnly: true);
-        return await IssueAsync(account, displayName, true, Guid.NewGuid().ToString(), ip, userAgent);
-    }
-
-    /// <summary>Mở phiên cho tài khoản khách vừa đăng ký (đã xác minh OTP thay cho mật khẩu).</summary>
+    /// <summary>Mở phiên (không "ghi nhớ") cho tài khoản khách vừa đăng ký, đã xác minh OTP thay cho mật khẩu.</summary>
     public Task<AuthResult> SignInAsync(long accountId, string? ip, string? userAgent) =>
         transactions.InTransactionAsync(async () =>
         {
             var account = await RequireActiveAccountAsync(accountId);
             account.RegisterSuccessfulLogin(clock.GetUtcNow());
             await accounts.SaveAsync();
-            return await IssueAsync(account, await principals.DisplayNameAsync(account), true, Guid.NewGuid().ToString(), ip, userAgent);
+            return await IssueAsync(account, await principals.DisplayNameAsync(account), false, Guid.NewGuid().ToString(), ip, userAgent);
         });
 
     public async Task<AuthResult> RefreshAsync(string rawToken, string? ip, string? userAgent)
@@ -87,19 +80,17 @@ public sealed class AuthService(
         }
     }
 
-    /// <summary>Trả về tài khoản của refresh token (nếu còn nhận ra) để app di động gỡ luôn thiết bị nhận push.</summary>
-    public async Task<long?> LogoutAsync(string? rawToken, bool all)
+    public async Task LogoutAsync(string? rawToken, bool all)
     {
-        if (string.IsNullOrWhiteSpace(rawToken)) return null;
+        if (string.IsNullOrWhiteSpace(rawToken)) return;
         var token = await db.RefreshTokens.FirstOrDefaultAsync(t => t.TokenHash == Hash(rawToken));
-        if (token is null) return null;
+        if (token is null) return;
         if (all) await RevokeAccountAsync(token.AccountId, clock.GetUtcNow());
         else
         {
             token.Revoke(clock.GetUtcNow());
             await db.SaveChangesAsync();
         }
-        return token.AccountId;
     }
 
     public async Task<UserView> MeAsync(AuthenticatedActor actor)
@@ -108,13 +99,13 @@ public sealed class AuthService(
         return View(account, actor.DisplayName ?? account.Username);
     }
 
-    /// <summary><paramref name="remember"/>: phiên mới sau khi đổi mật khẩu có "ghi nhớ" hay không (app di động luôn có).</summary>
+    /// <summary>Phiên mới sau khi đổi mật khẩu không "ghi nhớ".</summary>
     public Task<AuthResult> ChangePasswordAsync(
-        AuthenticatedActor actor, string currentPassword, string newPassword, bool remember, string? ip, string? userAgent) =>
-        transactions.InTransactionAsync(() => ChangePasswordOnceAsync(actor, currentPassword, newPassword, remember, ip, userAgent));
+        AuthenticatedActor actor, string currentPassword, string newPassword, string? ip, string? userAgent) =>
+        transactions.InTransactionAsync(() => ChangePasswordOnceAsync(actor, currentPassword, newPassword, ip, userAgent));
 
     private async Task<AuthResult> ChangePasswordOnceAsync(
-        AuthenticatedActor actor, string currentPassword, string newPassword, bool remember, string? ip, string? userAgent)
+        AuthenticatedActor actor, string currentPassword, string newPassword, string? ip, string? userAgent)
     {
         var account = await accounts.FindByIdAsync(actor.AccountId) ?? throw new DomainException(ErrorCode.AUTH_TOKEN_REVOKED);
         // Chặn dò "mật khẩu hiện tại" bằng token/phiên đánh cắp: giới hạn tần suất giống màn đăng nhập.
@@ -129,7 +120,7 @@ public sealed class AuthService(
         securityVersions.Evict(account.Id);
         await RevokeAccountAsync(account.Id, now);
         await AuditAsync(account, "AUTH_PASSWORD_CHANGED", "Đổi mật khẩu");
-        return await IssueAsync(account, actor.DisplayName ?? account.Username, remember, Guid.NewGuid().ToString(), ip, userAgent);
+        return await IssueAsync(account, actor.DisplayName ?? account.Username, false, Guid.NewGuid().ToString(), ip, userAgent);
     }
 
     /// <summary>Quên mật khẩu (chủ tài khoản đã xác minh OTP): thu hồi mọi phiên; mật khẩu đã kiểm tra chính sách trước.</summary>
@@ -167,7 +158,7 @@ public sealed class AuthService(
             account.MustChangePassword);
     }
 
-    private async Task<(Account Account, string DisplayName)> AuthenticateAsync(string username, string password, string? ip, bool customerOnly)
+    private async Task<(Account Account, string DisplayName)> AuthenticateAsync(string username, string password, string? ip)
     {
         var normalized = Account.Normalize(username);
         rateLimiter.CheckLogin(ip, normalized);
@@ -178,7 +169,6 @@ public sealed class AuthService(
         if (account!.TemporarilyLocked(now)) throw new DomainException(ErrorCode.AUTH_TEMPORARILY_LOCKED);
         var displayName = account.Status == AccountStatus.LOCKED ? null : await principals.ActiveNameAsync(account);
         if (displayName is null) throw new DomainException(ErrorCode.AUTH_ACCOUNT_LOCKED);
-        if (customerOnly && account.PrincipalType != PrincipalType.CUSTOMER) throw new DomainException(ErrorCode.ACCESS_DENIED);
         account.RegisterSuccessfulLogin(now);
         await accounts.SaveAsync();
         await AuditAsync(account, "AUTH_LOGIN_SUCCESS", "Đăng nhập thành công");

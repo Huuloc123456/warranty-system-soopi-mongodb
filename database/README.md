@@ -8,7 +8,7 @@
 | `soopi_mongodb.schema.js` | Chỉ tạo collection và index, không chèn dữ liệu. |
 | `snapshot-manifest.json` | Số lượng document/index và checksum để đối chiếu. |
 | `export-current.js` | Xuất lại script từ database local khi dữ liệu thay đổi. Biến `SOOPI_EXPORT_DB` chọn database nguồn khác; file mang tên database đó. |
-| `soopi_mongodb_demo.full.js`, `.schema.js`, `.manifest.json` | Bản xuất dữ liệu demo 6 tháng (4.807 document, 210 phiếu, đã gồm dữ liệu Phase6; kèm validator `$jsonSchema`, TTL và text index). Nạp bằng `run.bat demo-restore`; xem [`demo-data`](demo-data). |
+| `soopi_mongodb_demo.full.js`, `.schema.js`, `.manifest.json` | Bản xuất dữ liệu demo 6 tháng (4.825 document, 210 phiếu, đã gồm dữ liệu Phase6; kèm validator `$jsonSchema`, TTL và text index). Nạp bằng `run.bat demo-restore`; xem [`demo-data`](demo-data). |
 | [`queries/`](queries) | Bộ truy vấn cơ bản, aggregation nâng cao, index và schema chạy trong Compass/mongosh. |
 
 ## Chạy script đầy đủ
@@ -59,7 +59,7 @@ Lệnh chỉ đọc database nguồn và cập nhật ba file full/schema/manife
 
 ## Kiểm chứng bản xuất này
 
-Xuất lại ngày 30/10/2026: `soopi_mongodb` có 26 collection, 52 index, 700 document; `soopi_mongodb_demo` có 26 collection, 54 index, 4.807 document. Đã khôi phục cả hai bản full vào database kiểm thử riêng và đối chiếu SHA-256 với manifest: số document, dữ liệu, index và collection options khớp toàn bộ, không collection nào lệch; database kiểm thử đã được xóa. Bốn script full/schema qua `node --check`.
+Xuất lại ngày 30/10/2026, sau khi bỏ collection `push_devices` của app di động: `soopi_mongodb` có 25 collection, 52 index, 700 document; `soopi_mongodb_demo` có 25 collection, 52 index, 4.825 document. Đã khôi phục cả hai bản full vào database kiểm thử riêng và đối chiếu SHA-256 với manifest: số document, dữ liệu, index và collection options khớp toàn bộ, không collection nào lệch; database kiểm thử đã được xóa. Bốn script full/schema qua `node --check`.
 
 Lần kiểm chứng trước (bản xuất 21/10, 689 document): đã chạy cả bản full và schema trên database kiểm thử riêng. Đã đối chiếu SHA-256 dữ liệu Extended JSON chuẩn, index và collection options của từng collection; kiểm tra chặn database đã có collection và database hệ thống. Database kiểm thử đã được dọn; checksum dữ liệu nguồn sau kiểm thử vẫn khớp bản xuất. Cả ba script JavaScript đều qua kiểm tra cú pháp `node --check`.
 

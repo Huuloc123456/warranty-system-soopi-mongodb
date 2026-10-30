@@ -10,7 +10,7 @@ MongoDB.Driver 3.12.0, database mới `soopi_mongodb` trên replica set local `r
 
 | Collection | Dữ liệu |
 |---|---|
-| `accounts`, `employees`, `customers`, `refresh_tokens`, `otp_codes`, `push_devices` | Tài khoản, vai trò nhúng, hồ sơ và phiên đăng nhập |
+| `accounts`, `employees`, `customers`, `refresh_tokens`, `otp_codes` | Tài khoản, vai trò nhúng, hồ sơ và phiên đăng nhập |
 | `devices` | Thiết bị với serial chuẩn hóa và ngày bảo hành |
 | `tickets` | Phiếu với phân công, chẩn đoán, lịch sử trạng thái, ghi chú, kết quả QC và bàn giao nhúng |
 | `quotations` | Báo giá, dòng chi tiết, duyệt nội bộ và quyết định khách |
@@ -41,7 +41,7 @@ Doanh thu theo tháng, phiếu theo trạng thái, tỉ lệ bảo hành, thời
 
 ## Giới hạn đã ghi nhận
 
-OTP gửi qua Gmail SMTP khi có mật khẩu ứng dụng; push vẫn ở chế độ log. Không chuyển dữ liệu SQL Server hay `service_center` sang database mới.
+OTP gửi qua Gmail SMTP khi có mật khẩu ứng dụng; không có push hay app di động, thông báo chỉ hiển thị trong web. Không chuyển dữ liệu SQL Server hay `service_center` sang database mới.
 
 ## Tài liệu chính thức
 

@@ -58,7 +58,7 @@ public sealed record SubmissionCommand(
     DateTimeOffset? PreferredTo,
     string? CustomerId = null);
 
-/// <summary>Khách tự đăng ký yêu cầu bảo hành trên cổng khách (công khai) hoặc app.</summary>
+/// <summary>Khách tự đăng ký yêu cầu bảo hành trên cổng khách (công khai).</summary>
 public sealed class WarrantyRequestSubmissionService(
     WarrantyRequestStore store,
     CatalogStore catalog,

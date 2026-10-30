@@ -1,17 +1,25 @@
 {
-  "originalRoutes": 124,
-  "currentRoutes": 130,
+  "originalRoutes": 114,
+  "currentRoutes": 124,
   "excluded": [
     "backend-dotnet/src/Soopi.Api/Controllers/ChatController.cs",
     "frontend-react/src/ChatBubble.tsx"
   ],
+  "removedRoutes": [
+    "/^\\w+ \\/api\\/v1\\/auth\\/mobile\\//",
+    "/^\\w+ \\/api\\/v1\\/notifications\\/devices\\//"
+  ],
   "added": [
     "GET /api/v1/admin/backup",
+    "POST /api/v1/auth/otp",
+    "POST /api/v1/auth/password-reset",
+    "POST /api/v1/auth/password-reset/verify",
+    "POST /api/v1/auth/register",
     "POST /api/v1/portal/my/email/otp",
     "POST /api/v1/portal/my/email/verify",
     "POST /api/v1/quotations/{}/expire",
     "POST /api/v1/tickets/{}/quotations/revision",
     "POST /api/v1/tickets/{}/return"
   ],
-  "checkedAt": "2026-10-30T07:07:51.838Z"
+  "checkedAt": "2026-10-30T07:32:48.329Z"
 }

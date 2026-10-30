@@ -21,7 +21,7 @@ Collection, unique index và dữ liệu demo được tạo khi chạy lần đ
 ### Dữ liệu demo 6 tháng (cho báo cáo NoSQL)
 
 ```powershell
-.\run.bat demo-restore   # nạp 4.807 document vào soopi_mongodb_demo (một lần)
+.\run.bat demo-restore   # nạp 4.825 document vào soopi_mongodb_demo (một lần)
 .\run.bat demo           # chạy ứng dụng trên soopi_mongodb_demo
 ```
 

@@ -48,15 +48,10 @@ else
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
 
-// Dùng chung: nhật ký, thông báo, push (chế độ log).
-if (config["Push:Provider"] is { } push && push != "log")
-    throw new InvalidOperationException($"Push:Provider={push} chưa được hỗ trợ ở bản .NET — dùng \"log\"");
+// Dùng chung: nhật ký, thông báo trong ứng dụng.
 builder.Services.AddScoped<AuditService>();
 builder.Services.AddScoped<BackupService>();
 builder.Services.AddScoped<NotificationService>();
-builder.Services.AddScoped<PushDispatcher>();
-builder.Services.AddScoped<PushDeviceStore>();
-builder.Services.AddSingleton<IPushGateway, LoggingPushGateway>();
 
 // Xác thực và tài khoản.
 builder.Services.Configure<SecurityOptions>(config.GetSection("Security"));
@@ -77,7 +72,6 @@ builder.Services.AddScoped<AccountPolicy>();
 builder.Services.AddScoped<OtpService>();
 builder.Services.AddScoped<CustomerAccountService>();
 builder.Services.AddScoped<EmployeeAdminService>();
-builder.Services.AddScoped<PushDeviceService>();
 builder.Services.AddHostedService<RefreshTokenCleanup>();
 
 // Danh mục, khách hàng, thiết bị.

@@ -6,7 +6,6 @@ using Soopi.Api.Domain.Shared;
 using Soopi.Api.DTOs.Shared;
 using Soopi.Api.Infrastructure.Security;
 using Soopi.Api.Infrastructure.Validation;
-using Soopi.Api.Services.Notifications;
 using Soopi.Api.Services.Shared;
 
 namespace Soopi.Api.Services.Customers;
@@ -28,7 +27,6 @@ public sealed class CustomerAccountAdminService(
     AppDbContext db,
     MongoDocuments docs,
     AccountStore accounts,
-    PushDeviceService pushDevices,
     SecurityVersionCache securityVersions,
     CurrentActor actors,
     TransactionRunner transactions,
@@ -83,7 +81,7 @@ public sealed class CustomerAccountAdminService(
         return new CustomerAccountDetail(View(customer, account, clock.GetUtcNow()), counts.Devices, counts.OpenTickets);
     }
 
-    /// <summary>Khóa ngay: thu hồi mọi phiên và thiết bị nhận push. Hồ sơ đã lưu trữ/gộp vẫn khóa được.</summary>
+    /// <summary>Khóa ngay: thu hồi mọi phiên đăng nhập. Hồ sơ đã lưu trữ/gộp vẫn khóa được.</summary>
     public async Task<CustomerAccountDetail> LockAsync(string code, string? reason)
     {
         actors.Require(Permission.CUSTOMER_ACCOUNT_MANAGE);
@@ -173,7 +171,6 @@ public sealed class CustomerAccountAdminService(
         account.Lock();
         await accounts.SaveAsync();
         await RevokeSessionsAsync(account.Id);
-        await pushDevices.ForgetAllAsync(account.Id);
     }
 
     private Task RevokeSessionsAsync(long accountId)

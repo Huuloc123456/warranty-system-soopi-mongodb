@@ -162,7 +162,7 @@ public class IdentityTests
         var token = new JwtService(keys, options, TimeProvider.System).IssueAccessToken(account, "Lễ tân");
         var result = await new JsonWebTokenHandler().ValidateTokenAsync(token, new TokenValidationParameters
         {
-            ValidIssuer = "longmanloc-service-center",
+            ValidIssuer = "soopi-service-center",
             ValidateAudience = false,
             IssuerSigningKey = keys.Verifying,
         });

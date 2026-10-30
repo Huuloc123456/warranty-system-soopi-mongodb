@@ -105,9 +105,8 @@ public sealed class SpringSecurityBoundaryMiddleware(RequestDelegate next, IRead
     private static readonly HashSet<string> PublicApiPaths = new(StringComparer.Ordinal)
     {
         "/api/v1/auth/login", "/api/v1/auth/refresh", "/api/v1/auth/logout",
-        "/api/v1/auth/mobile/login", "/api/v1/auth/mobile/refresh", "/api/v1/auth/mobile/logout",
-        "/api/v1/auth/mobile/otp", "/api/v1/auth/mobile/register", "/api/v1/auth/mobile/password-reset",
-        "/api/v1/auth/mobile/password-reset/verify", "/api/v1/portal/lookup",
+        "/api/v1/auth/otp", "/api/v1/auth/register", "/api/v1/auth/password-reset",
+        "/api/v1/auth/password-reset/verify", "/api/v1/portal/lookup",
     };
 
     private static readonly string[] PublicStaticPrefixes = ["/pages", "/css", "/js", "/images", "/fonts", "/assets"];
@@ -154,8 +153,6 @@ public sealed class PasswordChangeRequiredMiddleware(RequestDelegate next)
         "/api/v1/auth/me",
         "/api/v1/auth/change-password",
         "/api/v1/auth/logout",
-        "/api/v1/auth/mobile/change-password",
-        "/api/v1/auth/mobile/logout",
     ];
 
     public async Task InvokeAsync(HttpContext context, CurrentActor actors, SecurityVersionCache versions)
