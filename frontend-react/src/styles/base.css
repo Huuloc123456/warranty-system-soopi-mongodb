@@ -1,7 +1,6 @@
 /* ==========================================================================
    Base reset & global layout shell (sidebar cố định + header cố định)
-   Nguồn: CLAUDE.md mục 2 (nguyên tắc), 8 (sidebar), 9 (header), 10 (workspace),
-   11 (responsive), 12 (z-index)
+   Nguồn: DESIGN.md (Overview, Layout, Navigation)
    ========================================================================== */
 
 *,

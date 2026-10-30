@@ -1,6 +1,6 @@
 /* ==========================================================================
    Component library — dùng chung cho mọi role-view
-   Nguồn: CLAUDE.md mục 3,4,6,7,8,9,10,13,26,27
+   Nguồn: DESIGN.md (Components, Do's and Don'ts)
    ========================================================================== */
 
 /* ---------------------------------------------------------------------- */
@@ -1721,7 +1721,7 @@ button.queue-item {
 }
 
 /* Customer Portal là màn duy nhất khách hàng thật sự dùng trên điện thoại —
-   5 màn nội bộ còn lại cố ý chỉ nhắm desktop 1280px+ theo CLAUDE.md mục 11. */
+   5 màn nội bộ còn lại cố ý chỉ nhắm desktop 1280px+ theo DESIGN.md (Layout). */
 @media (max-width: 480px) {
   .portal-main {
     padding: 20px 16px 40px;

@@ -13,5 +13,5 @@
     "POST /api/v1/tickets/{}/quotations/revision",
     "POST /api/v1/tickets/{}/return"
   ],
-  "checkedAt": "2026-10-28T13:18:04.962Z"
+  "checkedAt": "2026-10-30T07:07:51.838Z"
 }

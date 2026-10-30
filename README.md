@@ -84,4 +84,4 @@ npm.cmd test
 
 Test integration dùng database `soopi_mongodb_test_<GUID>` riêng và chỉ dọn đúng database test vừa tạo. MongoDB cần hoạt động với replica set; không dùng database thật cho bộ test.
 
-Xem [kết quả kiểm chứng](docs/VERIFICATION.md), [kiến trúc MongoDB](docs/ARCHITECTURE.md) và [phạm vi chuyển đổi](tasks/plan.md).
+Xem [kết quả kiểm chứng](docs/VERIFICATION.md) và [kiến trúc MongoDB](docs/ARCHITECTURE.md).

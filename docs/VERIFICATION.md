@@ -49,7 +49,7 @@ Database riêng `soopi_mongodb_test_<GUID>`; chỉ database test vừa tạo đ�
 
 ![Quản trị trên điện thoại](screenshots/admin-mobile.png)
 
-Giao diện kế thừa nguyên bản; không đổi thiết kế/tokens, chỉ đổi điều hướng đăng nhập theo yêu cầu. PRODUCT.md được cập nhật cho biến thể MongoDB, DESIGN.md và `.impeccable/design.json` giữ hệ thiết kế Soopi.
+Giao diện kế thừa nguyên bản; không đổi thiết kế/tokens, chỉ đổi điều hướng đăng nhập theo yêu cầu. PRODUCT.md được cập nhật cho biến thể MongoDB, DESIGN.md giữ hệ thiết kế Soopi.
 
 ## Giới hạn
 
