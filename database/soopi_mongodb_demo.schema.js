@@ -1,5 +1,5 @@
 // Soopi MongoDB: collections and indexes only
-// Source: soopi_mongodb_demo; captured at: 2026-10-28T12:27:26.772Z
+// Source: soopi_mongodb_demo; captured at: 2026-10-30T04:52:26.668Z
 // 26 collections; 54 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
@@ -40,7 +40,7 @@
 }, { relaxed: false }));
   if (target.getCollection("accounts").countDocuments({}) !== 0) throw new Error("Count mismatch: accounts");
 
-  // Collection: attachments (170 documents in source).
+  // Collection: attachments (171 documents in source).
   target.createCollection("attachments", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("attachments").createIndex(EJSON.deserialize({
   "ownerType": {
@@ -54,7 +54,7 @@
 }, { relaxed: false }));
   if (target.getCollection("attachments").countDocuments({}) !== 0) throw new Error("Count mismatch: attachments");
 
-  // Collection: audit_logs (2018 documents in source).
+  // Collection: audit_logs (2153 documents in source).
   target.createCollection("audit_logs", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("audit_logs").createIndex(EJSON.deserialize({
   "entityType": {
@@ -75,11 +75,11 @@
   target.createCollection("brands", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("brands").countDocuments({}) !== 0) throw new Error("Count mismatch: brands");
 
-  // Collection: counters (211 documents in source).
+  // Collection: counters (214 documents in source).
   target.createCollection("counters", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("counters").countDocuments({}) !== 0) throw new Error("Count mismatch: counters");
 
-  // Collection: customers (84 documents in source).
+  // Collection: customers (95 documents in source).
   target.createCollection("customers", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -172,7 +172,7 @@
 }, { relaxed: false }));
   if (target.getCollection("device_categories").countDocuments({}) !== 0) throw new Error("Count mismatch: device_categories");
 
-  // Collection: devices (183 documents in source).
+  // Collection: devices (196 documents in source).
   target.createCollection("devices", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -259,7 +259,7 @@
 }, { relaxed: false }));
   if (target.getCollection("employees").countDocuments({}) !== 0) throw new Error("Count mismatch: employees");
 
-  // Collection: notifications (1202 documents in source).
+  // Collection: notifications (1261 documents in source).
   target.createCollection("notifications", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("notifications").createIndex(EJSON.deserialize({
   "accountId": {
@@ -402,7 +402,7 @@
 }, { relaxed: false }));
   if (target.getCollection("parts").countDocuments({}) !== 0) throw new Error("Count mismatch: parts");
 
-  // Collection: payments (170 documents in source).
+  // Collection: payments (172 documents in source).
   target.createCollection("payments", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -488,7 +488,7 @@
 }, { relaxed: false }));
   if (target.getCollection("push_devices").countDocuments({}) !== 0) throw new Error("Count mismatch: push_devices");
 
-  // Collection: quotations (80 documents in source).
+  // Collection: quotations (86 documents in source).
   target.createCollection("quotations", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -620,7 +620,7 @@
 }, { relaxed: false }));
   if (target.getCollection("quotations").countDocuments({}) !== 0) throw new Error("Count mismatch: quotations");
 
-  // Collection: refresh_tokens (16 documents in source).
+  // Collection: refresh_tokens (45 documents in source).
   target.createCollection("refresh_tokens", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "accountId": {
@@ -667,7 +667,7 @@
   target.createCollection("service_stations", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("service_stations").countDocuments({}) !== 0) throw new Error("Count mismatch: service_stations");
 
-  // Collection: stock_issues (91 documents in source).
+  // Collection: stock_issues (92 documents in source).
   target.createCollection("stock_issues", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -743,7 +743,7 @@
 }, { relaxed: false }));
   if (target.getCollection("stock_issues").countDocuments({}) !== 0) throw new Error("Count mismatch: stock_issues");
 
-  // Collection: stock_receipts (7 documents in source).
+  // Collection: stock_receipts (8 documents in source).
   target.createCollection("stock_receipts", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("stock_receipts").countDocuments({}) !== 0) throw new Error("Count mismatch: stock_receipts");
 
@@ -755,7 +755,7 @@
   target.createCollection("suppliers", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("suppliers").countDocuments({}) !== 0) throw new Error("Count mismatch: suppliers");
 
-  // Collection: tickets (197 documents in source).
+  // Collection: tickets (210 documents in source).
   target.createCollection("tickets", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -942,7 +942,7 @@
   target.createCollection("warranty_policies", EJSON.deserialize({}, { relaxed: false }));
   if (target.getCollection("warranty_policies").countDocuments({}) !== 0) throw new Error("Count mismatch: warranty_policies");
 
-  // Collection: warranty_requests (27 documents in source).
+  // Collection: warranty_requests (28 documents in source).
   target.createCollection("warranty_requests", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("warranty_requests").createIndex(EJSON.deserialize({
   "status": {

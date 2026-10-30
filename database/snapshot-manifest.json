@@ -1,10 +1,10 @@
 {
   "sourceDatabase": "soopi_mongodb",
-  "capturedAt": "2026-10-21T00:53:08.919Z",
+  "capturedAt": "2026-10-30T04:52:25.462Z",
   "serverVersion": "8.3.8",
   "readConcern": "snapshot",
   "totalCollections": 26,
-  "totalDocuments": 689,
+  "totalDocuments": 700,
   "totalIndexes": 52,
   "includesFileContents": false,
   "collections": [
@@ -12,8 +12,8 @@
       "name": "accounts",
       "documents": 8,
       "indexes": 2,
-      "dataSha256": "6d3ceb9c0c27d4cba9d3de259e47b96a800ff7ded71db3dafe3d39e070517a90",
-      "indexesSha256": "7dc1365b2cd474a28f722b190a006dad09d15581297213d4a11e362fded1f2b0",
+      "dataSha256": "8856a08c979823d85bf4cea9fa8806698a3df959d515fc49c475dc7c48af7dbe",
+      "indexesSha256": "c2c362de57bf55cc468f52969753c5a0e601de6f47b507698393414aeadec382",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
@@ -26,9 +26,9 @@
     },
     {
       "name": "audit_logs",
-      "documents": 307,
+      "documents": 312,
       "indexes": 2,
-      "dataSha256": "c7f44943fe7d88510b8c3f6a43aca7be657605cf8199b2754d903bdf296fb7ca",
+      "dataSha256": "69a9e398e3ecc8e5e4e76f848118644c5dd50f51b9d1b5b236c0466bc366019e",
       "indexesSha256": "74fbc29ca6ec779addde15711f3e214eff85c1d92063d3fa8a899b484e63c6a5",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -44,7 +44,7 @@
       "name": "counters",
       "documents": 23,
       "indexes": 1,
-      "dataSha256": "f06afbe55196b4ae5a1bd8d9f12e12eb931863beebd866adc0f98d0694035d59",
+      "dataSha256": "1256474316d53d56ad2a394e71b432edd922dcb4e075908272b656d14d8d5497",
       "indexesSha256": "6c2a05e3c465ac39b853e474d573d1a3987f8b1af14485d0ef68aa10a6a811ff",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -138,9 +138,9 @@
     },
     {
       "name": "refresh_tokens",
-      "documents": 119,
+      "documents": 125,
       "indexes": 5,
-      "dataSha256": "5e78710d3b0dcc8b420f1b0d9e9b43d9b49a52acc8bfb1254039bfc55e96dd37",
+      "dataSha256": "44ebea332355bc2ec83b53577aed7478ecad35ba6af1f82366d81405ae3046c2",
       "indexesSha256": "00c3f9f0a64a4d59d63be9bc898ec5258cc2c25330f0c206a303917e21dfe23e",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },

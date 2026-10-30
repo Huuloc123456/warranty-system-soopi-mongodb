@@ -1,0 +1,270 @@
+{
+  "batch": "P6-20261030033028",
+  "database": "soopi_mongodb_demo",
+  "api": "http://localhost:8083",
+  "createdAt": "2026-10-30T03:30:28.361Z",
+  "completed": true,
+  "calls": 135,
+  "customers": [
+    {
+      "code": "KH-000085",
+      "fullName": "Nguyễn Minh Khang",
+      "phone": "0886836101"
+    },
+    {
+      "code": "KH-000086",
+      "fullName": "Trần Ngọc Mai",
+      "phone": "0886836102"
+    },
+    {
+      "code": "KH-000087",
+      "fullName": "Lê Hoàng Phúc",
+      "phone": "0886836103"
+    },
+    {
+      "code": "KH-000088",
+      "fullName": "Phạm Thanh Trúc",
+      "phone": "0886836104"
+    },
+    {
+      "code": "KH-000089",
+      "fullName": "Đặng Thùy Linh",
+      "phone": "0886836106"
+    },
+    {
+      "code": "KH-000090",
+      "fullName": "Bùi Gia Bảo",
+      "phone": "0886836107"
+    },
+    {
+      "code": "KH-000091",
+      "fullName": "Đỗ Hải Yến",
+      "phone": "0886836108"
+    },
+    {
+      "code": "KH-000092",
+      "fullName": "Huỳnh Đức Anh",
+      "phone": "0886836109"
+    },
+    {
+      "code": "KH-000093",
+      "fullName": "Ngô Bảo Châu",
+      "phone": "0886836110"
+    },
+    {
+      "code": "KH-000094",
+      "fullName": "Lý Minh Quân",
+      "phone": "0886836112"
+    },
+    {
+      "code": "KH-000095",
+      "fullName": "Nguyễn Minh Khang",
+      "phone": "0886836113"
+    }
+  ],
+  "devices": [
+    "TB-000184",
+    "TB-000185",
+    "TB-000186",
+    "TB-000187",
+    "TB-000188",
+    "TB-000189",
+    "TB-000190",
+    "TB-000191",
+    "TB-000192",
+    "TB-000193",
+    "TB-000194",
+    "TB-000195",
+    "TB-000196"
+  ],
+  "tickets": [
+    {
+      "code": "TN-2026-1030-00001",
+      "scenario": "Tiếp nhận mới, chờ điều phối",
+      "expectedStatus": "RECEIVED",
+      "customerCode": "KH-000085",
+      "phone": "0886836101",
+      "productId": "SP-0201",
+      "deviceCode": "TB-000184",
+      "portalCustomer": false,
+      "status": "RECEIVED"
+    },
+    {
+      "code": "TN-2026-1030-00002",
+      "scenario": "Đã giao kỹ thuật viên, chờ kiểm tra",
+      "expectedStatus": "INSPECTING",
+      "customerCode": "KH-000086",
+      "phone": "0886836102",
+      "productId": "SP-0102",
+      "deviceCode": "TB-000185",
+      "portalCustomer": false,
+      "status": "INSPECTING",
+      "technician": "technician2"
+    },
+    {
+      "code": "TN-2026-1030-00003",
+      "scenario": "Đã chẩn đoán, chờ bắt đầu sửa miễn phí",
+      "expectedStatus": "DIAGNOSED",
+      "customerCode": "KH-000087",
+      "phone": "0886836103",
+      "productId": "SP-0202",
+      "deviceCode": "TB-000186",
+      "portalCustomer": false,
+      "status": "DIAGNOSED",
+      "technician": "technician"
+    },
+    {
+      "code": "TN-2026-1030-00004",
+      "scenario": "Báo giá mới, chờ điều phối duyệt",
+      "expectedStatus": "AWAITING_QUOTE_APPROVAL",
+      "customerCode": "KH-000088",
+      "phone": "0886836104",
+      "productId": "SP-0101",
+      "deviceCode": "TB-000187",
+      "portalCustomer": false,
+      "status": "AWAITING_QUOTE_APPROVAL",
+      "technician": "technician2",
+      "quotationCode": "BG-2026-1030-00001"
+    },
+    {
+      "code": "TN-2026-1030-00005",
+      "scenario": "Khách demo đăng nhập để đồng ý báo giá",
+      "expectedStatus": "AWAITING_CUSTOMER_CONFIRMATION",
+      "customerCode": "KH-000001",
+      "phone": "0900000001",
+      "productId": "SP-0201",
+      "deviceCode": "TB-000188",
+      "portalCustomer": true,
+      "status": "AWAITING_CUSTOMER_CONFIRMATION",
+      "technician": "technician",
+      "quotationCode": "BG-2026-1030-00002"
+    },
+    {
+      "code": "TN-2026-1030-00006",
+      "scenario": "Đã giữ pin, chờ thủ kho duyệt xuất",
+      "expectedStatus": "AWAITING_PARTS",
+      "customerCode": "KH-000089",
+      "phone": "0886836106",
+      "productId": "SP-0201",
+      "deviceCode": "TB-000189",
+      "portalCustomer": false,
+      "status": "AWAITING_PARTS",
+      "technician": "technician2",
+      "issueCode": "PX-2026-00092"
+    },
+    {
+      "code": "TN-2026-1030-00007",
+      "scenario": "Đang sửa miễn phí, chờ KCS",
+      "expectedStatus": "REPAIRING",
+      "customerCode": "KH-000090",
+      "phone": "0886836107",
+      "productId": "SP-0202",
+      "deviceCode": "TB-000190",
+      "portalCustomer": false,
+      "status": "REPAIRING",
+      "technician": "technician"
+    },
+    {
+      "code": "TN-2026-1030-00008",
+      "scenario": "KCS đạt, chờ thu phí 270.000 đồng",
+      "expectedStatus": "COMPLETED",
+      "customerCode": "KH-000091",
+      "phone": "0886836108",
+      "productId": "SP-0102",
+      "deviceCode": "TB-000191",
+      "portalCustomer": false,
+      "status": "COMPLETED",
+      "technician": "technician2",
+      "quotationCode": "BG-2026-1030-00003"
+    },
+    {
+      "code": "TN-2026-1030-00009",
+      "scenario": "KCS đạt, chờ xác nhận miễn phí",
+      "expectedStatus": "COMPLETED",
+      "customerCode": "KH-000092",
+      "phone": "0886836109",
+      "productId": "SP-0201",
+      "deviceCode": "TB-000192",
+      "portalCustomer": false,
+      "status": "COMPLETED",
+      "technician": "technician"
+    },
+    {
+      "code": "TN-2026-1030-00010",
+      "scenario": "Khách từ chối báo giá, chờ nhận máy",
+      "expectedStatus": "AWAITING_RETURN",
+      "customerCode": "KH-000093",
+      "phone": "0886836110",
+      "productId": "SP-0101",
+      "deviceCode": "TB-000193",
+      "portalCustomer": false,
+      "status": "AWAITING_RETURN",
+      "technician": "technician2",
+      "quotationCode": "BG-2026-1030-00004"
+    },
+    {
+      "code": "TN-2026-1030-00011",
+      "scenario": "Đã thu phí, bàn giao và đánh giá sau KCS làm lại",
+      "expectedStatus": "DELIVERED",
+      "customerCode": "KH-000001",
+      "phone": "0900000001",
+      "productId": "SP-0201",
+      "deviceCode": "TB-000194",
+      "portalCustomer": true,
+      "status": "DELIVERED",
+      "technician": "technician",
+      "quotationCode": "BG-2026-1030-00005",
+      "paymentCode": "PT-2026-00171",
+      "paid": true
+    },
+    {
+      "code": "TN-2026-1030-00012",
+      "scenario": "Đã trả nguyên trạng do không sửa được",
+      "expectedStatus": "RETURNED_UNREPAIRED",
+      "customerCode": "KH-000094",
+      "phone": "0886836112",
+      "productId": "SP-0202",
+      "deviceCode": "TB-000195",
+      "portalCustomer": false,
+      "status": "RETURNED_UNREPAIRED",
+      "technician": "technician2"
+    },
+    {
+      "code": "TN-2026-1030-00013",
+      "scenario": "Đã thu phí, chờ ký bàn giao",
+      "expectedStatus": "COMPLETED",
+      "customerCode": "KH-000095",
+      "phone": "0886836113",
+      "productId": "SP-0102",
+      "deviceCode": "TB-000196",
+      "portalCustomer": false,
+      "status": "COMPLETED",
+      "technician": "technician",
+      "quotationCode": "BG-2026-1030-00006",
+      "paymentCode": "PT-2026-00172",
+      "paid": true
+    }
+  ],
+  "documents": {
+    "receipt": "PN-2026-00008",
+    "onlineRequest": "YC-2026-1030-00001"
+  },
+  "checks": [
+    "TN-2026-1030-00001: RECEIVED",
+    "TN-2026-1030-00002: INSPECTING",
+    "TN-2026-1030-00003: DIAGNOSED",
+    "TN-2026-1030-00004: AWAITING_QUOTE_APPROVAL",
+    "TN-2026-1030-00005: AWAITING_CUSTOMER_CONFIRMATION",
+    "TN-2026-1030-00006: AWAITING_PARTS",
+    "TN-2026-1030-00007: REPAIRING",
+    "TN-2026-1030-00008: COMPLETED",
+    "TN-2026-1030-00009: COMPLETED",
+    "TN-2026-1030-00010: AWAITING_RETURN",
+    "TN-2026-1030-00011: DELIVERED",
+    "TN-2026-1030-00012: RETURNED_UNREPAIRED",
+    "TN-2026-1030-00013: COMPLETED",
+    "Tồn kho +12, giữ thêm 1; phiếu thu 270000; QC FAIL/PASS; khách demo xem đúng 2 phiếu của mình."
+  ],
+  "startedWriting": true,
+  "finishedAt": "2026-10-30T03:30:34.329Z"
+}

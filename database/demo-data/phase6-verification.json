@@ -1,0 +1,236 @@
+{
+  "checkedAt": "2026-10-30T03:32:47.299Z",
+  "database": "soopi_mongodb_demo",
+  "batch": "P6-20261030033028",
+  "serverVersion": "8.3.8",
+  "replicaSet": "rs0",
+  "counts": [
+    {
+      "name": "accounts",
+      "documents": 10
+    },
+    {
+      "name": "attachments",
+      "documents": 171
+    },
+    {
+      "name": "audit_logs",
+      "documents": 2144
+    },
+    {
+      "name": "brands",
+      "documents": 11
+    },
+    {
+      "name": "counters",
+      "documents": 214
+    },
+    {
+      "name": "customers",
+      "documents": 95
+    },
+    {
+      "name": "device_categories",
+      "documents": 6
+    },
+    {
+      "name": "devices",
+      "documents": 196
+    },
+    {
+      "name": "employees",
+      "documents": 9
+    },
+    {
+      "name": "notifications",
+      "documents": 1261
+    },
+    {
+      "name": "otp_codes",
+      "documents": 0
+    },
+    {
+      "name": "parts",
+      "documents": 14
+    },
+    {
+      "name": "payments",
+      "documents": 172
+    },
+    {
+      "name": "products",
+      "documents": 19
+    },
+    {
+      "name": "push_devices",
+      "documents": 0
+    },
+    {
+      "name": "quotations",
+      "documents": 86
+    },
+    {
+      "name": "refresh_tokens",
+      "documents": 36
+    },
+    {
+      "name": "service_prices",
+      "documents": 4
+    },
+    {
+      "name": "service_stations",
+      "documents": 1
+    },
+    {
+      "name": "stock_issues",
+      "documents": 92
+    },
+    {
+      "name": "stock_receipts",
+      "documents": 8
+    },
+    {
+      "name": "stock_transfers",
+      "documents": 0
+    },
+    {
+      "name": "suppliers",
+      "documents": 1
+    },
+    {
+      "name": "tickets",
+      "documents": 210
+    },
+    {
+      "name": "warranty_policies",
+      "documents": 1
+    },
+    {
+      "name": "warranty_requests",
+      "documents": 28
+    }
+  ],
+  "ticketStates": [
+    {
+      "_id": "AWAITING_CUSTOMER_CONFIRMATION",
+      "count": 2
+    },
+    {
+      "_id": "AWAITING_PARTS",
+      "count": 1
+    },
+    {
+      "_id": "AWAITING_QUOTE_APPROVAL",
+      "count": 1
+    },
+    {
+      "_id": "AWAITING_RETURN",
+      "count": 1
+    },
+    {
+      "_id": "COMPLETED",
+      "count": 8
+    },
+    {
+      "_id": "DELIVERED",
+      "count": 171
+    },
+    {
+      "_id": "DIAGNOSED",
+      "count": 1
+    },
+    {
+      "_id": "INSPECTING",
+      "count": 1
+    },
+    {
+      "_id": "RECEIVED",
+      "count": 1
+    },
+    {
+      "_id": "REPAIRING",
+      "count": 7
+    },
+    {
+      "_id": "RETURNED_UNREPAIRED",
+      "count": 16
+    }
+  ],
+  "batchTickets": [
+    {
+      "code": "TN-2026-1030-00001",
+      "status": "RECEIVED",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00002",
+      "status": "INSPECTING",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00003",
+      "status": "DIAGNOSED",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00004",
+      "status": "AWAITING_QUOTE_APPROVAL",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00005",
+      "status": "AWAITING_CUSTOMER_CONFIRMATION",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00006",
+      "status": "AWAITING_PARTS",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00007",
+      "status": "REPAIRING",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00008",
+      "status": "COMPLETED",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00009",
+      "status": "COMPLETED",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00010",
+      "status": "AWAITING_RETURN",
+      "open": true
+    },
+    {
+      "code": "TN-2026-1030-00011",
+      "status": "DELIVERED",
+      "open": false
+    },
+    {
+      "code": "TN-2026-1030-00012",
+      "status": "RETURNED_UNREPAIRED",
+      "open": false
+    },
+    {
+      "code": "TN-2026-1030-00013",
+      "status": "COMPLETED",
+      "open": true
+    }
+  ],
+  "inventory": {
+    "sku": "LK-LAP-PIN",
+    "onHand": 179,
+    "reserved": 1
+  },
+  "mainDatabase": {
+    "tickets": 13,
+    "customers": 4
+  },
+  "passed": true
+}

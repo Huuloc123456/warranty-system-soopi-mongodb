@@ -1,10 +1,10 @@
 {
   "sourceDatabase": "soopi_mongodb_demo",
-  "capturedAt": "2026-10-28T12:27:26.772Z",
+  "capturedAt": "2026-10-30T04:52:26.668Z",
   "serverVersion": "8.3.8",
   "readConcern": "snapshot",
   "totalCollections": 26,
-  "totalDocuments": 4532,
+  "totalDocuments": 4807,
   "totalIndexes": 54,
   "includesFileContents": false,
   "collections": [
@@ -12,23 +12,23 @@
       "name": "accounts",
       "documents": 10,
       "indexes": 2,
-      "dataSha256": "5fefe89e009eff485c13d1347a6a26ae78241a6b4aae5b30ec943ec7a946d896",
+      "dataSha256": "f0216cde815853969109b162805564a98a2b883bd9d64986942b472b5384fa70",
       "indexesSha256": "47e052d92d8fa61c1843b151eabea4f884b8f404dcd42761ac7a0a22c4115c99",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "name": "attachments",
-      "documents": 170,
+      "documents": 171,
       "indexes": 2,
-      "dataSha256": "6401e8478174dc72496d3a4397c94eefe1387faff2ee7c53db4e84aee10d17f9",
+      "dataSha256": "72fd16a14ba9247c58cb7ce49f52db5156eff6772b0bccc69a2ddecea3ded58d",
       "indexesSha256": "a85ed583d4f2988065b2b545e461cda85c627c0ed847287518fdeef53ee95cfe",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "name": "audit_logs",
-      "documents": 2018,
+      "documents": 2153,
       "indexes": 2,
-      "dataSha256": "619121a1b4e47208cb2305752ca8a43be2cdea38f329f80a9bfffd1e822b216c",
+      "dataSha256": "e5cd5f78a99e11784668dd3ee78025c73fb12242761217d18c9e449cb1ee94f6",
       "indexesSha256": "74fbc29ca6ec779addde15711f3e214eff85c1d92063d3fa8a899b484e63c6a5",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -42,17 +42,17 @@
     },
     {
       "name": "counters",
-      "documents": 211,
+      "documents": 214,
       "indexes": 1,
-      "dataSha256": "be81f9a5244b2035a00133f9045cadf491b2ccd41a9ac584bf3791dc384128ea",
+      "dataSha256": "92f2d16e9434e559e2b30d00338b1cc37d291291d6d7c58d9665f878ad125aa7",
       "indexesSha256": "6c2a05e3c465ac39b853e474d573d1a3987f8b1af14485d0ef68aa10a6a811ff",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "name": "customers",
-      "documents": 84,
+      "documents": 95,
       "indexes": 3,
-      "dataSha256": "f88530adbcb814ddbba45820be7cc9689acb0e46f7ad39135c360e52263330f5",
+      "dataSha256": "8266d68288a930c8df205f9784fd58798061efe8d37be9b97420c0202179b752",
       "indexesSha256": "2f2c07687504be2d938e2765ac30955dc539e5015097a8e08cba162c801dc6bd",
       "optionsSha256": "4ffdf11d413e9a8b2cb0d65276c156202617f1b3aaa9631d3d93e003b684b2d2"
     },
@@ -66,9 +66,9 @@
     },
     {
       "name": "devices",
-      "documents": 183,
+      "documents": 196,
       "indexes": 3,
-      "dataSha256": "6b1ffcc17bd36357679408bccbcc8f1e3b70eb30e1793f0330a676c9fbc71846",
+      "dataSha256": "7b6576804c815c02707cb58e3ad9431fccde86cb6498f0eb07912f830f7d44ab",
       "indexesSha256": "39aad8805306cdf83ec23be9b8955cb61ddeeaf255d73e8d0a47b237e70099eb",
       "optionsSha256": "4c45d0222b0c9cfb521e75be1df1a2a0a35bcf17a895f4f0ac7e2dcdf0f8ca81"
     },
@@ -82,9 +82,9 @@
     },
     {
       "name": "notifications",
-      "documents": 1202,
+      "documents": 1261,
       "indexes": 3,
-      "dataSha256": "f3a1b832353409ba08715b79b5bf9ad51dbd3aa4c263fea9573594f78f3b23d8",
+      "dataSha256": "f61b749966769a9324166df7fc04e3173db5b5f390236979bed6fe641b1f0e0d",
       "indexesSha256": "d1cbc33db655cf2b1204eccc6b2bcaad24c0094f2ee4b21dab708c17a9bdd2ca",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -100,15 +100,15 @@
       "name": "parts",
       "documents": 14,
       "indexes": 1,
-      "dataSha256": "40cf4c90a3002ddc7326859e953833836ba2c1dcfd7ee2a1d689b854cefe6070",
+      "dataSha256": "44c311fde07d77f13199105a741af98a6dea21a4c8a8e4d26a33c0c94ad01c99",
       "indexesSha256": "6c2a05e3c465ac39b853e474d573d1a3987f8b1af14485d0ef68aa10a6a811ff",
       "optionsSha256": "62a650e8cacb59ff3fadaebc1810510e3739c63276b09d913e98fa41960002f3"
     },
     {
       "name": "payments",
-      "documents": 170,
+      "documents": 172,
       "indexes": 3,
-      "dataSha256": "18ce19ce87e1847b3744846b2d0d8af779baffdae4d2c261b4258803bf83a201",
+      "dataSha256": "6962d2fad34af7a8bd30e28c8373583d70abbc240a42df0d6b869431476f7dd2",
       "indexesSha256": "8bbc19ff77c184a8b8a7a0aec4adaa4de2127b73ddba080963cc4bc07f05652d",
       "optionsSha256": "903088cdf84e4eae272c3772572505e5c571f10408f0e60d2449a2ffeccc99e9"
     },
@@ -130,17 +130,17 @@
     },
     {
       "name": "quotations",
-      "documents": 80,
+      "documents": 86,
       "indexes": 2,
-      "dataSha256": "1cb848a045851a43432a80411052054711ff2048347639ac13e6b74acf8b60ff",
+      "dataSha256": "6f65f6e13e73a5d1302f135f275847ba6a21dc96b2301e30bec84f129f5e4f03",
       "indexesSha256": "36891a97391fdee1eeddcdddd9b397ba843d465443d096a03515636fca370452",
       "optionsSha256": "7cd8fe4a3c6a2da38967628f39ef15a2477444d05bfc1d06fa812867a49d0dc3"
     },
     {
       "name": "refresh_tokens",
-      "documents": 16,
+      "documents": 45,
       "indexes": 5,
-      "dataSha256": "712222f4a145a7d1248905936d7d7a220c75270f37ff256c0837469cb4cdfe71",
+      "dataSha256": "4f48f4f3b8e1cb0a81c2aa8a55158755686c09eb5050dd23ce7ee84265acd795",
       "indexesSha256": "8e604700916e204f8e620bd43289672c9e8ddda20e8f16e7e93f25b7fce46382",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -162,17 +162,17 @@
     },
     {
       "name": "stock_issues",
-      "documents": 91,
+      "documents": 92,
       "indexes": 2,
-      "dataSha256": "07736d35082c645a4c275ca89cc7115dea012f66db35f4b9708160123fcfe3bc",
+      "dataSha256": "a84aa001de222b17ec82fe77c008d802440853e700847a94836eca8f11520611",
       "indexesSha256": "2af274227cf6c5325111a6e9697de8485041eccef185edb86f70c01c23de1921",
       "optionsSha256": "0f23234b81fa007daf127ddb9bade3f2d99eedba2acd31d54229d201d17e4c07"
     },
     {
       "name": "stock_receipts",
-      "documents": 7,
+      "documents": 8,
       "indexes": 1,
-      "dataSha256": "04ceb57b34261a93e2b0513ad72e85d75d6ab30eb7dc7382a3bff5a555229a1e",
+      "dataSha256": "7f5bd5eba36fe69f0b61253d17f7274174208d98357b640bab7384889d498e0b",
       "indexesSha256": "6c2a05e3c465ac39b853e474d573d1a3987f8b1af14485d0ef68aa10a6a811ff",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
@@ -194,9 +194,9 @@
     },
     {
       "name": "tickets",
-      "documents": 197,
+      "documents": 210,
       "indexes": 6,
-      "dataSha256": "ec3d125e491afce0bf3b2c695158c8c3dbee379357a0bbcf3628e5b5e60dbeb1",
+      "dataSha256": "9bb28cf88c040f9bf3c7360eac77d27abfbca29c180050d0f54eaf4b83128642",
       "indexesSha256": "009e06bb63f5587f8543b21710c702fc60c1f9acaad70a0e04f252024281aa43",
       "optionsSha256": "6e6eae45bf5860a0d9c306ac8c0344588f4494a51a92d57718f727b3e3acc0a8"
     },
@@ -210,9 +210,9 @@
     },
     {
       "name": "warranty_requests",
-      "documents": 27,
+      "documents": 28,
       "indexes": 2,
-      "dataSha256": "38cd518ce2cd0a6b01b49818440e5a3a5be21ac0a1f16dfc325be70257ab0870",
+      "dataSha256": "0dfd9b49e7039e18350143a0d2ec3a05d03f50f30b29ab82a5ee94d173e3bad1",
       "indexesSha256": "b4f58f9de9df7cb9d70c118563715beaa901b4952029a3c53324e066a30ac2e2",
       "optionsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     }

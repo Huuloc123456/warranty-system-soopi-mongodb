@@ -21,11 +21,13 @@ Collection, unique index và dữ liệu demo được tạo khi chạy lần đ
 ### Dữ liệu demo 6 tháng (cho báo cáo NoSQL)
 
 ```powershell
-.\run.bat demo-restore   # nạp khoảng 4.500 document vào soopi_mongodb_demo (một lần)
+.\run.bat demo-restore   # nạp 4.807 document vào soopi_mongodb_demo (một lần)
 .\run.bat demo           # chạy ứng dụng trên soopi_mongodb_demo
 ```
 
 Bộ truy vấn cơ bản, aggregation nâng cao, index và `$jsonSchema` để chạy trong Compass nằm ở [`database/queries`](database/queries). Cách sinh lại dữ liệu: [`database/demo-data`](database/demo-data).
+
+Chuẩn bị thuyết trình: [13 tình huống demo Phase6 đã lưu trong MongoDB local](database/demo-data/PHASE6-DEMO.md).
 
 ## Tài khoản demo
 

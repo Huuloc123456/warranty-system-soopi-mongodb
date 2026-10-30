@@ -1,5 +1,5 @@
 // Soopi MongoDB: collections and indexes only
-// Source: soopi_mongodb; captured at: 2026-10-21T00:53:08.919Z
+// Source: soopi_mongodb; captured at: 2026-10-30T04:52:25.462Z
 // 26 collections; 52 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
@@ -21,8 +21,22 @@
     "$numberInt": "1"
   }
 }, { relaxed: false }), EJSON.deserialize({
-  "name": "account_username",
-  "unique": true
+  "name": "account_username_collated",
+  "unique": true,
+  "collation": {
+    "locale": "en",
+    "caseLevel": false,
+    "caseFirst": "off",
+    "strength": {
+      "$numberInt": "2"
+    },
+    "numericOrdering": false,
+    "alternate": "non-ignorable",
+    "maxVariable": "punct",
+    "normalization": false,
+    "backwards": false,
+    "version": "57.1"
+  }
 }, { relaxed: false }));
   if (target.getCollection("accounts").countDocuments({}) !== 0) throw new Error("Count mismatch: accounts");
 
@@ -40,7 +54,7 @@
 }, { relaxed: false }));
   if (target.getCollection("attachments").countDocuments({}) !== 0) throw new Error("Count mismatch: attachments");
 
-  // Collection: audit_logs (307 documents in source).
+  // Collection: audit_logs (312 documents in source).
   target.createCollection("audit_logs", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("audit_logs").createIndex(EJSON.deserialize({
   "entityType": {
@@ -249,7 +263,7 @@
 }, { relaxed: false }));
   if (target.getCollection("quotations").countDocuments({}) !== 0) throw new Error("Count mismatch: quotations");
 
-  // Collection: refresh_tokens (119 documents in source).
+  // Collection: refresh_tokens (125 documents in source).
   target.createCollection("refresh_tokens", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "accountId": {

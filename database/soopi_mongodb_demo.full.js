@@ -1,5 +1,5 @@
 // Soopi MongoDB: complete data and index snapshot
-// Source: soopi_mongodb_demo; captured at: 2026-10-28T12:27:26.772Z
+// Source: soopi_mongodb_demo; captured at: 2026-10-30T04:52:26.668Z
 // 26 collections; 54 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
@@ -65,7 +65,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793190298276"
+        "$numberLong": "1793334455196"
       }
     },
     "passwordChangedAt": null
@@ -96,7 +96,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189922932"
+        "$numberLong": "1793334585350"
       }
     },
     "passwordChangedAt": null
@@ -127,7 +127,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189923417"
+        "$numberLong": "1793334523909"
       }
     },
     "passwordChangedAt": null
@@ -158,7 +158,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189923884"
+        "$numberLong": "1793334593520"
       }
     },
     "passwordChangedAt": null
@@ -189,7 +189,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189924854"
+        "$numberLong": "1793334607495"
       }
     },
     "passwordChangedAt": null
@@ -220,7 +220,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189925309"
+        "$numberLong": "1793334637421"
       }
     },
     "passwordChangedAt": null
@@ -251,7 +251,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189924353"
+        "$numberLong": "1793331029549"
       }
     },
     "passwordChangedAt": null
@@ -282,7 +282,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1793189925832"
+        "$numberLong": "1793334344146"
       }
     },
     "passwordChangedAt": null
@@ -360,7 +360,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("accounts").countDocuments({}) !== 10) throw new Error("Count mismatch: accounts");
 
-  // Collection: attachments (170 documents in source).
+  // Collection: attachments (171 documents in source).
   target.createCollection("attachments", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("attachments").createIndex(EJSON.deserialize({
   "ownerType": {
@@ -3604,11 +3604,30 @@
         "$numberLong": "1793151356272"
       }
     }
+  },
+  {
+    "_id": {
+      "$numberLong": "171"
+    },
+    "ownerType": "HANDOVER_SIGNATURE",
+    "ownerId": "TN-2026-1030-00011",
+    "fileName": "TN-2026-1030-00011-signature.png",
+    "contentType": "image/png",
+    "size": {
+      "$numberLong": "8986"
+    },
+    "storageKey": "2026/10/89ea79b9-d621-4b14-ab96-7ee546a3a3bc",
+    "uploadedBy": "NV-006",
+    "uploadedAt": {
+      "$date": {
+        "$numberLong": "1793331033340"
+      }
+    }
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("attachments").countDocuments({}) !== 170) throw new Error("Count mismatch: attachments");
+  if (target.getCollection("attachments").countDocuments({}) !== 171) throw new Error("Count mismatch: attachments");
 
-  // Collection: audit_logs (2018 documents in source).
+  // Collection: audit_logs (2153 documents in source).
   target.createCollection("audit_logs", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("audit_logs").createIndex(EJSON.deserialize({
   "entityType": {
@@ -46041,9 +46060,2846 @@
     "entityId": "1",
     "before": null,
     "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2019"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793191614337"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2020"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793191615059"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "Quản trị demo",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "DATABASE_BACKUP",
+    "actionLabel": "Tải bản sao lưu dữ liệu",
+    "entityType": "DATABASE",
+    "entityId": "soopi_mongodb_demo",
+    "before": null,
+    "after": "4517 document, 23 collection"
+  },
+  {
+    "_id": {
+      "$numberLong": "2021"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793191648409"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2022"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793191657443"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "Quản trị demo",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "DATABASE_BACKUP",
+    "actionLabel": "Tải bản sao lưu dữ liệu",
+    "entityType": "DATABASE",
+    "entityId": "soopi_mongodb_demo",
+    "before": null,
+    "after": "4519 document, 23 collection"
+  },
+  {
+    "_id": {
+      "$numberLong": "2023"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330958186"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2024"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330958533"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "receptionist",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "2",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2025"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330958747"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2026"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330959015"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "technician",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "4",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2027"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330959257"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "technician2",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "7",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2028"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330959516"
+      }
+    },
+    "actorId": "NV-005",
+    "actorName": "warehouse",
+    "actorRoles": [
+      "WAREHOUSE_KEEPER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "5",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2029"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330959827"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "cashier",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "6",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2030"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330960056"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2031"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330984884"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2032"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793330985137"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "receptionist",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "2",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2033"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331028618"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2034"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331028860"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "receptionist",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "2",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2035"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331029104"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2036"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331029341"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "technician",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "4",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2037"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331029569"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "technician2",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "7",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2038"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331029815"
+      }
+    },
+    "actorId": "NV-005",
+    "actorName": "warehouse",
+    "actorRoles": [
+      "WAREHOUSE_KEEPER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "5",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2039"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030058"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "cashier",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "6",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2040"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030278"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2041"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030436"
+      }
+    },
+    "actorId": "NV-005",
+    "actorName": "Thủ kho demo",
+    "actorRoles": [
+      "WAREHOUSE_KEEPER"
+    ],
+    "action": "STOCK_RECEIPT_CREATED",
+    "actionLabel": "Tạo phiếu nhập kho",
+    "entityType": "STOCK_RECEIPT",
+    "entityId": "PN-2026-00008",
+    "before": null,
+    "after": "PENDING"
+  },
+  {
+    "_id": {
+      "$numberLong": "2042"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030503"
+      }
+    },
+    "actorId": "NV-005",
+    "actorName": "Thủ kho demo",
+    "actorRoles": [
+      "WAREHOUSE_KEEPER"
+    ],
+    "action": "STOCK_RECEIPT_APPROVED",
+    "actionLabel": "Duyệt và thực nhập kho",
+    "entityType": "STOCK_RECEIPT",
+    "entityId": "PN-2026-00008",
+    "before": "PENDING",
+    "after": "APPROVED"
+  },
+  {
+    "_id": {
+      "$numberLong": "2043"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030575"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000085",
+    "before": null,
+    "after": "Nguyễn Minh Khang"
+  },
+  {
+    "_id": {
+      "$numberLong": "2044"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030649"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000184",
+    "before": null,
+    "after": "TB-000184 — P6-20261030033028-1 — KH-000085"
+  },
+  {
+    "_id": {
+      "$numberLong": "2045"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030768"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00001",
+    "before": null,
+    "after": "TN-2026-1030-00001 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2046"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030872"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00001",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Tiếp nhận mới, chờ điều phối. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2047"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030925"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000086",
+    "before": null,
+    "after": "Trần Ngọc Mai"
+  },
+  {
+    "_id": {
+      "$numberLong": "2048"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030944"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000185",
+    "before": null,
+    "after": "TB-000185 — 359331028361018 — KH-000086"
+  },
+  {
+    "_id": {
+      "$numberLong": "2049"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030959"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00002",
+    "before": null,
+    "after": "TN-2026-1030-00002 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2050"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331030999"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00002",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đã giao kỹ thuật viên, chờ kiểm tra. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2051"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031042"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00002",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên 2 demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2052"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031087"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000087",
+    "before": null,
+    "after": "Lê Hoàng Phúc"
+  },
+  {
+    "_id": {
+      "$numberLong": "2053"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031100"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000186",
+    "before": null,
+    "after": "TB-000186 — P6-20261030033028-3 — KH-000087"
+  },
+  {
+    "_id": {
+      "$numberLong": "2054"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031115"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00003",
+    "before": null,
+    "after": "TN-2026-1030-00003 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2055"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031129"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00003",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đã chẩn đoán, chờ bắt đầu sửa miễn phí. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2056"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031151"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00003",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2057"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031209"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00003",
+    "before": null,
+    "after": "PKT-2026-00191 — FREE_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2058"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031241"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000088",
+    "before": null,
+    "after": "Phạm Thanh Trúc"
+  },
+  {
+    "_id": {
+      "$numberLong": "2059"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031254"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000187",
+    "before": null,
+    "after": "TB-000187 — 359331028361034 — KH-000088"
+  },
+  {
+    "_id": {
+      "$numberLong": "2060"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031272"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00004",
+    "before": null,
+    "after": "TN-2026-1030-00004 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2061"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031288"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00004",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Báo giá mới, chờ điều phối duyệt. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2062"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031305"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00004",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên 2 demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2063"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031338"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00004",
+    "before": null,
+    "after": "PKT-2026-00192 — OUT_OF_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2064"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031405"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "QUOTATION_CREATED",
+    "actionLabel": "Lập báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00001",
+    "before": null,
+    "after": "TN-2026-1030-00004 — 270000"
+  },
+  {
+    "_id": {
+      "$numberLong": "2065"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031450"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000188",
+    "before": null,
+    "after": "TB-000188 — P6-20261030033028-5 — KH-000001"
+  },
+  {
+    "_id": {
+      "$numberLong": "2066"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031460"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00005",
+    "before": null,
+    "after": "TN-2026-1030-00005 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2067"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031491"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00005",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Khách demo đăng nhập để đồng ý báo giá. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2068"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031506"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00005",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2069"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031522"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00005",
+    "before": null,
+    "after": "PKT-2026-00193 — OUT_OF_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2070"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031539"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "QUOTATION_CREATED",
+    "actionLabel": "Lập báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00002",
+    "before": null,
+    "after": "TN-2026-1030-00005 — 270000"
+  },
+  {
+    "_id": {
+      "$numberLong": "2071"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031568"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "QUOTATION_APPROVED",
+    "actionLabel": "Phê duyệt báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00002",
+    "before": "PENDING",
+    "after": "APPROVED"
+  },
+  {
+    "_id": {
+      "$numberLong": "2072"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031585"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000089",
+    "before": null,
+    "after": "Đặng Thùy Linh"
+  },
+  {
+    "_id": {
+      "$numberLong": "2073"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031602"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000189",
+    "before": null,
+    "after": "TB-000189 — P6-20261030033028-6 — KH-000089"
+  },
+  {
+    "_id": {
+      "$numberLong": "2074"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031694"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00006",
+    "before": null,
+    "after": "TN-2026-1030-00006 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2075"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031733"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00006",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đã giữ pin, chờ thủ kho duyệt xuất. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2076"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031757"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00006",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên 2 demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2077"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031788"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00006",
+    "before": null,
+    "after": "PKT-2026-00194 — FREE_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2078"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031845"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "STOCK_ISSUE_REQUESTED",
+    "actionLabel": "Gửi yêu cầu xuất kho",
+    "entityType": "STOCK_ISSUE",
+    "entityId": "PX-2026-00092",
+    "before": null,
+    "after": "TN-2026-1030-00006"
+  },
+  {
+    "_id": {
+      "$numberLong": "2079"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031882"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000090",
+    "before": null,
+    "after": "Bùi Gia Bảo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2080"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031912"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000190",
+    "before": null,
+    "after": "TB-000190 — P6-20261030033028-7 — KH-000090"
+  },
+  {
+    "_id": {
+      "$numberLong": "2081"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031925"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00007",
+    "before": null,
+    "after": "TN-2026-1030-00007 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2082"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031939"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00007",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đang sửa miễn phí, chờ KCS. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2083"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331031959"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00007",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2084"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032038"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00007",
+    "before": null,
+    "after": "PKT-2026-00195 — FREE_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2085"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032055"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_STARTED",
+    "actionLabel": "Bắt đầu sửa chữa miễn phí",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00007",
+    "before": "DIAGNOSED",
+    "after": "REPAIRING"
+  },
+  {
+    "_id": {
+      "$numberLong": "2086"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032085"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000091",
+    "before": null,
+    "after": "Đỗ Hải Yến"
+  },
+  {
+    "_id": {
+      "$numberLong": "2087"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032098"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000191",
+    "before": null,
+    "after": "TB-000191 — 359331028361075 — KH-000091"
+  },
+  {
+    "_id": {
+      "$numberLong": "2088"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032116"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00008",
+    "before": null,
+    "after": "TN-2026-1030-00008 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2089"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032131"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00008",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - KCS đạt, chờ thu phí 270.000 đồng. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2090"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032150"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00008",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên 2 demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2091"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032186"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00008",
+    "before": null,
+    "after": "PKT-2026-00196 — OUT_OF_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2092"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032221"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "QUOTATION_CREATED",
+    "actionLabel": "Lập báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00003",
+    "before": null,
+    "after": "TN-2026-1030-00008 — 270000"
+  },
+  {
+    "_id": {
+      "$numberLong": "2093"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032291"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "QUOTATION_APPROVED",
+    "actionLabel": "Phê duyệt báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00003",
+    "before": "PENDING",
+    "after": "APPROVED"
+  },
+  {
+    "_id": {
+      "$numberLong": "2094"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032351"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "QUOTATION_ACCEPTED",
+    "actionLabel": "Khách đồng ý báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00003",
+    "before": "PENDING",
+    "after": "ACCEPT"
+  },
+  {
+    "_id": {
+      "$numberLong": "2095"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032379"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_RESULT_RECORDED",
+    "actionLabel": "Ghi kết quả sửa chữa và KCS",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00008",
+    "before": "TN-2026-1030-00008 — Đang sửa chữa",
+    "after": "TN-2026-1030-00008 — Hoàn thành (KCS PASS)"
+  },
+  {
+    "_id": {
+      "$numberLong": "2096"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032417"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000092",
+    "before": null,
+    "after": "Huỳnh Đức Anh"
+  },
+  {
+    "_id": {
+      "$numberLong": "2097"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032429"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000192",
+    "before": null,
+    "after": "TB-000192 — P6-20261030033028-9 — KH-000092"
+  },
+  {
+    "_id": {
+      "$numberLong": "2098"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032445"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00009",
+    "before": null,
+    "after": "TN-2026-1030-00009 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2099"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032461"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00009",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - KCS đạt, chờ xác nhận miễn phí. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2100"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032536"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00009",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên demo"
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("audit_logs").countDocuments({}) !== 2018) throw new Error("Count mismatch: audit_logs");
+  target.getCollection("audit_logs").insertMany(EJSON.deserialize([
+  {
+    "_id": {
+      "$numberLong": "2101"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032557"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00009",
+    "before": null,
+    "after": "PKT-2026-00197 — FREE_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2102"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032570"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_STARTED",
+    "actionLabel": "Bắt đầu sửa chữa miễn phí",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00009",
+    "before": "DIAGNOSED",
+    "after": "REPAIRING"
+  },
+  {
+    "_id": {
+      "$numberLong": "2103"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032587"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_RESULT_RECORDED",
+    "actionLabel": "Ghi kết quả sửa chữa và KCS",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00009",
+    "before": "TN-2026-1030-00009 — Đang sửa chữa",
+    "after": "TN-2026-1030-00009 — Hoàn thành (KCS PASS)"
+  },
+  {
+    "_id": {
+      "$numberLong": "2104"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032631"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000093",
+    "before": null,
+    "after": "Ngô Bảo Châu"
+  },
+  {
+    "_id": {
+      "$numberLong": "2105"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032648"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000193",
+    "before": null,
+    "after": "TB-000193 — 359331028361091 — KH-000093"
+  },
+  {
+    "_id": {
+      "$numberLong": "2106"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032665"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00010",
+    "before": null,
+    "after": "TN-2026-1030-00010 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2107"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032680"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00010",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Khách từ chối báo giá, chờ nhận máy. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2108"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032695"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00010",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên 2 demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2109"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032713"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00010",
+    "before": null,
+    "after": "PKT-2026-00198 — OUT_OF_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2110"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032792"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "QUOTATION_CREATED",
+    "actionLabel": "Lập báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00004",
+    "before": null,
+    "after": "TN-2026-1030-00010 — 270000"
+  },
+  {
+    "_id": {
+      "$numberLong": "2111"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032833"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "QUOTATION_APPROVED",
+    "actionLabel": "Phê duyệt báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00004",
+    "before": "PENDING",
+    "after": "APPROVED"
+  },
+  {
+    "_id": {
+      "$numberLong": "2112"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032855"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "QUOTATION_DECLINED",
+    "actionLabel": "Khách từ chối báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00004",
+    "before": "PENDING",
+    "after": "DECLINE"
+  },
+  {
+    "_id": {
+      "$numberLong": "2113"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032903"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000194",
+    "before": null,
+    "after": "TB-000194 — P6-20261030033028-11 — KH-000001"
+  },
+  {
+    "_id": {
+      "$numberLong": "2114"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032937"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": null,
+    "after": "TN-2026-1030-00011 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2115"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032961"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đã thu phí, bàn giao và đánh giá sau KCS làm lại. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2116"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331032980"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2117"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033022"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": null,
+    "after": "PKT-2026-00199 — OUT_OF_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2118"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033045"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "QUOTATION_CREATED",
+    "actionLabel": "Lập báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00005",
+    "before": null,
+    "after": "TN-2026-1030-00011 — 270000"
+  },
+  {
+    "_id": {
+      "$numberLong": "2119"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033121"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "QUOTATION_APPROVED",
+    "actionLabel": "Phê duyệt báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00005",
+    "before": "PENDING",
+    "after": "APPROVED"
+  },
+  {
+    "_id": {
+      "$numberLong": "2120"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033147"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "Khách hàng demo",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "QUOTATION_ACCEPTED",
+    "actionLabel": "Khách đồng ý báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00005",
+    "before": "PENDING",
+    "after": "ACCEPT"
+  },
+  {
+    "_id": {
+      "$numberLong": "2121"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033198"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_RESULT_RECORDED",
+    "actionLabel": "Ghi kết quả sửa chữa và KCS",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": "TN-2026-1030-00011 — Đang sửa chữa",
+    "after": "TN-2026-1030-00011 — Đang sửa chữa (KCS FAIL)"
+  },
+  {
+    "_id": {
+      "$numberLong": "2122"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033214"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_RESULT_RECORDED",
+    "actionLabel": "Ghi kết quả sửa chữa và KCS",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": "TN-2026-1030-00011 — Đang sửa chữa",
+    "after": "TN-2026-1030-00011 — Hoàn thành (KCS PASS)"
+  },
+  {
+    "_id": {
+      "$numberLong": "2123"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033281"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "Thu ngân demo",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "PAYMENT_COLLECTED",
+    "actionLabel": "Thu tiền",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": "TN-2026-1030-00011 — Chưa thu tiền",
+    "after": "PT-2026-00171 — 270.000 đ"
+  },
+  {
+    "_id": {
+      "$numberLong": "2124"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033362"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "Thu ngân demo",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "TICKET_HANDED_OVER",
+    "actionLabel": "Bàn giao thiết bị",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": "TN-2026-1030-00011 — Hoàn thành",
+    "after": "TN-2026-1030-00011 — Đã bàn giao"
+  },
+  {
+    "_id": {
+      "$numberLong": "2125"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033398"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "Khách hàng demo",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "TICKET_RATED",
+    "actionLabel": "Đánh giá 5 sao cho phiếu TN-2026-1030-00011",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00011",
+    "before": "5",
+    "after": "5"
+  },
+  {
+    "_id": {
+      "$numberLong": "2126"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033457"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000094",
+    "before": null,
+    "after": "Lý Minh Quân"
+  },
+  {
+    "_id": {
+      "$numberLong": "2127"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033482"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000195",
+    "before": null,
+    "after": "TB-000195 — P6-20261030033028-12 — KH-000094"
+  },
+  {
+    "_id": {
+      "$numberLong": "2128"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033549"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00012",
+    "before": null,
+    "after": "TN-2026-1030-00012 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2129"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033583"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00012",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đã trả nguyên trạng do không sửa được. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2130"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033613"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00012",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên 2 demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2131"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033653"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00012",
+    "before": null,
+    "after": "PKT-2026-00200 — FREE_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2132"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033686"
+      }
+    },
+    "actorId": "NV-007",
+    "actorName": "Kỹ thuật viên 2 demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "TICKET_RETURNED_UNREPAIRED",
+    "actionLabel": "Trả máy không sửa",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00012",
+    "before": "TN-2026-1030-00012 — Đã chẩn đoán",
+    "after": "TN-2026-1030-00012 — Chờ trả máy: [DEMO Phase6] Bo mạch không thể khắc phục, khách nhận lại nguyên trạng"
+  },
+  {
+    "_id": {
+      "$numberLong": "2133"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033725"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "Thu ngân demo",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "TICKET_HANDED_OVER",
+    "actionLabel": "Trả máy không sửa",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00012",
+    "before": "TN-2026-1030-00012 — Chờ trả máy",
+    "after": "TN-2026-1030-00012 — Đã trả máy (không sửa)"
+  },
+  {
+    "_id": {
+      "$numberLong": "2134"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033787"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "CUSTOMER_CREATED",
+    "actionLabel": "Thêm khách hàng",
+    "entityType": "CUSTOMER",
+    "entityId": "KH-000095",
+    "before": null,
+    "after": "Nguyễn Minh Khang"
+  },
+  {
+    "_id": {
+      "$numberLong": "2135"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033811"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "DEVICE_REGISTERED",
+    "actionLabel": "Đăng ký thiết bị",
+    "entityType": "DEVICE",
+    "entityId": "TB-000196",
+    "before": null,
+    "after": "TB-000196 — 359331028361125 — KH-000095"
+  },
+  {
+    "_id": {
+      "$numberLong": "2136"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033878"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_CREATED",
+    "actionLabel": "Tạo phiếu tiếp nhận",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00013",
+    "before": null,
+    "after": "TN-2026-1030-00013 — Chưa phân công"
+  },
+  {
+    "_id": {
+      "$numberLong": "2137"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033893"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "TICKET_INTERNAL_NOTE_ADDED",
+    "actionLabel": "Thêm ghi chú nội bộ",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00013",
+    "before": null,
+    "after": "[DEMO Phase6] P6-20261030033028 - Đã thu phí, chờ ký bàn giao. Thông tin khách và nghiệp vụ chỉ dùng trình diễn."
+  },
+  {
+    "_id": {
+      "$numberLong": "2138"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033933"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "TICKET_ASSIGNED",
+    "actionLabel": "Phân công kỹ thuật viên",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00013",
+    "before": "Chưa phân công",
+    "after": "Kỹ thuật viên demo"
+  },
+  {
+    "_id": {
+      "$numberLong": "2139"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033954"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "INSPECTION_RECORDED",
+    "actionLabel": "Lưu kết quả kiểm tra",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00013",
+    "before": null,
+    "after": "PKT-2026-00201 — OUT_OF_WARRANTY"
+  },
+  {
+    "_id": {
+      "$numberLong": "2140"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331033994"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "QUOTATION_CREATED",
+    "actionLabel": "Lập báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00006",
+    "before": null,
+    "after": "TN-2026-1030-00013 — 270000"
+  },
+  {
+    "_id": {
+      "$numberLong": "2141"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331034006"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "Điều phối demo",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "QUOTATION_APPROVED",
+    "actionLabel": "Phê duyệt báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00006",
+    "before": "PENDING",
+    "after": "APPROVED"
+  },
+  {
+    "_id": {
+      "$numberLong": "2142"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331034036"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "Lễ tân demo",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "QUOTATION_ACCEPTED",
+    "actionLabel": "Khách đồng ý báo giá",
+    "entityType": "QUOTATION",
+    "entityId": "BG-2026-1030-00006",
+    "before": "PENDING",
+    "after": "ACCEPT"
+  },
+  {
+    "_id": {
+      "$numberLong": "2143"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331034060"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "Kỹ thuật viên demo",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "REPAIR_RESULT_RECORDED",
+    "actionLabel": "Ghi kết quả sửa chữa và KCS",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00013",
+    "before": "TN-2026-1030-00013 — Đang sửa chữa",
+    "after": "TN-2026-1030-00013 — Hoàn thành (KCS PASS)"
+  },
+  {
+    "_id": {
+      "$numberLong": "2144"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793331034099"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "Thu ngân demo",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "PAYMENT_COLLECTED",
+    "actionLabel": "Thu tiền",
+    "entityType": "TICKET",
+    "entityId": "TN-2026-1030-00013",
+    "before": "TN-2026-1030-00013 — Chưa thu tiền",
+    "after": "PT-2026-00172 — 270.000 đ"
+  },
+  {
+    "_id": {
+      "$numberLong": "2145"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334344243"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2146"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334412945"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2147"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334455208"
+      }
+    },
+    "actorId": "NV-001",
+    "actorName": "admin",
+    "actorRoles": [
+      "ADMIN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "1",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2148"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334515832"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "receptionist",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "2",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2149"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334523916"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2150"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334585393"
+      }
+    },
+    "actorId": "NV-002",
+    "actorName": "receptionist",
+    "actorRoles": [
+      "RECEPTIONIST"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "2",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2151"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334593526"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "technician",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "4",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2152"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334607501"
+      }
+    },
+    "actorId": "NV-005",
+    "actorName": "warehouse",
+    "actorRoles": [
+      "WAREHOUSE_KEEPER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "5",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "2153"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793334637462"
+      }
+    },
+    "actorId": "NV-006",
+    "actorName": "cashier",
+    "actorRoles": [
+      "CASHIER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "6",
+    "before": null,
+    "after": null
+  }
+], { relaxed: false }), { ordered: true });
+  if (target.getCollection("audit_logs").countDocuments({}) !== 2153) throw new Error("Count mismatch: audit_logs");
 
   // Collection: brands (11 documents in source).
   target.createCollection("brands", EJSON.deserialize({}, { relaxed: false }));
@@ -46164,7 +49020,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("brands").countDocuments({}) !== 11) throw new Error("Count mismatch: brands");
 
-  // Collection: counters (211 documents in source).
+  // Collection: counters (214 documents in source).
   target.createCollection("counters", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("counters").insertMany(EJSON.deserialize([
   {
@@ -46534,6 +49390,12 @@
     }
   },
   {
+    "_id": "BG-2026-1030",
+    "value": {
+      "$numberLong": "6"
+    }
+  },
+  {
     "_id": "CS",
     "value": {
       "$numberLong": "1"
@@ -46542,13 +49404,13 @@
   {
     "_id": "KH",
     "value": {
-      "$numberLong": "84"
+      "$numberLong": "95"
     }
   },
   {
     "_id": "KQ-2026",
     "value": {
-      "$numberLong": "201"
+      "$numberLong": "206"
     }
   },
   {
@@ -46566,43 +49428,43 @@
   {
     "_id": "PBG-2026",
     "value": {
-      "$numberLong": "185"
+      "$numberLong": "187"
     }
   },
   {
     "_id": "PC-2026",
     "value": {
-      "$numberLong": "190"
+      "$numberLong": "202"
     }
   },
   {
     "_id": "PKT-2026",
     "value": {
-      "$numberLong": "190"
+      "$numberLong": "201"
     }
   },
   {
     "_id": "PN-2026",
     "value": {
-      "$numberLong": "7"
+      "$numberLong": "8"
     }
   },
   {
     "_id": "PSC-2026",
     "value": {
-      "$numberLong": "190"
+      "$numberLong": "202"
     }
   },
   {
     "_id": "PT-2026",
     "value": {
-      "$numberLong": "170"
+      "$numberLong": "172"
     }
   },
   {
     "_id": "PX-2026",
     "value": {
-      "$numberLong": "91"
+      "$numberLong": "92"
     }
   },
   {
@@ -46614,7 +49476,7 @@
   {
     "_id": "TB",
     "value": {
-      "$numberLong": "183"
+      "$numberLong": "196"
     }
   },
   {
@@ -46760,15 +49622,15 @@
     "value": {
       "$numberLong": "1"
     }
-  },
+  }
+], { relaxed: false }), { ordered: true });
+  target.getCollection("counters").insertMany(EJSON.deserialize([
   {
     "_id": "TN-2026-0609",
     "value": {
       "$numberLong": "1"
     }
-  }
-], { relaxed: false }), { ordered: true });
-  target.getCollection("counters").insertMany(EJSON.deserialize([
+  },
   {
     "_id": "TN-2026-0615",
     "value": {
@@ -47268,6 +50130,12 @@
     }
   },
   {
+    "_id": "TN-2026-1030",
+    "value": {
+      "$numberLong": "13"
+    }
+  },
+  {
     "_id": "YC-2026-0504",
     "value": {
       "$numberLong": "1"
@@ -47356,7 +50224,9 @@
     "value": {
       "$numberLong": "1"
     }
-  },
+  }
+], { relaxed: false }), { ordered: true });
+  target.getCollection("counters").insertMany(EJSON.deserialize([
   {
     "_id": "YC-2026-0910",
     "value": {
@@ -47368,9 +50238,7 @@
     "value": {
       "$numberLong": "1"
     }
-  }
-], { relaxed: false }), { ordered: true });
-  target.getCollection("counters").insertMany(EJSON.deserialize([
+  },
   {
     "_id": "YC-2026-0916",
     "value": {
@@ -47408,6 +50276,12 @@
     }
   },
   {
+    "_id": "YC-2026-1030",
+    "value": {
+      "$numberLong": "1"
+    }
+  },
+  {
     "_id": "accounts",
     "value": {
       "$numberLong": "10"
@@ -47416,31 +50290,31 @@
   {
     "_id": "attachments",
     "value": {
-      "$numberLong": "170"
+      "$numberLong": "171"
     }
   },
   {
     "_id": "audit_logs",
     "value": {
-      "$numberLong": "2018"
+      "$numberLong": "2153"
     }
   },
   {
     "_id": "notifications",
     "value": {
-      "$numberLong": "1202"
+      "$numberLong": "1261"
     }
   },
   {
     "_id": "refresh_tokens",
     "value": {
-      "$numberLong": "16"
+      "$numberLong": "45"
     }
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("counters").countDocuments({}) !== 211) throw new Error("Count mismatch: counters");
+  if (target.getCollection("counters").countDocuments({}) !== 214) throw new Error("Count mismatch: counters");
 
-  // Collection: customers (84 documents in source).
+  // Collection: customers (95 documents in source).
   target.createCollection("customers", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -48860,9 +51734,185 @@
         "$numberLong": "1793149226006"
       }
     }
+  },
+  {
+    "_id": "KH-000085",
+    "fullName": "Nguyễn Minh Khang",
+    "phone": "0886836101",
+    "email": "phase6.p6-20261030033028.1@example.invalid",
+    "verifiedEmail": null,
+    "address": "20 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331030526"
+      }
+    }
+  },
+  {
+    "_id": "KH-000086",
+    "fullName": "Trần Ngọc Mai",
+    "phone": "0886836102",
+    "email": "phase6.p6-20261030033028.2@example.invalid",
+    "verifiedEmail": null,
+    "address": "24 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331030924"
+      }
+    }
+  },
+  {
+    "_id": "KH-000087",
+    "fullName": "Lê Hoàng Phúc",
+    "phone": "0886836103",
+    "email": "phase6.p6-20261030033028.3@example.invalid",
+    "verifiedEmail": null,
+    "address": "28 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031085"
+      }
+    }
+  },
+  {
+    "_id": "KH-000088",
+    "fullName": "Phạm Thanh Trúc",
+    "phone": "0886836104",
+    "email": "phase6.p6-20261030033028.4@example.invalid",
+    "verifiedEmail": null,
+    "address": "32 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031240"
+      }
+    }
+  },
+  {
+    "_id": "KH-000089",
+    "fullName": "Đặng Thùy Linh",
+    "phone": "0886836106",
+    "email": "phase6.p6-20261030033028.6@example.invalid",
+    "verifiedEmail": null,
+    "address": "40 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031583"
+      }
+    }
+  },
+  {
+    "_id": "KH-000090",
+    "fullName": "Bùi Gia Bảo",
+    "phone": "0886836107",
+    "email": "phase6.p6-20261030033028.7@example.invalid",
+    "verifiedEmail": null,
+    "address": "44 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031880"
+      }
+    }
+  },
+  {
+    "_id": "KH-000091",
+    "fullName": "Đỗ Hải Yến",
+    "phone": "0886836108",
+    "email": "phase6.p6-20261030033028.8@example.invalid",
+    "verifiedEmail": null,
+    "address": "48 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032082"
+      }
+    }
+  },
+  {
+    "_id": "KH-000092",
+    "fullName": "Huỳnh Đức Anh",
+    "phone": "0886836109",
+    "email": "phase6.p6-20261030033028.9@example.invalid",
+    "verifiedEmail": null,
+    "address": "52 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032415"
+      }
+    }
+  },
+  {
+    "_id": "KH-000093",
+    "fullName": "Ngô Bảo Châu",
+    "phone": "0886836110",
+    "email": "phase6.p6-20261030033028.10@example.invalid",
+    "verifiedEmail": null,
+    "address": "56 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032629"
+      }
+    }
+  },
+  {
+    "_id": "KH-000094",
+    "fullName": "Lý Minh Quân",
+    "phone": "0886836112",
+    "email": "phase6.p6-20261030033028.12@example.invalid",
+    "verifiedEmail": null,
+    "address": "64 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033454"
+      }
+    }
+  },
+  {
+    "_id": "KH-000095",
+    "fullName": "Nguyễn Minh Khang",
+    "phone": "0886836113",
+    "email": "phase6.p6-20261030033028.13@example.invalid",
+    "verifiedEmail": null,
+    "address": "68 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)",
+    "accountId": null,
+    "status": "ACTIVE",
+    "mergedInto": null,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033784"
+      }
+    }
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("customers").countDocuments({}) !== 84) throw new Error("Count mismatch: customers");
+  if (target.getCollection("customers").countDocuments({}) !== 95) throw new Error("Count mismatch: customers");
 
   // Collection: device_categories (6 documents in source).
   target.createCollection("device_categories", EJSON.deserialize({}, { relaxed: false }));
@@ -49003,7 +52053,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("device_categories").countDocuments({}) !== 6) throw new Error("Count mismatch: device_categories");
 
-  // Collection: devices (183 documents in source).
+  // Collection: devices (196 documents in source).
   target.createCollection("devices", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -51818,9 +54868,204 @@
         "$numberLong": "1793149247173"
       }
     }
+  },
+  {
+    "_id": "TB-000184",
+    "productId": "SP-0201",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-1",
+    "customerId": "KH-000085",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331030626"
+      }
+    }
+  },
+  {
+    "_id": "TB-000185",
+    "productId": "SP-0102",
+    "identifierType": "IMEI",
+    "serialNormalized": "359331028361018",
+    "customerId": "KH-000086",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331030941"
+      }
+    }
+  },
+  {
+    "_id": "TB-000186",
+    "productId": "SP-0202",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-3",
+    "customerId": "KH-000087",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031098"
+      }
+    }
+  },
+  {
+    "_id": "TB-000187",
+    "productId": "SP-0101",
+    "identifierType": "IMEI",
+    "serialNormalized": "359331028361034",
+    "customerId": "KH-000088",
+    "warrantyActivatedOn": "2024-08-21",
+    "warrantyExpiresOn": "2025-08-21",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031252"
+      }
+    }
+  },
+  {
+    "_id": "TB-000188",
+    "productId": "SP-0201",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-5",
+    "customerId": "KH-000001",
+    "warrantyActivatedOn": "2024-08-21",
+    "warrantyExpiresOn": "2025-08-21",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031446"
+      }
+    }
+  },
+  {
+    "_id": "TB-000189",
+    "productId": "SP-0201",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-6",
+    "customerId": "KH-000089",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031599"
+      }
+    }
+  },
+  {
+    "_id": "TB-000190",
+    "productId": "SP-0202",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-7",
+    "customerId": "KH-000090",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031910"
+      }
+    }
+  },
+  {
+    "_id": "TB-000191",
+    "productId": "SP-0102",
+    "identifierType": "IMEI",
+    "serialNormalized": "359331028361075",
+    "customerId": "KH-000091",
+    "warrantyActivatedOn": "2024-08-21",
+    "warrantyExpiresOn": "2025-08-21",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032096"
+      }
+    }
+  },
+  {
+    "_id": "TB-000192",
+    "productId": "SP-0201",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-9",
+    "customerId": "KH-000092",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032426"
+      }
+    }
+  },
+  {
+    "_id": "TB-000193",
+    "productId": "SP-0101",
+    "identifierType": "IMEI",
+    "serialNormalized": "359331028361091",
+    "customerId": "KH-000093",
+    "warrantyActivatedOn": "2024-08-21",
+    "warrantyExpiresOn": "2025-08-21",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032646"
+      }
+    }
+  },
+  {
+    "_id": "TB-000194",
+    "productId": "SP-0201",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-11",
+    "customerId": "KH-000001",
+    "warrantyActivatedOn": "2024-08-21",
+    "warrantyExpiresOn": "2025-08-21",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032901"
+      }
+    }
+  },
+  {
+    "_id": "TB-000195",
+    "productId": "SP-0202",
+    "identifierType": "SERIAL",
+    "serialNormalized": "P6-20261030033028-12",
+    "customerId": "KH-000094",
+    "warrantyActivatedOn": "2026-08-31",
+    "warrantyExpiresOn": "2027-08-31",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033479"
+      }
+    }
+  },
+  {
+    "_id": "TB-000196",
+    "productId": "SP-0102",
+    "identifierType": "IMEI",
+    "serialNormalized": "359331028361125",
+    "customerId": "KH-000095",
+    "warrantyActivatedOn": "2024-08-21",
+    "warrantyExpiresOn": "2025-08-21",
+    "distributor": "Nhà phân phối demo Phase6",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033808"
+      }
+    }
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("devices").countDocuments({}) !== 183) throw new Error("Count mismatch: devices");
+  if (target.getCollection("devices").countDocuments({}) !== 196) throw new Error("Count mismatch: devices");
 
   // Collection: employees (9 documents in source).
   target.createCollection("employees", EJSON.deserialize({}, { relaxed: false }));
@@ -52050,7 +55295,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("employees").countDocuments({}) !== 9) throw new Error("Count mismatch: employees");
 
-  // Collection: notifications (1202 documents in source).
+  // Collection: notifications (1261 documents in source).
   target.createCollection("notifications", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("notifications").createIndex(EJSON.deserialize({
   "accountId": {
@@ -73250,9 +76495,1056 @@
       }
     },
     "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1203"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00001 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00001",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331030772"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1204"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00002 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00002",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331030962"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1205"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00002.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00002",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031044"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1206"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00003 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00003",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031117"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1207"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00003.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00003",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031154"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1208"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00004 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031273"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1209"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00004.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031308"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1210"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "QUOTATION_PENDING",
+    "message": "Báo giá BG-2026-1030-00001 đang chờ phê duyệt.",
+    "link": "/dispatch#quotes",
+    "entityId": "BG-2026-1030-00001",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031408"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1211"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00005 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031461"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1212"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "type": "TICKET_RECEIVED",
+    "message": "Đã tiếp nhận thiết bị. Mã phiếu TN-2026-1030-00005.",
+    "link": "/portal",
+    "entityId": "TN-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031472"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1213"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00005.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031507"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1214"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "QUOTATION_PENDING",
+    "message": "Báo giá BG-2026-1030-00002 đang chờ phê duyệt.",
+    "link": "/dispatch#quotes",
+    "entityId": "BG-2026-1030-00002",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031540"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1215"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "QUOTATION_APPROVED",
+    "message": "Báo giá BG-2026-1030-00002 đã được duyệt, chờ khách xác nhận.",
+    "link": "/receptionist",
+    "entityId": "BG-2026-1030-00002",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031570"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1216"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "type": "QUOTATION_AWAITING_CUSTOMER",
+    "message": "Báo giá BG-2026-1030-00002 cho phiếu TN-2026-1030-00005 đang chờ xác nhận.",
+    "link": "/portal",
+    "entityId": "TN-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031572"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1217"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00006 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00006",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031697"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1218"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00006.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00006",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031759"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1219"
+    },
+    "role": "WAREHOUSE_KEEPER",
+    "accountId": null,
+    "type": "STOCK_ISSUE_PENDING",
+    "message": "Yêu cầu xuất kho PX-2026-00092 đang chờ xử lý.",
+    "link": "/warehouse#stockout",
+    "entityId": "PX-2026-00092",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031847"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1220"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00007 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00007",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031927"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1221"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00007.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00007",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032021"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1222"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00008 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00008",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032118"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1223"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00008.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00008",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032152"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1224"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "QUOTATION_PENDING",
+    "message": "Báo giá BG-2026-1030-00003 đang chờ phê duyệt.",
+    "link": "/dispatch#quotes",
+    "entityId": "BG-2026-1030-00003",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032223"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1225"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "QUOTATION_APPROVED",
+    "message": "Báo giá BG-2026-1030-00003 đã được duyệt, chờ khách xác nhận.",
+    "link": "/receptionist",
+    "entityId": "BG-2026-1030-00003",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032295"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1226"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "QUOTATION_ACCEPTED",
+    "message": "Khách đã đồng ý báo giá BG-2026-1030-00003.",
+    "link": "/technician",
+    "entityId": "BG-2026-1030-00003",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032354"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1227"
+    },
+    "role": "CASHIER",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00008 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00008",
+    "entityId": "TN-2026-1030-00008",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032382"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1228"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00008 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00008",
+    "entityId": "TN-2026-1030-00008",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032385"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1229"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00009 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00009",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032446"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1230"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00009.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00009",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032538"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1231"
+    },
+    "role": "CASHIER",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00009 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00009",
+    "entityId": "TN-2026-1030-00009",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032589"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1232"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00009 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00009",
+    "entityId": "TN-2026-1030-00009",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032591"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1233"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00010 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00010",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032667"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1234"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00010.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00010",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032698"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1235"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "QUOTATION_PENDING",
+    "message": "Báo giá BG-2026-1030-00004 đang chờ phê duyệt.",
+    "link": "/dispatch#quotes",
+    "entityId": "BG-2026-1030-00004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032795"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1236"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "QUOTATION_APPROVED",
+    "message": "Báo giá BG-2026-1030-00004 đã được duyệt, chờ khách xác nhận.",
+    "link": "/receptionist",
+    "entityId": "BG-2026-1030-00004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032837"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1237"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "QUOTATION_DECLINED",
+    "message": "Khách đã từ chối báo giá BG-2026-1030-00004.",
+    "link": "/technician",
+    "entityId": "BG-2026-1030-00004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032858"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1238"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00011 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032939"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1239"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "type": "TICKET_RECEIVED",
+    "message": "Đã tiếp nhận thiết bị. Mã phiếu TN-2026-1030-00011.",
+    "link": "/portal",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032942"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1240"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00011.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032983"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1241"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "QUOTATION_PENDING",
+    "message": "Báo giá BG-2026-1030-00005 đang chờ phê duyệt.",
+    "link": "/dispatch#quotes",
+    "entityId": "BG-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033047"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1242"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "QUOTATION_APPROVED",
+    "message": "Báo giá BG-2026-1030-00005 đã được duyệt, chờ khách xác nhận.",
+    "link": "/receptionist",
+    "entityId": "BG-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033123"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1243"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "type": "QUOTATION_AWAITING_CUSTOMER",
+    "message": "Báo giá BG-2026-1030-00005 cho phiếu TN-2026-1030-00011 đang chờ xác nhận.",
+    "link": "/portal",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033126"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1244"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "QUOTATION_ACCEPTED",
+    "message": "Khách đã đồng ý báo giá BG-2026-1030-00005.",
+    "link": "/technician",
+    "entityId": "BG-2026-1030-00005",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033149"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1245"
+    },
+    "role": "CASHIER",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00011 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00011",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033217"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1246"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00011 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00011",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033219"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1247"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "type": "TICKET_COMPLETED",
+    "message": "Thiết bị của phiếu TN-2026-1030-00011 đã sửa xong, sẵn sàng nhận máy tại trung tâm.",
+    "link": "/portal",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033221"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1248"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "type": "TICKET_HANDED_OVER",
+    "message": "Đã bàn giao thiết bị của phiếu TN-2026-1030-00011. Cảm ơn đã tin dùng dịch vụ.",
+    "link": "/portal",
+    "entityId": "TN-2026-1030-00011",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033366"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1249"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00012 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00012",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033552"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1250"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00012.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00012",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033614"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1251"
+    },
+    "role": "CASHIER",
+    "accountId": null,
+    "type": "TICKET_RETURN_PENDING",
+    "message": "Phiếu TN-2026-1030-00012 chuyển sang chờ trả máy không sửa.",
+    "link": "/cashier#TN-2026-1030-00012",
+    "entityId": "TN-2026-1030-00012",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033688"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1252"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "TICKET_RETURN_PENDING",
+    "message": "Phiếu TN-2026-1030-00012 chuyển sang chờ trả máy không sửa.",
+    "link": "/cashier#TN-2026-1030-00012",
+    "entityId": "TN-2026-1030-00012",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033689"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1253"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RETURN_PENDING",
+    "message": "Phiếu TN-2026-1030-00012 chuyển sang chờ trả máy không sửa.",
+    "link": "/cashier#TN-2026-1030-00012",
+    "entityId": "TN-2026-1030-00012",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033690"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1254"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "TICKET_RECEIVED",
+    "message": "Phiếu TN-2026-1030-00013 mới tiếp nhận, chờ phân công.",
+    "link": "/dispatch",
+    "entityId": "TN-2026-1030-00013",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033880"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1255"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "TICKET_ASSIGNED",
+    "message": "Bạn được giao phiếu TN-2026-1030-00013.",
+    "link": "/technician",
+    "entityId": "TN-2026-1030-00013",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033935"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1256"
+    },
+    "role": "DISPATCHER",
+    "accountId": null,
+    "type": "QUOTATION_PENDING",
+    "message": "Báo giá BG-2026-1030-00006 đang chờ phê duyệt.",
+    "link": "/dispatch#quotes",
+    "entityId": "BG-2026-1030-00006",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033996"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1257"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "QUOTATION_APPROVED",
+    "message": "Báo giá BG-2026-1030-00006 đã được duyệt, chờ khách xác nhận.",
+    "link": "/receptionist",
+    "entityId": "BG-2026-1030-00006",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331034008"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1258"
+    },
+    "role": null,
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "type": "QUOTATION_ACCEPTED",
+    "message": "Khách đã đồng ý báo giá BG-2026-1030-00006.",
+    "link": "/technician",
+    "entityId": "BG-2026-1030-00006",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331034038"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1259"
+    },
+    "role": "CASHIER",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00013 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00013",
+    "entityId": "TN-2026-1030-00013",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331034063"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1260"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "TICKET_COMPLETED",
+    "message": "Phiếu TN-2026-1030-00013 đã hoàn tất sửa chữa, sẵn sàng bàn giao.",
+    "link": "/cashier#TN-2026-1030-00013",
+    "entityId": "TN-2026-1030-00013",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331034065"
+      }
+    },
+    "readBy": []
+  },
+  {
+    "_id": {
+      "$numberLong": "1261"
+    },
+    "role": "RECEPTIONIST",
+    "accountId": null,
+    "type": "WARRANTY_REQUEST_NEW",
+    "message": "Có yêu cầu bảo hành trực tuyến mới YC-2026-1030-00001.",
+    "link": "/receptionist#YC-2026-1030-00001",
+    "entityId": "YC-2026-1030-00001",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331034237"
+      }
+    },
+    "readBy": []
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("notifications").countDocuments({}) !== 1202) throw new Error("Count mismatch: notifications");
+  if (target.getCollection("notifications").countDocuments({}) !== 1261) throw new Error("Count mismatch: notifications");
 
   // Collection: otp_codes (0 documents in source).
   target.createCollection("otp_codes", EJSON.deserialize({}, { relaxed: false }));
@@ -73535,7 +77827,7 @@
       {
         "binCode": "C1",
         "qty": {
-          "$numberInt": "167"
+          "$numberInt": "179"
         }
       }
     ],
@@ -73549,11 +77841,11 @@
     },
     "name": "Pin laptop 3 cell",
     "onHand": {
-      "$numberInt": "167"
+      "$numberInt": "179"
     },
     "primaryBin": "C1",
     "reserved": {
-      "$numberInt": "0"
+      "$numberInt": "1"
     },
     "servicePrice": {
       "$numberDecimal": "1100000"
@@ -73561,7 +77853,7 @@
     "supplierId": "NCC-001",
     "unit": "Cái",
     "version": {
-      "$numberInt": "23"
+      "$numberInt": "25"
     },
     "warrantyMonths": {
       "$numberInt": "12"
@@ -73921,7 +78213,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("parts").countDocuments({}) !== 14) throw new Error("Count mismatch: parts");
 
-  // Collection: payments (170 documents in source).
+  // Collection: payments (172 documents in source).
   target.createCollection("payments", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -77051,9 +81343,45 @@
     "method": "NONE",
     "cashierId": "NV-006",
     "note": null
+  },
+  {
+    "_id": "PT-2026-00171",
+    "ticketId": "TN-2026-1030-00011",
+    "quotationId": "BG-2026-1030-00005",
+    "type": "CHARGED",
+    "paidAt": {
+      "$date": {
+        "$numberLong": "1793331033263"
+      }
+    },
+    "payerName": "Khách hàng demo",
+    "amount": {
+      "$numberDecimal": "270000"
+    },
+    "method": "CASH",
+    "cashierId": "NV-006",
+    "note": "[DEMO Phase6] P6-20261030033028 - chứng từ mẫu, không thu tiền ngoài hệ thống"
+  },
+  {
+    "_id": "PT-2026-00172",
+    "ticketId": "TN-2026-1030-00013",
+    "quotationId": "BG-2026-1030-00006",
+    "type": "CHARGED",
+    "paidAt": {
+      "$date": {
+        "$numberLong": "1793331034097"
+      }
+    },
+    "payerName": "Nguyễn Minh Khang",
+    "amount": {
+      "$numberDecimal": "270000"
+    },
+    "method": "CASH",
+    "cashierId": "NV-006",
+    "note": "[DEMO Phase6] P6-20261030033028 - chứng từ mẫu, không thu tiền ngoài hệ thống"
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("payments").countDocuments({}) !== 170) throw new Error("Count mismatch: payments");
+  if (target.getCollection("payments").countDocuments({}) !== 172) throw new Error("Count mismatch: payments");
 
   // Collection: products (19 documents in source).
   target.createCollection("products", EJSON.deserialize({}, { relaxed: false }));
@@ -77282,7 +81610,7 @@
 }, { relaxed: false }));
   if (target.getCollection("push_devices").countDocuments({}) !== 0) throw new Error("Count mismatch: push_devices");
 
-  // Collection: quotations (80 documents in source).
+  // Collection: quotations (86 documents in source).
   target.createCollection("quotations", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -82644,11 +86972,395 @@
     },
     "revisionOf": null,
     "Persisted": true
+  },
+  {
+    "_id": "BG-2026-1030-00001",
+    "ticketId": "TN-2026-1030-00004",
+    "inspectionCode": "PKT-2026-00192",
+    "createdBy": "NV-007",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031376"
+      }
+    },
+    "validUntil": "2026-11-06",
+    "vatRate": {
+      "$numberDecimal": "8"
+    },
+    "serviceFeeCode": null,
+    "lines": [
+      {
+        "lineNo": {
+          "$numberInt": "1"
+        },
+        "sku": null,
+        "description": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitPrice": {
+          "$numberDecimal": "0"
+        },
+        "laborFee": {
+          "$numberDecimal": "250000"
+        }
+      }
+    ],
+    "partsTotal": {
+      "$numberDecimal": "0"
+    },
+    "laborTotal": {
+      "$numberDecimal": "250000"
+    },
+    "grandTotal": {
+      "$numberDecimal": "270000"
+    },
+    "approval": {
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "note": null
+    },
+    "customerDecision": {
+      "status": "PENDING",
+      "decidedAt": null,
+      "reason": null,
+      "channel": null,
+      "recordedBy": null
+    },
+    "revisionOf": null,
+    "Persisted": true
+  },
+  {
+    "_id": "BG-2026-1030-00002",
+    "ticketId": "TN-2026-1030-00005",
+    "inspectionCode": "PKT-2026-00193",
+    "createdBy": "NV-004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331031535"
+      }
+    },
+    "validUntil": "2026-11-06",
+    "vatRate": {
+      "$numberDecimal": "8"
+    },
+    "serviceFeeCode": null,
+    "lines": [
+      {
+        "lineNo": {
+          "$numberInt": "1"
+        },
+        "sku": null,
+        "description": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitPrice": {
+          "$numberDecimal": "0"
+        },
+        "laborFee": {
+          "$numberDecimal": "250000"
+        }
+      }
+    ],
+    "partsTotal": {
+      "$numberDecimal": "0"
+    },
+    "laborTotal": {
+      "$numberDecimal": "250000"
+    },
+    "grandTotal": {
+      "$numberDecimal": "270000"
+    },
+    "approval": {
+      "status": "APPROVED",
+      "reviewedBy": "NV-003",
+      "reviewedAt": {
+        "$date": {
+          "$numberLong": "1793331031558"
+        }
+      },
+      "note": null
+    },
+    "customerDecision": {
+      "status": "PENDING",
+      "decidedAt": null,
+      "reason": null,
+      "channel": null,
+      "recordedBy": null
+    },
+    "revisionOf": null,
+    "Persisted": true
+  },
+  {
+    "_id": "BG-2026-1030-00003",
+    "ticketId": "TN-2026-1030-00008",
+    "inspectionCode": "PKT-2026-00196",
+    "createdBy": "NV-007",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032208"
+      }
+    },
+    "validUntil": "2026-11-06",
+    "vatRate": {
+      "$numberDecimal": "8"
+    },
+    "serviceFeeCode": null,
+    "lines": [
+      {
+        "lineNo": {
+          "$numberInt": "1"
+        },
+        "sku": null,
+        "description": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitPrice": {
+          "$numberDecimal": "0"
+        },
+        "laborFee": {
+          "$numberDecimal": "250000"
+        }
+      }
+    ],
+    "partsTotal": {
+      "$numberDecimal": "0"
+    },
+    "laborTotal": {
+      "$numberDecimal": "250000"
+    },
+    "grandTotal": {
+      "$numberDecimal": "270000"
+    },
+    "approval": {
+      "status": "APPROVED",
+      "reviewedBy": "NV-003",
+      "reviewedAt": {
+        "$date": {
+          "$numberLong": "1793331032239"
+        }
+      },
+      "note": null
+    },
+    "customerDecision": {
+      "status": "ACCEPTED",
+      "decidedAt": {
+        "$date": {
+          "$numberLong": "1793331032336"
+        }
+      },
+      "reason": null,
+      "channel": "COUNTER",
+      "recordedBy": "NV-002"
+    },
+    "revisionOf": null,
+    "Persisted": true
+  },
+  {
+    "_id": "BG-2026-1030-00004",
+    "ticketId": "TN-2026-1030-00010",
+    "inspectionCode": "PKT-2026-00198",
+    "createdBy": "NV-007",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331032788"
+      }
+    },
+    "validUntil": "2026-11-06",
+    "vatRate": {
+      "$numberDecimal": "8"
+    },
+    "serviceFeeCode": null,
+    "lines": [
+      {
+        "lineNo": {
+          "$numberInt": "1"
+        },
+        "sku": null,
+        "description": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitPrice": {
+          "$numberDecimal": "0"
+        },
+        "laborFee": {
+          "$numberDecimal": "250000"
+        }
+      }
+    ],
+    "partsTotal": {
+      "$numberDecimal": "0"
+    },
+    "laborTotal": {
+      "$numberDecimal": "250000"
+    },
+    "grandTotal": {
+      "$numberDecimal": "270000"
+    },
+    "approval": {
+      "status": "APPROVED",
+      "reviewedBy": "NV-003",
+      "reviewedAt": {
+        "$date": {
+          "$numberLong": "1793331032819"
+        }
+      },
+      "note": null
+    },
+    "customerDecision": {
+      "status": "DECLINED",
+      "decidedAt": {
+        "$date": {
+          "$numberLong": "1793331032849"
+        }
+      },
+      "reason": "Khách chọn mua máy mới",
+      "channel": "COUNTER",
+      "recordedBy": "NV-002"
+    },
+    "revisionOf": null,
+    "Persisted": true
+  },
+  {
+    "_id": "BG-2026-1030-00005",
+    "ticketId": "TN-2026-1030-00011",
+    "inspectionCode": "PKT-2026-00199",
+    "createdBy": "NV-004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033039"
+      }
+    },
+    "validUntil": "2026-11-06",
+    "vatRate": {
+      "$numberDecimal": "8"
+    },
+    "serviceFeeCode": null,
+    "lines": [
+      {
+        "lineNo": {
+          "$numberInt": "1"
+        },
+        "sku": null,
+        "description": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitPrice": {
+          "$numberDecimal": "0"
+        },
+        "laborFee": {
+          "$numberDecimal": "250000"
+        }
+      }
+    ],
+    "partsTotal": {
+      "$numberDecimal": "0"
+    },
+    "laborTotal": {
+      "$numberDecimal": "250000"
+    },
+    "grandTotal": {
+      "$numberDecimal": "270000"
+    },
+    "approval": {
+      "status": "APPROVED",
+      "reviewedBy": "NV-003",
+      "reviewedAt": {
+        "$date": {
+          "$numberLong": "1793331033118"
+        }
+      },
+      "note": null
+    },
+    "customerDecision": {
+      "status": "ACCEPTED",
+      "decidedAt": {
+        "$date": {
+          "$numberLong": "1793331033143"
+        }
+      },
+      "reason": null,
+      "channel": "PORTAL",
+      "recordedBy": "KH:KH-000001"
+    },
+    "revisionOf": null,
+    "Persisted": true
+  },
+  {
+    "_id": "BG-2026-1030-00006",
+    "ticketId": "TN-2026-1030-00013",
+    "inspectionCode": "PKT-2026-00201",
+    "createdBy": "NV-004",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331033978"
+      }
+    },
+    "validUntil": "2026-11-06",
+    "vatRate": {
+      "$numberDecimal": "8"
+    },
+    "serviceFeeCode": null,
+    "lines": [
+      {
+        "lineNo": {
+          "$numberInt": "1"
+        },
+        "sku": null,
+        "description": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitPrice": {
+          "$numberDecimal": "0"
+        },
+        "laborFee": {
+          "$numberDecimal": "250000"
+        }
+      }
+    ],
+    "partsTotal": {
+      "$numberDecimal": "0"
+    },
+    "laborTotal": {
+      "$numberDecimal": "250000"
+    },
+    "grandTotal": {
+      "$numberDecimal": "270000"
+    },
+    "approval": {
+      "status": "APPROVED",
+      "reviewedBy": "NV-003",
+      "reviewedAt": {
+        "$date": {
+          "$numberLong": "1793331034003"
+        }
+      },
+      "note": null
+    },
+    "customerDecision": {
+      "status": "ACCEPTED",
+      "decidedAt": {
+        "$date": {
+          "$numberLong": "1793331034028"
+        }
+      },
+      "reason": null,
+      "channel": "COUNTER",
+      "recordedBy": "NV-002"
+    },
+    "revisionOf": null,
+    "Persisted": true
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("quotations").countDocuments({}) !== 80) throw new Error("Count mismatch: quotations");
+  if (target.getCollection("quotations").countDocuments({}) !== 86) throw new Error("Count mismatch: quotations");
 
-  // Collection: refresh_tokens (16 documents in source).
+  // Collection: refresh_tokens (45 documents in source).
   target.createCollection("refresh_tokens", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "accountId": {
@@ -83093,9 +87805,734 @@
     "remember": false,
     "ip": "::1",
     "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "17"
+    },
+    "tokenHash": "d9e49505a410c470cb185a6754d5e64a4797577eb5bdfa060bf0f91cc4b80bc5",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "d81e8d20-8915-4718-a674-96125762f918",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793191614354"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793234814354"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "curl/8.21.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "18"
+    },
+    "tokenHash": "1237cb211297304b7f2da1fac17b740e65a89c4f7ce9b9063b9defb1dba0038d",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "8c2000dc-1686-418e-9a77-22e185666d8b",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793191648413"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793234848413"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Claude/4.29.0 Chrome/152.0.7977.167 Safari/537.36 MSIX"
+  },
+  {
+    "_id": {
+      "$numberLong": "19"
+    },
+    "tokenHash": "b8a461db5f0c533b05092351711cb1a30c83b6daa0714ff2a33fabf4f2adc2d4",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "ccd218d4-341c-470f-8dc4-e8b932de3398",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330958206"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374158206"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "20"
+    },
+    "tokenHash": "7d5495e6165a1c7e02036826b775f83f9bb4e358e11e7445c05014cc13f82ab6",
+    "accountId": {
+      "$numberLong": "2"
+    },
+    "familyId": "b3012052-678b-4c39-a80c-4a09c827e50f",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330958535"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374158535"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "21"
+    },
+    "tokenHash": "54eea84b239d9744d364c540333e088ba8629cad93f046f0640f6be7e2a92fa0",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "76ed757a-feaa-4af1-940a-cae6760b70c5",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330958748"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374158748"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "22"
+    },
+    "tokenHash": "7e22cf54d2ad78bd5efe64b6f1a2fd1c9b239c5438f3afcc96b6ea008c024ec9",
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "familyId": "5dc8757f-bf8e-42d5-8281-d80fe9c2b8ce",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330959018"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374159018"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "23"
+    },
+    "tokenHash": "628850f743e9cf8f7757744e51a06c186552b0945e96c34b7591cc7a5b109b56",
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "familyId": "e0030e3e-a75f-428a-b886-ec2f9a1805dd",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330959259"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374159259"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "24"
+    },
+    "tokenHash": "dcbac8e98639d20b5364f437ab6afe6a83ff268a4d4968c9bfa593b709844012",
+    "accountId": {
+      "$numberLong": "5"
+    },
+    "familyId": "7585a3d5-cda7-46c1-adbe-ebf8fde01942",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330959517"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374159517"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "25"
+    },
+    "tokenHash": "05853f6ac8083855fb98f2921a3147500773c302c86682e1c4c8d6c0d510283a",
+    "accountId": {
+      "$numberLong": "6"
+    },
+    "familyId": "3bbe48c9-d420-4c0e-8262-e6c70e94d826",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330959829"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374159829"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "26"
+    },
+    "tokenHash": "f62195b00a96b904a3b3ec7e45c75cb530cccb4781c2e1be87fa391ad3b5d4b3",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "f07f2a40-53a5-46b4-b3a6-d73dc2a4f0d7",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330960059"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374160059"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "27"
+    },
+    "tokenHash": "7f5180900f372573234856fcf55c470c263f7fb9797eb6ebce0bfd359f866db2",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "b8738439-7fa9-4b18-ab6f-108c8d94d554",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330984885"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374184885"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "28"
+    },
+    "tokenHash": "4bbc65dfb33c70d14f2e7d2498705b67ce1dbb768e23201b988fbd6b54dc7075",
+    "accountId": {
+      "$numberLong": "2"
+    },
+    "familyId": "6303eed8-edf0-48a4-9826-0ba97279fabc",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793330985139"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374185139"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "29"
+    },
+    "tokenHash": "d9904718e1723653e311a97d2f5ad10a903884dc64598d85811aff51d968d27c",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "bd76796f-acfb-4128-85c5-0e77e2875b28",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331028619"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374228619"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "30"
+    },
+    "tokenHash": "f13188fdde63918328b616204329607e677ef94e1a5643d4724741e6d7cf1bc8",
+    "accountId": {
+      "$numberLong": "2"
+    },
+    "familyId": "1aff09c5-9552-45b4-89e6-1de5c8ff2792",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331028862"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374228862"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "31"
+    },
+    "tokenHash": "234694a6fc0b10a3d401d18addfe21ea55e22c1ae82833cf04653aeb07883f2e",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "3b3080f4-7904-4763-a66d-be8415867a05",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331029106"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374229106"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "32"
+    },
+    "tokenHash": "fd97132ce3562f0f1ee9310b35f281478964432947a4ffcb7d2d7f335335a775",
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "familyId": "6b3f7b43-177c-4a27-992b-c047b5566725",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331029342"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374229342"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "33"
+    },
+    "tokenHash": "c79e5048da58f771bcb88089f79211113b2baa166410c8885035203c5c5c5057",
+    "accountId": {
+      "$numberLong": "7"
+    },
+    "familyId": "ff816be3-98cd-4f3c-9c8c-e35ff80ed40f",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331029570"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374229570"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "34"
+    },
+    "tokenHash": "639a0fe3a28cc2408ced5bf0051af31d1211f5b9b00c9ba6076d8e00c7a1eeaa",
+    "accountId": {
+      "$numberLong": "5"
+    },
+    "familyId": "07448b9e-ad98-4e19-b705-9367e4f9c440",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331029816"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374229816"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "35"
+    },
+    "tokenHash": "1af17a328a2175b7a69594ebcca5b91a1a9374a5a227e27618a7a753b1208b8c",
+    "accountId": {
+      "$numberLong": "6"
+    },
+    "familyId": "9e6fbb3c-8f30-4931-ae79-d3365cd48f7f",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331030060"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374230060"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "36"
+    },
+    "tokenHash": "c3657775b7aa8b914eb8ac931df93ced72b1042be86f65f8a120278d1fcebf17",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "4acbc1d6-160f-4ea0-b657-1a338f7756b1",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793331030279"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793374230279"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "_id": {
+      "$numberLong": "37"
+    },
+    "tokenHash": "a64e7ac0ed9aedcdd19b18011feb47c9535b63d6c642c5ac64e102d4ce7addb5",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "d1781e70-48c8-463a-9b02-78146032ef29",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334344255"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377544255"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "38"
+    },
+    "tokenHash": "41d667f6d49296df4973db6ed784d8061da8e52755c034d731e8c8b83fe099d5",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "f71dcf49-002c-424b-a855-65083e600f32",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334412947"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377612947"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "39"
+    },
+    "tokenHash": "4f0186b308c8abc7575066b69007a922262dad8fe679406c1246137155ae8dd3",
+    "accountId": {
+      "$numberLong": "1"
+    },
+    "familyId": "94d0a57a-03b5-46c1-bf69-046e07551193",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334455210"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377655210"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "40"
+    },
+    "tokenHash": "22d3c97793308867545e54aad69cc1870e47e4ed8819e1803b30615d02547bc5",
+    "accountId": {
+      "$numberLong": "2"
+    },
+    "familyId": "43f199dd-18e0-4273-9598-bc7d396b0126",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334515834"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377715834"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "41"
+    },
+    "tokenHash": "c026878f6a2e3728db86bdb777221b650cf7ac210c233a679ed6b781fbd7bc71",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "708b3b6c-e966-4b17-86b2-37b6fc7d58a5",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334523918"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377723918"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "42"
+    },
+    "tokenHash": "a453974148a698e6200e0aff3892a59d8e666ac68583013fa843da6b83fd2981",
+    "accountId": {
+      "$numberLong": "2"
+    },
+    "familyId": "2028de02-ef5f-41dc-b5f4-d538e8af46ab",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334585397"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377785397"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "43"
+    },
+    "tokenHash": "3e4d5080958be131c6d080bfab8585f04ad6dc29dae47c9122751e3a09280932",
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "familyId": "99461086-3a37-4ea2-bf09-c56cf790c780",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334593529"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377793529"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "44"
+    },
+    "tokenHash": "9ae70144c20c7c5f592e55a4a6039a0037858855d2c8a43b0184e261669a3365",
+    "accountId": {
+      "$numberLong": "5"
+    },
+    "familyId": "f046017c-b1c1-41f1-afea-f0673fe90afa",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334607503"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377807503"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "45"
+    },
+    "tokenHash": "f3ed7d84544dfc69378db8fe585caf7c727b12b56b4727b85962d7ac09b93484",
+    "accountId": {
+      "$numberLong": "6"
+    },
+    "familyId": "a8f24a7d-ac0d-47c9-b71b-6c5d8c6d8c60",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793334637464"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793377837464"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("refresh_tokens").countDocuments({}) !== 16) throw new Error("Count mismatch: refresh_tokens");
+  if (target.getCollection("refresh_tokens").countDocuments({}) !== 45) throw new Error("Count mismatch: refresh_tokens");
 
   // Collection: service_prices (4 documents in source).
   target.createCollection("service_prices", EJSON.deserialize({}, { relaxed: false }));
@@ -83151,7 +88588,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("service_stations").countDocuments({}) !== 1) throw new Error("Count mismatch: service_stations");
 
-  // Collection: stock_issues (91 documents in source).
+  // Collection: stock_issues (92 documents in source).
   target.createCollection("stock_issues", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -86956,11 +92393,48 @@
       "$numberDecimal": "800000"
     },
     "Persisted": true
+  },
+  {
+    "_id": "PX-2026-00092",
+    "ticketId": "TN-2026-1030-00006",
+    "source": "FREE_WARRANTY",
+    "quotationId": null,
+    "reason": "Xuất bảo hành miễn phí",
+    "technicianId": "NV-007",
+    "requestedBy": "NV-007",
+    "requestedAt": {
+      "$date": {
+        "$numberLong": "1793331031832"
+      }
+    },
+    "status": "PENDING",
+    "processedBy": null,
+    "processedAt": null,
+    "rejectedReason": null,
+    "returnedBy": null,
+    "returnedAt": null,
+    "lines": [
+      {
+        "sku": "LK-LAP-PIN",
+        "quantity": {
+          "$numberInt": "1"
+        },
+        "unitCost": {
+          "$numberDecimal": "650000"
+        },
+        "binCode": null,
+        "partWarrantyExpiresOn": null
+      }
+    ],
+    "totalCost": {
+      "$numberDecimal": "650000"
+    },
+    "Persisted": true
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("stock_issues").countDocuments({}) !== 91) throw new Error("Count mismatch: stock_issues");
+  if (target.getCollection("stock_issues").countDocuments({}) !== 92) throw new Error("Count mismatch: stock_issues");
 
-  // Collection: stock_receipts (7 documents in source).
+  // Collection: stock_receipts (8 documents in source).
   target.createCollection("stock_receipts", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("stock_receipts").insertMany(EJSON.deserialize([
   {
@@ -87963,9 +93437,42 @@
     },
     "rejectedReason": null,
     "Persisted": true
+  },
+  {
+    "_id": "PN-2026-00008",
+    "supplierId": "NCC-001",
+    "batchNo": "P6-20261030033028",
+    "receivedOn": "2026-10-30",
+    "status": "APPROVED",
+    "requestedBy": "NV-005",
+    "note": "[DEMO Phase6] P6-20261030033028: nhập bổ sung 12 pin laptop",
+    "lines": [
+      {
+        "sku": "LK-LAP-PIN",
+        "quantity": {
+          "$numberInt": "12"
+        },
+        "unitCost": {
+          "$numberDecimal": "650000"
+        },
+        "serialBatch": null,
+        "binCode": "C1"
+      }
+    ],
+    "totalCost": {
+      "$numberDecimal": "7800000"
+    },
+    "processedBy": "NV-005",
+    "processedAt": {
+      "$date": {
+        "$numberLong": "1793331030489"
+      }
+    },
+    "rejectedReason": null,
+    "Persisted": true
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("stock_receipts").countDocuments({}) !== 7) throw new Error("Count mismatch: stock_receipts");
+  if (target.getCollection("stock_receipts").countDocuments({}) !== 8) throw new Error("Count mismatch: stock_receipts");
 
   // Collection: stock_transfers (0 documents in source).
   target.createCollection("stock_transfers", EJSON.deserialize({}, { relaxed: false }));
@@ -87985,7 +93492,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("suppliers").countDocuments({}) !== 1) throw new Error("Count mismatch: suppliers");
 
-  // Collection: tickets (197 documents in source).
+  // Collection: tickets (210 documents in source).
   target.createCollection("tickets", EJSON.deserialize({
   "validator": {
     "$jsonSchema": {
@@ -145652,9 +151159,2799 @@
       "$numberInt": "3"
     },
     "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00001",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331030693"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000085",
+    "customerSnapshot": {
+      "fullName": "Nguyễn Minh Khang",
+      "phone": "0886836101",
+      "email": "phase6.p6-20261030033028.1@example.invalid",
+      "address": "20 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000184",
+    "deviceSnapshot": {
+      "brandId": "DELL",
+      "brandName": "Dell",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0201",
+      "productName": "Dell Inspiron 15 3530",
+      "serialOrImei": "P6-20261030033028-1"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": "Dữ liệu mẫu; dùng kiểm thử bảo hành.",
+      "policyId": "CS-0001"
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "PRIORITY_24H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793417430693"
+        }
+      }
+    },
+    "status": "RECEIVED",
+    "assignment": null,
+    "inspection": null,
+    "repairOrder": null,
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331030867"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Tiếp nhận mới, chờ điều phối. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331030693"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      }
+    ],
+    "version": {
+      "$numberInt": "1"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00002",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331030954"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000086",
+    "customerSnapshot": {
+      "fullName": "Trần Ngọc Mai",
+      "phone": "0886836102",
+      "email": "phase6.p6-20261030033028.2@example.invalid",
+      "address": "24 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000185",
+    "deviceSnapshot": {
+      "brandId": "SAMSUNG",
+      "brandName": "Samsung",
+      "categoryCode": "PHONE",
+      "deviceTypeCode": "PHONE_IMEI",
+      "deviceTypeName": "Điện thoại",
+      "identifierType": "IMEI",
+      "productId": "SP-0102",
+      "productName": "Galaxy S24 256GB",
+      "serialOrImei": "359331028361018"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Sạc chập chờn, pin tụt nhanh khi sử dụng",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503830954"
+        }
+      }
+    },
+    "status": "INSPECTING",
+    "assignment": {
+      "code": "PC-2026-00191",
+      "managerId": "NV-003",
+      "technicianId": "NV-007",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331031033"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đã giao kỹ thuật viên, chờ kiểm tra",
+      "history": []
+    },
+    "inspection": null,
+    "repairOrder": {
+      "code": "PSC-2026-00191",
+      "technicianId": "NV-007",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331031033"
+        }
+      },
+      "startedAt": null,
+      "status": "PENDING",
+      "results": []
+    },
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331030989"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đã giao kỹ thuật viên, chờ kiểm tra. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331030954"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031033"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      }
+    ],
+    "version": {
+      "$numberInt": "2"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00003",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331031110"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000087",
+    "customerSnapshot": {
+      "fullName": "Lê Hoàng Phúc",
+      "phone": "0886836103",
+      "email": "phase6.p6-20261030033028.3@example.invalid",
+      "address": "28 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000186",
+    "deviceSnapshot": {
+      "brandId": "ASUS",
+      "brandName": "ASUS",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0202",
+      "productName": "ASUS Vivobook 15 OLED",
+      "serialOrImei": "P6-20261030033028-3"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503831110"
+        }
+      }
+    },
+    "status": "DIAGNOSED",
+    "assignment": {
+      "code": "PC-2026-00192",
+      "managerId": "NV-003",
+      "technicianId": "NV-004",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331031149"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đã chẩn đoán, chờ bắt đầu sửa miễn phí",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00191",
+      "technicianId": "NV-004",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331031200"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "FREE_WARRANTY",
+      "outOfWarrantyReason": null,
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00192",
+      "technicianId": "NV-004",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331031149"
+        }
+      },
+      "startedAt": null,
+      "status": "PENDING",
+      "results": []
+    },
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031126"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đã chẩn đoán, chờ bắt đầu sửa miễn phí. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031110"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031149"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031200"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "3"
+    },
+    "open": true
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("tickets").countDocuments({}) !== 197) throw new Error("Count mismatch: tickets");
+  target.getCollection("tickets").insertMany(EJSON.deserialize([
+  {
+    "_id": "TN-2026-1030-00004",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331031266"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "PAID_REPAIR",
+    "warrantyRequestId": null,
+    "customerId": "KH-000088",
+    "customerSnapshot": {
+      "fullName": "Phạm Thanh Trúc",
+      "phone": "0886836104",
+      "email": "phase6.p6-20261030033028.4@example.invalid",
+      "address": "32 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000187",
+    "deviceSnapshot": {
+      "brandId": "APPLE",
+      "brandName": "Apple",
+      "categoryCode": "PHONE",
+      "deviceTypeCode": "PHONE_IMEI",
+      "deviceTypeName": "Điện thoại",
+      "identifierType": "IMEI",
+      "productId": "SP-0101",
+      "productName": "iPhone 15 128GB",
+      "serialOrImei": "359331028361034"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "OUT_OF_WARRANTY",
+      "activatedOn": "2024-08-21",
+      "expiresOn": "2025-08-21",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Sạc chập chờn, pin tụt nhanh khi sử dụng",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "250000"
+    },
+    "sla": {
+      "level": "PRIORITY_24H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793417431266"
+        }
+      }
+    },
+    "status": "AWAITING_QUOTE_APPROVAL",
+    "assignment": {
+      "code": "PC-2026-00193",
+      "managerId": "NV-003",
+      "technicianId": "NV-007",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331031303"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Báo giá mới, chờ điều phối duyệt",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00192",
+      "technicianId": "NV-007",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331031336"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "OUT_OF_WARRANTY",
+      "outOfWarrantyReason": "Đã hết hạn bảo hành theo hồ sơ thiết bị",
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00193",
+      "technicianId": "NV-007",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331031303"
+        }
+      },
+      "startedAt": null,
+      "status": "PENDING",
+      "results": []
+    },
+    "activeQuotationId": "BG-2026-1030-00001",
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031285"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Báo giá mới, chờ điều phối duyệt. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031266"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031303"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031336"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_QUOTE_APPROVAL",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031376"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ duyệt giá\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "4"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00005",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331031455"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "PAID_REPAIR",
+    "warrantyRequestId": null,
+    "customerId": "KH-000001",
+    "customerSnapshot": {
+      "fullName": "Khách hàng demo",
+      "phone": "0900000001",
+      "email": "customer@example.invalid",
+      "address": "Dữ liệu mẫu phát triển"
+    },
+    "deviceId": "TB-000188",
+    "deviceSnapshot": {
+      "brandId": "DELL",
+      "brandName": "Dell",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0201",
+      "productName": "Dell Inspiron 15 3530",
+      "serialOrImei": "P6-20261030033028-5"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "OUT_OF_WARRANTY",
+      "activatedOn": "2024-08-21",
+      "expiresOn": "2025-08-21",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": "Dữ liệu mẫu; dùng kiểm thử bảo hành.",
+      "policyId": "CS-0001"
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "250000"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503831455"
+        }
+      }
+    },
+    "status": "AWAITING_CUSTOMER_CONFIRMATION",
+    "assignment": {
+      "code": "PC-2026-00194",
+      "managerId": "NV-003",
+      "technicianId": "NV-004",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331031505"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Khách demo đăng nhập để đồng ý báo giá",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00193",
+      "technicianId": "NV-004",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331031519"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "OUT_OF_WARRANTY",
+      "outOfWarrantyReason": "Đã hết hạn bảo hành theo hồ sơ thiết bị",
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00194",
+      "technicianId": "NV-004",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331031505"
+        }
+      },
+      "startedAt": null,
+      "status": "PENDING",
+      "results": []
+    },
+    "activeQuotationId": "BG-2026-1030-00002",
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031487"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Khách demo đăng nhập để đồng ý báo giá. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031455"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031505"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031519"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_QUOTE_APPROVAL",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031535"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ duyệt giá\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_CUSTOMER_CONFIRMATION",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031558"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ duyệt giá\" sang \"Chờ khách xác nhận\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      }
+    ],
+    "version": {
+      "$numberInt": "5"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00006",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331031623"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000089",
+    "customerSnapshot": {
+      "fullName": "Đặng Thùy Linh",
+      "phone": "0886836106",
+      "email": "phase6.p6-20261030033028.6@example.invalid",
+      "address": "40 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000189",
+    "deviceSnapshot": {
+      "brandId": "DELL",
+      "brandName": "Dell",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0201",
+      "productName": "Dell Inspiron 15 3530",
+      "serialOrImei": "P6-20261030033028-6"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": "Dữ liệu mẫu; dùng kiểm thử bảo hành.",
+      "policyId": "CS-0001"
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503831623"
+        }
+      }
+    },
+    "status": "AWAITING_PARTS",
+    "assignment": {
+      "code": "PC-2026-00195",
+      "managerId": "NV-003",
+      "technicianId": "NV-007",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331031754"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đã giữ pin, chờ thủ kho duyệt xuất",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00194",
+      "technicianId": "NV-007",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331031786"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "FREE_WARRANTY",
+      "outOfWarrantyReason": null,
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00195",
+      "technicianId": "NV-007",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331031754"
+        }
+      },
+      "startedAt": null,
+      "status": "PENDING",
+      "results": []
+    },
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031724"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đã giữ pin, chờ thủ kho duyệt xuất. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031623"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031754"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031786"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_PARTS",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031827"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ linh kiện\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "4"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00007",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331031919"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000090",
+    "customerSnapshot": {
+      "fullName": "Bùi Gia Bảo",
+      "phone": "0886836107",
+      "email": "phase6.p6-20261030033028.7@example.invalid",
+      "address": "44 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000190",
+    "deviceSnapshot": {
+      "brandId": "ASUS",
+      "brandName": "ASUS",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0202",
+      "productName": "ASUS Vivobook 15 OLED",
+      "serialOrImei": "P6-20261030033028-7"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "PRIORITY_24H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793417431919"
+        }
+      }
+    },
+    "status": "REPAIRING",
+    "assignment": {
+      "code": "PC-2026-00196",
+      "managerId": "NV-003",
+      "technicianId": "NV-004",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331031956"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đang sửa miễn phí, chờ KCS",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00195",
+      "technicianId": "NV-004",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331032036"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "FREE_WARRANTY",
+      "outOfWarrantyReason": null,
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00196",
+      "technicianId": "NV-004",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331031956"
+        }
+      },
+      "startedAt": {
+        "$date": {
+          "$numberLong": "1793331032053"
+        }
+      },
+      "status": "IN_PROGRESS",
+      "results": []
+    },
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031938"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đang sửa miễn phí, chờ KCS. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031919"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331031956"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032036"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "REPAIRING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032053"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Đang sửa chữa\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "4"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00008",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331032109"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "PAID_REPAIR",
+    "warrantyRequestId": null,
+    "customerId": "KH-000091",
+    "customerSnapshot": {
+      "fullName": "Đỗ Hải Yến",
+      "phone": "0886836108",
+      "email": "phase6.p6-20261030033028.8@example.invalid",
+      "address": "48 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000191",
+    "deviceSnapshot": {
+      "brandId": "SAMSUNG",
+      "brandName": "Samsung",
+      "categoryCode": "PHONE",
+      "deviceTypeCode": "PHONE_IMEI",
+      "deviceTypeName": "Điện thoại",
+      "identifierType": "IMEI",
+      "productId": "SP-0102",
+      "productName": "Galaxy S24 256GB",
+      "serialOrImei": "359331028361075"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "OUT_OF_WARRANTY",
+      "activatedOn": "2024-08-21",
+      "expiresOn": "2025-08-21",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Sạc chập chờn, pin tụt nhanh khi sử dụng",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "250000"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503832109"
+        }
+      }
+    },
+    "status": "COMPLETED",
+    "assignment": {
+      "code": "PC-2026-00197",
+      "managerId": "NV-003",
+      "technicianId": "NV-007",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331032148"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] KCS đạt, chờ thu phí 270.000 đồng",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00196",
+      "technicianId": "NV-007",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331032183"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "OUT_OF_WARRANTY",
+      "outOfWarrantyReason": "Đã hết hạn bảo hành theo hồ sơ thiết bị",
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00197",
+      "technicianId": "NV-007",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331032148"
+        }
+      },
+      "startedAt": {
+        "$date": {
+          "$numberLong": "1793331032336"
+        }
+      },
+      "status": "DONE",
+      "results": [
+        {
+          "code": "KQ-2026-00202",
+          "technicianId": "NV-007",
+          "workDone": "[DEMO Phase6] Vệ sinh cổng sạc, kiểm tra mạch nguồn, cập nhật firmware và chạy thử.",
+          "qcSteps": [
+            {
+              "step": "VISUAL",
+              "result": "PASS"
+            },
+            {
+              "step": "MAIN_FUNCTION",
+              "result": "PASS"
+            },
+            {
+              "step": "SECONDARY",
+              "result": "PASS"
+            },
+            {
+              "step": "POWER_CHARGING",
+              "result": "PASS"
+            },
+            {
+              "step": "DATA",
+              "result": "PASS"
+            },
+            {
+              "step": "FINAL",
+              "result": "PASS"
+            }
+          ],
+          "qcResult": "PASS",
+          "qcDetails": "Tất cả tiêu chí đạt",
+          "recordedAt": {
+            "$date": {
+              "$numberLong": "1793331032374"
+            }
+          }
+        }
+      ]
+    },
+    "activeQuotationId": "BG-2026-1030-00003",
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032128"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - KCS đạt, chờ thu phí 270.000 đồng. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032109"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032148"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032183"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_QUOTE_APPROVAL",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032208"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ duyệt giá\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_CUSTOMER_CONFIRMATION",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032239"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ duyệt giá\" sang \"Chờ khách xác nhận\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "REPAIRING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032336"
+          }
+        },
+        "description": "Khách hàng đồng ý báo giá (xác nhận thay khách tại quầy).",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "COMPLETED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032374"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang sửa chữa\" sang \"Hoàn thành\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "7"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00009",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331032440"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000092",
+    "customerSnapshot": {
+      "fullName": "Huỳnh Đức Anh",
+      "phone": "0886836109",
+      "email": "phase6.p6-20261030033028.9@example.invalid",
+      "address": "52 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000192",
+    "deviceSnapshot": {
+      "brandId": "DELL",
+      "brandName": "Dell",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0201",
+      "productName": "Dell Inspiron 15 3530",
+      "serialOrImei": "P6-20261030033028-9"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": "Dữ liệu mẫu; dùng kiểm thử bảo hành.",
+      "policyId": "CS-0001"
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503832440"
+        }
+      }
+    },
+    "status": "COMPLETED",
+    "assignment": {
+      "code": "PC-2026-00198",
+      "managerId": "NV-003",
+      "technicianId": "NV-004",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331032478"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] KCS đạt, chờ xác nhận miễn phí",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00197",
+      "technicianId": "NV-004",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331032555"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "FREE_WARRANTY",
+      "outOfWarrantyReason": null,
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00198",
+      "technicianId": "NV-004",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331032478"
+        }
+      },
+      "startedAt": {
+        "$date": {
+          "$numberLong": "1793331032568"
+        }
+      },
+      "status": "DONE",
+      "results": [
+        {
+          "code": "KQ-2026-00203",
+          "technicianId": "NV-004",
+          "workDone": "[DEMO Phase6] Vệ sinh cổng sạc, kiểm tra mạch nguồn, cập nhật firmware và chạy thử.",
+          "qcSteps": [
+            {
+              "step": "VISUAL",
+              "result": "PASS"
+            },
+            {
+              "step": "MAIN_FUNCTION",
+              "result": "PASS"
+            },
+            {
+              "step": "SECONDARY",
+              "result": "PASS"
+            },
+            {
+              "step": "POWER_CHARGING",
+              "result": "PASS"
+            },
+            {
+              "step": "DATA",
+              "result": "PASS"
+            },
+            {
+              "step": "FINAL",
+              "result": "PASS"
+            }
+          ],
+          "qcResult": "PASS",
+          "qcDetails": "Tất cả tiêu chí đạt",
+          "recordedAt": {
+            "$date": {
+              "$numberLong": "1793331032585"
+            }
+          }
+        }
+      ]
+    },
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032458"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - KCS đạt, chờ xác nhận miễn phí. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032440"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032478"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032555"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "REPAIRING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032568"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Đang sửa chữa\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "COMPLETED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032585"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang sửa chữa\" sang \"Hoàn thành\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "5"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00010",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331032659"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "PAID_REPAIR",
+    "warrantyRequestId": null,
+    "customerId": "KH-000093",
+    "customerSnapshot": {
+      "fullName": "Ngô Bảo Châu",
+      "phone": "0886836110",
+      "email": "phase6.p6-20261030033028.10@example.invalid",
+      "address": "56 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000193",
+    "deviceSnapshot": {
+      "brandId": "APPLE",
+      "brandName": "Apple",
+      "categoryCode": "PHONE",
+      "deviceTypeCode": "PHONE_IMEI",
+      "deviceTypeName": "Điện thoại",
+      "identifierType": "IMEI",
+      "productId": "SP-0101",
+      "productName": "iPhone 15 128GB",
+      "serialOrImei": "359331028361091"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "OUT_OF_WARRANTY",
+      "activatedOn": "2024-08-21",
+      "expiresOn": "2025-08-21",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Sạc chập chờn, pin tụt nhanh khi sử dụng",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "250000"
+    },
+    "sla": {
+      "level": "PRIORITY_24H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793417432659"
+        }
+      }
+    },
+    "status": "AWAITING_RETURN",
+    "assignment": {
+      "code": "PC-2026-00199",
+      "managerId": "NV-003",
+      "technicianId": "NV-007",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331032693"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Khách từ chối báo giá, chờ nhận máy",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00198",
+      "technicianId": "NV-007",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331032711"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "OUT_OF_WARRANTY",
+      "outOfWarrantyReason": "Đã hết hạn bảo hành theo hồ sơ thiết bị",
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00199",
+      "technicianId": "NV-007",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331032693"
+        }
+      },
+      "startedAt": null,
+      "status": "CANCELLED",
+      "results": []
+    },
+    "activeQuotationId": "BG-2026-1030-00004",
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032678"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Khách từ chối báo giá, chờ nhận máy. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032659"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032693"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032711"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_QUOTE_APPROVAL",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032788"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ duyệt giá\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_CUSTOMER_CONFIRMATION",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032819"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ duyệt giá\" sang \"Chờ khách xác nhận\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "AWAITING_RETURN",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032849"
+          }
+        },
+        "description": "Khách hàng từ chối báo giá (xác nhận thay khách tại quầy).",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      }
+    ],
+    "version": {
+      "$numberInt": "6"
+    },
+    "open": true
+  },
+  {
+    "_id": "TN-2026-1030-00011",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331032925"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "PAID_REPAIR",
+    "warrantyRequestId": null,
+    "customerId": "KH-000001",
+    "customerSnapshot": {
+      "fullName": "Khách hàng demo",
+      "phone": "0900000001",
+      "email": "customer@example.invalid",
+      "address": "Dữ liệu mẫu phát triển"
+    },
+    "deviceId": "TB-000194",
+    "deviceSnapshot": {
+      "brandId": "DELL",
+      "brandName": "Dell",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0201",
+      "productName": "Dell Inspiron 15 3530",
+      "serialOrImei": "P6-20261030033028-11"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "OUT_OF_WARRANTY",
+      "activatedOn": "2024-08-21",
+      "expiresOn": "2025-08-21",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": "Dữ liệu mẫu; dùng kiểm thử bảo hành.",
+      "policyId": "CS-0001"
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "250000"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503832925"
+        }
+      }
+    },
+    "status": "DELIVERED",
+    "assignment": {
+      "code": "PC-2026-00200",
+      "managerId": "NV-003",
+      "technicianId": "NV-004",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331032978"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đã thu phí, bàn giao và đánh giá sau KCS làm lại",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00199",
+      "technicianId": "NV-004",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331033019"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "OUT_OF_WARRANTY",
+      "outOfWarrantyReason": "Đã hết hạn bảo hành theo hồ sơ thiết bị",
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00200",
+      "technicianId": "NV-004",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331032978"
+        }
+      },
+      "startedAt": {
+        "$date": {
+          "$numberLong": "1793331033143"
+        }
+      },
+      "status": "DONE",
+      "results": [
+        {
+          "code": "KQ-2026-00204",
+          "technicianId": "NV-004",
+          "workDone": "[DEMO Phase6] Vệ sinh cổng sạc, kiểm tra mạch nguồn, cập nhật firmware và chạy thử.",
+          "qcSteps": [
+            {
+              "step": "VISUAL",
+              "result": "PASS"
+            },
+            {
+              "step": "MAIN_FUNCTION",
+              "result": "PASS"
+            },
+            {
+              "step": "SECONDARY",
+              "result": "PASS"
+            },
+            {
+              "step": "POWER_CHARGING",
+              "result": "FAIL"
+            },
+            {
+              "step": "DATA",
+              "result": "PASS"
+            },
+            {
+              "step": "FINAL",
+              "result": "PASS"
+            }
+          ],
+          "qcResult": "FAIL",
+          "qcDetails": "Chưa ổn định khi thử sạc; cần kiểm tra lại",
+          "recordedAt": {
+            "$date": {
+              "$numberLong": "1793331033195"
+            }
+          }
+        },
+        {
+          "code": "KQ-2026-00205",
+          "technicianId": "NV-004",
+          "workDone": "[DEMO Phase6] Vệ sinh cổng sạc, kiểm tra mạch nguồn, cập nhật firmware và chạy thử.",
+          "qcSteps": [
+            {
+              "step": "VISUAL",
+              "result": "PASS"
+            },
+            {
+              "step": "MAIN_FUNCTION",
+              "result": "PASS"
+            },
+            {
+              "step": "SECONDARY",
+              "result": "PASS"
+            },
+            {
+              "step": "POWER_CHARGING",
+              "result": "PASS"
+            },
+            {
+              "step": "DATA",
+              "result": "PASS"
+            },
+            {
+              "step": "FINAL",
+              "result": "PASS"
+            }
+          ],
+          "qcResult": "PASS",
+          "qcDetails": "Tất cả tiêu chí đạt",
+          "recordedAt": {
+            "$date": {
+              "$numberLong": "1793331033212"
+            }
+          }
+        }
+      ]
+    },
+    "activeQuotationId": "BG-2026-1030-00005",
+    "adjustment": null,
+    "handover": {
+      "code": "PBG-2026-00186",
+      "handedOverAt": {
+        "$date": {
+          "$numberLong": "1793331033332"
+        }
+      },
+      "handedOverBy": "NV-006",
+      "receiverName": "Khách hàng demo",
+      "conditionOnReturn": "Máy hoạt động ổn định sau sửa chữa (demo)",
+      "returnedOldParts": false,
+      "newWarrantyNote": null,
+      "rating": {
+        "$numberInt": "5"
+      },
+      "recheck": {
+        "cosmeticMatches": true,
+        "bootsNormally": true,
+        "mainFunctionsOk": true,
+        "accessoriesComplete": true,
+        "noNewIssues": true
+      },
+      "signature": {
+        "fileId": "171",
+        "signedAt": {
+          "$date": {
+            "$numberLong": "1793331033332"
+          }
+        }
+      },
+      "customerConfirmed": true,
+      "ratingComment": "Dữ liệu demo: tư vấn rõ ràng, máy hoạt động ổn định sau sửa chữa.",
+      "ratedAt": {
+        "$date": {
+          "$numberLong": "1793331033390"
+        }
+      }
+    },
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032959"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đã thu phí, bàn giao và đánh giá sau KCS làm lại. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032925"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331032978"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033019"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_QUOTE_APPROVAL",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033039"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ duyệt giá\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_CUSTOMER_CONFIRMATION",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033118"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ duyệt giá\" sang \"Chờ khách xác nhận\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "REPAIRING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033143"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ khách xác nhận\" sang \"Đang sửa chữa\"",
+        "actor": "KH:KH-000001",
+        "actorName": "Khách hàng demo",
+        "actorRole": "CUSTOMER"
+      },
+      {
+        "status": "COMPLETED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033212"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang sửa chữa\" sang \"Hoàn thành\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "DELIVERED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033332"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Hoàn thành\" sang \"Đã bàn giao\"",
+        "actor": "NV-006",
+        "actorName": "Thu ngân demo",
+        "actorRole": "CASHIER"
+      }
+    ],
+    "version": {
+      "$numberInt": "10"
+    },
+    "open": false
+  },
+  {
+    "_id": "TN-2026-1030-00012",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331033541"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "WARRANTY",
+    "warrantyRequestId": null,
+    "customerId": "KH-000094",
+    "customerSnapshot": {
+      "fullName": "Lý Minh Quân",
+      "phone": "0886836112",
+      "email": "phase6.p6-20261030033028.12@example.invalid",
+      "address": "64 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000195",
+    "deviceSnapshot": {
+      "brandId": "ASUS",
+      "brandName": "ASUS",
+      "categoryCode": "LAPTOP",
+      "deviceTypeCode": "LAPTOP_SERIAL",
+      "deviceTypeName": "Laptop",
+      "identifierType": "SERIAL",
+      "productId": "SP-0202",
+      "productName": "ASUS Vivobook 15 OLED",
+      "serialOrImei": "P6-20261030033028-12"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "IN_WARRANTY",
+      "activatedOn": "2026-08-31",
+      "expiresOn": "2027-08-31",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Máy nóng, pin không sạc ổn định",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "0"
+    },
+    "sla": {
+      "level": "STANDARD_48H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793503833541"
+        }
+      }
+    },
+    "status": "RETURNED_UNREPAIRED",
+    "assignment": {
+      "code": "PC-2026-00201",
+      "managerId": "NV-003",
+      "technicianId": "NV-007",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331033610"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đã trả nguyên trạng do không sửa được",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00200",
+      "technicianId": "NV-007",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331033650"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "FREE_WARRANTY",
+      "outOfWarrantyReason": null,
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00201",
+      "technicianId": "NV-007",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331033610"
+        }
+      },
+      "startedAt": null,
+      "status": "CANCELLED",
+      "results": []
+    },
+    "activeQuotationId": null,
+    "adjustment": null,
+    "handover": {
+      "code": "PBG-2026-00187",
+      "handedOverAt": {
+        "$date": {
+          "$numberLong": "1793331033716"
+        }
+      },
+      "handedOverBy": "NV-006",
+      "receiverName": "Lý Minh Quân",
+      "conditionOnReturn": "Trả nguyên trạng, chưa sửa chữa (demo)",
+      "returnedOldParts": false,
+      "newWarrantyNote": null,
+      "rating": null,
+      "recheck": null,
+      "signature": null,
+      "customerConfirmed": true,
+      "ratingComment": null,
+      "ratedAt": null
+    },
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033573"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đã trả nguyên trạng do không sửa được. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033541"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033610"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033650"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_RETURN",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033674"
+          }
+        },
+        "description": "Trả máy không sửa: [DEMO Phase6] Bo mạch không thể khắc phục, khách nhận lại nguyên trạng",
+        "actor": "NV-007",
+        "actorName": "Kỹ thuật viên 2 demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "RETURNED_UNREPAIRED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033716"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ trả máy\" sang \"Đã trả máy (không sửa)\"",
+        "actor": "NV-006",
+        "actorName": "Thu ngân demo",
+        "actorRole": "CASHIER"
+      }
+    ],
+    "version": {
+      "$numberInt": "5"
+    },
+    "open": false
+  },
+  {
+    "_id": "TN-2026-1030-00013",
+    "stationCode": "TRAM-01",
+    "receivedAt": {
+      "$date": {
+        "$numberLong": "1793331033819"
+      }
+    },
+    "channel": "COUNTER",
+    "requestType": "PAID_REPAIR",
+    "warrantyRequestId": null,
+    "customerId": "KH-000095",
+    "customerSnapshot": {
+      "fullName": "Nguyễn Minh Khang",
+      "phone": "0886836113",
+      "email": "phase6.p6-20261030033028.13@example.invalid",
+      "address": "68 Lê Văn Sỹ, TP. Hồ Chí Minh (địa chỉ demo)"
+    },
+    "deviceId": "TB-000196",
+    "deviceSnapshot": {
+      "brandId": "SAMSUNG",
+      "brandName": "Samsung",
+      "categoryCode": "PHONE",
+      "deviceTypeCode": "PHONE_IMEI",
+      "deviceTypeName": "Điện thoại",
+      "identifierType": "IMEI",
+      "productId": "SP-0102",
+      "productName": "Galaxy S24 256GB",
+      "serialOrImei": "359331028361125"
+    },
+    "receivedBy": "NV-002",
+    "warrantyAtIntake": {
+      "status": "OUT_OF_WARRANTY",
+      "activatedOn": "2024-08-21",
+      "expiresOn": "2025-08-21",
+      "distributor": "Nhà phân phối demo Phase6",
+      "conditions": null,
+      "policyId": null
+    },
+    "sealCondition": null,
+    "cosmetic": {
+      "scratches": "LIGHT",
+      "dents": false,
+      "cracks": false,
+      "moisture": "NONE",
+      "accessories": "COMPLETE",
+      "accessoriesNote": null,
+      "notes": "[DEMO Phase6] P6-20261030033028",
+      "customerAcknowledged": true
+    },
+    "reportedIssue": "Sạc chập chờn, pin tụt nhanh khi sử dụng",
+    "promisedReturnAt": null,
+    "estimatedCost": {
+      "$numberDecimal": "250000"
+    },
+    "sla": {
+      "level": "PRIORITY_24H",
+      "dueAt": {
+        "$date": {
+          "$numberLong": "1793417433819"
+        }
+      }
+    },
+    "status": "COMPLETED",
+    "assignment": {
+      "code": "PC-2026-00202",
+      "managerId": "NV-003",
+      "technicianId": "NV-004",
+      "assignedAt": {
+        "$date": {
+          "$numberLong": "1793331033931"
+        }
+      },
+      "priority": "NORMAL",
+      "note": "[DEMO Phase6] Đã thu phí, chờ ký bàn giao",
+      "history": []
+    },
+    "inspection": {
+      "code": "PKT-2026-00201",
+      "technicianId": "NV-004",
+      "inspectedAt": {
+        "$date": {
+          "$numberLong": "1793331033952"
+        }
+      },
+      "findings": "Đã kiểm tra nguồn, pin và cổng sạc; xác nhận lỗi theo mô tả.",
+      "checklist": [
+        {
+          "item": "Ngoại quan",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Nguồn",
+          "result": "PASS",
+          "note": null
+        },
+        {
+          "item": "Chức năng chính",
+          "result": "PASS",
+          "note": null
+        }
+      ],
+      "waterDamage": false,
+      "classification": "OUT_OF_WARRANTY",
+      "outOfWarrantyReason": "Đã hết hạn bảo hành theo hồ sơ thiết bị",
+      "proposedFix": "Vệ sinh cổng sạc, kiểm tra nguồn và cập nhật firmware; thay pin nếu cần.",
+      "reclassNote": null
+    },
+    "repairOrder": {
+      "code": "PSC-2026-00202",
+      "technicianId": "NV-004",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1793331033931"
+        }
+      },
+      "startedAt": {
+        "$date": {
+          "$numberLong": "1793331034028"
+        }
+      },
+      "status": "DONE",
+      "results": [
+        {
+          "code": "KQ-2026-00206",
+          "technicianId": "NV-004",
+          "workDone": "[DEMO Phase6] Vệ sinh cổng sạc, kiểm tra mạch nguồn, cập nhật firmware và chạy thử.",
+          "qcSteps": [
+            {
+              "step": "VISUAL",
+              "result": "PASS"
+            },
+            {
+              "step": "MAIN_FUNCTION",
+              "result": "PASS"
+            },
+            {
+              "step": "SECONDARY",
+              "result": "PASS"
+            },
+            {
+              "step": "POWER_CHARGING",
+              "result": "PASS"
+            },
+            {
+              "step": "DATA",
+              "result": "PASS"
+            },
+            {
+              "step": "FINAL",
+              "result": "PASS"
+            }
+          ],
+          "qcResult": "PASS",
+          "qcDetails": "Tất cả tiêu chí đạt",
+          "recordedAt": {
+            "$date": {
+              "$numberLong": "1793331034059"
+            }
+          }
+        }
+      ]
+    },
+    "activeQuotationId": "BG-2026-1030-00006",
+    "adjustment": null,
+    "handover": null,
+    "customerNotes": [],
+    "internalNotes": [
+      {
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033891"
+          }
+        },
+        "text": "[DEMO Phase6] P6-20261030033028 - Đã thu phí, chờ ký bàn giao. Thông tin khách và nghiệp vụ chỉ dùng trình diễn.",
+        "by": "NV-002",
+        "role": "RECEPTIONIST"
+      }
+    ],
+    "statusHistory": [
+      {
+        "status": "RECEIVED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033819"
+          }
+        },
+        "description": "Khách hàng bàn giao thiết bị, lập phiếu tiếp nhận.",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "INSPECTING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033931"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã tiếp nhận\" sang \"Đang kiểm tra\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "DIAGNOSED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033952"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang kiểm tra\" sang \"Đã chẩn đoán\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_QUOTE_APPROVAL",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331033978"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đã chẩn đoán\" sang \"Chờ duyệt giá\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      },
+      {
+        "status": "AWAITING_CUSTOMER_CONFIRMATION",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331034003"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Chờ duyệt giá\" sang \"Chờ khách xác nhận\"",
+        "actor": "NV-003",
+        "actorName": "Điều phối demo",
+        "actorRole": "DISPATCHER"
+      },
+      {
+        "status": "REPAIRING",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331034028"
+          }
+        },
+        "description": "Khách hàng đồng ý báo giá (xác nhận thay khách tại quầy).",
+        "actor": "NV-002",
+        "actorName": "Lễ tân demo",
+        "actorRole": "RECEPTIONIST"
+      },
+      {
+        "status": "COMPLETED",
+        "at": {
+          "$date": {
+            "$numberLong": "1793331034059"
+          }
+        },
+        "description": "Trạng thái đổi từ \"Đang sửa chữa\" sang \"Hoàn thành\"",
+        "actor": "NV-004",
+        "actorName": "Kỹ thuật viên demo",
+        "actorRole": "TECHNICIAN"
+      }
+    ],
+    "version": {
+      "$numberInt": "7"
+    },
+    "open": true
+  }
+], { relaxed: false }), { ordered: true });
+  if (target.getCollection("tickets").countDocuments({}) !== 210) throw new Error("Count mismatch: tickets");
 
   // Collection: warranty_policies (1 documents in source).
   target.createCollection("warranty_policies", EJSON.deserialize({}, { relaxed: false }));
@@ -145676,7 +153973,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("warranty_policies").countDocuments({}) !== 1) throw new Error("Count mismatch: warranty_policies");
 
-  // Collection: warranty_requests (27 documents in source).
+  // Collection: warranty_requests (28 documents in source).
   target.createCollection("warranty_requests", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("warranty_requests").createIndex(EJSON.deserialize({
   "status": {
@@ -146579,9 +154876,38 @@
       }
     },
     "cancelReason": null
+  },
+  {
+    "_id": "YC-2026-1030-00001",
+    "customerId": null,
+    "customer": {
+      "fullName": "Nguyễn Thanh Hòa (demo)",
+      "phone": "0886836199",
+      "email": null,
+      "address": null
+    },
+    "categoryCode": "LAPTOP",
+    "deviceTypeCode": "LAPTOP_SERIAL",
+    "brandModel": "Dell Inspiron 15 3530",
+    "identifierType": "SERIAL",
+    "serialOrImei": "P6-20261030033028-ONLINE",
+    "symptom": "[DEMO Phase6] Laptop không khởi động; khách hẹn mang máy đến",
+    "preferredStation": "TRAM-01",
+    "preferredFrom": null,
+    "preferredTo": null,
+    "status": "PENDING_INTAKE",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793331034216"
+      }
+    },
+    "convertedTicketId": null,
+    "handledBy": null,
+    "handledAt": null,
+    "cancelReason": null
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("warranty_requests").countDocuments({}) !== 27) throw new Error("Count mismatch: warranty_requests");
+  if (target.getCollection("warranty_requests").countDocuments({}) !== 28) throw new Error("Count mismatch: warranty_requests");
 
-  print("Restored 4532 documents in 26 collections to " + targetName);
+  print("Restored 4807 documents in 26 collections to " + targetName);
 })();

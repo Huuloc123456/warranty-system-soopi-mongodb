@@ -1,5 +1,5 @@
 // Soopi MongoDB: complete data and index snapshot
-// Source: soopi_mongodb; captured at: 2026-10-21T00:53:08.919Z
+// Source: soopi_mongodb; captured at: 2026-10-30T04:52:25.462Z
 // 26 collections; 52 indexes (including _id_).
 // Set SOOPI_RESTORE_DB to choose an EMPTY target database.
 // No collections or documents are dropped or overwritten.
@@ -21,8 +21,22 @@
     "$numberInt": "1"
   }
 }, { relaxed: false }), EJSON.deserialize({
-  "name": "account_username",
-  "unique": true
+  "name": "account_username_collated",
+  "unique": true,
+  "collation": {
+    "locale": "en",
+    "caseLevel": false,
+    "caseFirst": "off",
+    "strength": {
+      "$numberInt": "2"
+    },
+    "numericOrdering": false,
+    "alternate": "non-ignorable",
+    "maxVariable": "punct",
+    "normalization": false,
+    "backwards": false,
+    "version": "57.1"
+  }
 }, { relaxed: false }));
   target.getCollection("accounts").insertMany(EJSON.deserialize([
   {
@@ -121,7 +135,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1792079290662"
+        "$numberLong": "1793186932981"
       }
     },
     "passwordChangedAt": {
@@ -156,7 +170,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1792079310208"
+        "$numberLong": "1793185897470"
       }
     },
     "passwordChangedAt": {
@@ -296,7 +310,7 @@
     },
     "lastLoginAt": {
       "$date": {
-        "$numberLong": "1791532986530"
+        "$numberLong": "1793186543672"
       }
     },
     "passwordChangedAt": {
@@ -609,7 +623,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("attachments").countDocuments({}) !== 15) throw new Error("Count mismatch: attachments");
 
-  // Collection: audit_logs (307 documents in source).
+  // Collection: audit_logs (312 documents in source).
   target.createCollection("audit_logs", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("audit_logs").createIndex(EJSON.deserialize({
   "entityType": {
@@ -7077,9 +7091,114 @@
     "entityId": "6",
     "before": null,
     "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "308"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793185855423"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "309"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793185897513"
+      }
+    },
+    "actorId": "NV-004",
+    "actorName": "technician",
+    "actorRoles": [
+      "TECHNICIAN"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "4",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "310"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793185923161"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "311"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793186543786"
+      }
+    },
+    "actorId": "KH:KH-000001",
+    "actorName": "0900000001",
+    "actorRoles": [
+      "CUSTOMER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "8",
+    "before": null,
+    "after": null
+  },
+  {
+    "_id": {
+      "$numberLong": "312"
+    },
+    "at": {
+      "$date": {
+        "$numberLong": "1793186933032"
+      }
+    },
+    "actorId": "NV-003",
+    "actorName": "dispatcher",
+    "actorRoles": [
+      "DISPATCHER"
+    ],
+    "action": "AUTH_LOGIN_SUCCESS",
+    "actionLabel": "Đăng nhập thành công",
+    "entityType": "ACCOUNT",
+    "entityId": "3",
+    "before": null,
+    "after": null
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("audit_logs").countDocuments({}) !== 307) throw new Error("Count mismatch: audit_logs");
+  if (target.getCollection("audit_logs").countDocuments({}) !== 312) throw new Error("Count mismatch: audit_logs");
 
   // Collection: brands (3 documents in source).
   target.createCollection("brands", EJSON.deserialize({}, { relaxed: false }));
@@ -7252,7 +7371,7 @@
   {
     "_id": "audit_logs",
     "value": {
-      "$numberLong": "307"
+      "$numberLong": "312"
     }
   },
   {
@@ -7264,7 +7383,7 @@
   {
     "_id": "refresh_tokens",
     "value": {
-      "$numberLong": "119"
+      "$numberLong": "125"
     }
   }
 ], { relaxed: false }), { ordered: true });
@@ -11158,7 +11277,7 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("quotations").countDocuments({}) !== 6) throw new Error("Count mismatch: quotations");
 
-  // Collection: refresh_tokens (119 documents in source).
+  // Collection: refresh_tokens (125 documents in source).
   target.createCollection("refresh_tokens", EJSON.deserialize({}, { relaxed: false }));
   target.getCollection("refresh_tokens").createIndex(EJSON.deserialize({
   "accountId": {
@@ -14425,9 +14544,171 @@
     "remember": false,
     "ip": "::1",
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "_id": {
+      "$numberLong": "120"
+    },
+    "tokenHash": "1f07e5493eea4adf6323e914596139cb768a86afc7399cb6360d3b86307c453b",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "7a62985d-7096-404a-9c11-096f429a14c6",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793185855477"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793229055477"
+      }
+    },
+    "revokedAt": {
+      "$date": {
+        "$numberLong": "1793185884934"
+      }
+    },
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "_id": {
+      "$numberLong": "121"
+    },
+    "tokenHash": "846ed7a3086ebe6b54d44fc0baf63865c26e56eb4cd48076d8b40450dd2bbe91",
+    "accountId": {
+      "$numberLong": "4"
+    },
+    "familyId": "b871548e-7936-48fc-b3c2-ef18bb96c140",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793185897515"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793229097515"
+      }
+    },
+    "revokedAt": {
+      "$date": {
+        "$numberLong": "1793185921381"
+      }
+    },
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "_id": {
+      "$numberLong": "122"
+    },
+    "tokenHash": "cbadebaf68913dd0e1923bc2a6b28c369f9fb61c202ccb10342b107e60daa7f2",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "3f64a2aa-8ea2-4299-9090-ff08cbb3b400",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793185923163"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793229123163"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "_id": {
+      "$numberLong": "123"
+    },
+    "tokenHash": "ee42e4060913eda6a6af045291c5de718e773208d45e6116e9b271d4763fdc1a",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "cf235c03-eedc-400d-8aea-d55ee07c1c0b",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793186543802"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793229743802"
+      }
+    },
+    "revokedAt": {
+      "$date": {
+        "$numberLong": "1793186920618"
+      }
+    },
+    "replacedByHash": "e24dc7ba42419e542eeeb1556cea55c5c73697732e7b264bcb468e6c076540c4",
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "_id": {
+      "$numberLong": "124"
+    },
+    "tokenHash": "e24dc7ba42419e542eeeb1556cea55c5c73697732e7b264bcb468e6c076540c4",
+    "accountId": {
+      "$numberLong": "8"
+    },
+    "familyId": "cf235c03-eedc-400d-8aea-d55ee07c1c0b",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793186920688"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793230120688"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Claude/4.29.0 Chrome/152.0.7977.167 Safari/537.36 MSIX"
+  },
+  {
+    "_id": {
+      "$numberLong": "125"
+    },
+    "tokenHash": "4f588bb553dca162696a252764a4c3d554f1f71dec95ebfaefa7a64b650e98e0",
+    "accountId": {
+      "$numberLong": "3"
+    },
+    "familyId": "b69ca544-4405-47f6-93ae-3afe37c59311",
+    "issuedAt": {
+      "$date": {
+        "$numberLong": "1793186933041"
+      }
+    },
+    "expiresAt": {
+      "$date": {
+        "$numberLong": "1793230133041"
+      }
+    },
+    "revokedAt": null,
+    "replacedByHash": null,
+    "remember": false,
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Claude/4.29.0 Chrome/152.0.7977.167 Safari/537.36 MSIX"
   }
 ], { relaxed: false }), { ordered: true });
-  if (target.getCollection("refresh_tokens").countDocuments({}) !== 119) throw new Error("Count mismatch: refresh_tokens");
+  if (target.getCollection("refresh_tokens").countDocuments({}) !== 125) throw new Error("Count mismatch: refresh_tokens");
 
   // Collection: service_prices (1 documents in source).
   target.createCollection("service_prices", EJSON.deserialize({}, { relaxed: false }));
@@ -18901,5 +19182,5 @@
 ], { relaxed: false }), { ordered: true });
   if (target.getCollection("warranty_requests").countDocuments({}) !== 3) throw new Error("Count mismatch: warranty_requests");
 
-  print("Restored 689 documents in 26 collections to " + targetName);
+  print("Restored 700 documents in 26 collections to " + targetName);
 })();

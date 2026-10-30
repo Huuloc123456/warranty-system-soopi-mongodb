@@ -1,5 +1,7 @@
 # Dữ liệu demo 6 tháng
 
+Đã có thêm [bộ demo trực tiếp Phase6 ngày 30/10/2026](PHASE6-DEMO.md): 13 phiếu mới ở đủ 11 trạng thái, nâng database local `soopi_mongodb_demo` lên 210 phiếu. Chạy `run.bat demo` để dùng dữ liệu đã nạp. File `database/soopi_mongodb_demo.full.js` được xuất lại ngày 30/10/2026 và đã chứa phần bổ sung Phase6 (4.807 document). Bảng bên dưới mô tả bộ sinh gốc 197 phiếu.
+
 Database **`soopi_mongodb_demo`** chứa lịch sử vận hành giả lập của trung tâm trong khoảng 180 ngày, dùng cho demo và các truy vấn ở [`database/queries`](../queries). Database dùng hằng ngày `soopi_mongodb` không bị thay đổi.
 
 | Nội dung | Số lượng (seed 20261028) |
