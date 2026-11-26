@@ -27,7 +27,7 @@ Collection, unique index và dữ liệu demo được tạo khi chạy lần đ
 
 Bộ truy vấn cơ bản, aggregation nâng cao, index và `$jsonSchema` để chạy trong Compass nằm ở [`database/queries`](database/queries). Cách sinh lại dữ liệu: [`database/demo-data`](database/demo-data).
 
-Chuẩn bị thuyết trình: [13 tình huống demo Phase6 đã lưu trong MongoDB local](database/demo-data/PHASE6-DEMO.md).
+Chuẩn bị thuyết trình: [Kịch bản lời thoại và demo trực tiếp](docs/KICH-BAN-THUYET-TRINH-VA-DEMO.md) · [13 tình huống demo Phase 6](database/demo-data/PHASE6-DEMO.md).
 
 ## Tài khoản demo
 
